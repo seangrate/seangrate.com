@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
+
+<style>
+.weblink {
+    color:blue;
+    text-decoration:none;
+}
+
+.weblink:hover {
+    text-decoration:underline
+}
+</style>
+
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -30,9 +42,9 @@
     <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
     <img class="w3-image" src="./images/me.jpg" alt="me" width="200" height="240" style="padding: 0px 16px 0px 16px" align="left">
     <p>I am a senior undergraduate at the University of Kentucky majoring in Mathematics with minors in Computer Science, History, and Classics.
-        My primary interests seem to lie in complex analysis and machine learning. I do research with the <a href="http://www.ms.uky.edu/~geometrylab/">University of Kentucky Math Lab</a>
-        and also in <a href="http://cs.uky.edu/~jacobs/">Nathan Jacobs'</a> computer vision lab. I plan to graduate in Spring 2020 and study mathematics
-        in graduate school. A copy of my CV can be found <a href="/misc/CV.pdf">here<a> along with my contact information.
+        My primary interests seem to lie in complex analysis and machine learning. I do research with the <a class="weblink" href="http://www.ms.uky.edu/~geometrylab/">University of Kentucky Math Lab</a>
+        and also in <a class="weblink" href="http://cs.uky.edu/~jacobs/">Nathan Jacobs'</a> computer vision lab. I plan to graduate in Spring 2020 and study mathematics
+        in graduate school. A copy of my CV can be found <a class="weblink" href="./misc/CV.pdf">here</a> along with my contact information.
     </p>
   </div>
 
@@ -45,7 +57,7 @@
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="/resampling.htm">Point Cloud Resampling</a>
+          <a class="w3-button w3-black" href="./resampling.htm">Point Cloud Resampling</a>
         </div>
         <img src="/w3images/house5.jpg" alt="resampling" style="width:100%">
       </div>
@@ -53,22 +65,24 @@
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
           <div class="w3-display-topleft w3-black">
-            <a class="w3-button w3-black" href="/heisenberg.htm">Discrete Heisenberg Group</a>
+            <a class="w3-button w3-black" href="./heisenberg.htm">Discrete Heisenberg Group</a>
           </div>
         <img src="/w3images/house2.jpg" alt="heisenberg" style="width:100%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black">
-            <a class="w3-button w3-black" href="/assignments.htm">TA Assignments</a>
-          </div>
+        <div class="w3-display-topleft w3-black">
+          <a class="w3-button w3-black" href="./assignments.htm">TA Assignments</a>
+        </div>
         <img src="/w3images/house3.jpg" alt="assignments" style="width:100%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">Flight Route Estimation</div>
+        <div class="w3-display-topleft w3-black">
+          <a class="w3-button w3-black" href="./flightroute.htm">Flight Route Estimation</a>
+        </div>
         <img src="./images/franklin_torch_flight.gif" alt="flight route" style="width:100%">
       </div>
     </div>
@@ -104,7 +118,7 @@
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p>Powered by <a class="weblink" href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
 
 </body>
