@@ -20,16 +20,87 @@
 }
 </style>
 
+<style>
+.slideshow1 {display:none;}
+</style>
+
+<style>
+.slideshow2 {display:none;}
+</style>
+
 
 
 <body>
 
-<p>Webpage under construction.</p>
+
+
+<!--Top navigation bar-->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="./home.htm" class="w3-bar-item w3-button"><b>Go back</b></a>
+
+      <div class="w3-right w3-hide-small">
+          <a href="#Background" class="w3-bar-item w3-button">Background</a>
+    </div>
+  </div>
+</div>
+
+
+<!--Main body-->
+<div>
+    <div class="w3-container w3-padding-32" id="Background">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Background</h3>
+            <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+                <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                    <img src="./images/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
+                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black">Lexington, KY from above</div>
+                </div>
+                <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                    <img src="./images/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
+                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black">Frankfort, KY</div>
+                </div>
+                <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                    <img src="./images/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
+                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black">Louisville, KY</div>
+                </div>
+                <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
+            </div>
+        <p><a class="weblink" href="https://oceanservice.noaa.gov/facts/lidar.html">LiDAR</a> is a way to capture 3D scenes, akin to photographs
+            capturing 2D scenes. The data itself has some attributes such as \( x \), \( y \), and \( z \) values representing
+            a point in space, along with some other metadata like GPS time (when the point was captured), scan angle (the
+            angle between the LiDAR sensor and the captured data point), etc. However, depending on the data collection
+            specifications, some features might not be included. In the case of the Kentucky LiDAR data, the scan angle is
+            not included. This motivates the problem of estimating flight routes.
+        </p>
+    </div>
+</div>
+
+
+
+<script>
+var slideIndex = [1,1];
+/* Class the members of each slideshow group with different CSS classes */
+var slideId = ["slideshow1", "slideshow2"]
+showSlides(1, 0);
+showSlides(1, 1);
+
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex[no]-1].style.display = "block";
+}
+</script>
 
 </body>
-
-
-
-
 
 </html>
