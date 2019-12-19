@@ -24,7 +24,62 @@
 
 <body>
 
-<p>Webpage under construction.</p>
+
+<!--Top navigation bar-->
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+        <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
+
+        <div class="w3-right w3-hide-small">
+            <a href="#Background" class="w3-bar-item w3-button">Background</a>
+            <a href="#Approaches" class="w3-bar-item w3-button">Approaches</a>
+        </div>
+    </div>
+</div>
+
+
+<!--Main body-->
+<div>
+    <div class="w3-container w3-padding-32" id="Background">
+        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+        <p>Point clouds are becoming one of the standard ways to store 3D data.
+        They offer a sparse representation of the data which allows them to be
+        more compact in storage (usually). However, because of this sparsity,
+        often times the fine detail of the underlying surface is lost. The only
+        geometry present in the data is a collection of points, unlike another
+        data format such as meshes which contain information about points <i>and</i>
+        faces. Due to this constraint, obtaining sparse representations of the
+        surface while also being able to retain the finer features is of
+        considerable interest. To tackle this, we try to resample accurately
+        from the surface represented by the point cloud. This will allow use to
+        construct arbitrary resolution point clouds given a single, sparse point
+        cloud of the surface.</p>
+    </div>
+
+    <div class="w3-container w3-padding-32" id="Approaches">
+        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Approaches</h3>
+        <p>We set up a <a class="weblink" href="https://en.wikipedia.org/wiki/Autoencoder#Variational_autoencoder_(VAE)">
+        variational autoencoder</a>-like framework and borrow ideas from
+        <a class="weblink" href="https://arxiv.org/abs/1908.09186">this paper</a>.
+        Essentially, the point cloud will pass as input into the network, which
+        first predicts a <i>basis point set code</i> (latent representation)
+        which is then decoded into an arbitrary resolution point cloud. We also
+        have two sets of labels: (1) the latent representation of the mesh of
+        the object and (2) the latent representation of the sparse point cloud.</p>
+        <p>In more detail, we first construct a fixed basis point set for all
+        samples. Then we pass an \( N \times 3 \) set of points into an encoder
+        network. This then predicts a mean, \( \mu \), and "error", \( \epsilon \),
+        which should represent our point cloud in an efficient way. From there,
+        we pass the code into a decoder network which outputs an \( N^* \times 3 \)
+        set of points. Note that we also only have to train one of the networks,
+        e.g. the encoder or the decoder. If we optimize the encoder network, we
+        construct our loss function using \( L^1 \) losses:
+        \[ \lvert \mu - M \rvert + \lvert \epsilon - (M-E) \rvert, \]
+        where \( \mu \) is the predicted mean, \( \epsilon \) is the predicted
+        "error", \( M \) is the label for the mesh representation, and \( E \) is
+        the label for the sparse point cloud.
+    </div>
+</div>
 
 </body>
 
