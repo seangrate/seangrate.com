@@ -20,6 +20,37 @@
 }
 </style>
 
+<!--https://stackoverflow.com/questions/710158/why-do-my-list-item-bullets-overlap-floating-elements-->
+<style>
+ul {
+    list-style: outside disc;
+    margin-left: 2em;
+}
+ul li {
+    position: relative;
+    left: 2em;
+    padding-right: 2em;
+}​
+
+ol {
+    list-style: outside disc;
+    margin-left: 2em;
+}
+ol li {
+    position: relative;
+    left: 2em;
+    padding-right: 2em;
+}​
+</style>
+
+<style>
+.slideshow1 {display:none;}
+</style>
+
+<style>
+.slideshow2 {display:none;}
+</style>
+
 
 
 <body>
@@ -33,7 +64,7 @@
 
         <div class="w3-right w3-hide-small">
             <a href="#Background" class="w3-bar-item w3-button">Background</a>
-            <a href="#Algorithm" class="w3-bar-item w3-button">Approaches</a>
+            <a href="#Algorithm" class="w3-bar-item w3-button">Algorithm</a>
         </div>
     </div>
 </div>
@@ -62,9 +93,113 @@
                 which group they want to be a part of.</p>
             </div>
     </div>
+
+
+    <div class="w3-container w3-padding-32" id="Algorithm">
+        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Algorithm</h3>
+            <div class="w3-container">
+            <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
+            <img src="./images/assignments/assignments.PNG" alt="graph" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+            <br><div style="text-align:center"><i>Graph formulation of the Math Lab assignment problem.</i></div>
+            </div>
+
+            <p>We can formulate this prolem in terms of finding an optimal subgraph of a
+            (bipartite) graph. Consider a set of nodes representing students and also a
+            set of nodes for each lab groups available times. We draw an edge from a
+            student node to a lab group time node if the student has that time available.
+            We then represent preferences through weighted edges (or pictorally through
+            solid or dashed edges).</p>
+
+            <p>In this example, we have a set of 7 students and 2 groups. Each group also has
+            3 available times. Note that although a group's times are distinct, different
+            groups may share similar times since they are all independent of each other.
+            From here, we draw the edges as specified, e.g. \( s_1 \rightarrow t_{2,1} \)
+            since the Student 1 can meet at Group 2's first time. Then we can add weights
+            to the edges. In the picture, we represent this through solid and dashed lines
+            since adding numbers to each edge made the picture cluttered. For instance,
+            the edges between Student 2 and Group 1 are solid since Student 2 preferred
+            Group 1, whereas the edges from Student 2 to Group 2 are dashed since Student 2
+            preferred Group 2 second.</p>
+
+            <p>To search for this subgraph, we should also use some sort of cost function
+            on the subgraphs found. One of the simplest ones would be a sum over all
+            students of the index into their preference list of their assigned lab group:
+            \[ \sum_{i=1}^n index(pref_i(group\_assigned_i)). \]
+            As an example, if the preference list of a student was (Group 2, Group 1,
+            Group 2) and the student was assigned to Group 2, then the cost associated
+            would be \( 2 \). Using this as a cost function, our goal is to minimize
+            this sum since this would correspond to students being assigned to groups
+            which they preferred least. We can now implement an algorithm for finding
+            this subgraph.</p>
+
+            <div class="w3-container">
+                <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:left">
+                <img src="./images/assignments/code.PNG" alt="code" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:left">
+                <br><div style="text-align:center"><i>The algorithm implemented in Python.</i></div>
+                </div>
+
+                <h4>GIVEN</h4>
+                <ul><li>Set of students with their time availabilities and their list of preferences.</li>
+                    <li>Set of lab groups with their time availabilities.</li>
+                </ul>
+
+                <h4>PROCEDURE</h4>
+                <ol><li>Find matching student times and lab group times.</li>
+                    <li>Select subset of columns (one from each lab group). Make sure union of columns contains all students.</li>
+                    <li>Select subsets of students from each column. Make sure union contains all students and has size between \( a \) and \( b \).</li>
+                    <li>Repeat (2) and (3) until all possible lab group configurations have been exhausted.</li>
+                    <li>Compute the <i>happiness score</i> for each group, e.g. sum the preference ranking of the assigned group for each
+                        student. In the example shown, the group configuration has a happiness score of \( 1+1+1+1+1+1+1 = 7 \). This
+                        is actually the best result for these students and lab groups.</li>
+                    <li>Return the group configurations with the minimum happiness score.</li>
+                </ol>
+            </div>
+
+        <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                <img src="./images/assignments/step1.PNG" alt="step1" style="max-width:512px; max-height:512px">
+                <br><div style="text-align:center"><i>Determine compatible student times and group times.</i></div>
+            </div>
+            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                <img src="./images/assignments/step2.PNG" alt="step2" style="max-width:512px; max-height:512px">
+                <br><div style="text-align:center"><i>Select a time for each group.</i></div>
+            </div>
+            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                <img src="./images/assignments/step3.PNG" alt="step3" style="max-width:512px; max-height:512px">
+                <br><div style="text-align:center"><i>Select a subset of students for each group time.</i></div>
+            </div>
+            <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
+        </div>
+
+
+    </div>
 </div>
 
 
+
+<script>
+var slideIndex = [1,1];
+/* Class the members of each slideshow group with different CSS classes */
+var slideId = ["slideshow1", "slideshow2"]
+showSlides(1, 0);
+showSlides(1, 1);
+
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex[no]-1].style.display = "block";
+}
+</script>
 
 </body>
 
