@@ -20,6 +20,13 @@
 }
 </style>
 
+<style>
+.slideshow1 {display:none;}
+</style>
+
+<style>
+.slideshow2 {display:none;}
+</style>
 
 
 <body>
@@ -42,6 +49,24 @@
 <div>
     <div class="w3-container w3-padding-32" id="Background">
         <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+
+        <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                <img src="./images/resampling/plane.gif" alt="plane" style="max-width:512px; max-height:512px">
+                <div class="w3-display-bottommiddle w3-medium w3-container" style="text-align:center">A plane from <a class="weblink" href="https://modelnet.cs.princeton.edu/">ModelNet</a>.</div>
+            </div>
+            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                <img src="./images/resampling/person.gif" alt="person" style="max-width:512px; max-height:512px">
+                <div class="w3-display-bottommiddle w3-medium w3-container" style="text-align:center">A person from <a class="weblink" href="https://modelnet.cs.princeton.edu/">ModelNet</a>.</div>
+            </div>
+            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+                <img src="./images/resampling/plant.gif" alt="plant" style="max-width:512px; max-height:512px">
+                <div class="w3-display-bottommiddle w3-medium w3-container" style="text-align:center">A plant from <a class="weblink" href="https://modelnet.cs.princeton.edu/">ModelNet</a>.</div>
+            </div>
+            <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
+        </div>
+
         <p>Point clouds are becoming one of the standard ways to store 3D data.
         They offer a sparse representation of the data which allows them to be
         more compact in storage (usually). However, because of this sparsity,
@@ -88,6 +113,31 @@
     <p>Joint work with <a class="weblink" href="http://cs.uky.edu/~jacobs/">Nathan Jacobs</a>
     and Hunter Blanton.</p>
 </footer>
+
+
+<script>
+var slideIndex = [1,1];
+/* Class the members of each slideshow group with different CSS classes */
+var slideId = ["slideshow1", "slideshow2"]
+showSlides(1, 0);
+showSlides(1, 1);
+
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[slideIndex[no]-1].style.display = "block";
+}
+</script>
+
 
 </body>
 
