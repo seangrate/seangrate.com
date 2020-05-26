@@ -3,22 +3,17 @@
 <title>TA Assignments</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-<style>
-.weblink {
-    color:blue;
-    text-decoration:none;
-}
-
-.weblink:hover {
-    text-decoration:underline
-}
-</style>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
+    
+    <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+    <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+</head>
 
 <!--https://stackoverflow.com/questions/710158/why-do-my-list-item-bullets-overlap-floating-elements-->
 <style>
@@ -43,18 +38,8 @@ ol li {
 }​
 </style>
 
-<style>
-.slideshow1 {display:none;}
-</style>
-
-<style>
-.slideshow2 {display:none;}
-</style>
-
-
 
 <body>
-
 
 
 <!--Top navigation bar-->
@@ -78,7 +63,7 @@ ol li {
                 the United States have the task of assigning graduate students to Teaching
                 Assistant (TA) positions. These decisions might be made based on a variety of
                 factors such as the graduate student's mathematical background, time
-                availability, or even the intstuctor's prefence. Usually these assignments
+                availability, or even the instructor's prefence. Usually these assignments
                 might be done by hand or through a committee and so we would like to implement
                 an algorithm to find a feasible assignment.</p>
                 <p>Due to all of the number of graduate students, the number of courses, and
@@ -88,7 +73,7 @@ ol li {
                 <a class="weblink" href="https://ukmathlab.blogspot.com/">University of Kentucky Math Lab</a>
                 allows us to find a simpler algorithm in this way. The number of students is
                 around 20, the number of groups is around 4, and typically the most important
-                constraints to keep in mind are the time availavbilities of the students and
+                constraints to keep in mind are the time availabilities of the students and
                 professors leading the research groups, and the students' preferences for
                 which group they want to be a part of.</p>
             </div>
@@ -103,7 +88,7 @@ ol li {
             <br><div style="text-align:center"><i>Graph formulation of the Math Lab assignment problem.</i></div>
             </div>
 
-            <p>We can formulate this prolem in terms of finding an optimal subgraph of a
+            <p>We can formulate this problem in terms of finding an optimal subgraph of a
             (bipartite) graph. Consider a set of nodes representing students and also a
             set of nodes for each lab groups available times. We draw an edge from a
             student node to a lab group time node if the student has that time available.
