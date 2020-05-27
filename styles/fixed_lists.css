@@ -1,0 +1,20 @@
+/* https://stackoverflow.com/questions/710158/why-do-my-list-item-bullets-overlap-floating-elements */
+ul {
+    list-style: outside disc;
+    margin-left: 2em;
+}
+ul li {
+    position: relative;
+    left: 2em;
+    padding-right: 2em;
+}​
+
+ol {
+    list-style: outside disc;
+    margin-left: 2em;
+}
+ol li {
+    position: relative;
+    left: 2em;
+    padding-right: 2em;
+}​

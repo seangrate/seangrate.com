@@ -8,11 +8,11 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-    
-    <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-    <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
+
+  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
 </head>
 
 
@@ -21,137 +21,137 @@
 
 <!--Top navigation bar-->
 <div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
 
-        <div class="w3-right w3-hide-small">
-            <a href="#Background" class="w3-bar-item w3-button">Background</a>
-            <a href="#Approaches" class="w3-bar-item w3-button">Approaches</a>
-        </div>
+    <div class="w3-right w3-hide-small">
+        <a href="#Background" class="w3-bar-item w3-button">Background</a>
+        <a href="#Approaches" class="w3-bar-item w3-button">Approaches</a>
     </div>
+  </div>
 </div>
 
 
 <!--Main body-->
-<div>
-    <div class="w3-container w3-padding-32" id="Background">
-        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
-            <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
-                <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                    <img src="./images/flightroute/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
-                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Lexington, KY from above</div>
-                </div>
-                <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                    <img src="./images/flightroute/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
-                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Frankfort, KY</div>
-                </div>
-                <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                    <img src="./images/flightroute/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
-                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Louisville, KY</div>
-                </div>
-                <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
-                <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
-            </div>
-        <p><a class="weblink" href="https://oceanservice.noaa.gov/facts/lidar.html">LiDAR</a> is a way to capture 3D
-            scenes, akin to photographs capturing 2D scenes. The data itself has some attributes such as \( x \),
-            \( y \), and \( z \) values representing a point in space, along with some other metadata like GPS time
-            (when the point was captured), scan angle (the angle between the LiDAR sensor and the captured data point),
-            etc. When viewing the points, the result is a point cloud which can be colored by whatever feature you
-            want, e.g. time or <a class="weblink" href="https://desktop.arcgis.com/en/arcmap/10.3/manage-data/las-dataset/what-is-intensity-data-.htm">
-            intensity</a>. However, depending on the data collection specifications, some features might not be included. In the case of the
-            <a class="weblink" href="http://kyfromabove.ky.gov/datasets/kentucky-lidar-point-cloud-data">Kentucky LiDAR data</a>, the scan angle
-            is not included. Moreover, features such as intensity seem to be dependent on the scan angle. To account for this variation, estimating the scan angle,
-            and hence reconstructing the flight route of the LiDAR sensor, is crucial.
+<div class="w3-content w3-padding" style="max-width:1564px">
+  <div class="w3-container w3-padding-32" id="Background">
+    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+    <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/flightroute/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Lexington, KY from above</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/flightroute/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Frankfort, KY</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/flightroute/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Louisville, KY</div>
+      </div>
+      <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+      <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
+    </div>
+    <p><a class="weblink" href="https://oceanservice.noaa.gov/facts/lidar.html">LiDAR</a> is a way to capture 3D
+        scenes, akin to photographs capturing 2D scenes. The data itself has some attributes such as \( x \),
+        \( y \), and \( z \) values representing a point in space, along with some other metadata like GPS time
+        (when the point was captured), scan angle (the angle between the LiDAR sensor and the captured data point),
+        etc. When viewing the points, the result is a point cloud which can be colored by whatever feature you
+        want, e.g. time or <a class="weblink" href="https://desktop.arcgis.com/en/arcmap/10.3/manage-data/las-dataset/what-is-intensity-data-.htm">
+        intensity</a>. However, depending on the data collection specifications, some features might not be included. In the case of the
+        <a class="weblink" href="http://kyfromabove.ky.gov/datasets/kentucky-lidar-point-cloud-data">Kentucky LiDAR data</a>, the scan angle
+        is not included. Moreover, features such as intensity seem to be dependent on the scan angle. To account for this variation, estimating the scan angle,
+        and hence reconstructing the flight route of the LiDAR sensor, is crucial.
+    </p>
+  </div>
+
+  <div class="w3-container w3-padding-32" id="Approaches">
+    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Approaches</h3>
+    <div class="w3-container">
+      <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
+        <img src="./images/flightroute/scan_lines.gif" alt="scan lines" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+        <br><div style="text-align:center"><i>Computed scan direction vectors for a flight over Frankfort, KY</i></div>
+      </div>
+      <p>One of the key features included in LiDAR data is the <i>number of returns</i>. Essentially, whenever
+          a pulse from the LiDAR sensor passes through a semi-transparent material (such as a leaf), that will
+          register a <i>return</i> and this process continues until the pulse hits <i>bare earth</i>. These
+          returns are then recorded as separate data points, but can be grouped together via the time or the
+          scan angle. To reconstruct the flight route of the LiDAR sensor, working with the times with multiple
+          returns is a good start. Using the times with multiple returns, the scan angle can be recovered by
+          computing a difference vector between two points with the same timestamp as follows:
+          \[ \mathbf{d}_t = \frac{P_1 - P_2}{\lvert\lvert P_1 - P_2 \rvert\rvert}, \]
+          \[ \mathbf{d}_t = \begin{cases} \mathbf{d}_t & \text{if } d_z \geq 0 \\ -\mathbf{d}_t & \text{if } d_z < 0 \end{cases} \]
+          This gives us a normalized scan direction vector that is oriented toward the direction of the flight
+          route. Now for each time where multiple returns are recorded, there is a scan direction vector that
+          gives an indication of the LiDAR sensor's flight route.
+      </p>
+    </div>
+
+    <ol>
+      <li><h4 style="padding:8px 0px 8px 0px">Geometry</h4></li>
+      <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+        <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
+          <img src="./images/flightroute/franklin_geo_flight.gif" alt="Franklin flight (geo)" style="max-width:512px; max-height:512px">
+          <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of flight over Frankfort, KY</div>
+        </div>
+        <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
+          <img src="./images/flightroute/franklin_geo_multi_flight.gif" alt="Franklin multi flight (geo)" style="max-width:512px; max-height:512px">
+          <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of multiple flights over Frankfort, KY</div>
+        </div>
+        <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 1)">&#10095;</button>
+      </div>
+      <p> Let \( T \) be the sorted list of times. Given a scan direction vector \( \mathbf{d}_i \)
+          corresponding to some data point \( P_i \), where \( i \) is the index into the list of times, we
+          first paramaterize the line formed by the scan direction vector and the data point by
+          \( \alpha_i = \delta \mathbf{d}_i + P_i \). Due to the constraints of the physical world, we can
+          extend this line to some large distance, \( 0 \leq \delta \leq 8,000 \). To discretize this line, we
+          simply make \( n \) equidistant points on the line. For each pair \( i, i+1 \), we then compute a
+          pairwise distance matrix between the discretized lines and find the points with minimal distance:
+          \[\DeclareMathOperator*{\argmin}{arg\,min} % Jan Hlavacek
+                                  j,k = \argmin_{d\left(\alpha_{i_j}, \beta_{(i+1)_k}\right)} \begin{bmatrix} d\left(\alpha_{i_0}, \beta_{(i+1)_0}\right) & d\left(\alpha_{i_0}, \beta_{(i+1)_1}\right) & \cdots & d\left(\alpha_{i_0}, \beta_{(i+1)_n}\right) \\
+                                                                                                              d\left(\alpha_{i_1}, \beta_{(i+1)_0}\right) & d\left(\alpha_{i_1}, \beta_{(i+1)_1}\right) & \cdots & d\left(\alpha_{i_1}, \beta_{(i+1)_n}\right) \\
+                                                                                                              \vdots & \vdots & \ddots & \vdots \\
+                                                                                                              d\left(\alpha_{i_n}, \beta_{(i+1)_0}\right) & d\left(\alpha_{i_n}, \beta_{(i+1)_1}\right) & \cdots & d\left(\alpha_{i_n}, \beta_{(i+1)_n}\right) \end{bmatrix}, \]
+          where \( j,k \) are the indices into the sets of discretized lines \( \{\alpha_{i_j}\}, \{\beta_{(i+1)_k}\} \).
+          This will then give us the two nearest points along two (adjacent) scan direction vectors. After
+          iterating over all (adjacent) pairs of times, this process will yield a collection of points that
+          approximate the flight route, as shown in the images above.
+      </p>
+
+      <li><h4 style="padding:8px 0px 8px 0px">Linear Motion Model</h4></li>
+      <div class="w3-container">
+        <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
+          <img src="./images/flightroute/franklin_torch_flight.gif" alt="franklin pytorch flight" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+          <br><div style="text-align:center"><i>Estimated linear flight route over Frankfort, KY</i></div>
+        </div>
+        <p>If we assume that flight route of the LiDAR sensor is linear, then we can use the scan direction
+            vectors to find a line that minimizes the distance between the scan direction vectors and the line.
+            In this way, we can estimate a function \( f(t) = At + \mathbf{t} \) where \( A \) is a learnable
+            \( 1 \times 3 \) matrix representing the initial direction of the flight route and \( \mathbf{b} \)
+            is a learnable \(1 \times 3 \) bias term that represents the initial position of the LiDAR sensor.
+            Using the optimization library <a class="weblink" href="https://pytorch.org/">PyTorch</a>, we can
+            create a model that predicts a scan direction vector given a time. We can then set up our objective
+            function by minimizing the cosine distance between the computed scan direction vector and the
+            predicted scan direction vector:
+            \[ \min_{\theta} \sum_t \frac{\mathbf{d}_t (f(t, \theta) - X_t)}{\lvert\lvert f(t, \theta) - X_t \rvert\rvert}, \]
+            where \( \theta \) are the parameters of the model, \( t \) are times, \( \mathbf{d}_t \) are the
+            computed scan direction vectors, \( f(t, \theta) \) is the model prediction, and
+            \( X_t \) are the ground constaints (data points). By using this formulation, the model effectively
+            learns to predict a point along the linear flight route that also matches the computed scan direction
+            vector. The results seem better than the geometric approach, but are also more restrictive since we
+            assume the motion model to be linear.
         </p>
-    </div>
-
-    <div class="w3-container w3-padding-32" id="Approaches">
-        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Approaches</h3>
-            <div class="w3-container">
-            <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-            <img src="./images/flightroute/scan_lines.gif" alt="scan lines" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
-            <br><div style="text-align:center"><i>Computed scan direction vectors for a flight over Frankfort, KY</i></div>
-            </div>
-            <p>One of the key features included in LiDAR data is the <i>number of returns</i>. Essentially, whenever
-                a pulse from the LiDAR sensor passes through a semi-transparent material (such as a leaf), that will
-                register a <i>return</i> and this process continues until the pulse hits <i>bare earth</i>. These
-                returns are then recorded as separate data points, but can be grouped together via the time or the
-                scan angle. To reconstruct the flight route of the LiDAR sensor, working with the times with multiple
-                returns is a good start. Using the times with multiple returns, the scan angle can be recovered by
-                computing a difference vector between two points with the same timestamp as follows:
-                \[ \mathbf{d}_t = \frac{P_1 - P_2}{\lvert\lvert P_1 - P_2 \rvert\rvert}, \]
-                \[ \mathbf{d}_t = \begin{cases} \mathbf{d}_t & \text{if } d_z \geq 0 \\ -\mathbf{d}_t & \text{if } d_z < 0 \end{cases} \]
-                This gives us a normalized scan direction vector that is oriented toward the direction of the flight
-                route. Now for each time where multiple returns are recorded, there is a scan direction vector that
-                gives an indication of the LiDAR sensor's flight route.
-            </p>
-            </div>
-
-        <ol>
-        <li><h4 style="padding:8px 0px 8px 0px">Geometry</h4></li>
-            <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
-                <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
-                    <img src="./images/flightroute/franklin_geo_flight.gif" alt="Franklin flight (geo)" style="max-width:512px; max-height:512px">
-                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of flight over Frankfort, KY</div>
-                </div>
-                <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
-                    <img src="./images/flightroute/franklin_geo_multi_flight.gif" alt="Franklin multi flight (geo)" style="max-width:512px; max-height:512px">
-                    <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of multiple flights over Frankfort, KY</div>
-                </div>
-                <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 1)">&#10094;</button>
-                <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 1)">&#10095;</button>
-            </div>
-            <p> Let \( T \) be the sorted list of times. Given a scan direction vector \( \mathbf{d}_i \)
-                corresponding to some data point \( P_i \), where \( i \) is the index into the list of times, we
-                first paramaterize the line formed by the scan direction vector and the data point by
-                \( \alpha_i = \delta \mathbf{d}_i + P_i \). Due to the constraints of the physical world, we can
-                extend this line to some large distance, \( 0 \leq \delta \leq 8,000 \). To discretize this line, we
-                simply make \( n \) equidistant points on the line. For each pair \( i, i+1 \), we then compute a
-                pairwise distance matrix between the discretized lines and find the points with minimal distance:
-                \[\DeclareMathOperator*{\argmin}{arg\,min} % Jan Hlavacek
-                                        j,k = \argmin_{d\left(\alpha_{i_j}, \beta_{(i+1)_k}\right)} \begin{bmatrix} d\left(\alpha_{i_0}, \beta_{(i+1)_0}\right) & d\left(\alpha_{i_0}, \beta_{(i+1)_1}\right) & \cdots & d\left(\alpha_{i_0}, \beta_{(i+1)_n}\right) \\
-                                                                                                                    d\left(\alpha_{i_1}, \beta_{(i+1)_0}\right) & d\left(\alpha_{i_1}, \beta_{(i+1)_1}\right) & \cdots & d\left(\alpha_{i_1}, \beta_{(i+1)_n}\right) \\
-                                                                                                                    \vdots & \vdots & \ddots & \vdots \\
-                                                                                                                    d\left(\alpha_{i_n}, \beta_{(i+1)_0}\right) & d\left(\alpha_{i_n}, \beta_{(i+1)_1}\right) & \cdots & d\left(\alpha_{i_n}, \beta_{(i+1)_n}\right) \end{bmatrix}, \]
-                where \( j,k \) are the indices into the sets of discretized lines \( \{\alpha_{i_j}\}, \{\beta_{(i+1)_k}\} \).
-                This will then give us the two nearest points along two (adjacent) scan direction vectors. After
-                iterating over all (adjacent) pairs of times, this process will yield a collection of points that
-                approximate the flight route, as shown in the images above.
-            </p>
-
-            <li><h4 style="padding:8px 0px 8px 0px">Linear Motion Model</h4></li>
-            <div class="w3-container">
-            <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-            <img src="./images/flightroute/franklin_torch_flight.gif" alt="franklin pytorch flight" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
-            <br><div style="text-align:center"><i>Estimated linear flight route over Frankfort, KY</i></div>
-            </div>
-            <p>If we assume that flight route of the LiDAR sensor is linear, then we can use the scan direction
-                vectors to find a line that minimizes the distance between the scan direction vectors and the line.
-                In this way, we can estimate a function \( f(t) = At + \mathbf{t} \) where \( A \) is a learnable
-                \( 1 \times 3 \) matrix representing the initial direction of the flight route and \( \mathbf{b} \)
-                is a learnable \(1 \times 3 \) bias term that represents the initial position of the LiDAR sensor.
-                Using the optimization library <a class="weblink" href="https://pytorch.org/">PyTorch</a>, we can
-                create a model that predicts a scan direction vector given a time. We can then set up our objective
-                function by minimizing the cosine distance between the computed scan direction vector and the
-                predicted scan direction vector:
-                \[ \min_{\theta} \sum_t \frac{\mathbf{d}_t (f(t, \theta) - X_t)}{\lvert\lvert f(t, \theta) - X_t \rvert\rvert}, \]
-                where \( \theta \) are the parameters of the model, \( t \) are times, \( \mathbf{d}_t \) are the
-                computed scan direction vectors, \( f(t, \theta) \) is the model prediction, and
-                \( X_t \) are the ground constaints (data points). By using this formulation, the model effectively
-                learns to predict a point along the linear flight route that also matches the computed scan direction
-                vector. The results seem better than the geometric approach, but are also more restrictive since we
-                assume the motion model to be linear.
-            </p>
-            </div>
-        </ol>
-    </div>
+      </div>
+    </ol>
+  </div>
 </div>
 
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
-    <p>Joint work with <a class="weblink" href="http://cs.uky.edu/~jacobs/">Nathan Jacobs</a>
-    and Hunter Blanton</p>.
+  <p>Joint work with <a class="weblink" href="http://cs.uky.edu/~jacobs/">Nathan Jacobs</a>
+  and Hunter Blanton.</p>
 </footer>
 
 

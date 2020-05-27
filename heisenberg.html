@@ -7,13 +7,14 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+
 <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-    
-    <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-    <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
-  </head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
+  
+  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+</head>
 
 
 <body>
@@ -21,271 +22,187 @@
 
 <!--Top navigation bar-->
 <div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
 
-        <div class="w3-right w3-hide-small">
-            <a href="#Background" class="w3-bar-item w3-button">Background</a>
-            <a href="#Setup" class="w3-bar-item w3-button">Setup</a>
-            <a href="#Results" class="w3-bar-item w3-button">Results</a>
-        </div>
+    <div class="w3-right w3-hide-small">
+      <a href="#Background" class="w3-bar-item w3-button">Background</a>
+      <a href="#Setup" class="w3-bar-item w3-button">Setup</a>
+      <a href="#Results" class="w3-bar-item w3-button">Results</a>
     </div>
+  </div>
 </div>
+
 
 <!--Main body-->
-<div>
-    <div class="w3-container w3-padding-32" id="Background">
-        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
-        <div class="w3-container">
-        <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
+<div class="w3-content w3-padding" style="max-width:1564px">
+  <div class="w3-container w3-padding-32" id="Background">
+    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+    <div class="w3-container">
+      <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
         <img src="./images/heisenberg/comm_growth.gif" alt="comm_growth" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
         <br><div style="text-align:center">Progressive dilations of \( P_n(S) \) in \( (\mathbb{Z}^3,+) \)</div>
-        </div>
-        <p>
-            In the commutative setting, vector addition over \( \mathbb{Z} \) is straightforward.
-            Given two vectors \( v,w \in \mathbb{Z}^3 \), vector addition is simply defined as
-            addition component-wise. In fact, \( (\mathbb{Z}^3, +) \) actually forms an abelian group,
-            i.e. \( v + w = w + v \). So now consider some basis set of vectors, say \[ S = \{ (0,0,0),
-            (1,0,0), (0,1,0), (0,0,1) \}. \]
-            As an example, we will generate all <i>words</i> of length \( k \). To find these, first
-            take the \( k \)-fold product \( \underbrace{S \times S \times \ldots \times S}_{k \text{ times}} \).
-            Then for each element in \( S \times S \times \ldots \times S \), compute
-            \( s_1 \star s_2 \star \ldots \star s_k \). This will give an element in \( (\mathbb{Z}^3, \star) \).
-            For \( k = 2 \), this yields
-            \[ \begin{align}
-               (0,0,0) + (0,0,0) & = (0,0,0), \\
-               (0,0,0) + (1,0,0) & = (1,0,0), \\
-               (0,0,0) + (0,1,0) & = (0,1,0), \\
-               (0,0,0) + (0,0,1) & = (0,0,1), \\
+      </div>
+      <p>
+          In the commutative setting, vector addition over \( \mathbb{Z} \) is straightforward.
+          Given two vectors \( v,w \in \mathbb{Z}^3 \), vector addition is simply defined as
+          addition component-wise. In fact, \( (\mathbb{Z}^3, +) \) actually forms an abelian group,
+          i.e. \( v + w = w + v \). So now consider some basis set of vectors, say \[ S = \{ (0,0,0),
+          (1,0,0), (0,1,0), (0,0,1) \}. \]
+          As an example, we will generate all <i>words</i> of length \( k \). To find these, first
+          take the \( k \)-fold product \( \underbrace{S \times S \times \ldots \times S}_{k \text{ times}} \).
+          Then for each element in \( S \times S \times \ldots \times S \), compute
+          \( s_1 \star s_2 \star \ldots \star s_k \). This will give an element in \( (\mathbb{Z}^3, \star) \).
+          For \( k = 2 \), this yields
+          \[ \begin{align}
+          (0,0,0) + (0,0,0) & = (0,0,0), \\
+          (0,0,0) + (1,0,0) & = (1,0,0), \\
+          (0,0,0) + (0,1,0) & = (0,1,0), \\
+          (0,0,0) + (0,0,1) & = (0,0,1), \\
 
-               (1,0,0) + (0,0,0) & = (1,0,0), \\
-               (1,0,0) + (1,0,0) & = (2,0,0), \\
-               (1,0,0) + (0,1,0) & = (1,1,0), \\
-               (1,0,0) + (0,0,1) & = (1,0,1), \\
+          (1,0,0) + (0,0,0) & = (1,0,0), \\
+          (1,0,0) + (1,0,0) & = (2,0,0), \\
+          (1,0,0) + (0,1,0) & = (1,1,0), \\
+          (1,0,0) + (0,0,1) & = (1,0,1), \\
 
-               (0,1,0) + (0,0,0) & = (0,1,0), \\
-               (0,1,0) + (1,0,0) & = (1,1,0), \\
-               (0,1,0) + (0,1,0) & = (0,2,0), \\
-               (0,1,0) + (0,0,1) & = (0,1,1), \\
+          (0,1,0) + (0,0,0) & = (0,1,0), \\
+          (0,1,0) + (1,0,0) & = (1,1,0), \\
+          (0,1,0) + (0,1,0) & = (0,2,0), \\
+          (0,1,0) + (0,0,1) & = (0,1,1), \\
 
-               (0,0,1) + (0,0,0) & = (0,0,1), \\
-               (0,0,1) + (1,0,0) & = (1,0,1), \\
-               (0,0,1) + (0,1,0) & = (0,1,1), \\
-               (0,0,1) + (0,0,1) & = (0,0,2).
-               \end{align} \]
-            Getting rid of duplicates, this yields
-            \[ \begin{align}
-               P_2(S) = \{ & (0,0,0) \\
-                        & (0,0,1) \\
-                        & (0,0,2) \\
-                        & (0,1,0) \\
-                        & (0,1,1) \\
-                        & (0,2,0) \\
-                        & (1,0,0) \\
-                        & (1,0,1) \\
-                        & (1,1,0) \\
-                        & (2,0,0) \},
-               \end{align} \]
-            where \( P_k(S) \) denotes the polytope generated as the \( k \)th dilate of
-            the basis set \( S \). In other words, \( P_k(S) \) is the set of points realized as words of
-            length \( k \) generated by elements of the basis set \( S \). If we let \( \mathcal{B} \) be an aribitrary
-            (finite) basis set with \( \lvert \mathcal{B} \rvert = n \) and compute the words of length \( k \), then
-            there are \( n(n-1)\ldots(n-k+1) \) evaluations to compute. In this example, the number of points contained
-            in \( P_k(S) \), which we will call the <i>volume</i>, is given by \( V = \binom{k+2}{3} \). Furthermore,
-            it can be seen that there are no "missing spots" in the \( P_k(S) \), so we will say \( P_k(S) \) is
-            <i>saturated</i> if this is the case. Additionally, the outer face of \( P_k(S) \) can be desribed by the
-            function \(  z = f(x,y) = k-x-y \). These properties of \( P_k(S) \) motivate the study of polytopes
-            generated in the setting of the Heisenberg group.
-        </p>
+          (0,0,1) + (0,0,0) & = (0,0,1), \\
+          (0,0,1) + (1,0,0) & = (1,0,1), \\
+          (0,0,1) + (0,1,0) & = (0,1,1), \\
+          (0,0,1) + (0,0,1) & = (0,0,2).
+          \end{align} \]
+          Getting rid of duplicates, this yields
+          \[ \begin{align}
+          P_2(S) = \{ & (0,0,0) \\
+                      & (0,0,1) \\
+                      & (0,0,2) \\
+                      & (0,1,0) \\
+                      & (0,1,1) \\
+                      & (0,2,0) \\
+                      & (1,0,0) \\
+                      & (1,0,1) \\
+                      & (1,1,0) \\
+                      & (2,0,0) \},
+          \end{align} \]
+          where \( P_k(S) \) denotes the polytope generated as the \( k \)th dilate of
+          the basis set \( S \). In other words, \( P_k(S) \) is the set of points realized as words of
+          length \( k \) generated by elements of the basis set \( S \). If we let \( \mathcal{B} \) be an aribitrary
+          (finite) basis set with \( \lvert \mathcal{B} \rvert = n \) and compute the words of length \( k \), then
+          there are \( n(n-1)\ldots(n-k+1) \) evaluations to compute. In this example, the number of points contained
+          in \( P_k(S) \), which we will call the <i>volume</i>, is given by \( V = \binom{k+2}{3} \). Furthermore,
+          it can be seen that there are no "missing spots" in the \( P_k(S) \), so we will say \( P_k(S) \) is
+          <i>saturated</i> if this is the case. Additionally, the outer face of \( P_k(S) \) can be desribed by the
+          function \(  z = f(x,y) = k-x-y \). These properties of \( P_k(S) \) motivate the study of polytopes
+          generated in the setting of the Heisenberg group.
+      </p>
     </div>
+  </div>
 
-    <div class="w3-container w3-padding-32" id="Setup">
-        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Setup</h3>
-        <p>
-        To get to the Heisenberg group, we basically do normal vector addition, but now with a
-        twist:
-        \[ \star \colon \mathbb{Z} \times \mathbb{Z} \longrightarrow \mathbb{Z}, \quad (x, y, z) \star (x', y', z') = (x+x', y+y', z+z'+xy'). \]
-        This new operation is <i>almost</i> normal vector addition, except now there is an extra
-        \( xy' \) tacked onto the \( z \)-component. Because of this new twist, \( (\mathbb{Z}^3, \star) \)
-        forms a noncommutative group. We want to explore this group some more, so now we will consider the
-        we will choose a basis set of vectors, say \( S \) (as we did before). As an example, consider again \( k=2 \):
-        <!--k=3
-        \[ \begin{align}
-           (0,0,0) \star (0,0,0) \star (0,0,0) & = (0,0,0) \\
-           (0,0,0) \star (0,0,0) \star (1,0,0) & = (1,0,0) \\
-           (0,0,0) \star (0,0,0) \star (0,1,0) & = (0,1,0) \\
-           (0,0,0) \star (0,0,0) \star (0,0,1) & = (0,0,1) \\
+  <div class="w3-container w3-padding-32" id="Setup">
+    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Setup</h3>
+    <p>
+    To get to the Heisenberg group, we basically do normal vector addition, but now with a
+    twist:
+    \[ \star \colon \mathbb{Z} \times \mathbb{Z} \longrightarrow \mathbb{Z}, \quad (x, y, z) \star (x', y', z') = (x+x', y+y', z+z'+xy'). \]
+    This new operation is <i>almost</i> normal vector addition, except now there is an extra
+    \( xy' \) tacked onto the \( z \)-component. Because of this new twist, \( (\mathbb{Z}^3, \star) \)
+    forms a noncommutative group. We want to explore this group some more, so now we will consider the
+    we will choose a basis set of vectors, say \( S \) (as we did before). As an example, consider again \( k=2 \):
+    \[ \begin{align}
+        (0,0,0) \star (0,0,0) & = (0,0,0), \\
+        (0,0,0) \star (1,0,0) & = (1,0,0), \\
+        (0,0,0) \star (0,1,0) & = (0,1,0), \\
+        (0,0,0) \star (0,0,1) & = (0,0,1), \\
 
-           (0,0,0) \star (1,0,0) \star (0,0,0) & = (1,0,0) \\
-           (0,0,0) \star (1,0,0) \star (1,0,0) & = (2,0,0) \\
-           (0,0,0) \star (1,0,0) \star (0,1,0) & = (1,1,1) \\
-           (0,0,0) \star (1,0,0) \star (0,0,1) & = (1,0,1) \\
+        (1,0,0) \star (0,0,0) & = (1,0,0), \\
+        (1,0,0) \star (1,0,0) & = (2,0,0), \\
+        (1,0,0) \star (0,1,0) & = (1,1,1), \\
+        (1,0,0) \star (0,0,1) & = (1,0,1), \\
 
-           (0,0,0) \star (0,1,0) \star (0,0,0) & = (0,1,0) \\
-           (0,0,0) \star (0,1,0) \star (1,0,0) & = (1,1,0) \\
-           (0,0,0) \star (0,1,0) \star (0,1,0) & = (0,2,0) \\
-           (0,0,0) \star (0,1,0) \star (0,0,1) & = (0,1,1) \\
+        (0,1,0) \star (0,0,0) & = (0,1,0), \\
+        (0,1,0) \star (1,0,0) & = (1,1,0), \\
+        (0,1,0) \star (0,1,0) & = (0,2,0), \\
+        (0,1,0) \star (0,0,1) & = (0,1,1), \\
 
-           (0,0,0) \star (0,0,1) \star (0,0,0) & = (0,0,1) \\
-           (0,0,0) \star (0,0,1) \star (1,0,0) & = (1,0,1) \\
-           (0,0,0) \star (0,0,1) \star (0,1,0) & = (0,1,1) \\
-           (0,0,0) \star (0,0,1) \star (0,0,1) & = (0,0,2) \\
-
-
-           (1,0,0) \star (0,0,0) \star (0,0,0) & = (1,0,0) \\
-           (1,0,0) \star (0,0,0) \star (1,0,0) & = (2,0,0) \\
-           (1,0,0) \star (0,0,0) \star (0,1,0) & = (1,1,1) \\
-           (1,0,0) \star (0,0,0) \star (0,0,1) & = (1,0,1) \\
-
-           (1,0,0) \star (1,0,0) \star (0,0,0) & = (2,0,0) \\
-           (1,0,0) \star (1,0,0) \star (1,0,0) & = (3,0,0) \\
-           (1,0,0) \star (1,0,0) \star (0,1,0) & = (2,1,2) \\
-           (1,0,0) \star (1,0,0) \star (0,0,1) & = (2,0,1) \\
-
-           (1,0,0) \star (0,1,0) \star (0,0,0) & = (1,1,1) \\
-           (1,0,0) \star (0,1,0) \star (1,0,0) & = (2,1,1) \\
-           (1,0,0) \star (0,1,0) \star (0,1,0) & = (1,2,2) \\
-           (1,0,0) \star (0,1,0) \star (0,0,1) & = (1,1,2) \\
-
-           (1,0,0) \star (0,0,1) \star (0,0,0) & = (1,0,1) \\
-           (1,0,0) \star (0,0,1) \star (1,0,0) & = (2,0,1) \\
-           (1,0,0) \star (0,0,1) \star (0,1,0) & = (1,1,2) \\
-           (1,0,0) \star (0,0,1) \star (0,0,1) & = (1,0,2) \\
-
-
-           (0,1,0) \star (0,0,0) \star (0,0,0) & = (0,1,0) \\
-           (0,1,0) \star (0,0,0) \star (1,0,0) & = (1,1,0) \\
-           (0,1,0) \star (0,0,0) \star (0,1,0) & = (0,2,0) \\
-           (0,1,0) \star (0,0,0) \star (0,0,1) & = (0,1,1) \\
-
-           (0,1,0) \star (1,0,0) \star (0,0,0) & = (1,1,0) \\
-           (0,1,0) \star (1,0,0) \star (1,0,0) & = (2,1,0) \\
-           (0,1,0) \star (1,0,0) \star (0,1,0) & = (1,2,1) \\
-           (0,1,0) \star (1,0,0) \star (0,0,1) & = (1,1,1) \\
-
-           (0,1,0) \star (0,1,0) \star (0,0,0) & = (0,2,0) \\
-           (0,1,0) \star (0,1,0) \star (1,0,0) & = (1,2,0) \\
-           (0,1,0) \star (0,1,0) \star (0,1,0) & = (0,3,0) \\
-           (0,1,0) \star (0,1,0) \star (0,0,1) & = (0,2,1) \\
-
-           (0,1,0) \star (0,0,1) \star (0,0,0) & = (0,1,1) \\
-           (0,1,0) \star (0,0,1) \star (1,0,0) & = (1,1,1) \\
-           (0,1,0) \star (0,0,1) \star (0,1,0) & = (0,2,1) \\
-           (0,1,0) \star (0,0,1) \star (0,0,1) & = (0,1,2) \\
-
-
-           (0,0,1) \star (0,0,0) \star (0,0,0) & = (0,0,1) \\
-           (0,0,1) \star (0,0,0) \star (1,0,0) & = (1,0,1) \\
-           (0,0,1) \star (0,0,0) \star (0,1,0) & = (0,1,1) \\
-           (0,0,1) \star (0,0,0) \star (0,0,1) & = (0,0,2) \\
-
-           (0,0,1) \star (1,0,0) \star (0,0,0) & = (1,0,1) \\
-           (0,0,1) \star (1,0,0) \star (1,0,0) & = (2,0,1) \\
-           (0,0,1) \star (1,0,0) \star (0,1,0) & = (1,1,2) \\
-           (0,0,1) \star (1,0,0) \star (0,0,1) & = (1,0,2) \\
-
-           (0,0,1) \star (0,1,0) \star (0,0,0) & = (0,1,1) \\
-           (0,0,1) \star (0,1,0) \star (1,0,0) & = (1,1,1) \\
-           (0,0,1) \star (0,1,0) \star (0,1,0) & = (0,2,1) \\
-           (0,0,1) \star (0,1,0) \star (0,0,1) & = (0,1,2) \\
-
-           (0,0,1) \star (0,0,1) \star (0,0,0) & = (0,0,2) \\
-           (0,0,1) \star (0,0,1) \star (1,0,0) & = (1,0,2) \\
-           (0,0,1) \star (0,0,1) \star (0,1,0) & = (0,1,2) \\
-           (0,0,1) \star (0,0,1) \star (0,0,1) & = (0,0,3)
-
-           \end{align} \] -->
-        \[ \begin{align}
-           (0,0,0) \star (0,0,0) & = (0,0,0), \\
-           (0,0,0) \star (1,0,0) & = (1,0,0), \\
-           (0,0,0) \star (0,1,0) & = (0,1,0), \\
-           (0,0,0) \star (0,0,1) & = (0,0,1), \\
-
-           (1,0,0) \star (0,0,0) & = (1,0,0), \\
-           (1,0,0) \star (1,0,0) & = (2,0,0), \\
-           (1,0,0) \star (0,1,0) & = (1,1,1), \\
-           (1,0,0) \star (0,0,1) & = (1,0,1), \\
-
-           (0,1,0) \star (0,0,0) & = (0,1,0), \\
-           (0,1,0) \star (1,0,0) & = (1,1,0), \\
-           (0,1,0) \star (0,1,0) & = (0,2,0), \\
-           (0,1,0) \star (0,0,1) & = (0,1,1), \\
-
-           (0,0,1) \star (0,0,0) & = (0,0,1), \\
-           (0,0,1) \star (1,0,0) & = (1,0,1), \\
-           (0,0,1) \star (0,1,0) & = (0,1,1), \\
-           (0,0,1) \star (0,0,1) & = (0,0,2).
-           \end{align} \]
-        Getting rid of duplicates, this yields
-        \[ \begin{align}
-           P_2(S) = \{ & (0,0,0) \\
-                    & (0,0,1) \\
-                    & (0,0,2) \\
-                    & (0,1,0) \\
-                    & (0,1,1) \\
-                    & (0,2,0) \\
-                    & (1,0,0) \\
-                    & (1,0,1) \\
-                    & (1,1,0) \\
-                    & (1,1,1) \\
-                    & (2,0,0) \},
-           \end{align} \]
-        Since \( (\mathbb{Z}^3, \star) \) is noncommutative, it is important that each word is evaluated according
-        to the order of the elements. We can also visualize these results as points in \( \mathbb{Z}^3 \), as shown
-        in the slideshow below. If we let \( \mathcal{B} \) be an aribitrary
-        (finite) basis set with \( \lvert \mathcal{B} \rvert = n \) and compute the words of length \( k \), then
-        there are \( n^k \) evaluations to compute. For large \( k \), this task becomes intractable.
-        </p>
-        <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
-            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                <img src="./images/heisenberg/tetra_growth.gif" alt="tetra_growth" style="max-width:512px; max-height:512px">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Progressive dilations of \( P_n(S) \) in \( (\mathbb{Z}^3, \star) \)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                <img src="./images/heisenberg/tetra2.gif" alt="tetra2" style="max-width:512px; max-height:512px">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_2(S) \)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                <img src="./images/heisenberg/tetra4.gif" alt="tetra4" style="max-width:512px; max-height:512px">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_4(S) \)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                <img src="./images/heisenberg/tetra6.gif" alt="tetra6" style="max-width:512px; max-height:512px">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_6(S) \)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                <img src="./images/heisenberg/tetra8.gif" alt="tetra8" style="max-width:512px; max-height:512px">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_8(S) \)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-                <img src="./images/heisenberg/tetra10.gif" alt="tetra10" style="max-width:512px; max-height:512px">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_{10}(S) \)</div>
-            </div>
-            <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
-            <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
-        </div>
-    <div class="w3-container w3-padding-32" id="Results">
-        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Results</h3>
-            <p> We can ask the same questions about \( P_k(S) \) as we did in the commutative setting:
-            <ul>
-                <li>What is the volume of \( P_k(S) \)?</li>
-                <li>Is \( P_k(S) \) saturated?</li>
-                <li>Can we describe the <i>ceiling function</i> of \( P_k(S) \)?</li>
-            </ul>
-            For this example, since all of the points in \( P-k(S) \) lie in the positive orthant, if we can find a
-            ceiling function of \( P_k(S) \), we can also find the volume by integrating. It turns out that the ceiling
-            function for \( P_k(S) \) is \( z = xy - x - y + k \). So then by integrating with respect to \( x \) and
-            \( y \), we can see that
-            \[ \begin{align*}
-                    \lvert P_k(S) \rvert & =\int_{0}^{k} \int_{0}^{k-x} xy - x - y + k \ dy \ dx \\
-                    & =\int_{0}^{k} \int_{0}^{k-x} xy \ dy\ dx + \int_{0}^{k} \int_{0}^{k-x} k - x - y \ dy \ dx \\
-                    & = \int_{0}^{k} \frac{x (k - x)^2}{2} \ dx + \int_{0}^{k} \frac{(k - x)^2}{2} \ dx \\
-                    & = \frac{1}{24} k^4 + \frac{1}{6} k^3   \\
-                    & = \frac{k^4}{4!} + \frac{k^3}{3!}.
-               \end{align*} \]
-            </p>
+        (0,0,1) \star (0,0,0) & = (0,0,1), \\
+        (0,0,1) \star (1,0,0) & = (1,0,1), \\
+        (0,0,1) \star (0,1,0) & = (0,1,1), \\
+        (0,0,1) \star (0,0,1) & = (0,0,2).
+        \end{align} \]
+    Getting rid of duplicates, this yields
+    \[ \begin{align}
+        P_2(S) = \{ & (0,0,0) \\
+                & (0,0,1) \\
+                & (0,0,2) \\
+                & (0,1,0) \\
+                & (0,1,1) \\
+                & (0,2,0) \\
+                & (1,0,0) \\
+                & (1,0,1) \\
+                & (1,1,0) \\
+                & (1,1,1) \\
+                & (2,0,0) \},
+        \end{align} \]
+    Since \( (\mathbb{Z}^3, \star) \) is noncommutative, it is important that each word is evaluated according
+    to the order of the elements. We can also visualize these results as points in \( \mathbb{Z}^3 \), as shown
+    in the slideshow below. If we let \( \mathcal{B} \) be an aribitrary
+    (finite) basis set with \( \lvert \mathcal{B} \rvert = n \) and compute the words of length \( k \), then
+    there are \( n^k \) evaluations to compute. For large \( k \), this task becomes intractable.
+    </p>
+    <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/heisenberg/tetra_growth.gif" alt="tetra_growth" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Progressive dilations of \( P_n(S) \) in \( (\mathbb{Z}^3, \star) \)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/heisenberg/tetra2.gif" alt="tetra2" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_2(S) \)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/heisenberg/tetra4.gif" alt="tetra4" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_4(S) \)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/heisenberg/tetra6.gif" alt="tetra6" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_6(S) \)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/heisenberg/tetra8.gif" alt="tetra8" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_8(S) \)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/heisenberg/tetra10.gif" alt="tetra10" style="max-width:512px; max-height:512px">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">\( P_{10}(S) \)</div>
+      </div>
+      <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+      <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
     </div>
-</div>
+  </div>
+
+  <div class="w3-container w3-padding-32" id="Results">
+    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Results</h3>
+    <p> We can ask the same questions about \( P_k(S) \) as we did in the commutative setting:
+      <ul><li>What is the volume of \( P_k(S) \)?</li>
+          <li>Is \( P_k(S) \) saturated?</li>
+          <li>Can we describe the <i>ceiling function</i> of \( P_k(S) \)?</li>
+      </ul>
+    For this example, since all of the points in \( P-k(S) \) lie in the positive orthant, if we can find a
+    ceiling function of \( P_k(S) \), we can also find the volume by integrating. It turns out that the ceiling
+    function for \( P_k(S) \) is \( z = xy - x - y + k \). So then by integrating with respect to \( x \) and
+    \( y \), we can see that
+    \[ \begin{align*}
+            \lvert P_k(S) \rvert & =\int_{0}^{k} \int_{0}^{k-x} xy - x - y + k \ dy \ dx \\
+            & =\int_{0}^{k} \int_{0}^{k-x} xy \ dy\ dx + \int_{0}^{k} \int_{0}^{k-x} k - x - y \ dy \ dx \\
+            & = \int_{0}^{k} \frac{x (k - x)^2}{2} \ dx + \int_{0}^{k} \frac{(k - x)^2}{2} \ dx \\
+            & = \frac{1}{24} k^4 + \frac{1}{6} k^3   \\
+            & = \frac{k^4}{4!} + \frac{k^3}{3!}.
+        \end{align*} \]
+    </p>
+  </div>
 </div>
 
 
@@ -294,17 +211,13 @@
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
-    <p>Investigated with Angela Vichitbanda and Joe Cecil under the mentorship
-    of <a class="weblink" href="http://www.ms.uky.edu/~cama268/">Chris Manon</a>.
-    Code can be found <a class="weblink" href="https://github.com/UKYMathLab/Heisenberg">here</a>.</p>
+  <p>Investigated with Angela Vichitbanda and Joe Cecil under the mentorship
+  of <a class="weblink" href="http://www.ms.uky.edu/~cama268/">Chris Manon</a>.
+  Code can be found <a class="weblink" href="https://github.com/UKYMathLab/Heisenberg">here</a>.</p>
 </footer>
 
 
 <script src="./scripts/slideshows.js"></script>
-
-
-
-
 
 
 </html>

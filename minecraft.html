@@ -8,101 +8,103 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-    
-    <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-    <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
+  
+  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
 </head>
 
 
 <body>
 
+
 <!--Top navigation bar-->
 <div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
 
-        <div class="w3-right w3-hide-small">
-            <a href="#Background" class="w3-bar-item w3-button">Background</a>
-            <a href="#Approaches" class="w3-bar-item w3-button">Approach</a>
-        </div>
+    <div class="w3-right w3-hide-small">
+      <a href="#Background" class="w3-bar-item w3-button">Background</a>
+      <a href="#Approaches" class="w3-bar-item w3-button">Approach</a>
     </div>
+  </div>
 </div>
 
+
 <!--Main body-->
-<div>
-    <div class="w3-container w3-padding-32" id="Background">
-        <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
-        <p>Minecraft is a procedurally-generated world, i.e. the the world generation is determined by some algorithm.
-           Procedurally-generated worlds sometimes use tools such as
-           <a class="weblink" href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> to make the landscape
-           smooth and consistent, but random. In Minecraft, this might translate to biome generation being reasonable
-           so that a jungle biome will not be generated next to a tundra biome. Since Minecraft is a voxel world, its
-           regions are generated as \( 16 \times 16 \times 256 \)
-           <a class="weblink" href="https://minecraft.gamepedia.com/Chunk">chunks</a>. These form the building blocks
-           of Minecraft's generation. We try to mimic this generation using tools machine learning and computational
-           topology.
-        </p>
+<div class="w3-content w3-padding" style="max-width:1564px">
+  <div class="w3-container w3-padding-32" id="Background">
+    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+    <p>Minecraft is a procedurally-generated world, i.e. the the world generation is determined by some algorithm.
+        Procedurally-generated worlds sometimes use tools such as
+        <a class="weblink" href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> to make the landscape
+        smooth and consistent, but random. In Minecraft, this might translate to biome generation being reasonable
+        so that a jungle biome will not be generated next to a tundra biome. Since Minecraft is a voxel world, its
+        regions are generated as \( 16 \times 16 \times 256 \)
+        <a class="weblink" href="https://minecraft.gamepedia.com/Chunk">chunks</a>. These form the building blocks
+        of Minecraft's generation. We try to mimic this generation using tools machine learning and computational
+        topology.
+    </p>
 
-        <div class="w3-content w3-display-container" style="max-width:75%; max-height:75%">
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/world by height.png" alt="world by height" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A region of a world (colored by height)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/world by block.png" alt="world by block" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A region of a world (colored by block ID)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/village.png" alt="village" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A village (colored by block ID)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/mountain overlook.png" alt="mountain overlook" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">View from a mountain (colored by height)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/caves.png" alt="caves" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Underground cave systems (colored by height)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/cave closeup.png" alt="cave closeup" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Closeup of a cave (colored by height)</div>
-            </div>
-            <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-                <img src="./images/minecraft/cave ravine.png" alt="cave ravine" style="max-width:100%; max-height:100%">
-                <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Closeup of ravine (colored by height)</div>
-            </div>
-          <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
-          <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
-        </div>
+    <div class="w3-content w3-display-container" style="max-width:75%; max-height:75%">
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/world by height.png" alt="world by height" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A region of a world (colored by height)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/world by block.png" alt="world by block" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A region of a world (colored by block ID)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/village.png" alt="village" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A village (colored by block ID)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/mountain overlook.png" alt="mountain overlook" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">View from a mountain (colored by height)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/caves.png" alt="caves" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Underground cave systems (colored by height)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/cave closeup.png" alt="cave closeup" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Closeup of a cave (colored by height)</div>
+      </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/cave ravine.png" alt="cave ravine" style="max-width:100%; max-height:100%">
+        <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Closeup of ravine (colored by height)</div>
+      </div>
+      <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+      <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
+    </div>
 
-        <p>From machine learning, we will use a <a class="weblink" href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">
-          generative adversarial network</a> (GAN) to generate the chunks. Essentially, a generator is trained in an
-          adversarial manner against a competing discriminator, commonly as classifier. The goal of the generator is
-          to mimic the sample distribution of the data. It does this by trying to minimize its own objective function
-          while also maximizing the loss of the discriminator. This translates to the generator producing
-          more representative samples that <i>appear</i> to be from the underlying data distribution. On the other
-          hand, the discriminator operates on a similar model (with roles switched) and has the sole purpose of
-          determining whether a given sample is actual or fake. This effectively allows the discriminator to gauge
-          how well the generator is performing. This framework will give us the ability to try to model the underlying
-          data distribution of Minecraft chunks to the point that our generation is indistinguishable from Minecraft's.
-        </p>
-        <p>One of the defining features of Minecraft worlds is the the vast caves systems that generate underground. To
-            aid the GAN in generating representative chunks, we will use <a class="weblink" href="https://www.maths.ed.ac.uk/~v1ranick/papers/edelhare.pdf">
-            persistent homology</a>. This tool counts the <i>persistence</i> of \( k \)-dimensional holes that might be
-            present in the data. The \( 0 \)-dimensional holes are the number of connected components in the data, the
-            \( 1 \)-dimensional holes are structures like caves, and so on. Using persistent homology should allow the
-            generator to train more representative landscapes and structures.
-        </p>
-   </div>
+    <p>From machine learning, we will use a <a class="weblink" href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">
+      generative adversarial network</a> (GAN) to generate the chunks. Essentially, a generator is trained in an
+      adversarial manner against a competing discriminator, commonly as classifier. The goal of the generator is
+      to mimic the sample distribution of the data. It does this by trying to minimize its own objective function
+      while also maximizing the loss of the discriminator. This translates to the generator producing
+      more representative samples that <i>appear</i> to be from the underlying data distribution. On the other
+      hand, the discriminator operates on a similar model (with roles switched) and has the sole purpose of
+      determining whether a given sample is actual or fake. This effectively allows the discriminator to gauge
+      how well the generator is performing. This framework will give us the ability to try to model the underlying
+      data distribution of Minecraft chunks to the point that our generation is indistinguishable from Minecraft's.
+    </p>
+    <p>One of the defining features of Minecraft worlds is the the vast caves systems that generate underground. To
+        aid the GAN in generating representative chunks, we will use <a class="weblink" href="https://www.maths.ed.ac.uk/~v1ranick/papers/edelhare.pdf">
+        persistent homology</a>. This tool counts the <i>persistence</i> of \( k \)-dimensional holes that might be
+        present in the data. The \( 0 \)-dimensional holes are the number of connected components in the data, the
+        \( 1 \)-dimensional holes are structures like caves, and so on. Using persistent homology should allow the
+        generator to train more representative landscapes and structures.
+    </p>
+  </div>
 </div>
 
 
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-16">
-    <p>Code can be found <a class="weblink" href="https://github.com/TheGrateSalmon/ML_Minecraft">here</a>.</p>
+  <p>Code can be found <a class="weblink" href="https://github.com/TheGrateSalmon/ML_Minecraft">here</a>.</p>
 </footer>
 
 
@@ -110,9 +112,6 @@
 
 
 </body>
-
-
-
 
 
 </html>
