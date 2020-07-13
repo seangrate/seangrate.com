@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
   
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+  <link rel="stylesheet" type="text/css" href="../styles/weblinks.css">
 </head>
 
 
@@ -35,7 +35,7 @@
   <!-- About Section -->
   <div class="w3-container w3-padding-32" id="about">
     <h3 class="w3-border-bottom w3-border-grey w3-padding-16">About</h3>
-    <img class="w3-image" src="./images/me.jpg" alt="me" width="200" height="240" style="padding: 0px 16px 0px 16px; float:left">
+    <img class="w3-image" src="../static/images/me.jpg" alt="me" width="200" height="240" style="padding: 0px 16px 0px 16px; float:left">
     <p>I am a recent graduate of the University of Kentucky where I earned a Bachelor of Science in Mathematics with minors in History and Classics.
        My primary research interests seem to lie in complex analysis, geometry, and machine learning. 
        While at the University of Kentucky, I conducted research with the <a class="weblink" href="http://www.ms.uky.edu/~geometrylab/">University of Kentucky Math Lab</a>
@@ -57,23 +57,23 @@
         <div class="w3-display-topleft w3-black">
           <a class="w3-button w3-black" href="./resampling.html">Point Cloud Resampling</a>
         </div>
-        <img src="./images/resampling/plane.gif" alt="resampling" style="width:100%">
+        <img src="../static/images/resampling/plane.gif" alt="resampling" style="width:100%">
       </div>
     </div> -->
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
           <div class="w3-display-topleft w3-black">
-            <a class="w3-button w3-black" href="./heisenberg.html">Discrete Heisenberg Group</a>
+            <a class="w3-button w3-black" href={{ url_for("heisenberg") }}>Discrete Heisenberg Group</a>
           </div>
-        <img src="./images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%">
+        <img src="../static/images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./flightroute.html">Flight Route Estimation</a>
+          <a class="w3-button w3-black" href={{ url_for("flightroute") }}>Flight Route Estimation</a>
         </div>
-        <img src="./images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%">
+        <img src="../static/images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%">
       </div>
     </div>
   </div>
@@ -87,25 +87,25 @@
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./visualizations.html">Visualizing Algebraic Surfaces</a>
+          <a class="w3-button w3-black" href={{ url_for("visualizations") }}>Visualizing Algebraic Surfaces</a>
         </div>
-        <img src="./images/visualizations/clebsh1.jpg" alt="Clebsh 27 lines" style="width:100%" image-orientation=from-image>
+        <img src="../static/images/visualizations/clebsh1.jpg" alt="Clebsh 27 lines" style="width:100%" image-orientation=from-image>
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./assignments.html">TA Assignments</a>
+          <a class="w3-button w3-black" href={{ url_for("assignments") }}>TA Assignments</a>
         </div>
-        <img src="./images/assignments/assignments.PNG" alt="assignments" style="width:100%">
+        <img src="../static/images/assignments/assignments.PNG" alt="assignments" style="width:100%">
       </div>
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-display-container">
         <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./minecraft.html">Generating Minecraft Worlds</a>
+          <a class="w3-button w3-black" href={{ url_for("minecraft") }}>Generating Minecraft Worlds</a>
         </div>
-        <img src="./images/minecraft/mountain overlook (small).png" alt="minecraft world" style="width:100%">
+        <img src="../static/images/minecraft/mountain overlook (small).png" alt="minecraft world" style="width:100%">
       </div>
     </div>
   </div>
