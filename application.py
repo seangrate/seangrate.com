@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', title='Sean Grate',
                            is_home=True,
-                           nav_buttons=['Research', 'Projects'])
+                           nav_buttons=['About', 'Research', 'Projects'])
 
 @app.route('/assignments')
 def assignments():
@@ -36,7 +36,7 @@ def minecraft():
 def visualizations():
     return render_template('visualizations.html', title='Visualizing Algebraic Surfaces',
                            is_home=False,
-                           nav_buttons=['27 Lines', 'Calculus III'])
+                           nav_buttons=['27 Lines', 'Twisted Cubic', 'Calculus III'])
 
 
 if __name__ == '__main__':
