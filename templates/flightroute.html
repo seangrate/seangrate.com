@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html>
-<title>Estimating Flight Routes</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<head>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-
-  <link rel="stylesheet" type="text/css" href="../static/styles/weblinks.css">
-  <link rel="stylesheet" type="text/css" href="../static/styles/slideshows.css">
-</head>
-
-
+{% block body %}
 <body>
-
-
-<!--Top navigation bar-->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href={{ url_for("index") }} class="w3-bar-item w3-button"><b>Go back</b></a>
-
-    <div class="w3-right w3-hide-small">
-        <a href="#Background" class="w3-bar-item w3-button">Background</a>
-        <a href="#Approaches" class="w3-bar-item w3-button">Approaches</a>
-    </div>
-  </div>
-</div>
-
 
 <!--Main body-->
 <div class="w3-content w3-padding" style="max-width:1564px">
@@ -159,5 +133,7 @@
 
 
 </body>
+{% endblock body %}
+
 
 </html>
