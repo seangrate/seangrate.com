@@ -39,5 +39,10 @@ def visualizations():
                            nav_buttons=['27 Lines', 'Twisted Cubic', 'Calculus III'])
 
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
