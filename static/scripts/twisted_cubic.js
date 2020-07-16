@@ -1,11 +1,11 @@
-var pointCount = 100;
-var min_t = -1;
-var max_t = 1;
-var i, t;
+let pointCount = 100;
+let min_t = -1;
+let max_t = 1;
+let i, t;
 
-var x = [];
-var y = [];
-var z = [];
+let x = [];
+let y = [];
+let z = [];
 
 for(i = 0; i < pointCount; i++)
 {
@@ -16,7 +16,7 @@ for(i = 0; i < pointCount; i++)
 }
               
 // https://plotly.com/javascript/reference/#layout-scene-camera
-// var updatemenus=[
+// let updatemenus=[
 //     {
 //         buttons: [
 //             {
@@ -75,7 +75,7 @@ for(i = 0; i < pointCount; i++)
 //     }
 // ]
 
-// var annotations = [
+// let annotations = [
 //     {
 //       text: 'View:',
 //       x: 0,
@@ -86,7 +86,7 @@ for(i = 0; i < pointCount; i++)
 //     }
 // ]
 
-var layout = {
+let layout = {
     // width: 800,
     // height: 900,
     autosize: true,
