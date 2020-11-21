@@ -1,36 +1,10 @@
 <!DOCTYPE html>
 <html>
-<title>Estimating Flight Routes</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<head>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
-</head>
-
-
+{% block body %}
 <body>
-
-
-<!--Top navigation bar-->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
-
-    <div class="w3-right w3-hide-small">
-        <a href="#Background" class="w3-bar-item w3-button">Background</a>
-        <a href="#Approaches" class="w3-bar-item w3-button">Approaches</a>
-    </div>
-  </div>
-</div>
-
 
 <!--Main body-->
 <div class="w3-content w3-padding" style="max-width:1564px">
@@ -38,15 +12,15 @@
     <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
     <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
       <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-        <img src="./images/flightroute/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
+        <img src="../static/images/flightroute/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Lexington, KY from above</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-        <img src="./images/flightroute/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
+        <img src="../static/images/flightroute/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Frankfort, KY</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-        <img src="./images/flightroute/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
+        <img src="../static/images/flightroute/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Louisville, KY</div>
       </div>
       <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
@@ -69,7 +43,7 @@
     <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Approaches</h3>
     <div class="w3-container">
       <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-        <img src="./images/flightroute/scan_lines.gif" alt="scan lines" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+        <img src="../static/images/flightroute/scan_lines.gif" alt="scan lines" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
         <br><div style="text-align:center"><i>Computed scan direction vectors for a flight over Frankfort, KY</i></div>
       </div>
       <p>One of the key features included in LiDAR data is the <i>number of returns</i>. Essentially, whenever
@@ -91,11 +65,11 @@
       <li><h4 style="padding:8px 0px 8px 0px">Geometry</h4></li>
       <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
         <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
-          <img src="./images/flightroute/franklin_geo_flight.gif" alt="Franklin flight (geo)" style="max-width:512px; max-height:512px">
+          <img src="../static/images/flightroute/franklin_geo_flight.gif" alt="Franklin flight (geo)" style="max-width:512px; max-height:512px">
           <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of flight over Frankfort, KY</div>
         </div>
         <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
-          <img src="./images/flightroute/franklin_geo_multi_flight.gif" alt="Franklin multi flight (geo)" style="max-width:512px; max-height:512px">
+          <img src="../static/images/flightroute/franklin_geo_multi_flight.gif" alt="Franklin multi flight (geo)" style="max-width:512px; max-height:512px">
           <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of multiple flights over Frankfort, KY</div>
         </div>
         <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 1)">&#10094;</button>
@@ -122,7 +96,7 @@
       <li><h4 style="padding:8px 0px 8px 0px">Linear Motion Model</h4></li>
       <div class="w3-container">
         <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-          <img src="./images/flightroute/franklin_torch_flight.gif" alt="franklin pytorch flight" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+          <img src="../static/images/flightroute/franklin_torch_flight.gif" alt="franklin pytorch flight" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
           <br><div style="text-align:center"><i>Estimated linear flight route over Frankfort, KY</i></div>
         </div>
         <p>If we assume that flight route of the LiDAR sensor is linear, then we can use the scan direction
@@ -155,9 +129,8 @@
 </footer>
 
 
-<script src="./scripts/slideshows.js"></script>
-
-
 </body>
+{% endblock body %}
+
 
 </html>
