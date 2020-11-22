@@ -1,3 +1,3 @@
-# TheGrateSalmon.github.io
+# seangrate.com
 
 A simple personal website.
