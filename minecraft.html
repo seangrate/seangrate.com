@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
-{% extends "base.html" %}
-{% block title %}{{ title }}{% endblock %}
+<title>Genrating Minecraft Worlds</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block body %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
+  
+  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+</head>
+
 <body>
+
+<!--Top navigation bar-->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
+
+    <div class="w3-right w3-hide-small">
+      <a href="#Background" class="w3-bar-item w3-button">Background</a>
+      <a href="#Approaches" class="w3-bar-item w3-button">Approach</a>
+    </div>
+  </div>
+</div>
 
 <!--Main body-->
 <div class="w3-content w3-padding" style="max-width:1564px">
@@ -23,31 +46,31 @@
 
     <div class="w3-content w3-display-container" style="max-width:75%; max-height:75%">
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/world by height.png" alt="world by height" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/world by height.png" alt="world by height" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A region of a world (colored by height)</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/world by block.png" alt="world by block" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/world by block.png" alt="world by block" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A region of a world (colored by block ID)</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/village.png" alt="village" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/village.png" alt="village" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">A village (colored by block ID)</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/mountain overlook.png" alt="mountain overlook" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/mountain overlook.png" alt="mountain overlook" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">View from a mountain (colored by height)</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/caves.png" alt="caves" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/caves.png" alt="caves" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Underground cave systems (colored by height)</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/cave closeup.png" alt="cave closeup" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/cave closeup.png" alt="cave closeup" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Closeup of a cave (colored by height)</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
-        <img src="../static/images/minecraft/cave ravine.png" alt="cave ravine" style="max-width:100%; max-height:100%">
+        <img src="./images/minecraft/cave ravine.png" alt="cave ravine" style="max-width:100%; max-height:100%">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Closeup of ravine (colored by height)</div>
       </div>
       <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
@@ -81,9 +104,8 @@
   <p>Code can be found <a class="weblink" href="https://github.com/TheGrateSalmon/ML_Minecraft">here</a>.</p>
 </footer>
 
+<script src="./scripts/slideshows.js"></script>
 
 </body>
-{% endblock %}
-
 
 </html>
