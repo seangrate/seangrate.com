@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html>
-<title>Visualizing Algebraic Surfaces</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Visualizing Algebraic Surfaces</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-  
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
 </head>
 
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!--Top navigation bar-->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
-
-    <div class="w3-right w3-hide-small">
-      <a href="#27 Lines" class="w3-bar-item w3-button">27 Lines</a>
-      <a href="#Twisted Cubic" class="w3-bar-item w3-button">Twisted Cubic</a>
-      <a href="#Calculus III" class="w3-bar-item w3-button">Calculus III</a>
-    </div>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="./images/visualizations/twisted_cubic_surface_render.png" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Visualizing Algebraic Surfaces</b></h4>
+    <p class="w3-text-grey">Use 3D printing to visualize algebraic surfaces.</p>
   </div>
-</div>
+  <div class="w3-bar-block">
+    <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#27 Lines" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-exchange w3-margin-right"></i>27 LINES</a> 
+    <a href="#Twisted Cubic" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-cube w3-margin-right"></i>TWISTED CUBIC</a> 
+    <a href="#Calculus III" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-area-chart w3-margin-right"></i>CALCULUS III</a> 
+  </div>
+</nav>
 
-<!--Main body-->
-<div class="w3-content w3-padding" style="max-width:1564px">
-  <div class="w3-container w3-padding-32" id="27 Lines">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">27 Lines on the Clebsh Surface</h3>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    </div>
+  </header>
+  <!-- 27 Lines -->
+  <div id="27 Lines" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>27 Lines on the Clebsh Surface</b></h4>
     <div id="clebsh_plot"></div>
     <script src="./scripts/clebsh.js"></script>
     <p>In algebraic geometry, there is a remarkable <a class="weblink" href="https://en.wikipedia.org/wiki/Cubic_surface#27_lines_on_a_cubic_surface">theorem</a>
@@ -54,12 +70,12 @@
       <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
     </div>
   </div>
-
-  <div class="w3-container w3-padding-32" id="Twisted Cubic">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">The Twisted Cubic</h3>
+  <!-- Twisted Cubic -->
+  <div id="Twisted Cubic" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>The Twisted Cubic</b></h4>
     <p>The <a class="weblink" href="https://en.wikipedia.org/wiki/Twisted_cubic">twisted cubic</a> can be expressed
-       parametrically with \( t \rightarrow (t, t^2, t^3) \). If considering this curve in \( \mathbb{R}^3 \), then in particular, 
-       projecting the twisted cubic along any dimension yields a different polynomial curve.
+      parametrically with \( t \rightarrow (t, t^2, t^3) \). If considering this curve in \( \mathbb{R}^3 \), then in particular, 
+      projecting the twisted cubic along any dimension yields a different polynomial curve.
     </p>
     <div id="twisted_cubic_plot"></div>
     <script src="./scripts/twisted_cubic.js"></script>
@@ -67,8 +83,8 @@
       The designer of this model, Nathan Fieldsteel, has a fantastic blog post <a class="weblink" href="https://nathanfieldsteel.github.io/2020/02/18/The-Tangent-Variety-to-the-Twisted-Cubic.html">here</a> 
       that describes what this model is visualizing. We printed two versions of the tangent variety.
       The first is solid, whereas as the second is skeletal and accentuates the tangent lines more.
-   </p>
-   <div class="w3-content w3-display-container" style="max-width:300px">
+    </p>
+    <div class="w3-content w3-display-container" style="max-width:300px">
       <img class="slideshow2" src="./images/visualizations/twisted_cubic_surface_render.png" alt="twisted cubic render" style="max-width:300px">
       <img class="slideshow2" src="./images/visualizations/twisted_cubic1.JPG" alt="twisted cubic 1" style="max-width:300px">
       <img class="slideshow2" src="./images/visualizations/twisted_cubic2.JPG" alt="twisted cubic 2" style="max-width:300px">
@@ -80,9 +96,9 @@
       <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 1)">&#10095;</button>
     </div>
   </div>
-
-  <div class="w3-container w3-padding-32" id="Calculus III">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Calculus III</h3>
+  <!-- Calculus III -->
+  <div id="Calculus III" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Calculus III</b></h4>
     <p>For many students, the higher dimensionality of multivariate calculus can be a challenge to handle.
       By creating interactive and tangible objects related to some of the objects, the goal is to make the
       concepts more accessible and to provide some intuition for students. Because much of Calculus III begins
@@ -98,14 +114,45 @@
       <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 2)">&#10095;</button>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <h3>Contact</h3>
+        Office: 122H Parker Hall<br>
+        Email: sean.grate@auburn.edu
+      </div>
+      <div class="w3-half">
+        <h3>Mailing Address</h3>
+        <p>
+          Department of Mathematics and Statistics<br>
+          221 Parker Hall<br>
+          Auburn University, AL 36849<br>
+          USA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="w3-black w3-center w3-padding-24">
+    <p>Code can be found <a class="weblink" href="https://github.com/UKYMathLab/3dprinting" title="GitHub repository" target="_blank" class="w3-hover-opacity">here</a>.</p>
+  </div>
+<!-- End page content -->
 </div>
 
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Code can be found <a class="weblink" href="https://github.com/UKYMathLab/3dprinting">here</a>.</p>
-</footer>
-
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
 <script src="./scripts/slideshows.js"></script>
 
 </body>

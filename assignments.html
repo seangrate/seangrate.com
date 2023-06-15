@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html>
-<title>TA Assignments</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 <head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>TA Assignments</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-  
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
-  <link rel="stylesheet" type="text/css" href="./styles/fixed_lists.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
 </head>
 
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!--Top navigation bar-->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
-
-    <div class="w3-right w3-hide-small">
-      <a href="#Background" class="w3-bar-item w3-button">Background</a>
-      <a href="#Algorithm" class="w3-bar-item w3-button">Algorithm</a>
-    </div>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="./images/assignments/assignments.PNG" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>TA Assignments</b></h4>
+    <p class="w3-text-grey">Assign TAs to teaching assignments with constraints and preferences.</p>
   </div>
-</div>
+  <div class="w3-bar-block">
+    <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>BACKGROUND</a> 
+    <a href="#algorithm" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-terminal w3-margin-right"></i>ALGORITHM</a> 
+  </div>
+</nav>
+  
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<div class="w3-content w3-padding" style="max-width:1564px">
-  <div class="w3-container w3-padding-32" id="Background">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-      <p>As the start of a new semester approaches, many math departments throughout
+    </div>
+  </header>
+  <!-- Background -->
+  <div id="background" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Background</b></h4>
+    <p>As the start of a new semester approaches, many math departments throughout
       the United States have the task of assigning graduate students to Teaching
       Assistant (TA) positions. These decisions might be made based on a variety of
       factors such as the graduate student's mathematical background, time
@@ -52,98 +66,123 @@
       constraints to keep in mind are the time availabilities of the students and
       professors leading the research groups, and the students' preferences for
       which group they want to be a part of.</p>
-    </div>
   </div>
+  <!-- Algorithm -->
+  <div id="algorithm" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Algorithm</b></h4>
+    <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
+      <img src="./images/assignments/assignments.PNG" alt="graph" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+      <br><div style="text-align:center"><i>Graph formulation of the Math Lab assignment problem.</i></div>
+    </div>
+    <p>We can formulate this problem in terms of finding an optimal subgraph of a
+    (bipartite) graph. Consider a set of nodes representing students and also a
+    set of nodes for each lab groups available times. We draw an edge from a
+    student node to a lab group time node if the student has that time available.
+    We then represent preferences through weighted edges (or pictorally through
+    solid or dashed edges).</p>
 
+    <p>In this example, we have a set of 7 students and 2 groups. Each group also has
+    3 available times. Note that although a group's times are distinct, different
+    groups may share similar times since they are all independent of each other.
+    From here, we draw the edges as specified, e.g. \( s_1 \rightarrow t_{2,1} \)
+    since the Student 1 can meet at Group 2's first time. Then we can add weights
+    to the edges. In the picture, we represent this through solid and dashed lines
+    since adding numbers to each edge made the picture cluttered. For instance,
+    the edges between Student 2 and Group 1 are solid since Student 2 preferred
+    Group 1, whereas the edges from Student 2 to Group 2 are dashed since Student 2
+    preferred Group 2 second.</p>
 
-  <div class="w3-container w3-padding-32" id="Algorithm">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Algorithm</h3>
+    <p>To search for this subgraph, we should also use some sort of cost function
+    on the subgraphs found. One of the simplest ones would be a sum over all
+    students of the index into their preference list of their assigned lab group:
+    \[ \sum_{i=1}^n index(pref_i(group\_assigned_i)). \]
+    As an example, if the preference list of a student was (Group 2, Group 1,
+    Group 2) and the student was assigned to Group 2, then the cost associated
+    would be \( 2 \). Using this as a cost function, our goal is to minimize
+    this sum since this would correspond to students being assigned to groups
+    which they preferred least. We can now implement an algorithm for finding
+    this subgraph.</p>
     <div class="w3-container">
-      <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-        <img src="./images/assignments/assignments.PNG" alt="graph" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
-        <br><div style="text-align:center"><i>Graph formulation of the Math Lab assignment problem.</i></div>
+      <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:left">
+        <img src="./images/assignments/code.PNG" alt="code" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:left">
+        <br><div style="text-align:center"><i>The algorithm implemented in Python.</i></div>
       </div>
 
-      <p>We can formulate this problem in terms of finding an optimal subgraph of a
-      (bipartite) graph. Consider a set of nodes representing students and also a
-      set of nodes for each lab groups available times. We draw an edge from a
-      student node to a lab group time node if the student has that time available.
-      We then represent preferences through weighted edges (or pictorally through
-      solid or dashed edges).</p>
+      <h4>GIVEN</h4>
+      <ul><li>Set of students with their time availabilities and their list of preferences.</li>
+          <li>Set of lab groups with their time availabilities.</li>
+      </ul>
 
-      <p>In this example, we have a set of 7 students and 2 groups. Each group also has
-      3 available times. Note that although a group's times are distinct, different
-      groups may share similar times since they are all independent of each other.
-      From here, we draw the edges as specified, e.g. \( s_1 \rightarrow t_{2,1} \)
-      since the Student 1 can meet at Group 2's first time. Then we can add weights
-      to the edges. In the picture, we represent this through solid and dashed lines
-      since adding numbers to each edge made the picture cluttered. For instance,
-      the edges between Student 2 and Group 1 are solid since Student 2 preferred
-      Group 1, whereas the edges from Student 2 to Group 2 are dashed since Student 2
-      preferred Group 2 second.</p>
-
-      <p>To search for this subgraph, we should also use some sort of cost function
-      on the subgraphs found. One of the simplest ones would be a sum over all
-      students of the index into their preference list of their assigned lab group:
-      \[ \sum_{i=1}^n index(pref_i(group\_assigned_i)). \]
-      As an example, if the preference list of a student was (Group 2, Group 1,
-      Group 2) and the student was assigned to Group 2, then the cost associated
-      would be \( 2 \). Using this as a cost function, our goal is to minimize
-      this sum since this would correspond to students being assigned to groups
-      which they preferred least. We can now implement an algorithm for finding
-      this subgraph.</p>
-
-      <div class="w3-container">
-        <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:left">
-          <img src="./images/assignments/code.PNG" alt="code" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:left">
-          <br><div style="text-align:center"><i>The algorithm implemented in Python.</i></div>
-        </div>
-
-        <h4>GIVEN</h4>
-        <ul><li>Set of students with their time availabilities and their list of preferences.</li>
-            <li>Set of lab groups with their time availabilities.</li>
-        </ul>
-
-        <h4>PROCEDURE</h4>
-        <ol><li>Find matching student times and lab group times.</li>
-            <li>Select subset of columns (one from each lab group). Make sure union of columns contains all students.</li>
-            <li>Select subsets of students from each column. Make sure union contains all students and has size between \( a \) and \( b \).</li>
-            <li>Repeat (2) and (3) until all possible lab group configurations have been exhausted.</li>
-            <li>Compute the <i>happiness score</i> for each group, e.g. sum the preference ranking of the assigned group for each
-                student. In the example shown, the group configuration has a happiness score of \( 1+1+1+1+1+1+1 = 7 \). This
-                is actually the best result for these students and lab groups.</li>
-            <li>Return the group configurations with the minimum happiness score.</li>
-        </ol>
+      <h4>PROCEDURE</h4>
+      <ol><li>Find matching student times and lab group times.</li>
+          <li>Select subset of columns (one from each lab group). Make sure union of columns contains all students.</li>
+          <li>Select subsets of students from each column. Make sure union contains all students and has size between \( a \) and \( b \).</li>
+          <li>Repeat (2) and (3) until all possible lab group configurations have been exhausted.</li>
+          <li>Compute the <i>happiness score</i> for each group, e.g. sum the preference ranking of the assigned group for each
+              student. In the example shown, the group configuration has a happiness score of \( 1+1+1+1+1+1+1 = 7 \). This
+              is actually the best result for these students and lab groups.</li>
+          <li>Return the group configurations with the minimum happiness score.</li>
+      </ol>
+    </div>
+    <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/assignments/step1.PNG" alt="step1" style="max-width:512px; max-height:512px">
+        <br><div style="text-align:center"><i>Determine compatible student times and group times.</i></div>
       </div>
-
-      <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
-        <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-          <img src="./images/assignments/step1.PNG" alt="step1" style="max-width:512px; max-height:512px">
-          <br><div style="text-align:center"><i>Determine compatible student times and group times.</i></div>
-        </div>
-        <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-          <img src="./images/assignments/step2.PNG" alt="step2" style="max-width:512px; max-height:512px">
-          <br><div style="text-align:center"><i>Select a time for each group.</i></div>
-        </div>
-        <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-          <img src="./images/assignments/step3.PNG" alt="step3" style="max-width:512px; max-height:512px">
-          <br><div style="text-align:center"><i>Select a subset of students for each group time.</i></div>
-        </div>
-        <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
-        <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/assignments/step2.PNG" alt="step2" style="max-width:512px; max-height:512px">
+        <br><div style="text-align:center"><i>Select a time for each group.</i></div>
       </div>
+      <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
+        <img src="./images/assignments/step3.PNG" alt="step3" style="max-width:512px; max-height:512px">
+        <br><div style="text-align:center"><i>Select a subset of students for each group time.</i></div>
+      </div>
+      <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
+      <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <h3>Contact</h3>
+        Office: 122H Parker Hall<br>
+        Email: sean.grate@auburn.edu
+      </div>
+      <div class="w3-half">
+        <h3>Mailing Address</h3>
+        <p>
+          Department of Mathematics and Statistics<br>
+          221 Parker Hall<br>
+          Auburn University, AL 36849<br>
+          USA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="w3-black w3-center w3-padding-24">
+    <p>Investigated with Jessica Appel, Michael Boyd, and Kathryn Schantz under
+      the mentorship of <a class="weblink" href="http://www.ms.uky.edu/~kate/" title="Kate Ponto" target="_blank" class="w3-hover-opacity">Kate Ponto</a>.
+      Code can be found <a class="weblink" href="https://github.com/UKYMathLab/Assignments" title="GitHub repository" target="_blank" class="w3-hover-opacity">here</a>.
+    </p>
+  </div>
+<!-- End page content -->
 </div>
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Investigated with Jessica Appel, Michael Boyd, and Kathryn Schantz under
-  the mentorship of
-  <a class="weblink" href="http://www.ms.uky.edu/~kate/">Kate Ponto</a>.
-  Code can be found <a class="weblink" href="https://github.com/UKYMathLab/Assignments">here</a>.</p>
-</footer>
-
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+    
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
 <script src="./scripts/slideshows.js"></script>
 
 </body>

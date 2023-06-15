@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html>
-<title>Genrating Minecraft Worlds</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Generating Minecraft Worlds</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-  
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
 </head>
 
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!--Top navigation bar-->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
-
-    <div class="w3-right w3-hide-small">
-      <a href="#Background" class="w3-bar-item w3-button">Background</a>
-      <a href="#Approaches" class="w3-bar-item w3-button">Approach</a>
-    </div>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="./images/assignments/assignments.PNG" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Generating Minecraft Worlds</b></h4>
+    <p class="w3-text-grey">Generate worlds in Minecraft with deep learning and real world data.</p>
   </div>
-</div>
+  <div class="w3-bar-block">
+    <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>BACKGROUND</a> 
+    <a href="#approaches" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-map w3-margin-right"></i>APPROACHES</a> 
+  </div>
+</nav>
+  
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<!--Main body-->
-<div class="w3-content w3-padding" style="max-width:1564px">
-  <div class="w3-container w3-padding-32" id="Background">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    </div>
+  </header>
+  <!-- Background -->
+  <div id="background" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Background</b></h4>
     <p>Minecraft is a procedurally-generated world, i.e. the the world generation is determined by some algorithm.
-        Procedurally-generated worlds sometimes use tools such as
-        <a class="weblink" href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> to make the landscape
-        smooth and consistent, but random. In Minecraft, this might translate to biome generation being reasonable
-        so that a jungle biome will not be generated next to a tundra biome. Since Minecraft is a voxel world, its
-        regions are generated as \( 16 \times 16 \times 256 \)
-        <a class="weblink" href="https://minecraft.gamepedia.com/Chunk">chunks</a>. These form the building blocks
-        of Minecraft's generation. We try to mimic this generation using tools machine learning and computational
-        topology.
+      Procedurally-generated worlds sometimes use tools such as
+      <a class="weblink" href="https://en.wikipedia.org/wiki/Perlin_noise">Perlin noise</a> to make the landscape
+      smooth and consistent, but random. In Minecraft, this might translate to biome generation being reasonable
+      so that a jungle biome will not be generated next to a tundra biome. Since Minecraft is a voxel world, its
+      regions are generated as \( 16 \times 16 \times 256 \)
+      <a class="weblink" href="https://minecraft.gamepedia.com/Chunk">chunks</a>. These form the building blocks
+      of Minecraft's generation. We try to mimic this generation using tools machine learning and computational
+      topology.
     </p>
-
+    <!-- slideshow -->
     <div class="w3-content w3-display-container" style="max-width:75%; max-height:75%">
       <div class="w3-content w3-display-container slideshow1" style="max-width:100%; max-height:100%">
         <img src="./images/minecraft/world by height.png" alt="world by height" style="max-width:100%; max-height:100%">
@@ -76,7 +92,6 @@
       <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
       <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
     </div>
-
     <p>From machine learning, we will use a <a class="weblink" href="https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf">
       generative adversarial network</a> (GAN) to generate the chunks. Essentially, a generator is trained in an
       adversarial manner against a competing discriminator, commonly as classifier. The goal of the generator is
@@ -89,25 +104,56 @@
       data distribution of Minecraft chunks to the point that our generation is indistinguishable from Minecraft's.
     </p>
     <p>One of the defining features of Minecraft worlds is the the vast caves systems that generate underground. To
-        aid the GAN in generating representative chunks, we will use <a class="weblink" href="https://www.maths.ed.ac.uk/~v1ranick/papers/edelhare.pdf">
-        persistent homology</a>. This tool counts the <i>persistence</i> of \( k \)-dimensional holes that might be
-        present in the data. The \( 0 \)-dimensional holes are the number of connected components in the data, the
-        \( 1 \)-dimensional holes are structures like caves, and so on. Using persistent homology should allow the
-        generator to train more representative landscapes and structures.
+      aid the GAN in generating representative chunks, we will use <a class="weblink" href="https://www.maths.ed.ac.uk/~v1ranick/papers/edelhare.pdf">
+      persistent homology</a>. This tool counts the <i>persistence</i> of \( k \)-dimensional holes that might be
+      present in the data. The \( 0 \)-dimensional holes are the number of connected components in the data, the
+      \( 1 \)-dimensional holes are structures like caves, and so on. Using persistent homology should allow the
+      generator to train more representative landscapes and structures.
     </p>
     <p>
       Although in theory this seems entirely possible, right now the main obstacle holding this project back is memory limits due to the density of Minecraft chunks.
       I have been trying to think of ways around this.
     </p>
   </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <h3>Contact</h3>
+        Office: 122H Parker Hall<br>
+        Email: sean.grate@auburn.edu
+      </div>
+      <div class="w3-half">
+        <h3>Mailing Address</h3>
+        <p>
+          Department of Mathematics and Statistics<br>
+          221 Parker Hall<br>
+          Auburn University, AL 36849<br>
+          USA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="w3-black w3-center w3-padding-24">
+    <p>Code can be found <a class="weblink" href="https://github.com/TheGrateSalmon/ML_Minecraft" target="_blank">here</a>.</p>
+  </div>
+<!-- End page content -->
 </div>
 
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Code can be found <a class="weblink" href="https://github.com/TheGrateSalmon/ML_Minecraft">here</a>.</p>
-</footer>
-
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+    
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
 <script src="./scripts/slideshows.js"></script>
 
 </body>

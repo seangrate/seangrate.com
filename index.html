@@ -1,151 +1,178 @@
 <!DOCTYPE html>
 <html>
-<title>Sean Grate</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Sean Grate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-  
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  </style>
 </head>
 
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="#Home" class="w3-bar-item w3-button"><b>Sean</b> Grate</a>
-    <!-- Float links to the right. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-      <a href="#About" class="w3-bar-item w3-button">About</a>
-      <a href="#GraduateResearch" class="w3-bar-item w3-button">Research</a>
-      <a href="#Projects" class="w3-bar-item w3-button">Projects</a>
-    </div>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="./images/me_trimmed.jpg" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Sean Grate</b></h4>
+    <p class="w3-text-grey">Graduate Student</p>
   </div>
-</div>
+  <div class="w3-bar-block">
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="#research" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-file-text w3-margin-right"></i>RESEARCH</a> 
+    <a href="#projects" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>PROJECTS</a>
+  </div>
+  <div class="w3-panel w3-large">
+    <a class="weblink" href="https://github.com/TheGrateSalmon" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
+    <a class="weblink" href="mailto:sean.grate@auburn.edu"><i class="fa fa-envelope w3-hover-opacity"></i></a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- Page content -->
-<div class="w3-content w3-padding" style="max-width:1564px">
+<div class="w3-main" style="margin-left:300px">
 
-  <!-- Main image-->
-  <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="Home">
-    <img class="w3-image" src="./images/visualizations/clebsh_render.png" alt="clebsh_render" width="1500" height="800">
-    <div class="w3-display-middle w3-margin-top w3-center">
-      <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Sean Grate</b></span></h1>
-    </div>
+  <!-- Header -->
+  <header>
+    <a href="#"><img src="./images/me_trimmed.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
   </header>
 
-  <!-- About Section -->
-  <div class="w3-container w3-padding-32" id="About">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">About</h3>
-    <img class="w3-image" src="./images/me_trimmed.jpg" alt="me" style="max-width:30%; height:auto; padding: 0px 16px 0px 16px; float:left">
+  <!-- About -->
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4 id="about"><b>About</b></h4>
     <p>
-      I am graduate student in Mathematics at Auburn University studying under <a class="weblink" href="http://webhome.auburn.edu/~hks0015/">Hal Schenck</a>.
+      I am a fourth-year graduate student in Mathematics at Auburn University studying under <a class="weblink" href="http://webhome.auburn.edu/~hks0015/">Hal Schenck</a>.
       I earned a B.S. in Mathematics with minors in History and Classics at the University of Kentucky.
       While at the University of Kentucky, I conducted research with the <a class="weblink" href="http://www.ms.uky.edu/~geometrylab/">University of Kentucky Math Lab</a>
       and also as part of the <a class="weblink" href="http://mvrl.cs.uky.edu/">Multimodal Vision Research Laboratory</a>.
     </p>
     <p>
       My primary research interests lie in commutative algebra and topological data analysis.
+      However, I've been finding that a lot of side projects that interest me come from combinatorial optimization.
       A copy of my CV can be found <a class="weblink" href="./misc/CV.pdf">here</a> along with my contact information. 
     </p>
+    <hr>
   </div>
 
-  <!-- Graduate Research Section -->
-  <div class="w3-container w3-padding-32" id="GraduateResearch">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Graduate Research</h3>
-  </div>
-
+  <!-- Graduate Research -->
   <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black">
-            <a class="w3-button w3-black" href="./tda.html">Topological Data Analysis</a>
-          </div>
-        <img src="./images/tda/kde.gif" alt="tda" style="width:100%">
+    <h4 id="research"><b>Graduate Research</b></h4>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a class="weblink" href="./tda.html"><img src="./images/tda/kde.gif" alt="tda" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Topological Data Analysis</b></p>
+        <p>Use techniques from computational topology to analyze and exploit the shape of data.</p>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./lefschetz.html">Lefschetz Properties</a>
-        </div>
-        <!-- <img src="./images/tda/kde.gif" alt="lefschetz" style="width:100%"> -->
+    <div class="w3-third w3-container w3-margin-bottom">
+      <div class="w3-container w3-white">
+        <p><b>Lefschetz Properties</b></p>
+        <p>When does multiplication by a linear form have full rank in an Artinian algebra?</p>
       </div>
     </div>
   </div>
-
-  <!-- Undergraduate Research Section -->
-  <div class="w3-container w3-padding-32" id="UndergraduateResearch">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Undergraduate Research</h3>
-  </div>
-
+  
+  <!-- Undergraduate Research -->
   <div class="w3-row-padding">
-    <!-- <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./resampling.html">Point Cloud Resampling</a>
-        </div>
-        <img src="./images/resampling/plane.gif" alt="resampling" style="width:100%">
+    <h4><b>Undergraduate Research</b></h4>
+    <!-- <div class="w3-third w3-container w3-margin-bottom">
+      <a class="weblink" href="./resampling.html"><img src="./images/resampling/plane.gif" alt="resampling" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Point Cloud Resampling</b></p>
+        <p>Use deep learning to get a better resolution of point cloud data.</p>
       </div>
     </div> -->
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black">
-            <a class="w3-button w3-black" href="./heisenberg.html">Discrete Heisenberg Group</a>
-          </div>
-        <img src="./images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a class="weblink" href="./heisenberg.html"><img src="./images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Discrete Heisenberg Group</b></p>
+        <p>How well does Ehrhart theory translate to the noncommutative world?</p>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./flightroute.html">Flight Route Estimation</a>
-        </div>
-        <img src="./images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a class="weblink" href="./flightroute.html"><img src="./images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Flight Route Estimation</b></p>
+        <p>How well can you estimate the path of a LiDAR sensor given a scan of the terrain?</p>
       </div>
     </div>
   </div>
 
-  <!-- Projects Section -->
-  <div class="w3-container w3-padding-32" id="Projects">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Projects</h3>
-  </div>
-
+  <!-- Projects -->
   <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./visualizations.html">Visualizing Algebraic Surfaces</a>
-        </div>
-        <img src="./images/visualizations/twisted_cubic_surface_render.png" alt="Twisted cubic" style="width:100%" image-orientation=from-image>
+    <h4 id="projects"><b>Projects</b></h4>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a class="weblink" href="./visualizations.html"><img src="./images/visualizations/twisted_cubic_surface_render.png" alt="twisted cubic" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Visualizing Algebraic Surfaces</b></p>
+        <p>Cool 3D prints of objects popping up in math.</p>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./assignments.html">TA Assignments</a>
-        </div>
-        <img src="./images/assignments/assignments.PNG" alt="assignments" style="width:100%">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a class="weblink" href="./assignments.html"><img src="./images/assignments/assignments.PNG" alt="assignments" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>TA Assignments</b></p>
+        <p>Is there a nice algorithm to assign TAs to teaching assignments given a set of constraints and a list of preferences?</p>
       </div>
     </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black">
-          <a class="w3-button w3-black" href="./minecraft.html">Generating Minecraft Worlds</a>
-        </div>
-        <img src="./images/minecraft/mountain overlook (small).png" alt="minecraft world" style="width:100%">
+    <div class="w3-third w3-container">
+      <a class="weblink" href="./minecraft.html"><img src="./images/minecraft/mountain overlook (small).png" alt="minecraft" style="width:100%" class="w3-hover-opacity"></a>
+      <div class="w3-container w3-white">
+        <p><b>Generating Minecraft Worlds</b></p>
+        <p>Use techniques from deep learning combined with real world data to generate realistic worlds in Minecraft.</p>
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+  <div class="w3-row-padding">
+    <div class="w3-half">
+      <h3>Contact</h3>
+      Office: 122H Parker Hall<br>
+      Email: sean.grate@auburn.edu
+    </div>
+    <div class="w3-half">
+      <h3>Mailing Address</h3>
+      <p>
+        Department of Mathematics and Statistics<br>
+        221 Parker Hall<br>
+        Auburn University, AL 36849<br>
+        USA
+      </p>
+    </div>
+  </div>
+  </footer>
+  
+  <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+
+<!-- End page content -->
 </div>
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Website template is from <a class="weblink" href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
 
 </body>
 
