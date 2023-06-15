@@ -1,106 +1,118 @@
 <!DOCTYPE html>
 <html>
-<title>Discrete Heisenberg Group</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-
 <head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Discrete Heisenberg Group</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <!--Taken from "https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_architect&stacked=h"-->
-  
-  <link rel="stylesheet" type="text/css" href="./styles/weblinks.css">
-  <link rel="stylesheet" type="text/css" href="./styles/slideshows.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
 </head>
 
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
-<!--Top navigation bar-->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="./index.html" class="w3-bar-item w3-button"><b>Go back</b></a>
-
-    <div class="w3-right w3-hide-small">
-      <a href="#Background" class="w3-bar-item w3-button">Background</a>
-      <a href="#Setup" class="w3-bar-item w3-button">Setup</a>
-      <a href="#Results" class="w3-bar-item w3-button">Results</a>
-    </div>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="./images/heisenberg/tetra_growth.gif" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Discrete Heisenberg Group</b></h4>
+    <p class="w3-text-grey">Asymptotics of the (discrete) Heisenberg group.</p>
   </div>
-</div>
+  <div class="w3-bar-block">
+    <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-file-text w3-margin-right"></i>BACKGROUND</a> 
+    <a href="#setup" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-wrench w3-margin-right"></i>SETUP</a> 
+    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>RESULTS</a>
+  </div>
+</nav>
 
-<!--Main body-->
-<div class="w3-content w3-padding" style="max-width:1564px">
-  <div class="w3-container w3-padding-32" id="Background">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Background</h3>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-      <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-        <img src="./images/heisenberg/comm_growth.gif" alt="comm_growth" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
-        <br><div style="text-align:center">Progressive dilations of \( P_n(S) \) in \( (\mathbb{Z}^3,+) \)</div>
-      </div>
-      <p>
-          In the commutative setting, vector addition over \( \mathbb{Z} \) is straightforward.
-          Given two vectors \( v,w \in \mathbb{Z}^3 \), vector addition is simply defined as
-          addition component-wise. In fact, \( (\mathbb{Z}^3, +) \) actually forms an abelian group,
-          i.e. \( v + w = w + v \). So now consider some basis set of vectors, say \[ S = \{ (0,0,0),
-          (1,0,0), (0,1,0), (0,0,1) \}. \]
-          As an example, we will generate all <i>words</i> of length \( k \). To find these, first
-          take the \( k \)-fold product \( \underbrace{S \times S \times \ldots \times S}_{k \text{ times}} \).
-          Then for each element in \( S \times S \times \ldots \times S \), compute
-          \( s_1 \star s_2 \star \ldots \star s_k \). This will give an element in \( (\mathbb{Z}^3, \star) \).
-          For \( k = 2 \), this yields
-          \[ \begin{align}
-          (0,0,0) + (0,0,0) & = (0,0,0), \\
-          (0,0,0) + (1,0,0) & = (1,0,0), \\
-          (0,0,0) + (0,1,0) & = (0,1,0), \\
-          (0,0,0) + (0,0,1) & = (0,0,1), \\
-
-          (1,0,0) + (0,0,0) & = (1,0,0), \\
-          (1,0,0) + (1,0,0) & = (2,0,0), \\
-          (1,0,0) + (0,1,0) & = (1,1,0), \\
-          (1,0,0) + (0,0,1) & = (1,0,1), \\
-
-          (0,1,0) + (0,0,0) & = (0,1,0), \\
-          (0,1,0) + (1,0,0) & = (1,1,0), \\
-          (0,1,0) + (0,1,0) & = (0,2,0), \\
-          (0,1,0) + (0,0,1) & = (0,1,1), \\
-
-          (0,0,1) + (0,0,0) & = (0,0,1), \\
-          (0,0,1) + (1,0,0) & = (1,0,1), \\
-          (0,0,1) + (0,1,0) & = (0,1,1), \\
-          (0,0,1) + (0,0,1) & = (0,0,2).
-          \end{align} \]
-          Getting rid of duplicates, this yields
-          \[ \begin{align}
-          P_2(S) = \{ & (0,0,0) \\
-                      & (0,0,1) \\
-                      & (0,0,2) \\
-                      & (0,1,0) \\
-                      & (0,1,1) \\
-                      & (0,2,0) \\
-                      & (1,0,0) \\
-                      & (1,0,1) \\
-                      & (1,1,0) \\
-                      & (2,0,0) \},
-          \end{align} \]
-          where \( P_k(S) \) denotes the polytope generated as the \( k \)th dilate of
-          the basis set \( S \). In other words, \( P_k(S) \) is the set of points realized as words of
-          length \( k \) generated by elements of the basis set \( S \). If we let \( \mathcal{B} \) be an aribitrary
-          (finite) basis set with \( \lvert \mathcal{B} \rvert = n \) and compute the words of length \( k \), then
-          there are \( n(n-1)\ldots(n-k+1) \) evaluations to compute. In this example, the number of points contained
-          in \( P_k(S) \), which we will call the <i>volume</i>, is given by \( V = \binom{k+2}{3} \). Furthermore,
-          it can be seen that there are no "missing spots" in the \( P_k(S) \), so we will say \( P_k(S) \) is
-          <i>saturated</i> if this is the case. Additionally, the outer face of \( P_k(S) \) can be desribed by the
-          function \(  z = f(x,y) = k-x-y \). These properties of \( P_k(S) \) motivate the study of polytopes
-          generated in the setting of the Heisenberg group.
-      </p>
     </div>
-  </div>
+  </header>
+  <div id="background" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Background</b></h4>
+    <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
+      <img src="./images/heisenberg/comm_growth.gif" alt="comm_growth" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+      <br><div style="text-align:center">Progressive dilations of \( P_n(S) \) in \( (\mathbb{Z}^3,+) \)</div>
+    </div>
+    <p>
+      In the commutative setting, vector addition over \( \mathbb{Z} \) is straightforward.
+      Given two vectors \( v,w \in \mathbb{Z}^3 \), vector addition is simply defined as
+      addition component-wise. In fact, \( (\mathbb{Z}^3, +) \) actually forms an abelian group,
+      i.e. \( v + w = w + v \). So now consider some basis set of vectors, say \[ S = \{ (0,0,0),
+      (1,0,0), (0,1,0), (0,0,1) \}. \]
+      As an example, we will generate all <i>words</i> of length \( k \). To find these, first
+      take the \( k \)-fold product \( \underbrace{S \times S \times \ldots \times S}_{k \text{ times}} \).
+      Then for each element in \( S \times S \times \ldots \times S \), compute
+      \( s_1 \star s_2 \star \ldots \star s_k \). This will give an element in \( (\mathbb{Z}^3, \star) \).
+      For \( k = 2 \), this yields
+      \[ \begin{align}
+      (0,0,0) + (0,0,0) & = (0,0,0), \\
+      (0,0,0) + (1,0,0) & = (1,0,0), \\
+      (0,0,0) + (0,1,0) & = (0,1,0), \\
+      (0,0,0) + (0,0,1) & = (0,0,1), \\
 
-  <div class="w3-container w3-padding-32" id="Setup">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Setup</h3>
+      (1,0,0) + (0,0,0) & = (1,0,0), \\
+      (1,0,0) + (1,0,0) & = (2,0,0), \\
+      (1,0,0) + (0,1,0) & = (1,1,0), \\
+      (1,0,0) + (0,0,1) & = (1,0,1), \\
+
+      (0,1,0) + (0,0,0) & = (0,1,0), \\
+      (0,1,0) + (1,0,0) & = (1,1,0), \\
+      (0,1,0) + (0,1,0) & = (0,2,0), \\
+      (0,1,0) + (0,0,1) & = (0,1,1), \\
+
+      (0,0,1) + (0,0,0) & = (0,0,1), \\
+      (0,0,1) + (1,0,0) & = (1,0,1), \\
+      (0,0,1) + (0,1,0) & = (0,1,1), \\
+      (0,0,1) + (0,0,1) & = (0,0,2).
+      \end{align} \]
+      Getting rid of duplicates, this yields
+      \[ \begin{align}
+      P_2(S) = \{ & (0,0,0) \\
+                  & (0,0,1) \\
+                  & (0,0,2) \\
+                  & (0,1,0) \\
+                  & (0,1,1) \\
+                  & (0,2,0) \\
+                  & (1,0,0) \\
+                  & (1,0,1) \\
+                  & (1,1,0) \\
+                  & (2,0,0) \},
+      \end{align} \]
+      where \( P_k(S) \) denotes the polytope generated as the \( k \)th dilate of
+      the basis set \( S \). In other words, \( P_k(S) \) is the set of points realized as words of
+      length \( k \) generated by elements of the basis set \( S \). If we let \( \mathcal{B} \) be an aribitrary
+      (finite) basis set with \( \lvert \mathcal{B} \rvert = n \) and compute the words of length \( k \), then
+      there are \( n(n-1)\ldots(n-k+1) \) evaluations to compute. In this example, the number of points contained
+      in \( P_k(S) \), which we will call the <i>volume</i>, is given by \( V = \binom{k+2}{3} \). Furthermore,
+      it can be seen that there are no "missing spots" in the \( P_k(S) \), so we will say \( P_k(S) \) is
+      <i>saturated</i> if this is the case. Additionally, the outer face of \( P_k(S) \) can be desribed by the
+      function \(  z = f(x,y) = k-x-y \). These properties of \( P_k(S) \) motivate the study of polytopes
+      generated in the setting of the Heisenberg group.
+    </p>
+    <hr>
+  </div>
+  <div id="setup" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Setup</b></h4>
     <p>
     To get to the Heisenberg group, we basically do normal vector addition, but now with a
     twist:
@@ -179,9 +191,9 @@
       <button class="w3-button w3-black w3-display-bottomright" onclick="plusSlides(1, 0)">&#10095;</button>
     </div>
   </div>
-
-  <div class="w3-container w3-padding-32" id="Results">
-    <h3 class="w3-border-bottom w3-border-grey w3-padding-16">Results</h3>
+  <hr>
+  <div id="results" class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <h4><b>Results</b></h4>
     <p> We can ask the same questions about \( P_k(S) \) as we did in the commutative setting:
       <ul><li>What is the volume of \( P_k(S) \)?</li>
           <li>Is \( P_k(S) \) saturated?</li>
@@ -200,16 +212,50 @@
         \end{align*} \]
     </p>
   </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <h3>Contact</h3>
+        Office: 122H Parker Hall<br>
+        Email: sean.grate@auburn.edu
+      </div>
+      <div class="w3-half">
+        <h3>Mailing Address</h3>
+        <p>
+          Department of Mathematics and Statistics<br>
+          221 Parker Hall<br>
+          Auburn University, AL 36849<br>
+          USA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="w3-black w3-center w3-padding-24">
+    <p>Investigated with <a class="weblink" href="https://aavichitbandha.github.io/" target="_blank">Angela Vichitbanda</a> 
+      and Joe Cecil under the mentorship
+      of <a class="weblink" href="http://www.ms.uky.edu/~cama268/" target="_blank">Chris Manon</a>.
+      Code can be found <a class="weblink" href="https://github.com/UKYMathLab/Heisenberg" target="_blank">here</a>.
+    </p>
+  </div>
+
+<!-- End page content -->
 </div>
 
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Investigated with <a class="weblink" href="https://aavichitbandha.github.io/">Angela Vichitbanda</a> 
-  and Joe Cecil under the mentorship
-  of <a class="weblink" href="http://www.ms.uky.edu/~cama268/">Chris Manon</a>.
-  Code can be found <a class="weblink" href="https://github.com/UKYMathLab/Heisenberg">here</a>.</p>
-</footer>
-
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
 <script src="./scripts/slideshows.js"></script>
 
 </body>
