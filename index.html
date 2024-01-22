@@ -13,6 +13,8 @@
     body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     a.weblink:hover {opacity:0.6}
   </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
 </head>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -29,8 +31,8 @@
   </div>
   <div class="w3-bar-block">
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
-    <a href="#papers" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-file-text w3-margin-right"></i>PAPERS</a>
-    <a href="#research" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-file-text w3-margin-right"></i>RESEARCH</a>
+    <a href="#papers" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-file-text-o w3-margin-right"></i>PAPERS</a>
+    <a href="#research" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-university w3-margin-right"></i>RESEARCH</a>
     <a href="#software" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-terminal fa-fw w3-margin-right"></i>SOFTWARE</a> 
     <a href="#projects" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>PROJECTS</a>
   </div>
@@ -75,31 +77,101 @@
     <div class="w3-container">
     <p>Publications</p>
     <ol>
-      <li><a class="weblink" href="https://arxiv.org/abs/2307.13126" target="_blank">Betti tables forcing failure of the Weak Lefschetz Property</a> 
-        (with <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>). 
-        In: <a class="weblink" href="https://www.springer.com/series/10283" target="_blank">Springer INdAM series: The strong and weak Lefschetz properties</a> (2023), to appear.
+      <!-- WLP -->
+      <li>
+        <div>
+          <a class="weblink" href="https://arxiv.org/abs/2307.13126" target="_blank">Betti tables forcing failure of the Weak Lefschetz Property</a> 
+          (with <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>). 
+          In: Springer INdAM series: The strong and weak Lefschetz properties (2023), to appear.
+        </div>
+        <blockquote class="collapse" id="betti">
+          We study the Artinian reduction \( A \) of a configuration of points \( X \subset \mathbb{P}^n \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \).
+          Migliore initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further results appear in work of Migliore–Miró-Roig–Nagel.
+          Our specific focus is on Betti tables rather than Hilbert functions, and we prove that a certain type of Betti table forces the failure of the Weak Lefschetz Property (WLP). 
+          The corresponding Artinian algebras are typically not level, and the failure of WLP in these cases is not detected in terms of the Hilbert function.
+        </blockquote>
+        <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/betti_wlp.pdf">PDF</a>
+        <br>
+        <br>
       </li>
-      <li><a class="weblink" href="https://ieeexplore.ieee.org/document/9323522" target="_blank">Surface modeling for airborne lidar</a> 
-        (with <a class="weblink" href="https://hblanton.github.io/" target="_blank">Hunter Blanton</a> and <a class="weblink" href="https://jacobsn.github.io/" target="_blank">Nathan Jacobs</a>). 
-        In: <a class="weblink" href="https://ieeexplore.ieee.org/xpl/conhome/9323073/proceeding" target="_blank">IGARSS 2020-2020 IEEE International Geoscience and Remote Sensing Symposium.</a> 
-        2020, pp. 1110–1113.
+      <!-- Lidar -->
+      <li>
+        <div>
+          <a class="weblink" href="https://ieeexplore.ieee.org/document/9323522" target="_blank">Surface modeling for airborne lidar</a> 
+          (with <a class="weblink" href="https://hblanton.github.io/" target="_blank">Hunter Blanton</a> 
+          and <a class="weblink" href="https://jacobsn.github.io/" target="_blank">Nathan Jacobs</a>). 
+          In: IGARSS 2020-2020 IEEE International Geoscience and Remote Sensing Symposium.
+          2020, pp. 1110–1113.
+          DOI: 10.1109/IGARSS39084.2020.9323522.
+        </div>
+        <blockquote>
+          Repeat-visit airborne lidar is a powerful tool for change detection in urban and rural environments. 
+          In this work, we present a learning-based approach that addresses one of the key challenges in comparing point cloud scans of the same region: handling geometric differences caused by varying sensor position. Our approach is to perform shape modeling through
+          ray casting with a point cloud neural network. 
+          Recent work on learning-based shape modeling has been based on the assumption that an explicit surface representation is available, which is not the case for airborne lidar datasets. 
+          Our key insight is that by using a ray casting approach we can perform shape modeling directly with lidar measurements. 
+          We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
+        </blockquote>
+        <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/surface_modeling.pdf">PDF</a>
+        <br>
+        <br>
       </li>
     </ol>
     <p>Preprints</p>
     <ol>
-        <li>Suturing the Severed Didactic Tetrahedron: Graph Theoretic Reflection to Foster Alignment in Coordinated Course 
-          (with <a class="weblink" href="https://www.hailegilroy.com/" target="_blank">Haile Gilroy</a> 
-          and <a class="weblink" href="https://www.auburn.edu/cosam/faculty/math_stats/lanius/index.htm" target="_blank">Melinda Lanius</a>).
-          In preparation.
+        <!-- Education -->
+        <li>
+          <div>
+            Suturing the Severed Didactic Tetrahedron: Graph Theoretic Reflection to Foster Alignment in Coordinated Course 
+            (with <a class="weblink" href="https://www.hailegilroy.com/" target="_blank">Haile Gilroy</a> 
+            and <a class="weblink" href="https://www.auburn.edu/cosam/faculty/math_stats/lanius/index.htm" target="_blank">Melinda Lanius</a>).
+            In preparation.
+          </div>
         </li>
-        <li><a class="weblink" href="https://arxiv.org/abs/2312.07393" target="_blank">The MatrixSchubert package for Macaulay2</a>
-          (with <a class="weblink" href="https://sites.google.com/view/ayah-almousa/" target="_blank">Ayah Almousa</a>, 
-          <a class="weblink" href="https://www.daojihuang.me/" target="_blank">Daoji Huang</a>,
-          <a class="weblink" href="https://patriciajklein.github.io/" target="_blank">Patricia Klein</a>,
-          <a class="weblink" href="https://sites.google.com/view/adamlaclair/home" target="_blank">Adam LaClair</a>,
-          <a class="weblink" href="https://www.mit.edu/~lyuyuan/" target="_blank">Yuyuan Luo</a>,
-          and <a class="weblink" href="https://jmcdonough98.github.io/" target="_blank">Joseph McDonough</a>).
-          Submitted.
+        <!-- Connected sums -->
+        <li>
+          <div>
+            <a class="weblink" href="https://arxiv.org/abs/2401.10492" target="_blank">Betti numbers for connected sums of graded Gorenstein artinian algebras</a>
+            (with <a class="weblink" href="https://sites.google.com/view/nasrinaltafi" target="_blank">Nasrin Altafi</a>,
+            <a class="weblink" href="https://www.docenti.unina.it/roberta.digennaro" target="_blank">Roberta Di Gennaro</a>,
+            <a class="weblink" href="https://math.galetto.org/" target="_blank">Federico Galetto</a>,
+            <a class="weblink" href="https://webgrec.ub.edu/webpages/000006/ang/miro.ub.edu.html" target="_blank">Rosa M. Miró-Roig</a>,
+            <a class="weblink" href="https://www.ms.uky.edu/~uwenagel/" target="_blank">Uwe Nagel</a>,
+            <a class="weblink" href="https://www.math.unl.edu/~aseceleanu2/" target="_blank">Alexandra Seceleanu</a>,
+            and Junzo Watanabe).
+            Submitted.
+          </div>
+          <blockquote>
+            The connected sum construction, which takes as input Gorenstein rings and produces new Gorenstein rings, can be considered as an algebraic analogue for the topological construction having the same name. 
+            We determine the graded Betti numbers for connected sums of graded Artinian Gorenstein algebras. 
+            Along the way, we find the graded Betti numbers for fiber products of graded rings; an analogous result was obtained in the local case by Geller. 
+            We relate the connected sum construction to the doubling construction, which also produces Gorenstein rings. 
+            Specifically, we show that a connected sum of doublings is the doubling of a fiber product ring. 
+          </blockquote>
+          <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/connected_sums.pdf">PDF</a>
+          <br>
+          <br>
+        </li>
+        <!-- MatrixSchubert -->
+        <li>
+          <div>
+            <a class="weblink" href="https://arxiv.org/abs/2312.07393" target="_blank">The MatrixSchubert package for Macaulay2</a>
+            (with <a class="weblink" href="https://sites.google.com/view/ayah-almousa/" target="_blank">Ayah Almousa</a>, 
+            <a class="weblink" href="https://www.daojihuang.me/" target="_blank">Daoji Huang</a>,
+            <a class="weblink" href="https://patriciajklein.github.io/" target="_blank">Patricia Klein</a>,
+            <a class="weblink" href="https://sites.google.com/view/adamlaclair/home" target="_blank">Adam LaClair</a>,
+            <a class="weblink" href="https://www.mit.edu/~lyuyuan/" target="_blank">Yuyuan Luo</a>,
+            and <a class="weblink" href="https://jmcdonough98.github.io/" target="_blank">Joseph McDonough</a>).
+            Submitted.
+          </div>
+          <blockquote>
+            We introduce the MatrixSchubert package for the computer algebra system Macaulay2. 
+            This package has tools to construct and study matrix Schubert varieties and alternating sign matrix (ASM) varieties. 
+            The package also introduces tools for quickly computing homological invariants of such varieties, finding the components of an ASM variety, and checking if a union of matrix Schubert varieties is an ASM variety. 
+          </blockquote>
+          <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/matrix_schubert.pdf">PDF</a> | <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://github.com/Macaulay2/Workshop-2023-Minneapolis/tree/asm">Code</a>
+          <br>
+          <br>
         </li>       
       </ol>
     </div>
