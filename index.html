@@ -11,7 +11,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-    a.weblink:hover {opacity:0.6}
+    a.weblink:hover {opacity: 0.6}
+    a.abstract-button:hover {opacity: 0.6; cursor: pointer}
+    details.abstract-button {display: inline; cursor: pointer;}
+    summary.abstract-content {list-style: none}
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
@@ -27,7 +30,7 @@
     </a>
     <img src="./images/me_trimmed.jpg" style="width:100%;" class="w3-round"><br><br>
     <h4><b>Sean Grate</b></h4>
-    <p class="w3-text-grey">Graduate Student</p>
+    <p class="w3-text-grey">Ph.D. Candidate</p>
   </div>
   <div class="w3-bar-block">
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
@@ -58,13 +61,13 @@
   <div class="w3-container w3-padding-large w3-row-padding">
     <h4 id="about"><b>About</b></h4>
     <p>
-      I am a fourth-year graduate student in Mathematics at Auburn University studying under <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>.
+      I am a fourth-year Ph.D. candidate in Mathematics at Auburn University studying under <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>.
       I earned a B.S. in Mathematics with minors in History and Classics at the University of Kentucky.
       While at the University of Kentucky, I conducted research with the <a class="weblink" href="http://www.ms.uky.edu/~geometrylab/" target="_blank">University of Kentucky Math Lab</a>
       and also as part of the <a class="weblink" href="http://mvrl.cs.uky.edu/" target="_blank">Multimodal Vision Research Laboratory</a>.
     </p>
     <p>
-      My primary research interests lie in commutative algebra and topological data analysis.
+      My primary research interests lie in commutative algebra, algebraic geometry, and topological data analysis.
       However, I've been finding that a lot of side projects that interest me come from combinatorial optimization.
       A copy of my CV can be found <a class="weblink" href="./misc/CV.pdf">here</a> along with my contact information. 
     </p>
@@ -84,12 +87,18 @@
           (with <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>). 
           In: Springer INdAM series: The strong and weak Lefschetz properties (2023), to appear.
         </div>
-        <blockquote class="collapse" id="betti">
-          We study the Artinian reduction \( A \) of a configuration of points \( X \subset \mathbb{P}^n \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \).
-          Migliore initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further results appear in work of Migliore–Miró-Roig–Nagel.
-          Our specific focus is on Betti tables rather than Hilbert functions, and we prove that a certain type of Betti table forces the failure of the Weak Lefschetz Property (WLP). 
-          The corresponding Artinian algebras are typically not level, and the failure of WLP in these cases is not detected in terms of the Hilbert function.
-        </blockquote>
+        <br>
+        Abstract 
+        <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
+          <blockquote>
+            We study the Artinian reduction \( A \) of a configuration of points \( X \subset \mathbb{P}^n \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \).
+            Migliore initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further results appear in work of Migliore–Miró-Roig–Nagel.
+            Our specific focus is on Betti tables rather than Hilbert functions, and we prove that a certain type of Betti table forces the failure of the Weak Lefschetz Property (WLP). 
+            The corresponding Artinian algebras are typically not level, and the failure of WLP in these cases is not detected in terms of the Hilbert function.
+          </blockquote>
+        </details>
+        <br>
+        <br>
         <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/betti_wlp.pdf">PDF</a>
         <br>
         <br>
@@ -104,14 +113,20 @@
           2020, pp. 1110–1113.
           DOI: 10.1109/IGARSS39084.2020.9323522.
         </div>
-        <blockquote>
-          Repeat-visit airborne lidar is a powerful tool for change detection in urban and rural environments. 
-          In this work, we present a learning-based approach that addresses one of the key challenges in comparing point cloud scans of the same region: handling geometric differences caused by varying sensor position. Our approach is to perform shape modeling through
-          ray casting with a point cloud neural network. 
-          Recent work on learning-based shape modeling has been based on the assumption that an explicit surface representation is available, which is not the case for airborne lidar datasets. 
-          Our key insight is that by using a ray casting approach we can perform shape modeling directly with lidar measurements. 
-          We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
-        </blockquote>
+        <br>
+        Abstract 
+        <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
+          <blockquote>
+            Repeat-visit airborne lidar is a powerful tool for change detection in urban and rural environments. 
+            In this work, we present a learning-based approach that addresses one of the key challenges in comparing point cloud scans of the same region: handling geometric differences caused by varying sensor position. Our approach is to perform shape modeling through
+            ray casting with a point cloud neural network. 
+            Recent work on learning-based shape modeling has been based on the assumption that an explicit surface representation is available, which is not the case for airborne lidar datasets. 
+            Our key insight is that by using a ray casting approach we can perform shape modeling directly with lidar measurements. 
+            We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
+          </blockquote>
+        </details>
+        <br>
+        <br>
         <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/surface_modeling.pdf">PDF</a>
         <br>
         <br>
@@ -125,8 +140,20 @@
             Suturing the Severed Didactic Tetrahedron: Graph Theoretic Reflection to Foster Alignment in Coordinated Course 
             (with <a class="weblink" href="https://www.hailegilroy.com/" target="_blank">Haile Gilroy</a> 
             and <a class="weblink" href="https://www.auburn.edu/cosam/faculty/math_stats/lanius/index.htm" target="_blank">Melinda Lanius</a>).
-            In preparation.
+            Submitted.
           </div>
+          <br>
+          Abstract 
+          <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
+            <blockquote>
+
+            </blockquote>
+          </details>
+          <br>
+          <br>
+          <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/matrix_schubert.pdf">PDF</a>
+          <br>
+          <br>
         </li>
         <!-- Connected sums -->
         <li>
@@ -141,13 +168,19 @@
             and Junzo Watanabe).
             Submitted.
           </div>
-          <blockquote>
-            The connected sum construction, which takes as input Gorenstein rings and produces new Gorenstein rings, can be considered as an algebraic analogue for the topological construction having the same name. 
-            We determine the graded Betti numbers for connected sums of graded Artinian Gorenstein algebras. 
-            Along the way, we find the graded Betti numbers for fiber products of graded rings; an analogous result was obtained in the local case by Geller. 
-            We relate the connected sum construction to the doubling construction, which also produces Gorenstein rings. 
-            Specifically, we show that a connected sum of doublings is the doubling of a fiber product ring. 
-          </blockquote>
+          <br>
+          Abstract 
+          <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
+            <blockquote>
+              The connected sum construction, which takes as input Gorenstein rings and produces new Gorenstein rings, can be considered as an algebraic analogue for the topological construction having the same name. 
+              We determine the graded Betti numbers for connected sums of graded Artinian Gorenstein algebras. 
+              Along the way, we find the graded Betti numbers for fiber products of graded rings; an analogous result was obtained in the local case by Geller. 
+              We relate the connected sum construction to the doubling construction, which also produces Gorenstein rings. 
+              Specifically, we show that a connected sum of doublings is the doubling of a fiber product ring. 
+            </blockquote>
+          </details>
+          <br>
+          <br>
           <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/connected_sums.pdf">PDF</a>
           <br>
           <br>
@@ -164,12 +197,17 @@
             and <a class="weblink" href="https://jmcdonough98.github.io/" target="_blank">Joseph McDonough</a>).
             Submitted.
           </div>
-          <blockquote>
-            We introduce the MatrixSchubert package for the computer algebra system Macaulay2. 
-            This package has tools to construct and study matrix Schubert varieties and alternating sign matrix (ASM) varieties. 
-            The package also introduces tools for quickly computing homological invariants of such varieties, finding the components of an ASM variety, and checking if a union of matrix Schubert varieties is an ASM variety. 
-          </blockquote>
-          <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/matrix_schubert.pdf">PDF</a> | <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://github.com/Macaulay2/Workshop-2023-Minneapolis/tree/asm">Code</a>
+          Abstract 
+          <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
+            <blockquote>
+              We introduce the MatrixSchubert package for the computer algebra system Macaulay2. 
+              This package has tools to construct and study matrix Schubert varieties and alternating sign matrix (ASM) varieties. 
+              The package also introduces tools for quickly computing homological invariants of such varieties, finding the components of an ASM variety, and checking if a union of matrix Schubert varieties is an ASM variety. 
+            </blockquote>
+          </details>
+          <br>
+          <br>
+          <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/matrix_schubert.pdf">PDF</a> | <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MatrixSchubert/html/index.html">Code</a>
           <br>
           <br>
         </li>       
@@ -290,16 +328,14 @@
 </div>
 
 <script>
-  // Script to open and close sidebar
-  function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-      document.getElementById("myOverlay").style.display = "block";
-  }
-   
-  function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-      document.getElementById("myOverlay").style.display = "none";
-  }
+  document.querySelector('details').addEventListener('toggle', function() {
+    var arrow = this.querySelector('span');
+    if (this.open) {
+      arrow.innerHTML = '<i class="fa fa-minus-square-o"></i>';
+    } else {
+      arrow.innerHTML = '<i class="fa fa-plus-square-o"></i>';
+    }
+  });
 </script>
 
 </body>
