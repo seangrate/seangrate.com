@@ -7,17 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./styles/misc.css">
   <style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-    a.weblink:hover {opacity: 0.6}
     a.abstract-button:hover {opacity: 0.6; cursor: pointer}
-    details.abstract-button {display: inline; cursor: pointer;}
-    summary.abstract-content {list-style: none}
+    blockquote.abstract-content {display: none}
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -79,7 +77,7 @@
     <h4 id="papers"><b>Papers</b></h4>
     <div class="w3-container">
     <p>Publications</p>
-    <ol>
+    <ol reversed>
       <!-- WLP -->
       <li>
         <div>
@@ -89,14 +87,13 @@
         </div>
         <br>
         Abstract 
-        <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
-          <blockquote>
-            We study the Artinian reduction \( A \) of a configuration of points \( X \subset \mathbb{P}^n \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \).
-            Migliore initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further results appear in work of Migliore–Miró-Roig–Nagel.
-            Our specific focus is on Betti tables rather than Hilbert functions, and we prove that a certain type of Betti table forces the failure of the Weak Lefschetz Property (WLP). 
-            The corresponding Artinian algebras are typically not level, and the failure of WLP in these cases is not detected in terms of the Hilbert function.
-          </blockquote>
-        </details>
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          We study the Artinian reduction \( A \) of a configuration of points \( X \subset \mathbb{P}^n \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \).
+          Migliore initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further results appear in work of Migliore–Miró-Roig–Nagel.
+          Our specific focus is on Betti tables rather than Hilbert functions, and we prove that a certain type of Betti table forces the failure of the Weak Lefschetz Property (WLP). 
+          The corresponding Artinian algebras are typically not level, and the failure of WLP in these cases is not detected in terms of the Hilbert function.
+        </blockquote>
         <br>
         <br>
         <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/betti_wlp.pdf">PDF</a>
@@ -115,16 +112,15 @@
         </div>
         <br>
         Abstract 
-        <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
-          <blockquote>
-            Repeat-visit airborne lidar is a powerful tool for change detection in urban and rural environments. 
-            In this work, we present a learning-based approach that addresses one of the key challenges in comparing point cloud scans of the same region: handling geometric differences caused by varying sensor position. Our approach is to perform shape modeling through
-            ray casting with a point cloud neural network. 
-            Recent work on learning-based shape modeling has been based on the assumption that an explicit surface representation is available, which is not the case for airborne lidar datasets. 
-            Our key insight is that by using a ray casting approach we can perform shape modeling directly with lidar measurements. 
-            We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
-          </blockquote>
-        </details>
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          Repeat-visit airborne lidar is a powerful tool for change detection in urban and rural environments. 
+          In this work, we present a learning-based approach that addresses one of the key challenges in comparing point cloud scans of the same region: handling geometric differences caused by varying sensor position. Our approach is to perform shape modeling through
+          ray casting with a point cloud neural network. 
+          Recent work on learning-based shape modeling has been based on the assumption that an explicit surface representation is available, which is not the case for airborne lidar datasets. 
+          Our key insight is that by using a ray casting approach we can perform shape modeling directly with lidar measurements. 
+          We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
+        </blockquote>
         <br>
         <br>
         <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/surface_modeling.pdf">PDF</a>
@@ -144,14 +140,14 @@
           </div>
           <br>
           Abstract 
-          <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
-            <blockquote>
-              Despite online homework’s growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets.
-              In this mixed-methods study, we examined how 10 university mathematics educators working in a coordinated setting judged the quality of a sampling of online Calculus I homework assignments.
-              Following an initial review of the homework sets, we introduced the educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritised and the learning outcomes most emphasised by an assignment or assessment.
-              We analyzed the impact of engaging with the CAAT on participants’ consideration of uniform homework. We found that in-
-              teracting with the CAAT affected coordinated instructors’ definitions of homework quality and that the CAAT is a promising professional development tool for novice instructors in particular.
-            </blockquote>
+          <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+          <blockquote class="abstract-content">
+            Despite online homework’s growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets.
+            In this mixed-methods study, we examined how 10 university mathematics educators working in a coordinated setting judged the quality of a sampling of online Calculus I homework assignments.
+            Following an initial review of the homework sets, we introduced the educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritised and the learning outcomes most emphasised by an assignment or assessment.
+            We analyzed the impact of engaging with the CAAT on participants’ consideration of uniform homework. We found that in-
+            teracting with the CAAT affected coordinated instructors’ definitions of homework quality and that the CAAT is a promising professional development tool for novice instructors in particular.
+          </blockquote>
           </details>
           <br>
           <br>
@@ -174,14 +170,14 @@
           </div>
           <br>
           Abstract 
-          <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
-            <blockquote>
-              The connected sum construction, which takes as input Gorenstein rings and produces new Gorenstein rings, can be considered as an algebraic analogue for the topological construction having the same name. 
-              We determine the graded Betti numbers for connected sums of graded Artinian Gorenstein algebras. 
-              Along the way, we find the graded Betti numbers for fiber products of graded rings; an analogous result was obtained in the local case by Geller. 
-              We relate the connected sum construction to the doubling construction, which also produces Gorenstein rings. 
-              Specifically, we show that a connected sum of doublings is the doubling of a fiber product ring. 
-            </blockquote>
+          <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+          <blockquote class="abstract-content">
+            The connected sum construction, which takes as input Gorenstein rings and produces new Gorenstein rings, can be considered as an algebraic analogue for the topological construction having the same name. 
+            We determine the graded Betti numbers for connected sums of graded Artinian Gorenstein algebras. 
+            Along the way, we find the graded Betti numbers for fiber products of graded rings; an analogous result was obtained in the local case by Geller. 
+            We relate the connected sum construction to the doubling construction, which also produces Gorenstein rings. 
+            Specifically, we show that a connected sum of doublings is the doubling of a fiber product ring. 
+          </blockquote>
           </details>
           <br>
           <br>
@@ -202,12 +198,12 @@
             Submitted.
           </div>
           Abstract 
-          <details class="abstract-button"><summary class="abstract-content"><span><i class="fa fa-plus-square-o"></i></span></summary>
-            <blockquote>
-              We introduce the MatrixSchubert package for the computer algebra system Macaulay2. 
-              This package has tools to construct and study matrix Schubert varieties and alternating sign matrix (ASM) varieties. 
-              The package also introduces tools for quickly computing homological invariants of such varieties, finding the components of an ASM variety, and checking if a union of matrix Schubert varieties is an ASM variety. 
-            </blockquote>
+          <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+          <blockquote class="abstract-content">
+            We introduce the MatrixSchubert package for the computer algebra system Macaulay2. 
+            This package has tools to construct and study matrix Schubert varieties and alternating sign matrix (ASM) varieties. 
+            The package also introduces tools for quickly computing homological invariants of such varieties, finding the components of an ASM variety, and checking if a union of matrix Schubert varieties is an ASM variety. 
+          </blockquote>
           </details>
           <br>
           <br>
@@ -331,15 +327,43 @@
 <!-- End page content -->
 </div>
 
+<!-- Sidebar toggle -->
 <script>
-  document.querySelector('details').addEventListener('toggle', function() {
-    var arrow = this.querySelector('span');
-    if (this.open) {
-      arrow.innerHTML = '<i class="fa fa-minus-square-o"></i>';
-    } else {
-      arrow.innerHTML = '<i class="fa fa-plus-square-o"></i>';
-    }
-  });
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+
+<!-- Abstract toggle -->
+<script>
+window.onload = function() {
+  var buttons = document.getElementsByClassName('abstract-button');
+
+  for (var i = 0; i < buttons.length; i++) {
+    var text = buttons[i].nextElementSibling;
+    text.style.display = "none";
+  }
+}
+
+function toggleAbstract(button) {
+  var text = button.nextElementSibling;
+  var icon = button.children[0];
+
+  if (text.style.display === "none") {
+    text.style.display = "block";
+    icon.className = "fa fa-minus-square-o";
+  } else {
+    text.style.display = "none";
+    icon.className = "fa fa-plus-square-o";
+  }
+}
 </script>
 
 </body>
