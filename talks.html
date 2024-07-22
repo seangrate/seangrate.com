@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./styles/misc.css">
   <link rel="stylesheet" href="./styles/timelines.css">
+  <style>
+    a.abstract-button:hover {opacity: 0.6; cursor: pointer}
+    blockquote.abstract-content {display: none}
+  </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -65,6 +69,31 @@
   }
 </script>
 
+<!-- Abstract toggle -->
+<script>
+  window.onload = function() {
+    var buttons = document.getElementsByClassName('abstract-button');
+
+    for (var i = 0; i < buttons.length; i++) {
+      var text = buttons[i].nextElementSibling;
+      text.style.display = "none";
+    }
+  }
+
+  function toggleAbstract(button) {
+    var text = button.nextElementSibling;
+    var icon = button.children[0];
+
+    if (text.style.display === "none") {
+      text.style.display = "block";
+      icon.className = "fa fa-minus-square-o";
+    } else {
+      text.style.display = "none";
+      icon.className = "fa fa-plus-square-o";
+    }
+  }
+</script>
+
 <!-- Proportional timeline -->
 <script>
     // timeline data
@@ -74,212 +103,292 @@
       venue: 'AMS Fall Central Sectional',
       location: 'University of Texas, San Antonio',
       city: 'San Antonio, TX',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'In 1996, L\'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup\'s two largest gaps. '
+                          + 'We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.' } },
     { title: 'Castelnuovo-Mumford regularity of toric surfaces', 
       venue: 'Algebra Seminar',
       date: new Date('2024-09-10'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'In 1996, L\'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup\'s two largest gaps. '
+                          + 'We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.' } },
     { title: 'Betti tables and Lefschetz properties', 
       venue: 'Algebra Seminar',
       date: new Date('2024-02-13'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. '
+                          + 'This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. '
+                          + 'If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. '
+                          + 'Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. '
+                          + 'Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.' } },
     { title: 'Suturing the severed didactic tetrahedron: Graph-Theoretic reflection to foster alignment in coordinated courses', 
       venue: 'DBER (Discipline-Based Education Research) Seminar',
       date: new Date('2024-02-02'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'Despite online homework\'s growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets. '
+                          + 'In this presentation we will share the results of a mixed-methods study examining how 10 university mathematics educators assessed the quality of a sampling of online Calculus I homework assignments. '
+                          + 'In the course of this project, we introduced our educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritized and the learning outcomes most emphasized by an assignment or assessment. '
+                          + 'In this highly interactive presentation, we will share both our results and walk you through using CAAT. For this reason, you have homework: Please bring a set of homework problems from an undergraduate course in your discipline! '
+                          + '(If you\'re in the math department or happen to really enjoy calculus, we will have the Calculus I homework sets available for you to use).' } },
     { title: 'Betti tables forcing failure of the Weak Lefschetz Property', 
       venue: 'Combinatorial Algebra Meets Algebraic Combinatorics (CAAC)',
       date: new Date('2024-01-26'), 
       location: 'Université du Québec à Montréal',
-      city: 'Montréal, Québec',
-      extras: { notes: '', code: '', slides: './misc/slides/caac_wlp.pdf', video: '' } },
+      city: 'Montréal, QC',
+      extras: { notes: '', 
+                code: '', 
+                slides: './misc/slides/caac_wlp.pdf', 
+                video: '',
+                abstract: 'For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. '
+                          + 'This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. '
+                          + 'If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. '
+                          + 'Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. '
+                          + 'Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.' } },
     { title: 'Betti tables and Lefschetz properties', 
       venue: 'Algebra Seminar',
       date: new Date('2023-11-15'), 
       location: 'University of Kentucky',
       city: 'Lexington, KY',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. '
+                          + 'This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. '
+                          + 'If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. '
+                          + 'Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. '
+                          + 'Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.' } },
     { title: 'Lefschetz properties and Artinian rings', 
       venue: 'Math Seminar',
       date: new Date('2020-06-01'), 
       location: 'McNeese State University',
       city: 'Lake Charles, LA',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space. '
+                          + 'One much studied class of rings are Artinian quotients of polynomial rings over a field k; Artinian means the ring itself is a finite dimensional vector space over \\( k \\). '
+                          + 'I\'ll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing \"linear algebra with matrices of polynomials\".' } },
     { title: 'Leveraging Software for mathematics and graduate school', 
       venue: 'Graduate Student Seminar',
       date: new Date('2023-09-13'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'I plan on going through some software I have found useful for grad school; this includes Python, GitHub, Zotero, Overleaf, and Box. '
+                          + 'I plan on going through each and showcasing some features that I have found especially nice.' } },
     { title: 'Betti tables forcing failure of the Weak Lefschetz Property', 
       venue: 'Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics',
       date: new Date('2023-05-18'), 
       location: 'Fields Institute',
       city: 'Toronto, ON',
-      extras: { notes: '', code: '', slides: '', video: 'https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: 'https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl',
+                abstract: 'We study the Artinian reduction A of a configuration of a pointset \\( X \\subseteq \\mathbb{P}^{n} \\), and the relation of the geometry of \\( X \\) to Lefschetz properties of \\( A \\). '
+                          + 'Migliore-Zanello initiated the study of this connection, with a particular focus on the Hilbert function of \\( A \\), and further work appears in Migliore-Miró-Roig–Nagel. '
+                          + 'Our specific focus is on betti tables rather than Hilbert functions, and we prove that certain betti tables force the failure of the Weak Lefschetz Property (WLP); the corresponding Artinian algebras are typically not level, and the failure of WLP is not detected in terms of the Hilbert function.' } },
     { title: 'A brief introduction to tropical geometry', 
       venue: 'Graduate Student Seminar',
       date: new Date('2022-08-31'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/intro_tropical.pdf', code: '', slides: '', video: '' } },
+      extras: { notes: './misc/notes/intro_tropical.pdf', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. '
+                          + 'In this setting, there is a nice interplay between algebra and polyhedral geometry. '
+                          + 'In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout\'s Theorem. '
+                          + 'These will mainly be explored through examples.' } },
     { title: 'An overview of topological data analysis', 
       venue: 'Math Club',
       date: new Date('2022-02-01'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'Tools from algebra and topology can be used to extract topological and geometric features of the data. '
+                          + 'The essence of topological data analysis (TDA) is to use a filtration on a finite point cloud to construct an algebraic complex modeling the data. '
+                          + 'The homology of this complex gives topological information about the data. '
+                          + 'Summaries of the topological information are shown through barcodes and persistence diagrams. '
+                          + 'This talk will give an overview of where TDA comes from, how it can be used, some examples, and potential research directions.' } },
     { title: 'A brief introduction to tropical geometry', 
       venue: 'Algebra Seminar',
       date: new Date('2021-11-02'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/tropical.pdf', code: '', slides: '', video: '' } },
+      extras: { notes: './misc/notes/tropical.pdf', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. '
+                          + 'In this setting, there is a nice interplay between algebra and polyhedral geometry. '
+                          + 'In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout\'s Theorem. '
+                          + 'These will mainly be explored through examples.' } },
     { title: 'Computations in topological data analysis', 
       venue: 'Graduate Algebra Seminar',
       date: new Date('2021-08-03'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: 'https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: 'https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa', 
+                slides: '', 
+                video: '',
+                abstract: '' } },
     { title: 'Tropical algebra', 
       venue: 'Graduate Algebra Seminar',
       date: new Date('2021-07-06'),
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: '', code: '', slides: '', video: '' } },
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: '' } },
     { title: 'Geometry in noncommutative algebra', 
       venue: 'First-Year Graduate Student Seminar',
       date: new Date('2021-01-21'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/heisenberg.pdf', code: '', slides: '', video: '' } },
+      extras: { notes: './misc/notes/heisenberg.pdf', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: '' } },
     { title: 'What/Why/How of neural networks', 
       venue: 'First-Year Graduate Student Seminar',
       date: new Date('2020-11-19'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/neural_networks.pdf', code: 'https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa', slides: '', video: '' } }
+      extras: { notes: './misc/notes/neural_networks.pdf', 
+                code: 'https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa', 
+                slides: '', 
+                video: '',
+                abstract: '' } }
     ];
 
     // calculate date differences
-    const oldestDate = timelineEvents[timelineEvents.length - 1].date; // last event is the oldest
-    const recentDate = timelineEvents[0].date; // first event is the most recent
+    const oldestDate = timelineEvents[timelineEvents.length - 1].date.getTime(); // last event is the oldest
+    const recentDate = timelineEvents[0].date.getTime(); // first event is the most recent
     const totalSpan = oldestDate - recentDate;
 
     // determine proportional spacing
     timelineEvents.forEach(event => {
-    event.position = (event.date - oldestDate) / totalSpan * 100;
+      event.position = (event.date.getTime() - oldestDate) / totalSpan * 100;
     });
+    console.log(timelineEvents);
 
     // generate the timeline in HTML
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const timelineContainer = document.getElementById('timeline');
     timelineEvents.forEach((event, idx) => {
-        const eventContainer = document.createElement('div');
-        eventContainer.className = idx % 2 === 0 ? 'container left' : ' container right';
-        eventContainer.style.top = `${event.position}%`;
-       
-        const content = document.createElement('div');
-        content.className = 'content'; 
-        // string formatting for event
-        const title = document.createElement('h4');
-        title.innerText = `\"${event.title}\"`;
-        const details = document.createElement('p');
-        details.innerText = `${event.venue}
-                             ${event.location}, ${event.city}
-                             ${months[event.date.getMonth()]} ${event.date.getFullYear()}`;
-        // extra links
-        const extrasElements = [];
-        if (event.extras.notes) {
-            // icon
-            const icon = document.createElement('i');
-            icon.className = 'fa fa-file-pdf-o';
-            // link
-            const link = document.createElement('a');
-            link.className = 'weblink';
-            link.href = event.extras.notes;
-            link.innerText = 'Notes';
+      const eventContainer = document.createElement('div');
+      eventContainer.className = idx % 2 === 0 ? 'container left' : ' container right';
+      eventContainer.style.top = `${event.position}%`;
+      
+      const content = document.createElement('div');
+      content.className = 'content'; 
+      // string formatting for event
+      const title = document.createElement('h4');
+      title.innerText = `\"${event.title}\"`;
+      const details = document.createElement('p');
+      details.innerText = `${event.venue}
+                            ${event.location}, ${event.city}
+                            ${months[event.date.getMonth()]} ${event.date.getFullYear()}`;
+      // extra links
+      const extrasElements = [];
+      const extraIcons = {
+        notes: 'fa-file-pdf-o',
+        code: 'fa-keyboard-o',
+        slides: 'fa-file-pdf-o',
+        video: 'fa-video-camera',
+        abstract: 'fa-plus-square-o'
+      };
+      Object.entries(event.extras).forEach(([extra, value]) => {
+        if (value) {
+          // icon
+          const icon = document.createElement('i');
+          icon.className = `fa ${extraIcons[extra]}`;
             
-            const extra = document.createElement('span')
-            extra.appendChild(icon);
-            extra.appendChild(document.createTextNode(' '));
-            extra.appendChild(link);
-            extrasElements.push(extra);
-        }
-        if (event.extras.code) {
-            // icon
-            const icon = document.createElement('i');
-            icon.className = 'fa fa-keyboard-o';
+          if (extra === 'abstract') {
+            // abstract button
+            const abstractButton = document.createElement('a');
+            abstractButton.className = 'abstract-button';
+            abstractButton.onclick = function() {toggleAbstract(this)};
+            abstractButton.appendChild(icon);
+
+            // abstract content
+            const abstractContent = document.createElement('blockquote');
+            abstractContent.className = 'abstract-content';
+            abstractContent.innerText = value;
+
+            // HTML
+            const extraElement = document.createElement('span');
+            extraElement.appendChild(document.createTextNode('Abstract '));
+            extraElement.appendChild(abstractButton);
+            extraElement.appendChild(abstractContent);
+            extrasElements.push(extraElement);
+          } else {
             // link
             const link = document.createElement('a');
             link.className = 'weblink';
-            link.href = event.extras.code;
-            link.target = '_blank';
-            link.innerText = 'Code';
-                        
-            const extra = document.createElement('span')
-            extra.appendChild(icon);
-            extra.appendChild(document.createTextNode(' '));
-            extra.appendChild(link);
-            extrasElements.push(extra);
+            link.href = value;
+            if (['video', 'code'].includes(extra)) {link.target = '_blank';}
+            link.innerText = extra.charAt(0).toUpperCase() + extra.slice(1);
+              
+            // HTML
+            const extraElement = document.createElement('span')
+            extraElement.appendChild(icon);
+            extraElement.appendChild(document.createTextNode(' '));
+            extraElement.appendChild(link);
+            extrasElements.push(extraElement);
+          }
         }
-        if (event.extras.slides) {
-            // icon
-            const icon = document.createElement('i');
-            icon.className = 'fa fa-file-pdf-o';
-            // link
-            const link = document.createElement('a');
-            link.className = 'weblink';
-            link.href = event.extras.slides;
-            link.innerText = 'Slides';
-                        
-            const extra = document.createElement('span')
-            extra.appendChild(icon);
-            extra.appendChild(document.createTextNode(' '));
-            extra.appendChild(link);
-            extrasElements.push(extra);
-        }
-        if (event.extras.video) {
-            // icon
-            const icon = document.createElement('i');
-            icon.className = 'fa fa-video-camera';
-            // link
-            const link = document.createElement('a');
-            link.className = 'weblink';
-            link.href = event.extras.video;
-            link.target = '_blank';
-            link.innerText = 'Video';
-                        
-            const extra = document.createElement('span')
-            extra.appendChild(icon);
-            extra.appendChild(document.createTextNode(' '));
-            extra.appendChild(link);
-            extrasElements.push(extra);
-        }
+      });
 
-        // add a '|' between links
-        extrasElements.forEach((element, idx) => {
-            if (idx === 0) {
-                details.appendChild(document.createElement('br'));
-                details.appendChild(document.createElement('br'));
-            }
-            else {
-            details.appendChild(document.createTextNode(' | '));
-            }
-            details.appendChild(element);
-        });
+      // add a '|' between links
+      extrasElements.forEach((element, idx) => {
+          if (idx === 0) {
+              details.appendChild(document.createElement('br'));
+              details.appendChild(document.createElement('br'));
+          }
+          else {
+          details.appendChild(document.createTextNode(' | '));
+          }
+          details.appendChild(element);
+      });
 
-        content.appendChild(title);
-        content.appendChild(details);
+      content.appendChild(title);
+      content.appendChild(details);
 
-        eventContainer.appendChild(content);
-        timelineContainer.appendChild(eventContainer);
+      eventContainer.appendChild(content);
+      timelineContainer.appendChild(eventContainer);
     });
 </script>
 
