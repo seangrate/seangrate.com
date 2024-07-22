@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Sean Grate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./styles/misc.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <!-- <img src="./images/lefschetz/hypersurface.png" style="width:100%;" class="w3-round"><br><br> -->
+    <h4><b>Teaching</b></h4>
+    <p class="w3-text-grey">Courses I have taught.</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#courses" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>COURSES</a> 
+    <a href="#testimonials" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-comments w3-margin-right"></i>TESTIMONIALS</a> 
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    </div>
+  </header>
+
+  <!-- Teaching List -->
+  <div class="w3-container w3-padding-large w3-row-padding">
+    <h2 id="courses"><b>Teaching</b></h2>
+    <h4 id="auburn"><b>Auburn University</b></h4>
+    <div class="w3-container">
+        <p>
+          I am a graduate teaching assistant (GTA) at Auburn University.
+          Starting in Fall 2022, the department switched to almost all GTAs teaching recitations.
+          The covered material can be found <a href="https://bulletin.auburn.edu/coursesofinstruction/math/" class="weblink" target="_blank">here</a>.
+        </p>
+        <ul>
+        <li>
+          <p>
+            <b>(Fall 2024)</b> Recitation leader for four sections of MATH 1620 Calculus II.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>(Spring 2024)</b> Recitation leader for two sections of MATH 1620 Calculus II.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>(Fall 2023)</b> Recitation leader for two sections of MATH 1610 Calculus I.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>(Spring 2023)</b> Recitation leader for two sections of MATH 1610 Calculus I.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>(Fall 2022)</b> Recitation leader for two sections of MATH 1610 Calculus I.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>(Spring 2022)</b> Instructor of record for one section of MATH 1610 Calculus I.
+          </p>
+        </li>
+        <li>
+          <p>
+            <b>(Fall 2021)</b> Instructor of record for two sections of MATH 1120 Pre-Calculus Algebra.
+          </p>
+        </li>
+      </ul>
+    </div>    
+    <hr>
+    <h2 id="testimonials"><b>Testimonials</b></h2>
+    <div class="w3-container">
+      <!-- Recitation leader for Calc II -->
+      <p>
+      <b>As a recitation leader for Calculus II</b>
+      <ol>
+      <li>
+        <blockquote>
+            Sean Grate did great as a recitation leader. 
+            He made sure to explain everything in detail and helped me grasp concepts that were hard to understand in lecture. 
+            He covered all the bases as a recitation leader and I highly recommend him to anyone in the future.
+        </blockquote>
+      </li>
+      <li>
+        <blockquote>
+            Sean was a great TA, he worked out problems very well and encouraged cooperation with classmates in his recitation sessions. 
+            He also conducted sessions with tests and quizzes in mind and went out of his way to make sure we were ready for in class assessments.
+        </blockquote>
+      </li>
+      </ol>
+      </p>
+      <!-- Recitation leader for Calc I -->
+      <p>
+      <b>As a recitation leader for Calculus I</b>
+      <ol>
+      <li>
+        <blockquote>
+          Sean was a fantastic recitation leader, he even held a lecture teaching 3.10, which was good as well. 
+          He was extremely supportive and honest when material became confusing or difficult, and never let his familiarity with these topics make us feel dumb. 
+          He would find many ways to explain one idea to help anybody grasp the hard topics.
+        </blockquote>
+      </li>
+      <li>
+        <blockquote>
+            Sean is a great ta. He is one of the few reasons I have not decided to drop this class. 
+            He actually cares to help you even though you may not have a great grasp on the material. 
+            He doesn't expect you to know everything perfectly. 
+            He has no problems with breaking down the problem in extra steps to provide clarity or staying after class to help me on questions I have. 
+            He is what I hope all of my future math TA's are.
+        </blockquote>
+      </li>
+      <li>
+        <blockquote>
+            Sean was GRATE!! 
+            Super helpful and very knowledgeable. 
+            He could answer any questions I had and explain things super simply. 
+            He was accommodating when I had to make up a quiz and always responded to emails quickly. 
+            I had experiences with a few of the recitation leaders, and he was by far my favorite.
+        </blockquote>
+      </li>
+      </ol>
+      </p>
+      <!-- IoR for Calc I -->
+      <p>
+      <b>As instructor of record for Calculus I</b>
+        <ol>
+        <li>
+          <blockquote>
+            Sean Grate is a fantastic teacher. 
+            His lessons are beneficial to learning in every way. 
+            He encourages learning in a multitude of different ways. 
+            He encourages frequent questions and working with our classmates. 
+            He encourages us to come speak to him during his office hours or after class if we have questions or need extra help. 
+            He creates a productive learning environment (to review for our last test, we had a review session outside), puts his personal time into our success as students (holds frequent review sessions before both quizzes and tests, creates multiple practice tests and quizzes to study with, and even holds these review sessions during his weekends), and is altogether a fun and kind teacher. 
+            He made an effort to learn each of our names, has conversations with us before class time, and asks us about our days. 
+            He remembered my major was architecture and how stressful it can be, and makes an effort to ask me specifically how it's going and if I'm able to manage everything efficiently. 
+            He is a fantastic teacher. 
+            Please give him a raise.
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            "Sean Grate is one of the best professors I have had at Auburn. 
+            I cannot say enough good things about him; he taught the material in a way that was easy to understand and apply on the tests and homework. 
+            I always looked forward to coming to class and feel that he provided a constructive learning environment. 
+            He has prepared me for future math courses and I would recommend him to anyone, were he to teach another class. 
+            I am very grateful for the effort he put into this class and willingness to help us perform to the best of our abilities. 
+            Also, throughout the course, he adjusted his teaching style according to our requests and what would help us succeed the most. 
+            Sean Grate truly went above and beyond for this class."
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            Mr. Grate was an excellent teacher who understands that Calculus 1 can be extremely difficult. 
+            He broke things down and explained things to best of his ability in the 50 minutes he was given. 
+            His office hours were helpful and was adamant on the homework policy. He was lenient and fair with pushing back homework due dates. 
+            Some areas of critique would be to slow down on some units. 
+            I remember earlier in the semester where he would fly by on some unit and left me (maybe others) in the dust. 
+            I believe he does this because of the amount of time he is given and there's a lot of material to be covered. 
+            Taking his class with no prior experience in calculus was honestly one of the best decisions I have ever made.
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            Mr. Grate was immensely helpful during the entirety of the course. 
+            He held review sessions before quizzes and exams and was always available during office hours and even outside of office hours. 
+            He consistently showed his concern for everyone’s learning and was always happy to work with students individually to assist them however he could. 
+            Most importantly to me, he instilled a sense of pride in my own Math ability that had been previously lost in me. 
+            Mr. Grate was far and away the best Math professor I’ve ever had and one of the best professors I’ve had, period. 
+            My own experience in the class was second to none, so I cannot speak on areas of weakness. 
+            His teaching style fit my learning style very well and his unending support helped get me through the semester. 
+            Bless this man!
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            I cannot say enough good about Sean Grate. 
+            He is a very intelligent, compassionate instructor that finds math beautiful and tries to instill that same passion in his students. 
+            Sometimes I find his instructions to be confusing as he is so smart, sometimes he glosses over parts of a problem that would aid my understanding. 
+            However, should this happen I feel welcome to raise my hand and ask a question in class or go to office hours to discuss such things one-on-one. 
+            Otherwise, I have seen Sean's instruction style improve actively throughout the semester, showing that he actively tries to mold his instruction according to our needs. 
+            Also his compassion has shown through in the ways he works with us during class time, and how he grades our quizzes/tests so quickly and provides accurate feedback. 
+            Only thing he could improve on is bringing his classes handmade calzones.
+          </blockquote>
+        </li>
+        </ol>
+      </p>
+      <!-- IoR for Precalc Algebra -->
+      <p>
+      <b>As instructor of record for Pre-Calculus Algebra</b>
+      <ol>
+        <li>
+          <blockquote>
+            Mr. Grate was a very good professor for this course. 
+            He was easy to understand and always took time to make sure we were following him. 
+            Mr. Grate kept his class very well organized and timely. 
+            He cared a lot about our success and was always understanding if we were confused. 
+            I was easily able to get help during his office hours, and he even went into his lunch to make sure I was ready for the test. 
+            I would recommend him to anyone who wants to learn and be successful in this course. 
+            Thanks Mr. Grate! 
+            You’re the best.
+          </blockquote>
+        </li>
+        <li>
+          <blockquote>
+            Great and clear grading criteria. 
+            Positive reinforcement with grading. 
+            Very helpful and accessible when make up work is needed due to an absence. 
+            Communicates well with the class. 
+            Very great class this semester :)
+          </blockquote> 
+        </li>
+      </ol>
+      </p>
+    </div>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Sidebar toggle -->
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+
+</body>

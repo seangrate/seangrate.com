@@ -34,8 +34,9 @@
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a> 
     <a href="#papers" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-file-text-o w3-margin-right"></i>PAPERS</a>
     <a href="#research" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-university w3-margin-right"></i>RESEARCH</a>
-    <a href="#software" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-terminal fa-fw w3-margin-right"></i>SOFTWARE</a> 
-    <a href="#projects" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>PROJECTS</a>
+    <a href="#software" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-terminal w3-margin-right"></i>SOFTWARE</a> 
+    <a href="./teaching.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-graduation-cap w3-margin-right"></i>TEACHING</a>
+    <a href="./projects.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-pencil w3-margin-right"></i>PAST PROJECTS</a>
   </div>
   <div class="w3-panel w3-large">
     <a class="weblink" href="https://github.com/TheGrateSalmon" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
@@ -59,14 +60,15 @@
   <div class="w3-container w3-padding-large w3-row-padding">
     <h4 id="about"><b>About</b></h4>
     <p>
-      I am a fourth-year Ph.D. candidate in Mathematics at Auburn University studying under <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>.
+      I am a fifth-year Ph.D. candidate in Mathematics at Auburn University studying under <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>.
       I earned a B.S. in Mathematics with minors in History and Classics at the University of Kentucky.
       While at the University of Kentucky, I conducted research with the <a class="weblink" href="http://www.ms.uky.edu/~geometrylab/" target="_blank">University of Kentucky Math Lab</a>
-      and also as part of the <a class="weblink" href="http://mvrl.cs.uky.edu/" target="_blank">Multimodal Vision Research Laboratory</a>.
+      and the <a class="weblink" href="http://mvrl.cs.uky.edu/" target="_blank">Multimodal Vision Research Laboratory</a>.
     </p>
     <p>
-      My primary research interests lie in commutative algebra, algebraic geometry, and topological data analysis.
+      My primary research interests lie in commutative algebra, algebraic geometry, and data analysis.
       However, I've been finding that a lot of side projects that interest me come from combinatorial optimization.
+      I will be on the job market this fall.
       A copy of my CV can be found <a class="weblink" href="./misc/CV.pdf">here</a> along with my contact information. 
     </p>
     <hr>
@@ -87,6 +89,7 @@
         </div>
         <br>
         <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/papers/betti_wlp.pdf">PDF</a> | 
+        <i class="fa fa-video-camera"></i> <a class="weblink" href="https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl" target="_blank">Video</a> | 
         Abstract 
         <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
         <blockquote class="abstract-content">
@@ -129,7 +132,7 @@
         <!-- Education -->
         <li>
           <div>
-            Suturing the Severed Didactic Tetrahedron: Graph Theoretic Reflection to Foster Alignment in Coordinated Course 
+            Graph Theoretic Reflection to Foster Alignment in Coordinated Course 
             (with <a class="weblink" href="https://www.hailegilroy.com/" target="_blank">Haile Gilroy</a> 
             and <a class="weblink" href="https://www.auburn.edu/cosam/faculty/math_stats/lanius/index.htm" target="_blank">Melinda Lanius</a>).
             Submitted.
@@ -264,59 +267,6 @@
       </div>
     </div>
     <hr>
-  </div>
-
-  <!-- Undergraduate Research -->
-  <div class="w3-container w3-row-padding">
-    <h4><b>Undergraduate Research</b></h4>
-    <!-- <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./resampling.html"><img src="./images/resampling/plane.gif" alt="resampling" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Point Cloud Resampling</b></p>
-        <p>Use deep learning to get a better resolution of point cloud data.</p>
-      </div>
-    </div> -->
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./heisenberg.html"><img src="./images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Discrete Heisenberg Group</b></p>
-        <p>How well does Ehrhart theory translate to the noncommutative world?</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./flightroute.html"><img src="./images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Flight Route Estimation</b></p>
-        <p>How well can you estimate the path of a LiDAR sensor given a scan of the terrain?</p>
-      </div>
-    </div>
-    <hr>
-  </div>
-
-  <!-- Projects -->
-  <div class="w3-container w3-row-padding">
-    <h4 id="projects"><b>Projects</b></h4>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./visualizations.html"><img src="./images/visualizations/twisted_cubic_surface_render.png" alt="twisted cubic" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Visualizing Algebraic Surfaces</b></p>
-        <p>Cool 3D prints of objects popping up in math.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./assignments.html"><img src="./images/assignments/assignments.PNG" alt="assignments" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>TA Assignments</b></p>
-        <p>Is there a nice algorithm to assign TAs to teaching assignments given a set of constraints and a list of preferences?</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-      <a class="weblink" href="./minecraft.html"><img src="./images/minecraft/mountain overlook (small).png" alt="minecraft" style="width:100%" class="w3-hover-opacity"></a>
-      <div class="w3-container w3-white">
-        <p><b>Generating Minecraft Worlds</b></p>
-        <p>Use techniques from deep learning combined with real world data to generate realistic worlds in Minecraft.</p>
-      </div>
-    </div>
   </div>
 
   <!-- Footer -->
