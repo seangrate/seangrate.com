@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Sean Grate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./styles/misc.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="./images/tda/tda_talk.jpg" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Talks</b></h4>
+    <p class="w3-text-grey">Talks I have given.</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#invited" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>INVITED TALKS</a> 
+    <a href="#contributed" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-comments w3-margin-right"></i>CONTRIBUTED TALKS</a> 
+    <a href="#seminars" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-comments w3-margin-right"></i>SEMINAR TALKS</a>  
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    </div>
+  </header>
+
+  <!-- Invited Talks -->
+  <div id="invited" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Invited Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Castelnuovo-Mumford regularity of toric surfaces</q>, AMS Fall Central Sectional
+        <span style="float:right">September 2024</span>
+      </li>
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Contributed Talks -->
+  <div id="contributed" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Contributed Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Betti tables forcing failure of the Weak Lefschetz Property</q>, Combinatorial Algebra meets Algebraic Combinatorics (CAAC)
+        <span style="float:right">January 2024</span>
+        <br>
+        <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/slides/caac_wlp.pdf" target="_blank">Slides</a>
+      </li>
+      <br>
+      <li>
+        <q>Betti tables forcing failure of the Weak Lefschetz Property</q>, Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics
+        <span style="float:right">May 2023</span>
+        <br>
+        <i class="fa fa-video-camera"></i> <a class="weblink" href="https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl" target="_blank">Video</a>
+      </li>
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Seminar Talks -->
+  <div id="seminars" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Seminar Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Betti tables and Lefschetz properties</q>, University of Kentucky Algebra Seminar
+        <span style="float:right">November 2023</span>
+      </li>
+      <br>
+      <li>
+        <q>Lefschetz properties and Artinian rings</q>, McNeese State University Math Seminar
+        <span style="float:right">November 2023</span>
+      </li>
+      <br>
+      <li>
+        Auburn University
+        <ul>
+          <li>
+            <q>Castelnuovo-Mumford regularity of toric surfaces</q>, Algebra Seminar
+            <span style="float:right">September 2024</span>
+          </li>
+          <br>
+          <li>
+            <q>Betti tables and Lefschetz properties</q>, Algebra Seminar
+            <span style="float:right">February 2024</span>
+          </li>
+          <br>
+          <li>
+            <q>Suturing the severed didactic tetrahedron: Graph theoretic reflection to foster alignment in coordinates courses</q>, DBER (Discipline-Based Education Research) Seminar
+            <span style="float:right">February 2024</span>
+          </li>
+          <br>
+          <li>
+            <q>Leveraging software for mathematics and graduate school</q>, Graduate Student Seminar
+            <span style="float:right">September 2023</span>
+          </li>
+          <br>
+          <li>
+            <q>A brief introduction to tropical geometry</q>, Graduate Student Seminar
+            <span style="float:right">August 2022</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/notes/intro_tropical.pdf">Notes</a> 
+          </li>
+          <br>
+          <li>
+            <q>An overview of topological data analysis</q>, Math Club
+            <span style="float:right">February 2022</span>
+          </li>
+          <br>
+          <li>
+            <q>A brief introduction to tropical geometry</q>, Algebra Seminar
+            <span style="float:right">November 2021</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/notes/tropical.pdf">Notes</a> 
+          </li>
+          <br>
+          <li>
+            <q>Computations in topological data analysis</q>, Graduate Algebra Seminar
+            <span style="float:right">August 2021</span>
+            <br>
+            <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa" target="_blank">Code</a>
+          </li>
+          <br>
+          <li>
+            <q>Tropical algebra</q>, Graduate Algebra Seminar
+            <span style="float:right">July 2021</span>
+          </li>
+          <br>
+          <li>
+            <q>Geometry in noncommutative algebra</q>, First-Year Graduate Student Seminar
+            <span style="float:right">January 2021</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/notes/heisenberg.pdf">Notes</a> 
+            <br>
+          </li>
+          <br>
+          <li>
+            <q>What/Why/How of neural networks</q>, First-Year Graduate Student Seminar
+            <span style="float:right">November 2020</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="./misc/notes/neural_networks.pdf">Notes</a> |
+            <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa" target="_blank">Code</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </p>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Sidebar toggle -->
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+
+</body>
