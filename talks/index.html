@@ -2,15 +2,15 @@
 <html>
 <head>
   <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
-  <title>Sean Grate</title>
+  <title>Talks</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./styles/misc.css">
-  <link rel="stylesheet" href="./styles/timelines.css">
+  <link rel="stylesheet" href="../styles/misc.css">
+  <link rel="stylesheet" href="../styles/timelines.css">
   <style>
     a.abstract-button:hover {opacity: 0.6; cursor: pointer}
     blockquote.abstract-content {display: none}
@@ -27,12 +27,14 @@
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="./images/tda/tda_talk.jpg" style="width:100%;" class="w3-round"><br><br>
+    <img src="../images/tda/tda_talk.jpg" style="width:100%;" class="w3-round"><br><br>
     <h4><b>Talks</b></h4>
     <p class="w3-text-grey">Talks I have given.</p>
   </div>
   <div class="w3-bar-block">
-    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrows-v fa-fw w3-margin-right"></i>TIMELINE VIEW</a> 
+    <a href="./condensed.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list fa-fw w3-margin-right"></i>LIST VIEW</a> 
   </div>
 </nav>
 
@@ -120,6 +122,28 @@
                 video: '',
                 abstract: 'In 1996, L\'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup\'s two largest gaps. '
                           + 'We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.' } },
+    { title: 'Bootstrapping Computations in Topological Data Analysis', 
+      venue: 'COSAM 3-Minute Thesis Competition',
+      date: new Date('2024-04-17'), 
+      location: 'Auburn University',
+      city: 'Auburn, AL',
+      extras: { notes: '', 
+                code: '', 
+                slides: '../misc/slides/3M_thesis.pdf', 
+                video: '',
+                abstract: '' } },
+    { title: 'Problems in computational algebraic geometry: Lefschetz properties and toric varieties', 
+      venue: 'General Oral Exam',
+      date: new Date('2024-03-26'), 
+      location: 'Auburn University',
+      city: 'Auburn, AL',
+      extras: { notes: '', 
+                code: '', 
+                slides: '../misc/oral/presentation.html', 
+                video: '',
+                abstract: 'Starting with Lefschetz properties, moving on to toric varieties and Castelnuovo-Mumford regularity, and finishing with other miscellaneous projects, I will give an overview of the research I have conducted while at Auburn University. '
+                          + 'A common theme among all these projects is the strong presence (and necessity) of computation. '
+                          + 'As such, there will be many examples written in Macaulay2 and Python to help understand where these projects came from and how they were completed.'  } },
     { title: 'Betti tables and Lefschetz properties', 
       venue: 'Algebra Seminar',
       date: new Date('2024-02-13'), 
@@ -155,7 +179,7 @@
       city: 'Montréal, QC',
       extras: { notes: '', 
                 code: '', 
-                slides: './misc/slides/caac_wlp.pdf', 
+                slides: '../misc/slides/caac_wlp.pdf', 
                 video: '',
                 abstract: 'For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. '
                           + 'This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. '
@@ -186,7 +210,7 @@
                 slides: '', 
                 video: '',
                 abstract: 'Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space. '
-                          + 'One much studied class of rings are Artinian quotients of polynomial rings over a field k; Artinian means the ring itself is a finite dimensional vector space over \\( k \\). '
+                          + 'One much studied class of rings are Artinian quotients of polynomial rings over a field \\( k \\); Artinian means the ring itself is a finite dimensional vector space over \\( k \\). '
                           + 'I\'ll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing \"linear algebra with matrices of polynomials\".' } },
     { title: 'Leveraging Software for mathematics and graduate school', 
       venue: 'Graduate Student Seminar',
@@ -208,7 +232,7 @@
                 code: '', 
                 slides: '', 
                 video: 'https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl',
-                abstract: 'We study the Artinian reduction A of a configuration of a pointset \\( X \\subseteq \\mathbb{P}^{n} \\), and the relation of the geometry of \\( X \\) to Lefschetz properties of \\( A \\). '
+                abstract: 'We study the Artinian reduction \\( A \\) of a configuration of a pointset \\( X \\subseteq \\mathbb{P}^{n} \\), and the relation of the geometry of \\( X \\) to Lefschetz properties of \\( A \\). '
                           + 'Migliore-Zanello initiated the study of this connection, with a particular focus on the Hilbert function of \\( A \\), and further work appears in Migliore-Miró-Roig–Nagel. '
                           + 'Our specific focus is on betti tables rather than Hilbert functions, and we prove that certain betti tables force the failure of the Weak Lefschetz Property (WLP); the corresponding Artinian algebras are typically not level, and the failure of WLP is not detected in terms of the Hilbert function.' } },
     { title: 'A brief introduction to tropical geometry', 
@@ -216,7 +240,7 @@
       date: new Date('2022-08-31'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/intro_tropical.pdf', 
+      extras: { notes: '../misc/notes/intro_tropical.pdf', 
                 code: '', 
                 slides: '', 
                 video: '',
@@ -243,7 +267,7 @@
       date: new Date('2021-11-02'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/tropical.pdf', 
+      extras: { notes: '../misc/notes/tropical.pdf', 
                 code: '', 
                 slides: '', 
                 video: '',
@@ -257,7 +281,7 @@
       location: 'Auburn University',
       city: 'Auburn, AL',
       extras: { notes: '', 
-                code: 'https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa', 
+                code: 'https://gist.github.com/TheGrateSalmon/ab72aeeca5a7d98aa9d90655a90e6dfd', 
                 slides: '', 
                 video: '',
                 abstract: '' } },
@@ -276,7 +300,7 @@
       date: new Date('2021-01-21'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/heisenberg.pdf', 
+      extras: { notes: '../misc/notes/heisenberg.pdf', 
                 code: '', 
                 slides: '', 
                 video: '',
@@ -286,7 +310,7 @@
       date: new Date('2020-11-19'), 
       location: 'Auburn University',
       city: 'Auburn, AL',
-      extras: { notes: './misc/notes/neural_networks.pdf', 
+      extras: { notes: '../misc/notes/neural_networks.pdf', 
                 code: 'https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa', 
                 slides: '', 
                 video: '',

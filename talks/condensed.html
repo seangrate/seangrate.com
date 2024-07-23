@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Talks</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../styles/misc.css">
+  <style>
+    a.abstract-button:hover {opacity: 0.6; cursor: pointer}
+    blockquote.abstract-content {display: none}
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="../images/tda/tda_talk.jpg" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Talks</b></h4>
+    <p class="w3-text-grey">Talks I have given.</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrows-v fa-fw w3-margin-right"></i>TIMELINE VIEW</a> 
+    <a href="./condensed.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list fa-fw w3-margin-right"></i>LIST VIEW</a> 
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    </div>
+  </header>
+
+  <!-- Invited Talks -->
+  <div id="invited" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Invited Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Castelnuovo-Mumford regularity of toric surfaces</q>, AMS Fall Central Sectional
+        <span style="float:right">September 2024</span>
+        <br>
+        Abstract 
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps.
+          We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.
+        </blockquote>
+      </li>
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Contributed Talks -->
+  <div id="contributed" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Contributed Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Betti tables forcing failure of the Weak Lefschetz Property</q>, Combinatorial Algebra meets Algebraic Combinatorics (CAAC)
+        <span style="float:right">January 2024</span>
+        <br>
+        <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/caac_wlp.pdf" target="_blank">Slides</a> | 
+        Abstract 
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution.
+          This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring.
+          If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank.
+          Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences.
+          Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.
+        </blockquote>
+        <br>
+      </li>
+      <br>
+      <li>
+        <q>Betti tables forcing failure of the Weak Lefschetz Property</q>, Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics
+        <span style="float:right">May 2023</span>
+        <br>
+        <i class="fa fa-video-camera"></i> <a class="weblink" href="https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl" target="_blank">Video</a> | 
+        Abstract 
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          We study the Artinian reduction \( A \) of a configuration of a pointset \( X \subseteq \mathbb{P}^{n} \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \). 
+          Migliore-Zanello initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further work appears in Migliore-Miró-Roig–Nagel.
+          Our specific focus is on betti tables rather than Hilbert functions, and we prove that certain betti tables force the failure of the Weak Lefschetz Property (WLP); the corresponding Artinian algebras are typically not level, and the failure of WLP is not detected in terms of the Hilbert function.
+        </blockquote>
+        <br>
+      </li>
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Seminar Talks -->
+  <div id="seminars" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Seminar Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Betti tables and Lefschetz properties</q>, University of Kentucky Algebra Seminar
+        <span style="float:right">November 2023</span>
+        <br>
+        Abstract 
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution.
+          This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring.
+          If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank.
+          Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences.
+          Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.
+        </blockquote>
+        <br>
+      </li>
+      <br>
+      <li>
+        <q>Lefschetz properties and Artinian rings</q>, McNeese State University Math Seminar
+        <span style="float:right">November 2023</span>
+        <br>
+        Abstract 
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space.
+          One much studied class of rings are Artinian quotients of polynomial rings over a field \( k \); Artinian means the ring itself is a finite dimensional vector space over \( k \).
+          I'll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing "linear algebra with matrices of polynomials".
+        </blockquote>
+        <br>
+      </li>
+      <br>
+      <li>
+        Auburn University
+        <ul>
+          <li>
+            <q>Castelnuovo-Mumford regularity of toric surfaces</q>, Algebra Seminar
+            <span style="float:right">September 2024</span>
+            <br>
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps.
+              We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>Betti tables and Lefschetz properties</q>, Algebra Seminar
+            <span style="float:right">February 2024</span>
+            <br>
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution.
+              This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring.
+              If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank.
+              Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences.
+              Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>Suturing the severed didactic tetrahedron: Graph theoretic reflection to foster alignment in coordinates courses</q>, DBER (Discipline-Based Education Research) Seminar
+            <span style="float:right">February 2024</span>
+            <br>
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              Despite online homework's growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets.
+              In this presentation we will share the results of a mixed-methods study examining how 10 university mathematics educators assessed the quality of a sampling of online Calculus I homework assignments.
+              In the course of this project, we introduced our educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritized and the learning outcomes most emphasized by an assignment or assessment.
+              In this highly interactive presentation, we will share both our results and walk you through using CAAT. For this reason, you have homework: Please bring a set of homework problems from an undergraduate course in your discipline!
+              (If you're in the math department or happen to really enjoy calculus, we will have the Calculus I homework sets available for you to use).
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>Leveraging software for mathematics and graduate school</q>, Graduate Student Seminar
+            <span style="float:right">September 2023</span>
+            <br>
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              I plan on going through some software I have found useful for grad school; this includes Python, GitHub, Zotero, Overleaf, and Box.
+              I plan on going through each and showcasing some features that I have found especially nice.
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>A brief introduction to tropical geometry</q>, Graduate Student Seminar
+            <span style="float:right">August 2022</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/intro_tropical.pdf">Notes</a> | 
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. 
+              In this setting, there is a nice interplay between algebra and polyhedral geometry. 
+              In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout's Theorem. 
+              These will mainly be explored through examples.
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>An overview of topological data analysis</q>, Math Club
+            <span style="float:right">February 2022</span>
+            <br>
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              Tools from algebra and topology can be used to extract topological and geometric features of the data. 
+              The essence of topological data analysis (TDA) is to use a filtration on a finite point cloud to construct an algebraic complex modeling the data. 
+              The homology of this complex gives topological information about the data. 
+              Summaries of the topological information are shown through barcodes and persistence diagrams. 
+              This talk will give an overview of where TDA comes from, how it can be used, some examples, and potential research directions.
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>A brief introduction to tropical geometry</q>, Algebra Seminar
+            <span style="float:right">November 2021</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/tropical.pdf">Notes</a> | 
+            Abstract 
+            <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+            <blockquote class="abstract-content">
+              The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. 
+              In this setting, there is a nice interplay between algebra and polyhedral geometry. 
+              In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout's Theorem. 
+              These will mainly be explored through examples.
+            </blockquote>
+          </li>
+          <br>
+          <li>
+            <q>Computations in topological data analysis</q>, Graduate Algebra Seminar
+            <span style="float:right">August 2021</span>
+            <br>
+            <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/TheGrateSalmon/ab72aeeca5a7d98aa9d90655a90e6dfd" target="_blank">Code</a>
+          </li>
+          <br>
+          <li>
+            <q>Tropical algebra</q>, Graduate Algebra Seminar
+            <span style="float:right">July 2021</span>
+          </li>
+          <br>
+          <li>
+            <q>Geometry in noncommutative algebra</q>, First-Year Graduate Student Seminar
+            <span style="float:right">January 2021</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/heisenberg.pdf">Notes</a> 
+            <br>
+          </li>
+          <br>
+          <li>
+            <q>What/Why/How of neural networks</q>, First-Year Graduate Student Seminar
+            <span style="float:right">November 2020</span>
+            <br>
+            <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/neural_networks.pdf">Notes</a> |
+            <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/TheGrateSalmon/080ab4da33be27924825a2b530754faa" target="_blank">Code</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Other Talks -->
+  <div id="others" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Other Talks</b></h2>
+  <p>
+    <ul>
+      <li>
+        <q>Boostrapping computations in topological data analysis</q>, COSAM 3-Minute Thesis Competition
+        <span style="float:right">April 2024</span>
+        <br>
+        <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/3M_thesis.pdf">Slides</a>
+      </li>
+      <br>
+      <li>
+        <q>Problems in computational algebraic geometry: Lefschetz properties and toric varieties</q>, General Oral Exam
+        <span style="float:right">March 2024</span>
+        <br>
+        <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/oral/presentation.html" target="_blank">Slides</a> | 
+        Abstract 
+        <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+        <blockquote class="abstract-content">
+          Starting with Lefschetz properties, moving on to toric varieties and Castelnuovo-Mumford regularity, and finishing with other miscellaneous projects, I will give an overview of the research I have conducted while at Auburn University.
+          A common theme among all these projects is the strong presence (and necessity) of computation.
+          As such, there will be many examples written in Macaulay2 and Python to help understand where these projects came from and how they were completed.
+        </blockquote>
+        <br>
+        <br>
+      </li>
+    </ul>
+  </p>
+  </div>
+
+<!-- End page content -->
+</div>
+
+<!-- Sidebar toggle -->
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+
+<!-- Abstract toggle -->
+<script>
+  window.onload = function() {
+    var buttons = document.getElementsByClassName('abstract-button');
+
+    for (var i = 0; i < buttons.length; i++) {
+      var text = buttons[i].nextElementSibling;
+      text.style.display = "none";
+    }
+  }
+
+  function toggleAbstract(button) {
+    var text = button.nextElementSibling;
+    var icon = button.children[0];
+
+    if (text.style.display === "none") {
+      text.style.display = "block";
+      icon.className = "fa fa-minus-square-o";
+    } else {
+      text.style.display = "none";
+      icon.className = "fa fa-plus-square-o";
+    }
+  }
+</script>
+
+</body>

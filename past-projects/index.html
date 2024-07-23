@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./styles/misc.css">
+  <link rel="stylesheet" href="../styles/misc.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -22,12 +22,12 @@
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="./images/visualizations/clebsh_render.png" style="width:100%;" class="w3-round"><br><br>
+    <img src="../images/visualizations/clebsh_render.png" style="width:100%;" class="w3-round"><br><br>
     <h4><b>Past Projects</b></h4>
     <p class="w3-text-grey">Prior research and personal projects.</p>
   </div>
   <div class="w3-bar-block">
-    <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
     <a href="#undergrad" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>UNDERGRADUATE RESEARCH</a> 
     <a href="#personal" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>PERSONAL PROJECTS</a>
   </div>
@@ -47,24 +47,24 @@
   </header>
 
   <!-- Undergraduate Research -->
-  <div class="w3-container w3-row-padding">
+  <div id="undergrad" class="w3-container w3-row-padding">
     <h4><b>Undergraduate Research</b></h4>
     <!-- <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./resampling.html"><img src="./images/resampling/plane.gif" alt="resampling" style="width:100%" class="w3-hover-opacity"></a>
+      <a class="weblink" href="./resampling/"><img src="../images/resampling/plane.gif" alt="resampling" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Point Cloud Resampling</b></p>
         <p>Use deep learning to get a better resolution of point cloud data.</p>
       </div>
     </div> -->
     <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./heisenberg.html"><img src="./images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%" class="w3-hover-opacity"></a>
+      <a class="weblink" href="./heisenberg/"><img src="../images/heisenberg/tetra_growth.gif" alt="heisenberg" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Discrete Heisenberg Group</b></p>
         <p>How well does Ehrhart theory translate to the noncommutative world?</p>
       </div>
     </div>
     <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./flightroute.html"><img src="./images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%" class="w3-hover-opacity"></a>
+      <a class="weblink" href="./flight-route/"><img src="../images/flightroute/franklin_torch_flight.gif" alt="flight route" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Flight Route Estimation</b></p>
         <p>How well can you estimate the path of a LiDAR sensor given a scan of the terrain?</p>
@@ -74,24 +74,24 @@
   </div>
 
   <!-- Projects -->
-  <div class="w3-container w3-row-padding">
+  <div id="personal" class="w3-container w3-row-padding">
     <h4 id="personal projects"><b>Personal Projects</b></h4>
     <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./visualizations.html"><img src="./images/visualizations/twisted_cubic_surface_render.png" alt="twisted cubic" style="width:100%" class="w3-hover-opacity"></a>
+      <a class="weblink" href="./visualizations/"><img src="../images/visualizations/twisted_cubic_surface_render.png" alt="twisted cubic" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Visualizing Algebraic Surfaces</b></p>
         <p>Cool 3D prints of objects popping up in math.</p>
       </div>
     </div>
     <div class="w3-third w3-container w3-margin-bottom">
-      <a class="weblink" href="./assignments.html"><img src="./images/assignments/assignments.PNG" alt="assignments" style="width:100%" class="w3-hover-opacity"></a>
+      <a class="weblink" href="./assignments/"><img src="../images/assignments/assignments.PNG" alt="assignments" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>TA Assignments</b></p>
         <p>Is there a nice algorithm to assign TAs to teaching assignments given a set of constraints and a list of preferences?</p>
       </div>
     </div>
     <div class="w3-third w3-container">
-      <a class="weblink" href="./minecraft.html"><img src="./images/minecraft/mountain overlook (small).png" alt="minecraft" style="width:100%" class="w3-hover-opacity"></a>
+      <a class="weblink" href="./minecraft/"><img src="../images/minecraft/mountain overlook (small).png" alt="minecraft" style="width:100%" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
         <p><b>Generating Minecraft Worlds</b></p>
         <p>Use techniques from deep learning combined with real world data to generate realistic worlds in Minecraft.</p>

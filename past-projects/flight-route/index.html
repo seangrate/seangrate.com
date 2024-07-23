@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./styles/misc.css">
+  <link rel="stylesheet" href="../../styles/misc.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
 </head>
@@ -22,12 +22,12 @@
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="./images/flightroute/franklin_torch_flight.gif" style="width:100%;" class="w3-round"><br><br>
+    <img src="../../images/flightroute/franklin_torch_flight.gif" style="width:100%;" class="w3-round"><br><br>
     <h4><b>Estimating Flight Routes</b></h4>
     <p class="w3-text-grey">Modeling the trajectory of a LiDAR sensor.</p>
   </div>
   <div class="w3-bar-block">
-    <a href="./index.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO BACK</a> 
     <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>BACKGROUND</a> 
     <a href="#approaches" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-map w3-margin-right"></i>APPROACHES</a> 
   </div>
@@ -48,15 +48,15 @@
     <h4><b>Background</b></h4>
     <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
       <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-        <img src="./images/flightroute/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
+        <img src="../../images/flightroute/Lexington.png" alt="Lexington" style="max-width:512px; max-height:512px">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Lexington, KY from above</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-        <img src="./images/flightroute/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
+        <img src="../../images/flightroute/franklin_tile.gif" alt="Capitol building" style="max-width:512px; max-height:512px">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Frankfort, KY</div>
       </div>
       <div class="w3-content w3-display-container slideshow1" style="max-width:512px; max-height:512px">
-        <img src="./images/flightroute/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
+        <img src="../../images/flightroute/jefferson_tile.gif" alt="Louisville" style="max-width:512px; max-height:512px">
         <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Louisville, KY</div>
       </div>
       <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 0)">&#10094;</button>
@@ -78,7 +78,7 @@
     <h4><b>Approaches</b></h4>
     <div class="w3-container">
       <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-        <img src="./images/flightroute/scan_lines.gif" alt="scan lines" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+        <img src="../../images/flightroute/scan_lines.gif" alt="scan lines" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
         <br><div style="text-align:center"><i>Computed scan direction vectors for a flight over Frankfort, KY</i></div>
       </div>
       <p>One of the key features included in LiDAR data is the <i>number of returns</i>. Essentially, whenever
@@ -100,11 +100,11 @@
       <li><h4 style="padding:8px 0px 8px 0px">Geometry</h4></li>
       <div class="w3-content w3-display-container", style="max-width:512px; max-height:512px">
         <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
-          <img src="./images/flightroute/franklin_geo_flight.gif" alt="Franklin flight (geo)" style="max-width:512px; max-height:512px">
+          <img src="../../images/flightroute/franklin_geo_flight.gif" alt="Franklin flight (geo)" style="max-width:512px; max-height:512px">
           <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of flight over Frankfort, KY</div>
         </div>
         <div class="w3-content w3-display-container slideshow2" style="max-width:512px; max-height:512px">
-          <img src="./images/flightroute/franklin_geo_multi_flight.gif" alt="Franklin multi flight (geo)" style="max-width:512px; max-height:512px">
+          <img src="../../images/flightroute/franklin_geo_multi_flight.gif" alt="Franklin multi flight (geo)" style="max-width:512px; max-height:512px">
           <div class="w3-display-bottommiddle w3-medium w3-container w3-black" style="text-align:center">Estimate of multiple flights over Frankfort, KY</div>
         </div>
         <button class="w3-button w3-black w3-display-bottomleft" onclick="plusSlides(-1, 1)">&#10094;</button>
@@ -131,7 +131,7 @@
       <li><h4 style="padding:8px 0px 8px 0px">Linear Motion Model</h4></li>
       <div class="w3-container">
         <div class="w3-container w3-border w3-border-light-grey w3-padding-16" style="float:right">
-          <img src="./images/flightroute/franklin_torch_flight.gif" alt="franklin pytorch flight" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
+          <img src="../../images/flightroute/franklin_torch_flight.gif" alt="franklin pytorch flight" style="padding: 0px 16px 0px 16px; max-width: 512px; max-height:512px; float:right">
           <br><div style="text-align:center"><i>Estimated linear flight route over Frankfort, KY</i></div>
         </div>
         <p>If we assume that flight route of the LiDAR sensor is linear, then we can use the scan direction
@@ -194,7 +194,7 @@
       document.getElementById("myOverlay").style.display = "none";
   }
 </script>
-<script src="./scripts/slideshows.js"></script>
+<script src="../../scripts/slideshows.js"></script>
 
 </body>
 
