@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../styles/misc.css">
+  <link rel="stylesheet" href="../styles/timelines.css">
+  <style>
+    a.abstract-button:hover {opacity: 0.6; cursor: pointer}
+    blockquote.abstract-content {display: none}
+  </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -22,12 +27,14 @@
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <!-- <img src="../images/tda/tda_talk.jpg" style="width:100%;" class="w3-round"><br><br> -->
+    <img src="../images/travel/golden_gate_bridge.jpg" style="width:100%;" class="w3-round"><br><br>
     <h4><b>Travel</b></h4>
-    <p class="w3-text-grey">Conferences, workshops, and the like.</p>
+    <p class="w3-text-grey">Places I have been for conferences, workshops, and seminars.</p>
   </div>
   <div class="w3-bar-block">
     <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrows-v fa-fw w3-margin-right"></i>TIMELINE VIEW</a> 
+    <a href="./condensed.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list fa-fw w3-margin-right"></i>LIST VIEW</a> 
   </div>
 </nav>
 
@@ -44,9 +51,8 @@
     </div>
   </header>
 
-  <div id="main_body" class="w3-container w3-padding-large" style="margin-bottom:32px">
-    In progress.
-  </div>
+  <div id="timeline" class="timeline">
+  </div> 
   
 <!-- End page content -->
 </div>
@@ -65,4 +71,199 @@
   }
 </script>
 
+<!-- Abstract toggle -->
+<script>
+  window.onload = function() {
+    var buttons = document.getElementsByClassName('abstract-button');
+
+    for (var i = 0; i < buttons.length; i++) {
+      var text = buttons[i].nextElementSibling;
+      text.style.display = "none";
+    }
+  }
+
+  function toggleAbstract(button) {
+    var text = button.nextElementSibling;
+    var icon = button.children[0];
+
+    if (text.style.display === "none") {
+      text.style.display = "block";
+      icon.className = "fa fa-minus-square-o";
+    } else {
+      text.style.display = "none";
+      icon.className = "fa fa-plus-square-o";
+    }
+  }
+</script>
+
+<!-- Proportional timeline -->
+<script>
+  // timeline data
+  const timelineEvents = [
+  { title: 'AMS Fall Central Sectional Meeting', 
+    date: new Date('2024-09'), 
+    location: 'University of Texas, San Antonio',
+    city: 'San Antonio, TX',
+    extras: { } },
+  { title: 'UweFest', 
+    date: new Date('2024-08'), 
+    location: 'Notre Dame University',
+    city: 'South Bend, IN',
+    extras: { } },
+  { title: 'AMS MRC: Algebraic Combinatorics', 
+    date: new Date('2024-06'), 
+    location: 'Beaver Hollow Resort',
+    city: 'Beaver Hollow, NY',
+    extras: { } },
+  { title: 'Computational Algebraic Geometry and String Theory', 
+    date: new Date('2024-05'), 
+    location: 'University of Utah',
+    city: 'Salt Lake City, UT',
+    extras: { } },
+  { title: 'JM Invariant at 60', 
+    date: new Date('2024-05'), 
+    location: 'Auburn University',
+    city: 'Auburn, AL',
+    extras: { } },
+  { title: 'Combinatorial Algebra meets Algebraic Combinatorics', 
+    date: new Date('2024-01'), 
+    location: 'Université du Québec à Montréal',
+    city: 'Montréal, QC',
+    extras: { } },
+  { title: 'SIAM Texas-Louisiana Sectional Meeting', 
+    date: new Date('2023-11'), 
+    location: 'University of Louisiana at Lafayette',
+    city: 'Lafayette, LA',
+    extras: { } },
+  { title: 'BrianFest', 
+    date: new Date('2023-08'), 
+    location: 'University of Nebraska-Lincoln',
+    city: 'Lincoln, NE',
+    extras: { } },
+  { title: 'Macaulay2 Week', 
+    date: new Date('2023-06'), 
+    location: 'University of Minnesota',
+    city: 'Minneapolis, MN',
+    extras: { } },
+  { title: 'SLMath Commutative Algebra Summer School', 
+    date: new Date('2023-05'), 
+    location: 'Notre Dame University',
+    city: 'South Bend, IN',
+    extras: { } },
+  { title: 'Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics',
+    date: new Date('2023-05'), 
+    location: 'Fields Institute',
+    city: 'Toronto, ON',
+    extras: { } },
+  { title: 'Commutative Algebra in the South', 
+    date: new Date('2023-04'), 
+    location: 'University of Alabama',
+    city: 'Tuscaloosa, AL',
+    extras: { } },
+  { title: 'SLMath Tropical Geometry Summer School', 
+    date: new Date('2022-08'), 
+    location: 'St. Mary\'s College',
+    city: 'Moraga, CA',
+    extras: { } }
+  ];
+
+  // calculate date differences
+  const oldestDate = timelineEvents[timelineEvents.length - 1].date.getTime(); // last event is the oldest
+  const recentDate = timelineEvents[0].date.getTime(); // first event is the most recent
+  const totalSpan = oldestDate - recentDate;
+
+  // determine proportional spacing
+  timelineEvents.forEach(event => {
+    event.position = (event.date.getTime() - oldestDate) / totalSpan * 100;
+  });
+
+  // generate the timeline in HTML
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const timelineContainer = document.getElementById('timeline');
+  timelineEvents.forEach((event, idx) => {
+    const eventContainer = document.createElement('div');
+    eventContainer.className = idx % 2 === 0 ? 'container left' : ' container right';
+    eventContainer.style.top = `${event.position}%`;
+    
+    const content = document.createElement('div');
+    content.className = 'content'; 
+    // string formatting for event
+    const title = document.createElement('h4');
+    title.innerText = `\"${event.title}\"`;
+    const details = document.createElement('p');
+    details.innerText = `${event.location}, ${event.city}
+                         ${months[event.date.getMonth() + 1]} ${event.date.getFullYear()}`;
+    // extra links
+    const extrasElements = [];
+    const extraIcons = {
+      notes: 'fa-file-pdf-o',
+      code: 'fa-keyboard-o',
+      slides: 'fa-file-pdf-o',
+      video: 'fa-video-camera',
+      abstract: 'fa-plus-square-o'
+    };
+    Object.entries(event.extras).forEach(([extra, value]) => {
+      if (value) {
+        // icon
+        const icon = document.createElement('i');
+        icon.className = `fa ${extraIcons[extra]}`;
+          
+        if (extra === 'abstract') {
+          // abstract button
+          const abstractButton = document.createElement('a');
+          abstractButton.className = 'abstract-button';
+          abstractButton.onclick = function() {toggleAbstract(this)};
+          abstractButton.appendChild(icon);
+
+          // abstract content
+          const abstractContent = document.createElement('blockquote');
+          abstractContent.className = 'abstract-content';
+          abstractContent.innerText = value;
+
+          // HTML
+          const extraElement = document.createElement('span');
+          extraElement.appendChild(document.createTextNode('Abstract '));
+          extraElement.appendChild(abstractButton);
+          extraElement.appendChild(abstractContent);
+          extrasElements.push(extraElement);
+        } else {
+          // link
+          const link = document.createElement('a');
+          link.className = 'weblink';
+          link.href = value;
+          if (['video', 'code'].includes(extra)) {link.target = '_blank';}
+          link.innerText = extra.charAt(0).toUpperCase() + extra.slice(1);
+            
+          // HTML
+          const extraElement = document.createElement('span')
+          extraElement.appendChild(icon);
+          extraElement.appendChild(document.createTextNode(' '));
+          extraElement.appendChild(link);
+          extrasElements.push(extraElement);
+        }
+      }
+    });
+
+    // add a '|' between links
+    extrasElements.forEach((element, idx) => {
+        if (idx === 0) {
+            details.appendChild(document.createElement('br'));
+            details.appendChild(document.createElement('br'));
+        }
+        else {
+        details.appendChild(document.createTextNode(' | '));
+        }
+        details.appendChild(element);
+    });
+
+    content.appendChild(title);
+    content.appendChild(details);
+
+    eventContainer.appendChild(content);
+    timelineContainer.appendChild(eventContainer);
+  });
+</script>
+
 </body>
+
+</html>
