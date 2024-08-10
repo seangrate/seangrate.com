@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Lefschetz Properties</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../styles/misc.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="../images/lefschetz/hypersurface.png" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Lefschetz Properties</b></h4>
+    <p class="w3-text-grey">When is multiplication by a linear form full rank?</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>BACKGROUND</a> 
+    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>RESULTS</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <!-- <h1><b>Sean Grate</b></h1> -->
+    <!-- <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span> 
+      <button class="w3-button w3-black">ALL</button>
+      <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
+    </div> -->
+    </div>
+  </header>
+  <div id="background" class="w3-container w3-padding-large">
+    <h3><b>Background</b></h3>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Definitions</b></h4>
+      <p>
+        Let \( k \) be a field.
+        <ul>
+          <li>
+            <b>Definition.</b>
+            A \( k \)-algebra \( A \) is <em>Artinian</em> if it is a finite-dimensional \( k \)-vector space.</li>
+          <li>
+            <b>Definition.</b>
+            A ring \( R \) is called <em>Gorenstein</em> if its Betti table is symmetric and the extremal Betti numbers are equal to \( 1 \).
+          </li>
+          <li>
+            <b>Definition.</b>
+            A standard-graded Artinian \( k \)-algebra \( A \) is said to have the weak Lefschetz property (WLP) if multiplication by a general linear form \( \times l \colon A_i \rightarrow A_{i+1} \) is full rank for all \( i \geq 0 \).
+            More generally, \( A \) is said to have the strong Lefschetz property (SLP) if multiplication by powers of a general linear form \( \times l^d \colon A_i \rightarrow A_{i+d} \) is full rank for all \( i \geq 0 \) and for all \( d \geq 0\).
+          </li>
+        </ul>
+        For some lecture notes on the WLP, see <a class="weblink" href="https://www.math.unl.edu/~aseceleanu2/teaching/918-Lefschetz-Notes.pdf" target="_blank">Seceleanu</a>, or for a survey on the WLP, see <a class="weblink" href="https://arxiv.org/abs/1109.5718" target="_blank">Migliore-Nagel</a>.
+      </p>
+    </div>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Motivations</b></h4>
+      <p>
+        In an Artinian \( k \)-algebra, every element is a zero-divisor.
+        So, the WLP can be seen as a way to measure how well-behaved the multiplication is in the algebra.
+        In a broader scheme, the WLP is a special case of <a class="weblink" href="https://en.wikipedia.org/wiki/Fr%C3%B6berg_conjecture" target="_blank">Fröberg's conjecture</a> which gives a concrete formula for the Hilbert series of a quotient ring \( k[x_1,\dots,x_n] / (f_1, \dots, f_k) \) using the degrees of the \( f_i \).
+        Determining if an Artinian algebra \( A \) has the WLP seems like an innocent problem, but it turns out to be <em>extremely</em> hard to answer.
+        Even in the case of Artinian Gorenstein algebras, this is still a very difficult question.
+        To make things harder, the WLP is also characteristic dependent.
+      </p>
+      <p>
+        Although the WLP is phrased algebraically, this turns out to be a very powerful tool for combinatorialists as well.
+        Of interest to many combinatorialists is if some sequence is unimodal (or log-concave).
+        It turns out that the \( h \)-vector of an Artinian algebra with the WLP must be unimodal.
+        So, a strategy for a combinatorialist to show that their sequence is unimodal is to construct an Artinian algebra and show that this algebra has the WLP.
+        This plan of attack has been notably by <a class="weblink" href="https://www.sciencedirect.com/science/article/pii/000187088090050X" target="_blank">Stanley</a> to prove necessity of the \( g \)-theorem, and more recently by <a class="weblink" href="https://annals.math.princeton.edu/2018/188-2/p01" target="_blank">Adiprasito-Huh-Katz</a> in solving long outstanding conjectures of Heron-Rota-Welsh and also Mason-Welsh.
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div id="results" class="w3-container w3-padding-large">
+    <h2><b>Results</b></h2>
+    <p>
+      Unless specified otherwise, \( A \) will be a standard-graded Artinian \( k \)-algebra.
+    </p>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Betti tables</b> [<cite><a class="weblink" href="https://arxiv.org/abs/2307.13126" target="_blank">link</a></cite>]</h4>
+      <em>Joint with <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>.</em>
+      <p>
+        Motivated by the geometry of points in projective space, we show that if enough points lie on a unique hypersurface, and enough points lie off as well, then their Artinian reduction does not have the WLP.
+        From here, we noticed that these Artinian reductions had a similar pattern in their Betti tables.
+      </p>
+      <p>
+        <b>Definition.</b>  
+        A Betti table \( B \) has an <em>\( (n,d) \)-Koszul tail</em> if it has an upper-left principal block of the form
+        \[
+        \begin{array}{l|cccccccc}
+            & 0 & 1 & 2 & 3 & \dots & n-2 & n-1 & n \\
+          \hline
+          0 & 1 & . & . & . & \dots & . & . & . \\
+          1 & . & . & . & . & \dots & . & . & . \\
+          \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+          d-1 & . & . & . & . & \dots & . & . & . \\
+          d & . & n & \binom{n}{2} & \binom{n}{3} & \dots & \binom{n}{n-2} & n & 1
+        \end{array}.
+        \]
+        If \( B \) has an \( (n,d) \)-Koszul tail for an Artinian ring \( \mathbb{K}[x_1,\dots,x_n] / I \), then we say \( B \) has a <em>maximal</em> \( (n,d) \)-Koszul tail.
+      </p>
+      <p>
+        We then also show that if a Betti table has a maximal Koszul tail, then the algebra does not have the WLP.
+        However, this is not a complete characterization of the WLP, so its open as to what is needed for sufficiency.
+      </p>
+    </div>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Connected Sums</b> [<cite><a class="weblink" href="https://arxiv.org/abs/2401.10492" target="_blank">link</a></cite>]</h4>
+      <em>Joint with <a class="weblink" href="https://sites.google.com/view/nasrinaltafi" target="_blank">Nasrin Altafi</a>,
+        <a class="weblink" href="https://www.docenti.unina.it/roberta.digennaro" target="_blank">Roberta Di Gennaro</a>,
+        <a class="weblink" href="https://math.galetto.org/" target="_blank">Federico Galetto</a>,
+        <a class="weblink" href="https://webgrec.ub.edu/webpages/000006/ang/miro.ub.edu.html" target="_blank">Rosa M. Miró-Roig</a>,
+        <a class="weblink" href="https://www.ms.uky.edu/~uwenagel/" target="_blank">Uwe Nagel</a>,
+        <a class="weblink" href="https://www.math.unl.edu/~aseceleanu2/" target="_blank">Alexandra Seceleanu</a>,
+        and Junzo Watanabe.
+      </em>
+      <p>
+        Analogous to the connected sum from topology of gluing together two spaces by excising and gluing along open sets, <a class="weblink" href="https://arxiv.org/abs/1005.1304" target="_blank">Ananthnarayan-Avramov-Moore</a> introduced the connected sum construction for Gorenstein local rings.
+        The connected sum construction gives a way to build new Gorenstein rings that have the WLP.
+        We study the Betti numbers of the connected sum (and fiber product) of Artinian Gorenstein algebras with any number of summands.
+        We also give explicit formulas for computing these Betti numbers in terms of the Betti numbers of the summands.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <h3>Contact</h3>
+        Office: 122H Parker Hall<br>
+        Email: sean.grate@auburn.edu
+      </div>
+      <div class="w3-half">
+        <h3>Mailing Address</h3>
+        <p>
+          Department of Mathematics and Statistics<br>
+          221 Parker Hall<br>
+          Auburn University, AL 36849<br>
+          USA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="w3-black w3-center w3-padding-24">Joint work with <a href="http://webhome.auburn.edu/~hks0015/" title="Hal Schenck" target="_blank" class="w3-hover-opacity">Hal Schenck</a>.</div>
+
+<!-- End page content -->
+</div>
+
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+
+</body>
+
+</html>
