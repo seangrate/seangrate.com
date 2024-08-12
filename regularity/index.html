@@ -24,7 +24,7 @@
     </a>
     <img src="../images/regularity/hochster.png" style="width:100%;" class="w3-round"><br><br>
     <h4><b>Castelnuovo-Mumford Regularity</b></h4>
-    <p class="w3-text-grey">How complicated can generators and relations of a module be?</p>
+    <p class="w3-text-grey">How complicated can the generators and relations of a module be?</p>
   </div>
   <div class="w3-bar-block">
     <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
@@ -44,19 +44,64 @@
     <div class="w3-container">
     </div>
   </header>
-  <div id="background" class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Background</b></h4>
-    <p>
-      In progress.
-    </p>
-    <hr>
+  <div id="background" class="w3-container w3-padding-large"">
+    <h2><b>Background</b></h2>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Definitions</b></h4>
+      <p>
+        Let \( M \) be a finitely-generated, graded module over \( R = \mathbb{K}[x_1,\dots,x_n] \).
+        <ul>
+          <li>
+            <b>Definition.</b> A <em>(finite) free resolution \( F_\bullet \)</em> of \( M \) is an exact sequence of finitely-generated, free modules
+            \[ F_\bullet \, \colon \quad 0 \longrightarrow F_n \longrightarrow F_{n-1} \longrightarrow \dots \longrightarrow F_1 \longrightarrow F_0 \longrightarrow M \longrightarrow 0. \]
+            If the \( F_i \) are <em>graded</em>, then we say that \( F_\bullet \) is a <em>graded</em> free resolution of \( M \).
+            We also say \( F_\bullet \) is <em>minimal</em> if there are no constant terms in any of the maps.
+          </li>
+          <li>
+            <b>Definition.</b> Suppose \( F_\bullet \) is a graded free resolution of \( M \).
+            The Betti table (or Betti diagram) of \( M \) is a diagram where the entry \( b_{i,j} \) in column \( i \) and row \( j \) is the rank of the free module \( F_i \) in the \( j \)-th degree,
+            i.e., \( b_{i,j} \) indicates that \( F_i \) has a summand of the form \( R(-i-j)^{b_{i,j}} \).
+          </li>
+          <li>
+            <b>Definition.</b> The <em>Castelnuovo-Mumford regularity</em> (or simply <em>regularity</em>) of \( M \), denoted \( \text{reg}(M) \), is the smallest integer \( r \) such that \( b_{i,r} \neq 0 \) for all \( i \), 
+            i.e., the index of the bottom-most nonzero row in the Betti table of \( M \). 
+          </li>
+        </ul>
+      </p>
+    </div>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Motivations</b></h4>
+      <p>
+        The regularity of a module is a fundamental invariant that measures the complexity of the module's generators and relations.
+        While it has many equivalent formulations, the definition above is very useful for intuition as it comes directly from the minimal free resolution.
+        Of importance, the regularity gives a bound on the maximal degree of the minimal generators of the module.
+        With the regularity, we can also deduce bounds relating to syzygy computations and describe the complexity of Gröbner basis algorithms in terms of the regularity.
+      </p>
+      <p>
+        The projective dimension (the length of the minimal free resolution, or the index of the last nonzero column of the Betti table) of \( M \) is bounded by the number of variables; this is <a class="weblink" href="https://en.wikipedia.org/wiki/Hilbert's_syzygy_theorem" target="_blank">Hilbert's syzygy theorem</a>.
+        Unlike the projective dimension, the regularity does not enjoy such a simple bound, and in fact is known to be much more difficult to compute.
+        For this reason, much work has gone into understanding the regularity of various classes of modules, with much motivation coming from algebraic geometry.
+        Bounding the regularity is a central problem in commutative algebra.
+      </p>
+    </div>
   </div>
-  <div id="results" class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>Results</b></h4>
-    <p>
-      In progress.
-    </p>
-    <hr>
+  <hr>
+  <div id="results" class="w3-container w3-padding-large">
+    <h2><b>Results</b></h2>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Toric varieties</b></h4>
+      <p>
+        Toric varieties are a class of varieties that also have a combinatorial description, opening the door to many computational techniques.
+        Many classical examples in algebraic geometry are toric varieties, such as projective spaces, rational normal curves, etc.
+        Because of their combinatorial data, toric varieties provide provide a rich source of examples to experiment with.
+        In this context, we are interested in understanding the regularity of the coordinate ring of a toric variety.
+      </p>
+      <p>
+        When the toric variety is a monomial curve, the combinatorial data is encoded as a numerical semigroup: integer points on a line.
+        In 1996, <a class="weblink" href="https://link.springer.com/article/10.1007/BF01445273" target="_blank">L'vovsky</a> showed that the regularity is bounded by the sum of the two largest "gaps" in the semigroup, a <em>combinatorial</em> bound for a notoriously hard-to-compute <em>algebraic</em> invariant.
+        So, it should be expected that a similar combinatorial bound exists for the next case: toric surfaces.
+      </p>
+    </div>
   </div>
 
   <!-- Footer -->
