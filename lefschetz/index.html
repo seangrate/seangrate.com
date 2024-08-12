@@ -53,22 +53,22 @@
     </div>
   </header>
   <div id="background" class="w3-container w3-padding-large">
-    <h3><b>Background</b></h3>
+    <h2><b>Background</b></h2>
     <div class="w3-container w3-padding-large">
       <h4><b>Definitions</b></h4>
       <p>
-        Let \( k \) be a field.
+        Let \( \mathbb{K} \) be a field.
         <ul>
           <li>
             <b>Definition.</b>
-            A \( k \)-algebra \( A \) is <em>Artinian</em> if it is a finite-dimensional \( k \)-vector space.</li>
+            A \( \mathbb{K} \)-algebra \( A \) is <em>Artinian</em> if it is a finite-dimensional \( \mathbb{K} \)-vector space.</li>
           <li>
             <b>Definition.</b>
             A ring \( R \) is called <em>Gorenstein</em> if its Betti table is symmetric and the extremal Betti numbers are equal to \( 1 \).
           </li>
           <li>
             <b>Definition.</b>
-            A standard-graded Artinian \( k \)-algebra \( A \) is said to have the weak Lefschetz property (WLP) if multiplication by a general linear form \( \times l \colon A_i \rightarrow A_{i+1} \) is full rank for all \( i \geq 0 \).
+            A standard-graded Artinian \( \mathbb{K} \)-algebra \( A \) is said to have the weak Lefschetz property (WLP) if multiplication by a general linear form \( \times l \colon A_i \rightarrow A_{i+1} \) is full rank for all \( i \geq 0 \).
             More generally, \( A \) is said to have the strong Lefschetz property (SLP) if multiplication by powers of a general linear form \( \times l^d \colon A_i \rightarrow A_{i+d} \) is full rank for all \( i \geq 0 \) and for all \( d \geq 0\).
           </li>
         </ul>
@@ -78,9 +78,9 @@
     <div class="w3-container w3-padding-large">
       <h4><b>Motivations</b></h4>
       <p>
-        In an Artinian \( k \)-algebra, every element is a zero-divisor.
+        In an Artinian \( \mathbb{K} \)-algebra, every element is a zero-divisor.
         So, the WLP can be seen as a way to measure how well-behaved the multiplication is in the algebra.
-        In a broader scheme, the WLP is a special case of <a class="weblink" href="https://en.wikipedia.org/wiki/Fr%C3%B6berg_conjecture" target="_blank">Fröberg's conjecture</a> which gives a concrete formula for the Hilbert series of a quotient ring \( k[x_1,\dots,x_n] / (f_1, \dots, f_k) \) using the degrees of the \( f_i \).
+        In a broader scheme, the WLP is a special case of <a class="weblink" href="https://en.wikipedia.org/wiki/Fr%C3%B6berg_conjecture" target="_blank">Fröberg's conjecture</a> which gives a concrete formula for the Hilbert series of a quotient ring \( \mathbb{K}[x_1,\dots,x_n] / (f_1, \dots, f_k) \) using the degrees of the \( f_i \).
         Determining if an Artinian algebra \( A \) has the WLP seems like an innocent problem, but it turns out to be <em>extremely</em> hard to answer.
         Even in the case of Artinian Gorenstein algebras, this is still a very difficult question.
         To make things harder, the WLP is also characteristic dependent.
@@ -98,7 +98,7 @@
   <div id="results" class="w3-container w3-padding-large">
     <h2><b>Results</b></h2>
     <p>
-      Unless specified otherwise, \( A \) will be a standard-graded Artinian \( k \)-algebra.
+      Unless specified otherwise, \( A \) will be a standard-graded Artinian \( \mathbb{K} \)-algebra.
     </p>
     <div class="w3-container w3-padding-large">
       <h4><b>Betti tables</b> [<cite><a class="weblink" href="https://arxiv.org/abs/2307.13126" target="_blank">link</a></cite>]</h4>
@@ -129,7 +129,7 @@
       </p>
     </div>
     <div class="w3-container w3-padding-large">
-      <h4><b>Connected Sums</b> [<cite><a class="weblink" href="https://arxiv.org/abs/2401.10492" target="_blank">link</a></cite>]</h4>
+      <h4><b>Connected sums</b> [<cite><a class="weblink" href="https://arxiv.org/abs/2401.10492" target="_blank">link</a></cite>]</h4>
       <em>Joint with <a class="weblink" href="https://sites.google.com/view/nasrinaltafi" target="_blank">Nasrin Altafi</a>,
         <a class="weblink" href="https://www.docenti.unina.it/roberta.digennaro" target="_blank">Roberta Di Gennaro</a>,
         <a class="weblink" href="https://math.galetto.org/" target="_blank">Federico Galetto</a>,
@@ -142,7 +142,7 @@
         Analogous to the connected sum from topology of gluing together two spaces by excising and gluing along open sets, <a class="weblink" href="https://arxiv.org/abs/1005.1304" target="_blank">Ananthnarayan-Avramov-Moore</a> introduced the connected sum construction for Gorenstein local rings.
         The connected sum construction gives a way to build new Gorenstein rings that have the WLP.
         We study the Betti numbers of the connected sum (and fiber product) of Artinian Gorenstein algebras with any number of summands.
-        We also give explicit formulas for computing these Betti numbers in terms of the Betti numbers of the summands.
+        We also give explicit formulas for computing these Betti numbers in terms of the Betti numbers of the summands, as well as similar formulas for other invariants such as the Poincaré polynomials.
       </p>
     </div>
   </div>
