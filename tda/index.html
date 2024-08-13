@@ -87,12 +87,36 @@
           <li>
             <b>Definition.</b>
             A <em>persistence diagram</em> is a multiset of points in the plane, where each point \( (b,d) \) represents a feature that is born at time \( b \) and dies at time \( d \).
+            This can be transformed into a <em>lifetime diagram</em> via the transformation \( (b,d) \mapsto (b, d-b) \).
+            <div class="w3-content w3-display-container w3-center">
+              <figure>
+                <img src="../images/tda/sphere_pd.png" alt="sphere persistence diagram" style="max-width:512px; max-height:512px">
+                <figcaption style="text-align:center">
+                  <em>
+                    The persistence and lifetime diagrams of a point cloud sampled from a sphere.
+                  </em>
+                </figcaption>
+              </figure>
+            </div>
           </li>
           <li>
+            <b>Definition.</b>
             A <em>bardcode diagram</em> is a multiset of intervals \( (b,d) \) where each interval represents a feature that is born at time \( b \) and dies at time \( d \). 
+            <div class="w3-content w3-display-container w3-center">
+              <figure>
+                <img src="../images/tda/sphere_bd.png" alt="sphere barcode diagram" style="max-width:512px; max-height:512px">
+                <figcaption style="text-align:center">
+                  <em>
+                    The barcode diagram of a point cloud sampled from a sphere.
+                  </em>
+                </figcaption>
+              </figure>
+            </div>
           </li>
         </ul>
-        Since a feature cannot die before it is born, the persistence diagram is always above the diagonal \( y = x \), and the bars in the barcode diagram always have positive length.
+      </p>
+      <p>
+        Since a feature cannot die before it is born, the persistence diagram is always above the diagonal \( y = x \) and the bars in the barcode diagram always have positive length.
         Intuitively, points farther from the diagonal in the persistence diagram (or longer bars) <em>should</em> encode more persistent features in the data.
         The persistent diagram and barcode diagram thus summarize the persistent topological features which seem to be present in the data.
       </p>
@@ -109,6 +133,16 @@
         More precisely, we can sample \( X \) multiple times to get a collection of smaller datasets \( \{ X_k' \}_{k=1}^N \) (abusing the notation from above), compute the persistent homology of \( X_k' \), and then aggregating these results to get an estimate of the persistent homology of \( X \).
         Since \( \lvert X_k' \rvert \ll \lvert X \rvert \), the persistent homology of \( X_k' \) is computationally feasible.
       </p>
+      <div class="w3-content w3-display-container" style="max-width:512px; max-height:512px; float:left">
+        <figure>
+          <img src="../images/tda/bootstrap.png" alt="bootstrap" style="max-width:512px; max-height:512px; max-width:100%">
+          <figcaption style="text-align:center">
+            <em>
+              A plot with the persistence diagrams of the full dataset and a subsample overlaid.
+            </em>
+          </figcaption>
+        </figure>
+      </div>
       <p>
         Experimentally, we have found that this technique seems to reasonably approximate the persistent homology of the full dataset, but with some scale factor on the persistence diagram and with some important features sometimes being missed.
         The scale factor is likely due to a uniform sampling of the dataset yielding points which are sparse across the dataset, so the "time" at which features appear is artificially inflated as there is a greater distance between points.
