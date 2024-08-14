@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Stable Tamari Lattice</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="../styles/misc.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="../images/tamari/hasse_123.png" alt="tamari hasse 123" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>Stable Tamari Lattice</b></h4>
+    <p class="w3-text-grey">The combinatorics of posets in the stable Tamari lattice.</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw fa-book w3-margin-right"></i>BACKGROUND</a> 
+    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>RESULTS</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Page content -->
+<div class="w3-main" style="margin-left:300px">
+  <!-- Header -->
+  <header>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    </div>
+  </header>
+
+  <div id="background" class="w3-container w3-padding-large">
+    <h2><b>Background</b></h2>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Definitions</b></h4>
+      <p>
+        Let \( \leq_T \) denote the <em>stable Tamari order</em> (to be defined at a later date) and \( (\mathbb{N}^n, \leq_T) \) a <em>stable Tamari poset</em>.
+        For any \( \mathbf{a} \in \mathbb{N}^n \), we can represent it as a diagram of black and white boxes separated by a vertical line where the number of white boxes in row \( i \) is \( \mathbf{a}_i \) (counting from top to bottom).
+        <ul>
+          <li>
+            <b>Definition.</b>
+            Given \( \mathbf{b} \in \mathbb{N}^n \), define the <em>lower order ideal</em> of \( \mathbf{b} \) to be \( \mathbf{b}_\downarrow = \{ \mathbf{a} \in \mathbb{N}^n \, \vert \, \mathbf{a} \leq_T \mathbf{b} \} \).
+            <div class="w3-content w3-display-container" style="max-width:512px; max-height:512px">
+              <figure>
+                <img src="../images/tamari/hasse_123.png" alt="hasse 123" style="max-width:100%">
+                <figcaption style="text-align:center">
+                  <em>
+                    The Hasse diagram for \( (1,2,3)_\downarrow \).
+                  </em>
+                </figcaption>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <b>Definition.</b>
+            Let \( \mathbf{a} \leq_T \mathbf{b} \).
+            The <em>height</em> from \( \mathbf{a} \) to \( \mathbf{b} \) as the maximum length of a chain from \( \mathbf{a} \) to \( \mathbf{b} \) in the stable Tamari poset and is denoted \( \text{ht}(\mathbf{a}, \mathbf{b}) \).
+          </li>
+          <li>
+            <b>Definition.</b>
+            Let \( \mathbf{b} \in \mathbb{N}^n \). Define the generating functions
+            \[ 
+              f_{\mathbf{b}}(t) = \sum_{\mathbf{a} \in \mathbf{b}_\downarrow} t^{\text{ht}(\mathbf{a}, \mathbf{b})}
+              \quad \text{and} \quad
+              F_{\mathbf{b}}(t) = \sum_{[\mathbf{p}, \mathbf{q}] \subseteq \mathbf{b}_\downarrow} t^{\text{ht}(\mathbf{p}, \mathbf{q})}.
+            \]
+          </li>
+        </ul>
+      </p>
+      <br>
+      <h4><b>Example</b></h4>
+      <p>
+        Let \( \mathbf{b} = (3,2,1) \).
+        The Hasse diagram for \( \mathbf{b}_\downarrow \) is shown below.
+        Tracing through the chains in the Hasse diagram, it can be seen that \( \text{ht}((0,0,0), \mathbf{b}) = 6 \) and \( \text{ht}((0,1,0), (2,2,1)) = 3 \).
+        With some computation, it can be shown that
+        \[
+          \begin{align*}
+            f_{\mathbf{b}}(t) &= t^6 + t^5 + 2t^4 + 3t^3 + 3t^2 + 3t + 1 \\
+            &\, \\
+            F_{\mathbf{b}}(t) &= t^6 + 2t^5 + 5t^4 + 10t^3 + 15t^2 + 21t + 14
+          \end{align*}
+        \]
+        <div class="w3-content w3-display-container" style="max-width:512px; max-height:512px">
+          <figure>
+            <img src="../images/tamari/hasse_321.png" alt="hasse 321" style="max-width:100%">
+            <figcaption style="text-align:center">
+              <em>
+                The Hasse diagram for \( (3,2,1)_\downarrow \).
+              </em>
+            </figcaption>
+          </figure>
+        </div>
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div id="results" class="w3-container w3-padding-large">
+    <h2><b>Results</b></h2>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Catalan connections</b></h4>
+      <em>
+        Joint with <a class="weblink" href="https://sites.math.washington.edu/~hchau/" target="_blank">Herman Chau</a>,
+        <a class="weblink" href="https://spdaugherty.github.io/" target="_blank">Spencer Daugherty</a>,
+        <a class="weblink" href="https://jcmartinezmori.github.io/" target="_blank">Juan Carlos Martínez Mori</a>,
+        and <a class="weblink" href="https://annapunying.wixsite.com/punying-math" target="_blank">Anna Pun</a>.
+      </em>
+      <br>
+      <div class="w3-content w3-padding-large" style="float:right">
+        <table class="w3-center">
+          <tr>
+            <th>
+              \( \mathbf{b} \in \mathfrak{S}_4 \)
+            </th>
+            <th>
+              \( \lvert \mathbf{b}_\downarrow \rvert \) 
+            </th>
+          </tr>
+          <tr>
+            <td>
+              \( (1, 2, 3, 4) \), \( (1, 2, 4, 3) \), \( (1, 3, 4, 2) \) <br> \( (1, 4, 3, 2) \), \( (2, 3, 4, 1) \), \( (2, 4, 3, 1) \) <br> \( (3, 4, 2, 1) \), \( (4, 3, 2, 1) \)
+            </td>
+            <td>
+              \( 42 \, (=C_5) \)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              \( (1, 3, 2, 4) \), \( (1, 4, 2, 3) \) <br> \( (3, 2, 4, 1) \), \( (4, 2, 3, 1) \)
+            </td>
+            <td>
+              \( 51 \)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              \( (2, 1, 3, 4) \), \( (2, 1, 4, 3) \) <br> \( (3, 4, 1, 2) \), \( (4, 3, 1, 2) \)
+            </td>
+            <td>
+              \( 55 \)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              \( (2, 3, 1, 4) \), \( (3, 2, 1, 4) \) <br> \( (4, 1, 2, 3) \), \( (4, 1, 3, 2) \)
+            </td>
+            <td>
+              \( 61 \)
+            </td>
+          </tr>
+          <tr>
+            <td>
+              \( (2, 4, 1, 3) \), \( (3, 1, 2, 4) \) <br> \( (3, 1, 4, 2) \), \( (4, 2, 1, 3) \)
+            </td>
+            <td>
+              \( 64 \)
+            </td>
+          </tr>
+          <caption style="caption-side:bottom">
+            Permutations in \( \mathfrak{S}_4 \) grouped by the size of their lower order ideals.
+          </caption>
+        </table>
+      </div>
+      <p>
+        To better understand stable Tamari posets, we are interested in determining the possible sizes of lower order ideals, and in particular, finding the minimum size for a fixed \( n \).
+        Restricting to permutations in \( \mathfrak{S}_n \), we conjecture (and supported by computational evidence) that the minimum size of a lower order ideal is given by \( C_{n+1} \), the \( (n+1) \)-st Catalan number.
+        Moreover, it seems like the minimizers are the permutations which are unimodal.
+        While it seems like this characterizes those permutations with the minimum size, we would still like to figure out what feature(s) determines the size of the lower order ideal.
+      </p>
+    </div>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Unimodality</b></h4>
+      <em>
+        Joint with <a class="weblink" href="https://sites.math.washington.edu/~hchau/" target="_blank">Herman Chau</a>,
+        <a class="weblink" href="https://spdaugherty.github.io/" target="_blank">Spencer Daugherty</a>,
+        <a class="weblink" href="https://jcmartinezmori.github.io/" target="_blank">Juan Carlos Martínez Mori</a>,
+        and <a class="weblink" href="https://annapunying.wixsite.com/punying-math" target="_blank">Anna Pun</a>.
+      </em>
+      <p>
+        To obtain a finer view of the structure of the lower order ideals, we introduced the \( f_{\mathbf{b}}(t) \) and \( F_{\mathbf{b}}(t) \) generating functions.
+        Again supported by computational evidence, we conjecture that the coefficients of the \( f_{\mathbf{b}}(t) \) generating function and \( F_{\mathbf{b}}(t) \) are unimodal.
+        This would suggest a much richer structure to the lower order ideals than previously thought, and that there might be a combinatorial interpretation for the coefficients.
+        The example above in the <a class="weblink" href="#background">Background</a> section shows an example of this phenomenon.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-dark-grey">
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <h3>Contact</h3>
+        Office: 122H Parker Hall<br>
+        Email: sean.grate@auburn.edu
+      </div>
+      <div class="w3-half">
+        <h3>Mailing Address</h3>
+        <p>
+          Department of Mathematics and Statistics<br>
+          221 Parker Hall<br>
+          Auburn University, AL 36849<br>
+          USA
+        </p>
+      </div>
+    </div>
+  </footer>
+
+<!-- End page content -->
+</div>
+
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+</script>
+
+</body>
+
+</html>
