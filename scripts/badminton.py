@@ -8,9 +8,9 @@ from pprint import pprint
 import sys
 
 from bokeh.plotting import figure, save
-from bokeh.models import ColumnDataSource, HoverTool, LinearColorMapper, ColorBar, TabPanel, Tabs
+from bokeh.models import ColumnDataSource, HoverTool, LinearColorMapper, ColorBar, TabPanel, Tabs, CheckboxGroup, Column, Row, CustomJS
 from bokeh.transform import transform
-from bokeh.palettes import Magma256
+from bokeh.palettes import Magma256, Category20, viridis
 from bokeh.io import output_file
 import pandas as pd
 
@@ -60,23 +60,63 @@ class DoublesGame(Game):
         return self.first_team if self.score[0] < self.score[1] else self.second_team
     
 
+def plot_total_games_line_graph(players, players_df, games_df, source):
+    """
+    Plots the total games played over time for each player in a line graph.
+    """
+    num_players = len(players)
+    colors = Category20[num_players] if num_players <= 20 else viridis(num_players)
+    line_graph = figure(title='Total Games Over Time', x_axis_label='Time', y_axis_label='Total Games', x_axis_type='datetime',
+                        width=1200, height=400)
+    # add the lines with styling and tooltips
+    lines = []
+    for idx, player in enumerate(players):
+        games_played = games_df[(games_df['player1'] == player) | (games_df['player2'] == player)].sort_values('date')
+        line = line_graph.line(games_played['date'], pd.Series(range(1, len(games_played)+1)), 
+                               legend_label=player, name=player, line_width=2, color=colors[idx % len(colors)])
+        lines.append(line)
+        hover = HoverTool(renderers=[line], tooltips=[('', player)])
+        line_graph.add_tools(hover)
 
-def plot_total_games(players, players_df, source):
+    # toggling lines
+    checkbox_labels = [player for player in players]
+    checkbox_group = CheckboxGroup(labels=checkbox_labels, active=list(range(len(players))))    
+    code = """
+    for (var i = 0; i < lines.length; i++) {
+        lines[i].visible = checkbox.active.includes(i);
+    }
+    """
+    callback = CustomJS(args=dict(lines=lines, checkbox=checkbox_group), code=code)
+    checkbox_group.js_on_change('active', callback)
+
+    line_graph.add_layout(line_graph.legend[0], 'right')
+
+    return Row(line_graph, checkbox_group)
+
+
+def plot_total_games_matrix(players, players_df, source):
+    """
+    Plots the total games played between each pair of players in a matrix plot.
+    More precisely, the entry in the ith row and jth column is the total number of games played between the ith and jth players.
+    """
     color_mapper = LinearColorMapper(palette=Magma256, low=players_df['total_games'].min(), high=players_df['total_games'].max())
-    p = figure(title='Total Games Played', x_range=players, y_range=players, 
-               x_axis_location='above', width=800, height=800,
-               tools='hover,save', tooltips='@player1 vs @player2: @total_games')
-
-    p.rect(x='player2', y='player1', width=1, height=1, source=source,
-           line_color=None, fill_color=transform('total_games', color_mapper))
-
-    p.xaxis.major_label_orientation = 1.0
-    p.yaxis.major_label_orientation = 1.0
-
+    matrix_plot = figure(title='Total Games Played', x_range=players, y_range=players, 
+                         x_axis_location='above', width=800, height=800,
+                         tools='hover,save', tooltips='@player1 vs @player2: @total_games')
+    matrix_plot.rect(x='player2', y='player1', width=1, height=1, source=source,
+                     line_color=None, fill_color=transform('total_games', color_mapper))
+    matrix_plot.xaxis.major_label_orientation = 1.0
+    matrix_plot.yaxis.major_label_orientation = 1.0
     color_bar = ColorBar(color_mapper=color_mapper, location=(0, 0))
-    p.add_layout(color_bar, 'right')
+    matrix_plot.add_layout(color_bar, 'right')
+    return matrix_plot
 
-    return p
+
+def plot_total_games(players, players_df, games_df, source):
+    matrix_plot = plot_total_games_matrix(players, players_df, source)
+    line_graph = plot_total_games_line_graph(players, players_df, games_df, source)
+
+    return Column(matrix_plot, line_graph)
 
 
 def plot_head_to_head(players, players_df, source):
@@ -94,7 +134,6 @@ def plot_head_to_head(players, players_df, source):
 
     color_bar = ColorBar(color_mapper=color_mapper, location=(0, 0))
     p.add_layout(color_bar, 'right')
-
     return p
 
 
@@ -235,32 +274,36 @@ def main():
 
     # calculate all the stats
     player_names = list(PLAYERS.keys())
-    data = pd.DataFrame(0, index=pd.MultiIndex.from_product([player_names, player_names], names=['player1', 'player2']),
-                        columns=['wins', 'losses', 'points_for', 'points_against', 'point_diff'], dtype=int)
+    # having these two dataframes is probably redundant; it can probably be condensed via groupby operations
+    player_data = pd.DataFrame(0, index=pd.MultiIndex.from_product([player_names, player_names], names=['player1', 'player2']),
+                               columns=['wins', 'losses', 'points_for', 'points_against', 'point_diff'], dtype=int)
+    game_data = pd.DataFrame([{'player1': game.first_player.name, 'player2': game.second_player.name, 'score': game.score, 'date': game.date} for game in GAMES if isinstance(game, SinglesGame)],
+                             columns=['player1', 'player2', 'score', 'date'])
     for game in GAMES:
         if isinstance(game, SinglesGame):
+            # update the player data
             winner, loser = game.winner.name, game.loser.name
             # win-loss record
-            data.loc[(winner, loser), 'wins'] += 1
-            data.loc[(loser, winner), 'losses'] += 1
+            player_data.loc[(winner, loser), 'wins'] += 1
+            player_data.loc[(loser, winner), 'losses'] += 1
             # point totals
-            data.loc[(game.first_player.name, game.second_player.name), 'points_for'] += game.score[0]
-            data.loc[(game.first_player.name, game.second_player.name), 'points_against'] += game.score[1]
-            data.loc[(game.second_player.name, game.first_player.name), 'points_for'] += game.score[1]
-            data.loc[(game.second_player.name, game.first_player.name), 'points_against'] += game.score[0]
+            player_data.loc[(game.first_player.name, game.second_player.name), 'points_for'] += game.score[0]
+            player_data.loc[(game.first_player.name, game.second_player.name), 'points_against'] += game.score[1]
+            player_data.loc[(game.second_player.name, game.first_player.name), 'points_for'] += game.score[1]
+            player_data.loc[(game.second_player.name, game.first_player.name), 'points_against'] += game.score[0]
             # point differential
             point_diff = abs(max(game.score) - min(game.score))
-            data.loc[(winner, loser), 'point_diff'] += point_diff
-            data.loc[(loser, winner), 'point_diff'] -= point_diff
-    data['total_games'] = data['wins'] + data['losses']
-    data['record'] = data['wins'].astype(str) + '-' + data['losses'].astype(str)
+            player_data.loc[(winner, loser), 'point_diff'] += point_diff
+            player_data.loc[(loser, winner), 'point_diff'] -= point_diff
+    player_data['total_games'] = player_data['wins'] + player_data['losses']
+    player_data['record'] = player_data['wins'].astype(str) + '-' + player_data['losses'].astype(str)
 
     # plot the data in tabs
-    data.reset_index(inplace=True)
-    source = ColumnDataSource(data)
-    plots = {'Total Games Played': plot_total_games(player_names, data, source),
-             'Head-to-Head Record': plot_head_to_head(player_names, data, source),
-             'Point Differential': plot_point_differential(player_names, data, source)}
+    player_data.reset_index(inplace=True)
+    player_source = ColumnDataSource(player_data)
+    plots = {'Total Games Played': plot_total_games(player_names, player_data, game_data, player_source),
+             'Head-to-Head Record': plot_head_to_head(player_names, player_data, player_source),
+             'Point Differential': plot_point_differential(player_names, player_data, player_source)}
     tabs = Tabs(tabs=[TabPanel(child=p, title=title) for title, p in plots.items()])
 
     output_file(filename=Path(__file__).parent.parent / 'badminton' / 'stats.html',
