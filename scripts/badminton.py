@@ -252,7 +252,7 @@ def point_differential_chart(players, players_df, source):
     
     # color bars based on positivity of point differential
     color_palette = RdYlBu[11]
-    leaderboard['color'] = [color_palette[-1] if x >= 0 else color_palette[0] for x in leaderboard['point_diff']]
+    leaderboard['color'] = [color_palette[0] if x >= 0 else color_palette[-1] for x in leaderboard['point_diff']]
 
     # Sort the leaderboard by total games played and assign ranks
     leaderboard = leaderboard.sort_values('avg_point_diff', ascending=False)
@@ -307,8 +307,8 @@ def point_differential_solo_leaderboard(players_df, source):
 
 
 def point_differential_matrix(players, players_df, source):
-    color_mapper = LinearColorMapper(palette=RdYlBu[11], low=players_df['point_diff'].min(), high=players_df['point_diff'].max())
-    p = figure(title='Aevrage Point Differential', x_range=players, y_range=players, 
+    color_mapper = LinearColorMapper(palette=RdYlBu[11][::-1], low=players_df['point_diff'].min(), high=players_df['point_diff'].max())
+    p = figure(title='Average Point Differential', x_range=players, y_range=players, 
                x_axis_location='above', width=700, height=700, margin=(50, 50, 50, 50),
                tools='hover,save', tooltips='@player1 vs @player2: @point_diff')
     p.rect(x='player2', y='player1', width=1, height=1, source=source,
