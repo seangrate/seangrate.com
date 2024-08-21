@@ -157,7 +157,8 @@ def plot_point_differential(players, players_df, source):
 
 
 def main():
-    PLAYERS = {'Emma Snyder': Player('Emma Snyder'),
+    PLAYERS = {'Daniel Hodgins': Player('Daniel Hodgins'),
+               'Emma Snyder': Player('Emma Snyder'),
                'James Zhong': Player('James Zhong'),
                'Jared DeLeo': Player('Jared DeLeo'),
                'John Cobb': Player('John Cobb'),
@@ -170,7 +171,16 @@ def main():
                'Seth Harward': Player('Seth Harward'),
                'Tim Eller': Player('Tim Eller'),
                'Tristan Salinas': Player('Tristan Salinas')}
-    
+    GAMES = [SinglesGame(PLAYERS['Sean Grate'], PLAYERS['John Sterling'], (2, 21), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['John Sterling'], PLAYERS['James Zhong'], (21, 11), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['John Sterling'], PLAYERS['James Zhong'], (21, 15), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['Sean Grate'], PLAYERS['James Zhong'], (15, 21), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['John David Clifton'], PLAYERS['Daniel Hodgins'], (21, 9), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['John Sterling'], PLAYERS['James Zhong'], (21, 14), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['John David Clifton'], PLAYERS['Sean Grate'], (24, 26), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['Sean Grate'], PLAYERS['John Sterling'], (7, 21), datetime.date(2024, 8, 20)),
+             SinglesGame(PLAYERS['Sean Grate'], PLAYERS['John Sterling'], (13, 21), datetime.date(2024, 8, 20))]
+    """
     GAMES = [DoublesGame((PLAYERS['John Cobb'], PLAYERS['Tim Eller']), (PLAYERS['James Zhong'], PLAYERS['Tristan Salinas']), (21, 2), datetime.date(2024, 12, 15)),
             SinglesGame(PLAYERS['Tim Eller'], PLAYERS['John Cobb'], (21, 8), datetime.date(2024, 12, 1)),
             SinglesGame(PLAYERS['Jared DeLeo'], PLAYERS['Sayantani Battacharya'], (21, 2), datetime.date(2024, 12, 11)),
@@ -271,7 +281,8 @@ def main():
             SinglesGame(PLAYERS['Sayantani Battacharya'], PLAYERS['Kenny Powell'], (21, 15), datetime.date(2024, 10, 4)),
             DoublesGame((PLAYERS['John Cobb'], PLAYERS['Jared DeLeo']), (PLAYERS['Emma Snyder'], PLAYERS['Seth Harward']), (21, 14), datetime.date(2024, 9, 11)),
             SinglesGame(PLAYERS['Sayantani Battacharya'], PLAYERS['Kenny Powell'], (21, 18), datetime.date(2024, 9, 14))]
-
+    """
+            
     # calculate all the stats
     player_names = list(PLAYERS.keys())
     # having these two dataframes is probably redundant; it can probably be condensed via groupby operations
