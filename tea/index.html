@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
+  <title>Fundraising Progress</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../styles/misc.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+  <style>
+    #progress-container {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 25px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-segment {
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      color: white;
+      display: inline-block;
+    }
+
+    #fundraiser-text {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Page content -->
+<div class="w3-main">
+  <!-- fundraiser progress bar -->
+  <div id="fund" class="w3-container w3-padding-large w3-row-padding">
+    <div id="fundraiser">
+      <h2>Fundraiser Progress</h2>
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+        </div>
+        <p id="fundraiser-text"></p>
+      </div>
+  </div>
+
+<!-- End page content -->
+</div>
+
+</body>
+
+<script>
+  function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const contributions = [
+      { name: "Initial", amount: 20 }
+    ];
+    const goalAmount = 500;
+
+    const progressBar = document.getElementById("progress-bar");
+    const fundraiserText = document.getElementById("fundraiser-text");
+
+    let totalRaised = 0;
+    contributions.forEach(contribution => {
+      totalRaised += contribution.amount;
+    });
+
+    let remainingWidth = 100;
+    contributions.forEach(contribution => {
+      const segment = document.createElement("div");
+      let percentage = ((contribution.amount / goalAmount) * 100).toFixed(2);
+      if (remainingWidth < percentage) {
+        percentage = remainingWidth;
+      }
+      remainingWidth -= percentage;
+      segment.style.width = percentage + "%";
+      segment.style.backgroundColor = getRandomColor();
+      segment.classList.add("progress-segment");
+      segment.textContent = `\$${contribution.amount}`;
+      progressBar.appendChild(segment);
+    });
+
+    fundraiserText.textContent = `Raised: $${totalRaised.toLocaleString()} / Goal: $${goalAmount.toLocaleString()}`;
+  });
+</script>
+
+</html> 
