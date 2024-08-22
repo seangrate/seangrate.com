@@ -8,8 +8,8 @@ import pandas as pd
 
 from bokeh.plotting import figure, save
 from bokeh.models import ColumnDataSource, DataTable, HoverTool, LinearColorMapper, ColorBar, \
-                         TableColumn, TabPanel, Tabs, CheckboxGroup, Column, Row, \
-                         SingleIntervalTicker, CustomJS
+                         TableColumn, TabPanel, Tabs, Column, Row, \
+                         DateFormatter, CustomJS
 from bokeh.transform import transform, linear_cmap
 from bokeh.palettes import Magma256, Inferno256, Plasma256, Category20, viridis, RdYlBu
 from bokeh.io import output_file
@@ -388,7 +388,7 @@ def point_differential_chart(players_df, source):
 
     # Customize the plot
     p.xgrid.grid_line_color = None
-    p.y_range.start = leaderboard['avg_point_diff'].min() - 1
+    p.y_range.start = leaderboard['avg_point_diff'].min() - (p.y_range.end - leaderboard['avg_point_diff'].max())
     p.xaxis.major_label_orientation = 1.2
 
     return p
@@ -482,6 +482,48 @@ def point_differential_dashboard(players_df, source):
     return Row(Column(solo_chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard))
 
 
+def singles_history(games_df):
+    """
+    Creates a dashboard for the history of singles games.
+    """
+    games_df['score'] = games_df.apply(lambda row: (row['score1'], row['score2']), axis=1)
+    source = ColumnDataSource(games_df)
+
+    # Create a table of the games
+    columns = [TableColumn(field='date', title='Date', formatter=DateFormatter(format='%Y-%m-%d')),
+               TableColumn(field='player1', title='Player 1'),
+               TableColumn(field='player2', title='Player 2'),
+               TableColumn(field='score', title='Score')]
+    return DataTable(source=source, columns=columns, 
+                     index_position=None, margin=(50, 50, 50, 50),
+                     width=700, height=300)
+
+
+def doubles_history(games_df):
+    """
+    Creates a dashboard for the history of doubles games.
+    """
+    games_df['score'] = games_df.apply(lambda row: (row['score1'], row['score2']), axis=1)
+    source = ColumnDataSource(games_df)
+
+    # Create a table of the games
+    columns = [TableColumn(field='date', title='Date', formatter=DateFormatter(format='%Y-%m-%d')),
+               TableColumn(field='player1', title='Player 1'),
+               TableColumn(field='player2', title='Player 2'),
+               TableColumn(field='player3', title='Player 3'),
+               TableColumn(field='player4', title='Player 4'),
+               TableColumn(field='score', title='Score')]
+    return DataTable(source=source, columns=columns, 
+                     index_position=None, margin=(50, 50, 50, 50),
+                     width=700, height=300)
+    
+
+def history_dashboard(players_df):
+    singles_table = singles_history(players_df)
+    doubles_table = doubles_history(players_df)
+    return Row(singles_table, doubles_table)
+
+
 def main():
     # use the 'real' or 'mock' data
     data_type = 'real'
@@ -533,7 +575,8 @@ def main():
     player_source = ColumnDataSource(player_data)
     plots = {'Total Games Played': total_games_dashboard(player_data, game_data, player_source),
              'Wins': head_to_head_dashboard(player_data, player_source),
-             'Point Differentials': point_differential_dashboard(player_data, player_source)}
+             'Point Differentials': point_differential_dashboard(player_data, player_source),
+             'Game History': history_dashboard(game_data)}
     tabs = Tabs(tabs=[TabPanel(child=p, title=title) for title, p in plots.items()])
 
     output_file(filename=html_file,
