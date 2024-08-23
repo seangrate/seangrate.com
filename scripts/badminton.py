@@ -196,7 +196,6 @@ def total_games_line_graph(players_df, games_df):
     # add the lines with styling and tooltips
     # lines represent the cumulative games played by each player over all the dates played
     all_dates = pd.date_range(start=games_df['date'].min(), end=games_df['date'].max())
-    lines = []
     for idx, player in enumerate(players):
         games_played = games_df[(games_df['player1'] == player) | (games_df['player2'] == player)].sort_values('date')
         player_games = pd.DataFrame({'date': all_dates}).set_index('date')
@@ -207,7 +206,6 @@ def total_games_line_graph(players_df, games_df):
         player_source = ColumnDataSource(player_games.reset_index())
         line = line_graph.line('date', 'cumulative_sum', source=player_source, legend_label=player, 
                                name=player, line_width=3, color=colors[idx % len(colors)])
-        lines.append(line)
         # hover = HoverTool(renderers=[line], tooltips=[('', player)])
         hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Total Games', '@cumulative_sum')], formatters={'@date': 'datetime'})
         line_graph.add_tools(hover)
@@ -347,12 +345,50 @@ def head_to_head_leaderboard(players_df, source):
                      width=700, height=300)
 
 
-def head_to_head_dashboard(players_df, source):
+def solo_wins_line_graph(players_df, games_df):
+    """
+    Plots the total wins over time for each player in a line graph.
+    """
+    players = players_df['player1'].unique()
+    num_players = len(players)
+    colors = Category20[num_players] if num_players <= 20 else viridis(num_players)
+    line_graph = figure(x_axis_label='Date', y_axis_label='Total Wins', title='Total Wins Over Time',
+                        x_axis_type='datetime', margin=(50, 50, 50, 50),
+                        width=1600, height=400, toolbar_location=None)
+
+    # Add minor grid lines
+    line_graph.xaxis.minor_tick_line_color = 'black'
+    line_graph.yaxis.minor_tick_line_color = 'black'
+    line_graph.xgrid.minor_grid_line_color = 'gray'
+    line_graph.xgrid.minor_grid_line_alpha = 0.1
+    line_graph.ygrid.minor_grid_line_color = 'gray'
+    line_graph.ygrid.minor_grid_line_alpha = 0.1
+
+    # add the lines with styling and tooltips
+    # lines represent the cumulative wins by each player over all the dates played
+    all_dates = pd.date_range(start=games_df['date'].min(), end=games_df['date'].max())
+    for idx, player in enumerate(players):
+        games_played = games_df[(games_df['player1'] == player) | (games_df['player2'] == player)].sort_values('date')
+        player_games = pd.DataFrame({'date': all_dates}).set_index('date')
+        games_played['wins'] = games_played.apply(lambda row: 1 if (row['player1'] == player and row['score1'] > row['score2']) or (row['player2'] == player and row['score2'] > row['score1']) else 0, axis=1)
+        player_games = games_played.groupby('date')['wins'].sum().cumsum()
+        player_source = ColumnDataSource(player_games.reset_index())
+        line = line_graph.line('date', 'wins', source=player_source, legend_label=player, 
+                               name=player, line_width=3, color=colors[idx % len(colors)])
+        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Total Wins', '@wins')], formatters={'@date': 'datetime'})
+        line_graph.add_tools(hover)
+    line_graph.add_layout(line_graph.legend[0], 'right')
+    line_graph.legend.click_policy = 'hide'
+
+    return line_graph
+
+def head_to_head_dashboard(players_df, games_df, source):
     chart = solo_wins_chart(players_df, source)
     solo_leaderboard = solo_wins_leaderboard(players_df, source)
     matrix_plot = head_to_head_matrix(players_df, source)
     pairs_leaderboard = head_to_head_leaderboard(players_df, source)
-    return Row(Column(chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard))
+    solo_wins_graph = solo_wins_line_graph(players_df, games_df)
+    return Column(Row(Column(chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard)), solo_wins_graph)
 
 
 def point_differential_chart(players_df, source):
@@ -486,7 +522,7 @@ def singles_history(games_df):
     """
     Creates a dashboard for the history of singles games.
     """
-    games_df['score'] = games_df.apply(lambda row: (row['score1'], row['score2']), axis=1)
+    games_df['score'] = games_df.apply(lambda row: f"{row['score1']}-{row['score2']}", axis=1)
     source = ColumnDataSource(games_df)
 
     # Create a table of the games
@@ -503,7 +539,7 @@ def doubles_history(games_df):
     """
     Creates a dashboard for the history of doubles games.
     """
-    games_df['score'] = games_df.apply(lambda row: (row['score1'], row['score2']), axis=1)
+    games_df['score'] = games_df.apply(lambda row: f"{row['score1']}-{row['score2']}", axis=1)
     source = ColumnDataSource(games_df)
 
     # Create a table of the games
@@ -574,7 +610,7 @@ def main():
     player_data.reset_index(inplace=True)
     player_source = ColumnDataSource(player_data)
     plots = {'Total Games Played': total_games_dashboard(player_data, game_data, player_source),
-             'Wins': head_to_head_dashboard(player_data, player_source),
+             'Wins': head_to_head_dashboard(player_data, game_data, player_source),
              'Point Differentials': point_differential_dashboard(player_data, player_source),
              'Game History': history_dashboard(game_data)}
     tabs = Tabs(tabs=[TabPanel(child=p, title=title) for title, p in plots.items()])
