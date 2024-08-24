@@ -8,7 +8,7 @@ import pandas as pd
 
 from bokeh.plotting import figure, save
 from bokeh.models import ColumnDataSource, DataTable, HoverTool, LinearColorMapper, ColorBar, \
-                         TableColumn, TabPanel, Tabs, Column, Row, \
+                         TableColumn, TabPanel, Tabs, Div, Column, Row, \
                          DateFormatter, CustomJS
 from bokeh.transform import transform, linear_cmap
 from bokeh.palettes import Magma256, Inferno256, Plasma256, Category20, viridis, RdYlBu
@@ -382,6 +382,7 @@ def solo_wins_line_graph(players_df, games_df):
 
     return line_graph
 
+
 def head_to_head_dashboard(players_df, games_df, source):
     chart = solo_wins_chart(players_df, source)
     solo_leaderboard = solo_wins_leaderboard(players_df, source)
@@ -522,7 +523,9 @@ def singles_history(games_df):
     """
     Creates a dashboard for the history of singles games.
     """
+    games_df = games_df[games_df['game_type'] == 'singles']
     games_df['score'] = games_df.apply(lambda row: f"{row['score1']}-{row['score2']}", axis=1)
+    games_df = games_df.sort_values('date', ascending=False)
     source = ColumnDataSource(games_df)
 
     # Create a table of the games
@@ -530,16 +533,20 @@ def singles_history(games_df):
                TableColumn(field='player1', title='Player 1'),
                TableColumn(field='player2', title='Player 2'),
                TableColumn(field='score', title='Score')]
-    return DataTable(source=source, columns=columns, 
-                     index_position=None, margin=(50, 50, 50, 50),
-                     width=700, height=300)
+    title = Div(text="<h2>Singles Games History</h2>", margin=(50, 50, 0, 50))
+    data_table = DataTable(source=source, columns=columns, 
+                           index_position=None, margin=(0, 50, 50, 50),
+                           width=700, height=300)
+    return Column(title, data_table)
 
 
 def doubles_history(games_df):
     """
     Creates a dashboard for the history of doubles games.
     """
+    games_df = games_df[games_df['game_type'] == 'doubles']
     games_df['score'] = games_df.apply(lambda row: f"{row['score1']}-{row['score2']}", axis=1)
+    games_df = games_df.sort_values('date', ascending=False)
     source = ColumnDataSource(games_df)
 
     # Create a table of the games
@@ -549,9 +556,11 @@ def doubles_history(games_df):
                TableColumn(field='player3', title='Player 3'),
                TableColumn(field='player4', title='Player 4'),
                TableColumn(field='score', title='Score')]
-    return DataTable(source=source, columns=columns, 
-                     index_position=None, margin=(50, 50, 50, 50),
-                     width=700, height=300)
+    title = Div(text="<h2>Doubles Games History</h2>", margin=(50, 50, 0, 50))
+    data_table = DataTable(source=source, columns=columns, 
+                           index_position=None, margin=(0, 50, 50, 50),
+                           width=700, height=300)
+    return Column(title, data_table)
     
 
 def history_dashboard(players_df):
