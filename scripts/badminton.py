@@ -9,7 +9,7 @@ import pandas as pd
 from bokeh.plotting import figure, save
 from bokeh.models import ColumnDataSource, DataTable, HoverTool, LinearColorMapper, ColorBar, \
                          TableColumn, TabPanel, Tabs, Div, Column, Row, \
-                         DateFormatter, CustomJS
+                         DateFormatter, HTMLTemplateFormatter, CustomJS
 from bokeh.transform import transform, linear_cmap
 from bokeh.palettes import Magma256, Inferno256, Plasma256, Category20, viridis, RdYlBu
 from bokeh.io import output_file
@@ -694,7 +694,6 @@ def singles_history(games_df):
     """
     Creates a dashboard for the history of singles games.
     """
-    games_df = games_df[games_df['game_type'] == 'singles']
     games_df['score'] = games_df.apply(lambda row: f"{row['score1']}-{row['score2']}", axis=1)
     games_df = games_df.sort_values('date', ascending=False)
     source = ColumnDataSource(games_df)
@@ -704,7 +703,7 @@ def singles_history(games_df):
                TableColumn(field='player1', title='Player 1'),
                TableColumn(field='player2', title='Player 2'),
                TableColumn(field='score', title='Score')]
-    title = Div(text="<h2>Singles Games History</h2>", margin=(50, 50, 0, 50))
+    title = Div(text="<h2>Singles Game History</h2>", margin=(50, 50, 0, 50))
     data_table = DataTable(source=source, columns=columns, 
                            index_position=None, margin=(0, 50, 50, 50),
                            width=700, height=300)
@@ -715,28 +714,50 @@ def doubles_history(games_df):
     """
     Creates a dashboard for the history of doubles games.
     """
-    games_df = games_df[games_df['game_type'] == 'doubles']
     games_df['score'] = games_df.apply(lambda row: f"{row['score1']}-{row['score2']}", axis=1)
+    games_df['team1'] = games_df.apply(lambda row: f"{row['player1']}<br>{row['player2']}", axis=1)
+    games_df['team2'] = games_df.apply(lambda row: f"{row['player3']}<br>{row['player4']}", axis=1)
     games_df = games_df.sort_values('date', ascending=False)
     source = ColumnDataSource(games_df)
 
+    # Define HTML template formatter
+    template = """
+    <div>
+        <%= value %>
+    </div>
+    """
+    html_formatter = HTMLTemplateFormatter(template=template)
+
     # Create a table of the games
     columns = [TableColumn(field='date', title='Date', formatter=DateFormatter(format='%Y-%m-%d')),
-               TableColumn(field='player1', title='Player 1'),
-               TableColumn(field='player2', title='Player 2'),
-               TableColumn(field='player3', title='Player 3'),
-               TableColumn(field='player4', title='Player 4'),
+               TableColumn(field='team1', title='Team 1', formatter=html_formatter),
+               TableColumn(field='team2', title='Team 2', formatter=html_formatter),
                TableColumn(field='score', title='Score')]
-    title = Div(text="<h2>Doubles Games History</h2>", margin=(50, 50, 0, 50))
-    data_table = DataTable(source=source, columns=columns, 
+    title = Div(text="<h2>Doubles Game History</h2>", margin=(50, 50, 0, 50))
+    data_table = DataTable(source=source, columns=columns, row_height=45,
                            index_position=None, margin=(0, 50, 50, 50),
                            width=700, height=300)
+    
+    # # Inject custom CSS for row height adjustment
+    # custom_css = """
+    # <style>
+    # .bk-data-table tr {
+    #     height: auto !important;
+    # }
+
+    # .bk-data-table td {
+    #     white-space: normal !important;
+    #     word-wrap: break-word;
+    # }
+    # </style>
+    # """
+    # css_div = Div(text=custom_css)
     return Column(title, data_table)
     
 
-def history_dashboard(players_df):
-    singles_table = singles_history(players_df)
-    doubles_table = doubles_history(players_df)
+def history_dashboard(singles_games_df, doubles_games_df):
+    singles_table = singles_history(singles_games_df)
+    doubles_table = doubles_history(doubles_games_df)
     return Row(singles_table, doubles_table)
 
 
@@ -754,10 +775,10 @@ def main():
     game_data = read_games(data_file)
     game_data['date'] = pd.to_datetime(game_data['date'])
     game_data['game_type'] = game_data.apply(lambda row: 'singles' if pd.isna(row['player3']) else 'doubles', axis=1)
-    game_data = game_data[game_data['game_type'] == 'singles']
+    singles_game_data, doubles_game_data = game_data[game_data['game_type'] == 'singles'].copy(), game_data[game_data['game_type'] == 'doubles'].copy()
 
     # initialize the player data
-    player_names = pd.unique(game_data[['player1', 'player2', 'player3', 'player4']].values.ravel('K'))
+    player_names = pd.unique(singles_game_data[['player1', 'player2']].values.ravel('K'))
     player_names = [name for name in player_names if pd.notna(name)]
     # having both the game_data and player_data dataframes is probably redundant; 
     # it can probably be condensed via groupby operations
@@ -765,22 +786,24 @@ def main():
                                columns=['wins', 'losses', 'points_for', 'points_against', 'point_diff'], dtype=int)
 
     # calculate the stats
-    for game in game_data.itertuples():
-        if game.game_type == 'singles':
-            winner = game.player1 if game.score1 > game.score2 else game.player2
-            loser = game.player1 if game.score1 < game.score2 else game.player2
-            # win-loss record
-            player_data.loc[(winner, loser), 'wins'] += 1
-            player_data.loc[(loser, winner), 'losses'] += 1
-            # point totals
-            player_data.loc[(game.player1, game.player2), 'points_for'] += game.score1
-            player_data.loc[(game.player1, game.player2), 'points_against'] += game.score2
-            player_data.loc[(game.player2, game.player1), 'points_for'] += game.score2
-            player_data.loc[(game.player2, game.player1), 'points_against'] += game.score1
-            # point differential
-            point_diff = abs(max(game.score1, game.score2) - min(game.score1, game.score2))
-            player_data.loc[(winner, loser), 'point_diff'] += point_diff
-            player_data.loc[(loser, winner), 'point_diff'] -= point_diff
+    for game in singles_game_data.itertuples():
+        winner = game.player1 if game.score1 > game.score2 else game.player2
+        loser = game.player1 if game.score1 < game.score2 else game.player2
+        # win-loss record
+        player_data.loc[(winner, loser), 'wins'] += 1
+        player_data.loc[(loser, winner), 'losses'] += 1
+        # point totals
+        player_data.loc[(game.player1, game.player2), 'points_for'] += game.score1
+        player_data.loc[(game.player1, game.player2), 'points_against'] += game.score2
+        player_data.loc[(game.player2, game.player1), 'points_for'] += game.score2
+        player_data.loc[(game.player2, game.player1), 'points_against'] += game.score1
+        # point differential
+        point_diff = abs(max(game.score1, game.score2) - min(game.score1, game.score2))
+        player_data.loc[(winner, loser), 'point_diff'] += point_diff
+        player_data.loc[(loser, winner), 'point_diff'] -= point_diff
+    for game in doubles_game_data.itertuples():
+        winner = (game.player1, game.player2) if game.score1 > game.score2 else (game.player2, game.player1)
+        loser = (game.player1, game.player2) if game.score1 < game.score2 else (game.player2, game.player1)
     player_data['total_games'] = player_data['wins'] + player_data['losses']
     player_data['record'] = player_data['wins'].astype(str) + '-' + player_data['losses'].astype(str)
     player_data['win_differential'] = player_data['wins'] - player_data['losses']
@@ -789,10 +812,10 @@ def main():
     # plot the data in tabs
     player_data.reset_index(inplace=True)
     player_source = ColumnDataSource(player_data)
-    plots = {'Total Games Played': total_games_dashboard(player_data, game_data, player_source),
-             'Wins': head_to_head_dashboard(player_data, game_data, player_source),
-             'Point Differentials': point_differential_dashboard(player_data, game_data, player_source),
-             'Game History': history_dashboard(game_data)}
+    plots = {'Total Games Played': total_games_dashboard(player_data, singles_game_data, player_source),
+             'Wins': head_to_head_dashboard(player_data, singles_game_data, player_source),
+             'Point Differentials': point_differential_dashboard(player_data, singles_game_data, player_source),
+             'Game History': history_dashboard(singles_game_data, doubles_game_data)}
     tabs = Tabs(tabs=[TabPanel(child=p, title=title) for title, p in plots.items()])
 
     output_file(filename=html_file,
