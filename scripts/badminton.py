@@ -66,6 +66,47 @@ def read_games(file_path: str) -> pd.DataFrame:
     return games_df
 
 
+def avg_games_chart(games_df):
+    """
+    Plots the average games played per day for each player in a bar chart.
+
+    Note: Only days where at least one game was played are considered.
+    """
+    # Melt the DataFrame to have a single column for players
+    melted_df = games_df.melt(id_vars=['date'], value_vars=['player1', 'player2'], var_name='player_role', value_name='player')
+    unique_player_days = melted_df.drop_duplicates(subset=['player', 'date'])
+
+    # Calculate the number of unique days each player played
+    player_days = unique_player_days.groupby('player')['date'].nunique().reset_index()
+    player_days.columns = ['player', 'unique_days']
+
+    # Group by player and date to get the total games played by each player on each day
+    daily_games = melted_df.groupby(['player', 'date']).size().reset_index(name='games_played')
+
+    # Calculate the average games played per day for each player
+    avg_games_per_day = daily_games.groupby('player')['games_played'].mean().reset_index()
+    avg_games_per_day.columns = ['player', 'avg_games']
+    avg_games_per_day['avg_games'] = avg_games_per_day['avg_games'].round(2)
+    avg_games_per_day = avg_games_per_day.sort_values('avg_games', ascending=False)
+
+    # Create a bar chart
+    source = ColumnDataSource(avg_games_per_day)
+    p = figure(x_range=avg_games_per_day['player'], title='Average Games Played per Day for Each Player',
+               x_axis_label='Player', y_axis_label='Average Games Played', 
+               height=700, width=700, margin=(50, 50, 50, 50),
+               toolbar_location=None)
+
+    p.vbar(x='player', top='avg_games', width=0.9, source=source,
+           line_color='white', fill_color='navy')
+
+    # Customize the plot
+    p.xgrid.grid_line_color = None
+    p.y_range.start = 0
+    p.xaxis.major_label_orientation = 1.0
+
+    return p
+
+
 def total_games_chart(players_df, source):
     # Melt the DataFrame to have a single column for players
     players_df['sorted_players'] = players_df.apply(lambda row: tuple(sorted([row['player1'], row['player2']])), axis=1)
@@ -174,6 +215,49 @@ def total_games_pairs_leaderboard(players_df, source):
                      width=700, height=300)
 
 
+def avg_games_line_graph(players_df, games_df):
+    """
+    Plots the average games played per day over time for each player in a line graph.
+
+    Note: Only days where at least one game was played are considered.
+    So, if a player did not play any games on a particular day, the value for that day
+    will be the same as the previous day.
+    """
+    players = players_df['player1'].unique()
+    num_players = len(players)
+    colors = Category20[num_players] if num_players <= 20 else viridis(num_players)
+    line_graph = figure(x_axis_label='Date', y_axis_label='Average Games Played per Day', title='Average Games Played per Day Over Time',
+                        x_axis_type='datetime', margin=(50, 50, 50, 50),
+                        width=1600, height=400, toolbar_location=None)
+
+    # Add minor grid lines
+    line_graph.xaxis.minor_tick_line_color = 'black'
+    line_graph.yaxis.minor_tick_line_color = 'black'
+    line_graph.xgrid.minor_grid_line_color = 'gray'
+    line_graph.xgrid.minor_grid_line_alpha = 0.1
+    line_graph.ygrid.minor_grid_line_color = 'gray'
+    line_graph.ygrid.minor_grid_line_alpha = 0.1
+
+    # add the lines with styling and tooltips
+    # lines represent the average games played per day by each player over all the dates played
+    all_dates = pd.date_range(start=games_df['date'].min(), end=games_df['date'].max())
+    for idx, player in enumerate(players):
+        games_played = games_df[(games_df['player1'] == player) | (games_df['player2'] == player)].sort_values('date')
+        player_games = pd.DataFrame({'date': all_dates}).set_index('date')
+        games_played = games_played.groupby('date').size()
+        player_games['games_played'] = games_played.rolling(window=7, min_periods=1).mean()
+        player_games['games_played'] = player_games['games_played'].ffill()
+        player_source = ColumnDataSource(player_games.reset_index())
+        line = line_graph.line('date', 'games_played', source=player_source, legend_label=player, 
+                               name=player, line_width=3, color=colors[idx % len(colors)])
+        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Average Games', '@games_played{0.00}')], formatters={'@date': 'datetime'})
+        line_graph.add_tools(hover)
+    line_graph.add_layout(line_graph.legend[0], 'right')
+    line_graph.legend.click_policy = 'hide'
+
+    return line_graph
+
+
 def total_games_line_graph(players_df, games_df):
     """
     Plots the total games played over time for each player in a line graph.
@@ -216,12 +300,16 @@ def total_games_line_graph(players_df, games_df):
 
 
 def total_games_dashboard(players_df, games_df, source):
-    solo_chart = total_games_chart(players_df, source)
-    solo_leaderboard = total_games_solo_leaderboard(players_df, source)
+    avg_solo_chart = avg_games_chart(games_df)
+    total_solo_chart = total_games_chart(players_df, source)
+    total_solo_leaderboard = total_games_solo_leaderboard(players_df, source)
     matrix_plot = total_games_matrix(players_df, source)
     pairs_leaderboard = total_games_pairs_leaderboard(players_df, source)
-    line_graph = total_games_line_graph(players_df, games_df)
-    return Column(Row(Column(solo_chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard)), line_graph)
+    avg_line_graph = avg_games_line_graph(players_df, games_df)
+    total_line_graph = total_games_line_graph(players_df, games_df)
+    return Column(Row(Column(avg_solo_chart, total_solo_chart, total_solo_leaderboard), Column(matrix_plot, pairs_leaderboard)), 
+                  avg_line_graph,
+                  total_line_graph)
 
 
 def solo_wins_chart(players_df, source):
