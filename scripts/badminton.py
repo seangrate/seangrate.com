@@ -474,9 +474,9 @@ def head_to_head_dashboard(players_df, games_df, source):
     pairs_leaderboard = head_to_head_leaderboard(players_df, source)
     solo_wins_graph = solo_wins_line_graph(players_df, games_df)
     solo_win_percentage_graph = solo_win_percentage_line_graph(players_df, games_df)
-    return Column(Row(Column(total_wins_chart, win_percentage_chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard)), 
-                  solo_wins_graph, 
-                  solo_win_percentage_graph)
+    return Column(Row(Column(win_percentage_chart, total_wins_chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard)), 
+                  solo_win_percentage_graph, 
+                  solo_wins_graph)
 
 
 def point_differential_chart(players_df, source):
@@ -585,7 +585,7 @@ def point_differential_pairs_leaderboard(players_df, source):
     }).reset_index(drop=True)
     leaderboard['avg_point_diff'] = (leaderboard['point_diff'] / leaderboard['total_games']).round(1)
     
-    leaderboard = leaderboard.sort_values('point_diff', ascending=False)
+    leaderboard = leaderboard.sort_values(['avg_point_diff', 'point_diff'], ascending=False)
     leaderboard['rank'] = range(1, len(leaderboard)+1)
     source = ColumnDataSource(leaderboard)
     columns = [TableColumn(field='rank', title='Rank'),
@@ -686,8 +686,8 @@ def point_differential_dashboard(players_df, games_df, source):
     point_diff_graph = point_differential_line_graph(players_df, games_df)
     avg_point_diff_graph = avg_point_differential_line_graph(players_df, games_df)
     return Column(Row(Column(solo_chart, solo_leaderboard), Column(matrix_plot, pairs_leaderboard)),
-                  point_diff_graph,
-                  avg_point_diff_graph)
+                  avg_point_diff_graph,
+                  point_diff_graph)
 
 
 def singles_history(games_df):
