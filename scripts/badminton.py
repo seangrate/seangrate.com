@@ -157,7 +157,7 @@ def total_games_matrix(players_df, source):
     return matrix_plot
 
 
-def total_games_solo_leaderboard(players_df, source):
+def total_games_solo_leaderboard(players_df, games_df):
     """
     Creates a leaderboard of players based on the total number of games played.
     """
@@ -172,22 +172,46 @@ def total_games_solo_leaderboard(players_df, source):
         'total_games': 'sum'
     }).reset_index()
 
+    # Compute the average games per day for each player
+    # Melt the DataFrame to have a single column for players
+    melted_df = games_df.melt(id_vars=['date'], value_vars=['player1', 'player2'], var_name='player_role', value_name='player')
+    unique_player_days = melted_df.drop_duplicates(subset=['player', 'date'])
+
+    # Calculate the number of unique days each player played
+    player_days = unique_player_days.groupby('player')['date'].nunique().reset_index()
+    player_days.columns = ['player', 'unique_days']
+
+    # Group by player and date to get the total games played by each player on each day
+    daily_games = melted_df.groupby(['player', 'date']).size().reset_index(name='games_played')
+
+    # Calculate the average games played per day for each player
+    avg_games_per_day = daily_games.groupby('player')['games_played'].mean().reset_index()
+    avg_games_per_day.columns = ['player', 'avg_games']
+    avg_games_per_day['avg_games'] = avg_games_per_day['avg_games'].round(2)
+    avg_games_per_day = avg_games_per_day.sort_values('avg_games', ascending=False)
+    leaderboard = leaderboard.merge(avg_games_per_day, on='player', how='left')
+
     # Sort the leaderboard by total games played and assign ranks
-    leaderboard = leaderboard.sort_values('total_games', ascending=False)
+    leaderboard = leaderboard.sort_values(['avg_games', 'total_games'], ascending=False)
     leaderboard['rank'] = range(1, len(leaderboard) + 1)
 
     # Create the ColumnDataSource and DataTable
     source = ColumnDataSource(leaderboard)
     columns = [TableColumn(field='rank', title='Rank'),
                TableColumn(field='player', title='Player'),
+               TableColumn(field='avg_games', title='Average Games per Day'),
                TableColumn(field='total_games', title='Total Games Played')]
     
-    return DataTable(source=source, columns=columns, 
-                     index_position=None, margin=(50, 50, 50, 50),
-                     width=700, height=300)
+    data_table = DataTable(source=source, columns=columns, 
+                           index_position=None, margin=(50, 50, 0, 50),
+                           width=700, height=300)
+    caveat = Div(text='<p><strong>Note:</strong> The average games per day only considers days when the player actually played, i.e., missed days do not penalize.</p>',
+                 margin=(25, 50, 50, 50))
+    return Column(data_table, caveat)
+    
 
 
-def total_games_pairs_leaderboard(players_df, source):
+def total_games_pairs_leaderboard(players_df, games_df):
     """
     Creates a leaderboard of players based on the total number of games played.
     Ensures that "Player 1 vs Player 2" is considered the same as "Player 2 vs Player 1".
@@ -202,17 +226,34 @@ def total_games_pairs_leaderboard(players_df, source):
         'player2': 'first',
         'total_games': 'max'
     }).reset_index(drop=True)
+
+    # Compute the average games per day for each pair of players
+    avg_games_per_day = []
+    for _, row in leaderboard.iterrows():
+        player1, player2 = row['player1'], row['player2']
+        games_played = games_df[((games_df['player1'] == player1) & (games_df['player2'] == player2)) |
+                                ((games_df['player1'] == player2) & (games_df['player2'] == player1))]
+        days_played = games_played['date'].nunique()
+        avg_games = row['total_games'] / days_played if days_played > 0 else 0
+        avg_games_per_day.append(round(avg_games, 2))
+
+    leaderboard['avg_games_per_day'] = avg_games_per_day
+
     
-    leaderboard = leaderboard.sort_values('total_games', ascending=False)
+    leaderboard = leaderboard.sort_values(['avg_games_per_day', 'total_games'], ascending=False)
     leaderboard['rank'] = range(1, len(leaderboard)+1)
     source = ColumnDataSource(leaderboard)
     columns = [TableColumn(field='rank', title='Rank'),
                TableColumn(field='player1', title='Player 1'),
                TableColumn(field='player2', title='Player 2'),
+               TableColumn(field='avg_games_per_day', title='Average Games per Day'),
                TableColumn(field='total_games', title='Total Games Played')]
-    return DataTable(source=source, columns=columns, 
-                     index_position=None,  margin=(50, 50, 50, 50),
-                     width=700, height=300)
+    data_table = DataTable(source=source, columns=columns, 
+                           index_position=None,  margin=(50, 50, 0, 50),
+                           width=700, height=300)
+    caveat = Div(text='<p><strong>Note:</strong> The average games per day for a pair only considers days when <em>both</em> players played.</p>',
+                 margin=(25, 50, 50, 50))
+    return Column(data_table, caveat)
 
 
 def avg_games_line_graph(players_df, games_df):
@@ -302,9 +343,9 @@ def total_games_line_graph(players_df, games_df):
 def total_games_dashboard(players_df, games_df, source):
     avg_solo_chart = avg_games_chart(games_df)
     total_solo_chart = total_games_chart(players_df, source)
-    total_solo_leaderboard = total_games_solo_leaderboard(players_df, source)
+    total_solo_leaderboard = total_games_solo_leaderboard(players_df, games_df)
     matrix_plot = total_games_matrix(players_df, source)
-    pairs_leaderboard = total_games_pairs_leaderboard(players_df, source)
+    pairs_leaderboard = total_games_pairs_leaderboard(players_df, games_df)
     avg_line_graph = avg_games_line_graph(players_df, games_df)
     total_line_graph = total_games_line_graph(players_df, games_df)
     return Column(Row(Column(avg_solo_chart, total_solo_chart, total_solo_leaderboard), Column(matrix_plot, pairs_leaderboard)), 
@@ -546,7 +587,7 @@ def solo_win_percentage_line_graph(players_df, games_df):
         player_source = ColumnDataSource(player_games.reset_index())
         line = line_graph.line('date', 'win_percentage', source=player_source, legend_label=player, 
                                name=player, line_width=3, color=colors[idx % len(colors)])
-        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Win Percentage', f'@win_percentage%')], formatters={'@date': 'datetime'})
+        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Win Percentage', '@win_percentage{0.00}%')], formatters={'@date': 'datetime'})
         line_graph.add_tools(hover)
     line_graph.add_layout(line_graph.legend[0], 'right')
     line_graph.legend.click_policy = 'hide'
@@ -716,7 +757,7 @@ def point_differential_line_graph(players_df, games_df):
         player_source = ColumnDataSource(player_games.reset_index())
         line = line_graph.line('date', 'point_diff', source=player_source, legend_label=player, 
                                name=player, line_width=3, color=colors[idx % len(colors)])
-        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Total Point Differential', '@point_diff')], formatters={'@date': 'datetime'})
+        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Total Point Differential', '@point_diff{0}')], formatters={'@date': 'datetime'})
         line_graph.add_tools(hover)
     line_graph.add_layout(line_graph.legend[0], 'right')
     line_graph.legend.click_policy = 'hide'
@@ -758,7 +799,7 @@ def avg_point_differential_line_graph(players_df, games_df):
         player_source = ColumnDataSource(player_games.reset_index())
         line = line_graph.line('date', 'avg_point_diff', source=player_source, legend_label=player,
                                name=player, line_width=3, color=colors[idx % len(colors)])
-        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Average Point Differential', '@avg_point_diff')], formatters={'@date': 'datetime'})
+        hover = HoverTool(renderers=[line], tooltips=[('Player', player), ('Date', '@date{%F}'), ('Average Point Differential', '@avg_point_diff{0.0}')], formatters={'@date': 'datetime'})
         line_graph.add_tools(hover)
     line_graph.add_layout(line_graph.legend[0], 'right')
     line_graph.legend.click_policy = 'hide'
