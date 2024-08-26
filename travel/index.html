@@ -189,7 +189,7 @@
     content.className = 'content'; 
     // string formatting for event
     const title = document.createElement('h4');
-    title.innerText = `\"${event.title}\"`;
+    title.innerText = `${event.title}`;
     const details = document.createElement('p');
     details.innerText = `${event.location}, ${event.city}
                          ${months[event.date.getMonth() + 1]} ${event.date.getFullYear()}`;
