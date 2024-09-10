@@ -8075,7 +8075,7 @@ funBettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Results">Results<a class="anchor-link" href="#Results">¶</a></h1>
+<h1 id="Betti-numbers">Betti numbers<a class="anchor-link" href="#Betti-numbers">¶</a></h1>
 </div>
 </div>
 </div>
@@ -8096,7 +8096,10 @@ $$
     \text{Tor}_i^Q(A)_j \oplus \text{Tor}_i^Q(B)_j &amp; \text{if } j \geq i+2 
 \end{cases}.
 $$
-There is an analogous result for $\text{Tor}_i^Q(A \#_{\mathbb{K}} B)_j$ when $\text{reg}(A) = \text{reg}(B) \geq 3$.</p>
+In particular,
+$$P_{A \times_{\mathbb{K}} B}^Q(t,s) = \tilde{P}_A^Q(t,s) + \tilde{P}_B^Q(t,s) + P_{Q / \mathbf{x} \cap \mathbf{y}}^Q(t,s)$$
+and
+$$\text{reg}(A \times_{\mathbb{K}} B) \leq \max(\text{reg}(A), \text{reg}(B)).$$</p>
 </div>
 </div>
 </div>
@@ -8107,7 +8110,7 @@ There is an analogous result for $\text{Tor}_i^Q(A \#_{\mathbb{K}} B)_j$ when $\
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Results">Results<a class="anchor-link" href="#Results">¶</a></h2><p><strong>Theorem</strong>:
+<p><strong>Corollary</strong>:
 Let $[x]_+ = \max(0,x)$, and for integers $a,b,c,d$, and a module $M$ over a ring $P$, let
 $$s_{a,b,c,d}^P(M) = \sum_{l=0}^{\min(a,b)-1} \binom{c}{[i-b]_+ + l} \beta_{\min(a,b)-l,d-l-[a-b]_+(M)}.$$
 Then
@@ -8119,8 +8122,57 @@ $$
     s_{i,m,n,i+1}^R(A) + s_{i,n,m,i+1}^S(B) + \binom{m+n}{i+1} - \binom{m}{i+1} - \binom{n}{i+1} &amp; \text{if } j = i+1 \\
     s_{i,m,n,j}^R(A) + s_{i,n,m,j}^S(B) &amp; \text{if } j \geq i+2 \\
 \end{cases}.
+$$</p>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Theorem</strong>:
+Assume that $A$ and $B$ are AG $\mathbb{K}$-algebras such that $\text{reg}(A) = \text{reg}(B) = e \geq 3$. For any integer $i \geq 1$, there is an isomorphism of graded $\mathbb{K}$-vector spaces
 $$
-There is an analogous result for $\beta_{i,j}^Q(A \#_{\mathbb{K}} B)$ when $\text{reg}(A) = \text{reg}(B) \geq 3$.</p>
+\text{Tor}_i^Q(A \#_{\mathbb{K}} B)_j \cong
+\begin{cases}
+    0 &amp; \text{if } j \leq i \text{ and } (i,j) \neq (0,0) \\
+    \mathbb{K} &amp; \text{if } (i,j) = (0,0) \\
+    \text{Tor}_i^Q(A)_{i+1} \oplus \text{Tor}_i^Q(B)_{i+1} \oplus \text{Tor}_i^Q(Q / \mathbf{x} \cap \mathbf{y})_{i+1} &amp; \text{if } j = i+1 \\
+    \text{Tor}_i^Q(A)_j \oplus \text{Tor}_i^Q(B)_j &amp; \text{if } i+2 \leq j \leq i+e-2 \\
+    \text{Tor}_i^Q(A)_j \oplus \text{Tor}_i^Q(B)_j \oplus \text{Tor}_{m+n-i}^Q(Q / \mathbf{x} \cap \mathbf{y})_{m+n-i+1} &amp; \text{if } j = i+e-1 \\
+    \mathbb{K} &amp; \text{if } (i,j) = (m+n, e+m+n) \\
+    0 &amp; \text{if } j \geq e+i \text{ and } (i,j) \neq (m+n, e+m+n)
+\end{cases}.
+$$
+Equivalently,
+$$P_{A \#_{\mathbb{K}} B}^Q(t,s) = \tilde{P}_A^Q(t,s) + \tilde{P}_B^Q(t,s) + P_{Q / \mathbf{x} \cap \mathbf{y}}^Q(t,s) + s^{m+n+e} t^{m+n} P_{Q / \mathbf{x} \cap \mathbf{y}}^Q(t^{-1}, s^{-1}).$$</p>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Corollary</strong>:
+With the notation from before, we have
+$$
+\beta_{i,j}^Q(A \#_{\mathbb{K}} B) =
+\begin{cases}
+    0 &amp; \text{if } j \leq i \text{ and } (i,j) \neq 0 \\
+    1 &amp; \text{if } (i,j) = (0,0) \\
+    s_{i,m,n,i+1}^R(A) + s_{i,n,m,i+1}(B) + \binom{m+n}{i+1} - \binom{m}{i+1} - \binom{n}{i+1} &amp; \text{if } j = i+1 \\
+    s_{i,m,n,j}^R(A) + s_{i,n,m,j}^S(B) &amp; \text{if } i+2 \leq j \leq i+e-2 \\
+    s_{i,m,n,i+1}^R(A) + s_{i,n,m,i+1}(B) + \binom{m+n}{m+n-i-1} - \binom{m}{m-i-1} - \binom{n}{n-i-1} &amp; \text{if } i \leq m+n, j = i+e-1 \\
+    1 &amp; \text{if } (i,j) = (m+n,e+m+n) \\
+    0 &amp; \text{if } j \geq e+i \text{ and } (i,j) \neq (m+n,e+m+n)
+\end{cases}.
+$$</p>
 </div>
 </div>
 </div>
