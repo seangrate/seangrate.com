@@ -11,7 +11,7 @@ from bokeh.models import ColumnDataSource, DataTable, HoverTool, LinearColorMapp
                          TableColumn, TabPanel, Tabs, Div, Column, Row, \
                          DateFormatter, HTMLTemplateFormatter, CustomJS
 from bokeh.transform import transform, linear_cmap
-from bokeh.palettes import Magma256, Inferno256, Plasma256, Category20, viridis, RdYlBu
+from bokeh.palettes import Magma256, Inferno256, Plasma256, Category20, viridis, RdYlBu, BuRd
 from bokeh.io import output_file
 
 
@@ -209,7 +209,6 @@ def total_games_solo_leaderboard(players_df, games_df):
                  margin=(25, 50, 50, 50))
     return Column(data_table, caveat)
     
-
 
 def total_games_pairs_leaderboard(players_df, games_df):
     """
@@ -463,7 +462,7 @@ def solo_wins_leaderboard(players_df, source):
 def head_to_head_matrix(players_df, source):
     players = players_df['player1'].unique()
 
-    color_mapper = LinearColorMapper(palette=RdYlBu[11][::-1], 
+    color_mapper = LinearColorMapper(palette=Plasma256, 
                                      low=players_df['win_differential'].min(), high=players_df['win_differential'].max(),
                                      nan_color='black')
     p = figure(title='Win Differentials', x_range=players, y_range=players, 
@@ -682,7 +681,7 @@ def point_differential_matrix(players_df, source):
     players = players_df['player1'].unique()
 
     source = ColumnDataSource(players_df)
-    color_mapper = LinearColorMapper(palette=RdYlBu[11][::-1], 
+    color_mapper = LinearColorMapper(palette=Plasma256, 
                                      low=players_df['avg_point_diff'].min(), high=players_df['avg_point_diff'].max(), 
                                      nan_color='black')
     p = figure(title='Average Point Differential', x_range=players, y_range=players, 
