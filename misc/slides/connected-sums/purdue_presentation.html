@@ -7442,11 +7442,11 @@ main {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Betti-numbers-of-connected-sums-of-graded-Artinian-Gorenstein-algebras">Betti numbers of connected sums of graded Artinian Gorenstein algebras<a class="anchor-link" href="#Betti-numbers-of-connected-sums-of-graded-Artinian-Gorenstein-algebras">¶</a></h1><br/>
 <h3 id="Sean-Grate">Sean Grate<a class="anchor-link" href="#Sean-Grate">¶</a></h3><p><em>Joint with Nasrin Altafi, Roberta Di Gennaro, Federico Galetto, Rosa M. Miró-Roig, Uwe Nagel, Alexandra Seceleanu, and Junzo Watanabe</em></p>
-<p>September 10th, 2024</p>
+<p>October 9th, 2024</p>
 </div>
 </div>
 </div>
-</div></section></section><section><section>
+</div></section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7858,12 +7858,28 @@ $$ 0 \longrightarrow T(e-d) \longrightarrow A \times_T B \longrightarrow A \#_T 
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Who-cares?">Who cares?<a class="anchor-link" href="#Who-cares?">¶</a></h2><p><strong>Theorem</strong> [Ananthnarayan, Avramov, Moore; 2012]:
+<h2 id="Who-cares?">Who cares?<a class="anchor-link" href="#Who-cares?">¶</a></h2><br/>
+<p><strong>Theorem</strong> [Ananthnarayan, Avramov, Moore; 2012]:
 (Roughly)</p>
 <ul>
 <li>If $A$ and $B$ are Cohen-Macaulay, then $A \times_T B$ is Cohen-Macaulay.</li>
 <li>If $A$ and $B$ are Gorenstein local rings, then $A \#_T B$ is Gorenstein.</li>
 </ul>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Who-cares?">Who cares?<a class="anchor-link" href="#Who-cares?">¶</a></h2><br/>
+<p><strong>Definition</strong>:
+For an Artinian $\mathbb{K}$-algebra $A$, we say $A$ has the <em>strong Lefschetz property</em> (<em>SLP</em>) if there is a linear form $\ell \in A_1$ such that $\times \ell^d \colon A_i \to A_{i+d}$ is full rank for all $i$ and $d$.</p>
+<p><strong>Proposition</strong> [Iarrobino, McDaniel, Seceleanu; 2022]:
+If $A$ and $B$ are AG $\mathbb{K}$-algebras with the same socle degree, and both have the strong Lefschetz property, then $A \times_\mathbb{K} B$ also has the strong Lefschetz property. The same is true for $A \#_{\mathbb{K}} B$.</p>
 </div>
 </div>
 </div>
@@ -7982,7 +7998,7 @@ where $s_A \in \text{socle}(A)$ and $s_B \in \text{socle(B)}$.</p>
 kk<span class="w"> </span>=<span class="w"> </span><span class="nb">ZZ</span>/32749
 R<span class="w"> </span>=<span class="w"> </span>kk[x,y,z]
 S<span class="w"> </span>=<span class="w"> </span>kk[u,v]
-Q<span class="w"> </span>=<span class="w"> </span>R**S
+Q<span class="w"> </span>=<span class="w"> </span>kk[x,y,z,u,v]
 
 I<span class="w"> </span>=<span class="w"> </span><span class="nf">ideal</span>(x^3,<span class="w"> </span>y^4,<span class="w"> </span>z^4)
 J<span class="w"> </span>=<span class="w"> </span><span class="nf">ideal</span>(u^5,<span class="w"> </span>v^5)
@@ -8028,11 +8044,12 @@ bettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">app
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-Macaulay2"><pre><span></span>fiberProduct<span class="w"> </span>=<span class="w"> </span>xCapy<span class="w"> </span>+<span class="w"> </span>I<span class="w"> </span>+<span class="w"> </span>J
-connectedSum<span class="w"> </span>=<span class="w"> </span>fiberProduct<span class="w"> </span>+<span class="w"> </span><span class="nf">ideal</span>(x^2<span class="w"> </span>*<span class="w"> </span>y^3<span class="w"> </span>*<span class="w"> </span>y^3,<span class="w"> </span>u^4<span class="w"> </span>*<span class="w"> </span>v^4)
+socle<span class="w"> </span>=<span class="w"> </span><span class="nf">ideal</span>(x^2<span class="w"> </span>*<span class="w"> </span>y^3<span class="w"> </span>*<span class="w"> </span>z^3<span class="w"> </span>+<span class="w"> </span>u^4<span class="w"> </span>*<span class="w"> </span>v^4)
+connectedSum<span class="w"> </span>=<span class="w"> </span>fiberProduct<span class="w"> </span>+<span class="w"> </span><span class="nf">ideal</span>(x^2<span class="w"> </span>*<span class="w"> </span>y^3<span class="w"> </span>*<span class="w"> </span>z^3<span class="w"> </span>+<span class="w"> </span>u^4<span class="w"> </span>*<span class="w"> </span>v^4)
 
 funBettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">apply</span>({fiberProduct,<span class="w"> </span>connectedSum},<span class="w"> </span>i<span class="w"> </span>-&gt;<span class="w"> </span><span class="nf">minimalBetti</span><span class="w"> </span>i)
 <span class="nf">print</span><span class="w"> </span><span class="nf">netList</span>({funBettiTables},<span class="w"> </span><span class="no">HorizontalSpace</span>=&gt;2,<span class="w"> </span><span class="no">VerticalSpace</span>=&gt;1,<span class="w"> </span><span class="no">Alignment</span>=&gt;<span class="no">Center</span>)
@@ -8051,7 +8068,7 @@ funBettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">
 <pre>+--------------------------+--------------------------+
 |                          |                          |
 |         0  1  2  3  4 5  |         0  1  2  3  4 5  |
-|  total: 1 11 25 24 11 2  |  total: 1 12 29 30 15 3  |
+|  total: 1 11 25 24 11 2  |  total: 1 12 29 29 12 1  |
 |      0: 1  .  .  .  . .  |      0: 1  .  .  .  . .  |
 |      1: .  6  9  5  1 .  |      1: .  6  9  5  1 .  |
 |      2: .  1  2  1  . .  |      2: .  1  2  1  . .  |
@@ -8059,8 +8076,8 @@ funBettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">
 |      4: .  2  6  6  2 .  |      4: .  2  6  6  2 .  |
 |      5: .  .  2  4  2 .  |      5: .  .  2  4  2 .  |
 |      6: .  .  1  2  1 .  |      6: .  .  1  2  1 .  |
-|      7: .  .  .  .  . .  |      7: .  1  5  9  7 2  |
-|      8: .  .  1  4  5 2  |      8: .  .  .  1  2 1  |
+|      7: .  .  .  .  . .  |      7: .  1  5  9  6 .  |
+|      8: .  .  1  4  5 2  |      8: .  .  .  .  . 1  |
 |                          |                          |
 +--------------------------+--------------------------+
 </pre>
@@ -8076,6 +8093,20 @@ funBettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Betti-numbers">Betti numbers<a class="anchor-link" href="#Betti-numbers">¶</a></h1>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Prior-Work">Prior Work<a class="anchor-link" href="#Prior-Work">¶</a></h2><ul>
+<li>[Celikbas, Laxmi, Weyman; 2019] determine a minimal free resolution of the connected sums of $\mathbb{K}$-algebras $A_i = \mathbb{K}[x_i]$ using the doubling construction.</li>
+<li>[Geller; 2022] and [Celikbas, Geller; 2023] determine the minimal free resolution of the two-factor <em>fiber product</em> of local rings.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -8184,7 +8215,7 @@ $$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="More-Results">More Results<a class="anchor-link" href="#More-Results">¶</a></h2><p><strong>Theorem</strong>:
-The two-summand case extends to arbitrarily many summands for both the fiber product.</p>
+The two-summand case extends to arbitrarily many summands for the fiber product.</p>
 <p><strong>Theorem</strong>:
 The same is true for the connected sum provided all of the summands have the same regularity $e \geq 3$.</p>
 </div>
@@ -8208,7 +8239,7 @@ The same is true for the connected sum provided all of the summands have the sam
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Definition</strong> [KKRSSY; 2021]:</p>
+<p><strong>Definition</strong> [Kapustka, Kapustka, Ranestad, Schenck, Stillman, Yuan; 2021]:</p>
 <p><strong>[For the experts]</strong>
 Let $J \subset R$ be a homogeneous ideal of codimension $c$ such that $R/J$ is Cohen-Macaulay and $\omega_{R/J}$ is its canonical module. Assume $R/J$ satisfies the condition $G_0$ (it is Gorenstein at all its minimal primes). Let $I$ be an ideal of codimension $c+1$.</p>
 <p><strong>[For everybody]</strong>
@@ -8276,13 +8307,24 @@ bettiTables<span class="w"> </span>=<span class="w"> </span><span class="nf">app
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Definition</strong>:</p>
 <p><strong>Example</strong>:
 The two-summand connected sum case is characterized by the short exact sequence
 $$ 0 \longrightarrow T(e-d) \longrightarrow A \times_T B \longrightarrow A \#_T B \longrightarrow 0.$$
 So, $A \#_T B$ is a doubling of $A \times_T B$.</p>
 <p><strong>Theorem</strong>:
 If $A_i$ is a doubling of some $1$-dimensional Cohen-Macaulay algebra $\tilde{A}_i$, then $A_1 \#_{\mathbb{K}} \dots \#_{\mathbb{K}} A_r$ is a doubling of $\tilde{A}_1 \times_{\mathbb{K}} \dots \times_{\mathbb{K}} \tilde{A}_r$.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Feedback?">Feedback?<a class="anchor-link" href="#Feedback?">¶</a></h1><br/>
+<img alt="feedback" src="feedback.png" style="width: 50%; display: block; margin-left: auto; margin-right: auto"/>
 </div>
 </div>
 </div>
