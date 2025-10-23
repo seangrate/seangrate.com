@@ -100,6 +100,16 @@
 <script>
   // timeline data
   const timelineEvents = [
+  { title: 'Macaulay2 Workshop', 
+    date: new Date(2025, 12), 
+    location: 'Hue University of Education',
+    city: 'Hue, Vietnam',
+    extras: { } },
+  { title: 'Arizona-New Mexico Symposium on Commutative Algebra and its Interaction: Geometric Combinatorics', 
+    date: new Date(2025, 12), 
+    location: 'New Mexico State University',
+    city: 'Las Cruces, NM',
+    extras: { } },
   { title: 'KUMUNU 2025', 
     date: new Date(2025, 10), 
     location: 'University of Missouri-Columbia',
@@ -284,7 +294,7 @@
     details.innerText = `${event.location}
                          ${event.city}
                          
-                         ${months[event.date.getMonth() - 1]} ${event.date.getFullYear()}`;
+                         ${months[event.date.getMonth()-1]} ${event.date.getFullYear()}`;
     // extra links
     const extrasElements = [];
     const extraIcons = {
