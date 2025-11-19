@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Connections - Find the Groups</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- <script id="MathJax-script" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                tags: 'none'
+            },
+            chtml: {
+                displayAlign: 'center',
+                displayIndent: '0'
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            },
+            startup: {
+                ready() {
+                    MathJax.startup.defaultReady();
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1 class="title">Math Connections</h1>
+            <p class="subtitle">Create four groups of four to win!</p>
+        </div>
+
+            <div class="container">
+        <div class="top-controls center-selector">
+            <div class="database-selector">
+                <label for="databaseSelect">Choose Topic:</label>
+                <select id="databaseSelect">
+                    <option value="">-- Select a Topic --</option>
+                    <option value="integration-strategies">Integration Strategies</option>
+                    <option value="series-strategies">Series Convergence Tests</option>
+                </select>
+            </div>
+
+            <div class="game-controls" id="gameControls" style="display: none;">
+                <button id="newGameBtn">New Game</button>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <div id="foundGroups" class="found-groups"></div>
+
+        <div id="wordGrid" class="word-grid">
+            <!-- Words will be populated by JavaScript -->
+        </div>
+
+        <div class="mistakes" id="mistakesCounter" style="display: none; text-align: center; margin: 20px 0;">
+            <div style="font-size: 14px; color: #666; margin-bottom: 8px;">Mistakes</div>
+            <div id="mistakeVisual" style="font-size: 20px; letter-spacing: 8px;"></div>
+        </div>
+
+        <div class="controls" id="submitControls" style="display: none;">
+            <button class="btn btn-secondary" id="shuffleBtn">Shuffle</button>
+            <button class="btn btn-secondary" onclick="deselectAll()">Deselect All</button>
+            <button class="btn btn-primary" onclick="submitGuess()" id="submitBtn" disabled>Submit</button>
+        </div>
+    </div>
+
+    <script src="connections.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+{
+  "expressions": [
+    {
+      "expression": "$\\displaystyle \\int x^3 e^{x^2} \\, dx$",
+      "groups": ["Substitution method", "u = x^2 substitution"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{\\ln x}{x} \\, dx$",
+      "groups": ["Substitution method", "u = ln x substitution"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sin x \\cos x \\, dx$",
+      "groups": ["Substitution method", "u = sin x substitution"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{2x}{x^2 + 1} \\, dx$",
+      "groups": ["Substitution method", "u = x^2 + 1 substitution"],
+      "difficulty": 1
+    },
+    {
+      "expression": "$\\displaystyle \\int x e^x \\, dx$",
+      "groups": ["Integration by parts", "LIATE rule"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int x \\sin x \\, dx$",
+      "groups": ["Integration by parts", "LIATE rule"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int \\ln x \\, dx$",
+      "groups": ["Integration by parts", "LIATE rule"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int x^2 \\cos x \\, dx$",
+      "groups": ["Integration by parts", "Multiple applications"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{3x + 2}{x^2 + x - 2} \\, dx$",
+      "groups": ["Partial fractions", "Linear factors"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{1}{x(x-1)} \\, dx$",
+      "groups": ["Partial fractions", "Linear factors"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{x^2}{(x-1)^2(x+2)} \\, dx$",
+      "groups": ["Partial fractions", "Repeated factors"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{1}{x^2(x+1)} \\, dx$",
+      "groups": ["Partial fractions", "Repeated factors"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sin^3 x \\, dx$",
+      "groups": ["Trigonometric integrals", "Odd powers of sine"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\cos^4 x \\, dx$",
+      "groups": ["Trigonometric integrals", "Even powers reduction"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sin^2 x \\cos^2 x \\, dx$",
+      "groups": ["Trigonometric integrals", "Even powers reduction"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\tan^3 x \\sec x \\, dx$",
+      "groups": ["Trigonometric integrals", "Tangent-secant forms"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sqrt{1 - x^2} \\, dx$",
+      "groups": ["Trigonometric substitution", "x = sin θ substitution"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{1}{\\sqrt{x^2 + 4}} \\, dx$",
+      "groups": ["Trigonometric substitution", "x = 2 tan θ substitution"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{x^2}{\\sqrt{x^2 - 9}} \\, dx$",
+      "groups": ["Trigonometric substitution", "x = 3 sec θ substitution"],
+      "difficulty": 5
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{1}{x^2 + 2x + 5} \\, dx$",
+      "groups": ["Trigonometric substitution", "Complete the square first"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int_0^1 x^2 \\, dx$",
+      "groups": ["Definite integrals", "Power rule application"],
+      "difficulty": 1
+    },
+    {
+      "expression": "$\\displaystyle \\int_0^{\\pi/2} \\sin x \\, dx$",
+      "groups": ["Definite integrals", "Trigonometric evaluation"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int_1^e \\frac{1}{x} \\, dx$",
+      "groups": ["Definite integrals", "Logarithmic evaluation"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int_{-1}^1 x^3 \\, dx$",
+      "groups": ["Definite integrals", "Odd function symmetry"],
+      "difficulty": 2
+    },
+    {
+      "expression": "$\\displaystyle \\int_1^{\\infty} \\frac{1}{x^2} \\, dx$",
+      "groups": ["Improper integrals", "Convergent p-integral"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int_0^{\\infty} e^{-x} \\, dx$",
+      "groups": ["Improper integrals", "Exponential decay"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int_{-\\infty}^{\\infty} e^{-x^2} \\, dx$",
+      "groups": ["Improper integrals", "Gaussian integral"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int_0^1 \\frac{1}{\\sqrt{x}} \\, dx$",
+      "groups": ["Improper integrals", "Convergent at endpoint"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\tan x \\, dx$",
+      "groups": ["Logarithmic substitution", "u = cos x substitution"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sec x \\, dx$",
+      "groups": ["Logarithmic substitution", "Clever manipulation"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\cot x \\, dx$",
+      "groups": ["Logarithmic substitution", "u = sin x substitution"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\frac{1}{\\sqrt{x^2 + 1}} \\, dx$",
+      "groups": ["Logarithmic substitution", "Inverse hyperbolic"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int_0^{2\\pi} \\sin^2 x \\, dx$",
+      "groups": ["Power reduction", "Trigonometric identities"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\cos^3 x \\, dx$",
+      "groups": ["Power reduction", "Odd power strategy"],
+      "difficulty": 3
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sin^4 x \\, dx$",
+      "groups": ["Power reduction", "Even power strategy"],
+      "difficulty": 4
+    },
+    {
+      "expression": "$\\displaystyle \\int \\sin^2 x \\cos^2 x \\, dx$",
+      "groups": ["Power reduction", "Double angle formulas"],
+      "difficulty": 4
+    }
+  ]
+}
