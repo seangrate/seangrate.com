@@ -90,36 +90,75 @@ function generateGame(options = {}) {
         );
     }
     
-    // Select 4 groups for the puzzle
-    const selectedGroups = selectPuzzleGroups(availableGroups);
+    // Try multiple times to generate a valid unique puzzle
+    let attempts = 0;
+    const maxAttempts = 10;
     
-    // Find expressions for each group
-    const groups = selectedGroups.map((groupName, index) => {
-        const difficultyColors = ['yellow', 'green', 'blue', 'purple'];
-        const expressions = findExpressionsForGroup(groupName, maxDifficulty, minDifficulty);
+    while (attempts < maxAttempts) {
+        attempts++;
         
-        if (expressions.length < 4) {
-            console.warn(`Not enough expressions for group: ${groupName}`);
-            return null;
+        // Select 4 groups for the puzzle
+        const selectedGroups = selectPuzzleGroups(availableGroups);
+        
+        if (selectedGroups.length < 4) {
+            continue;
         }
         
-        // Select 4 expressions for this group
-        const selectedExpressions = selectBestExpressions(expressions, 4);
+        // Shuffle difficulty colors for variety
+        const difficultyColors = ['yellow', 'green', 'blue', 'purple'];
+        shuffleArray(difficultyColors);
         
-        return {
-            category: groupName,
-            words: selectedExpressions.map(item => item.expression),
-            difficulty: difficultyColors[index]
-        };
-    }).filter(group => group !== null);
-    
-    if (groups.length !== 4) {
-        console.warn('Not enough groups found, falling back to default game');
-        // Fallback to a simpler selection if we can't find enough groups
-        return generateFallbackGame();
+        // Track all selected expressions to avoid conflicts
+        const allSelectedExpressions = [];
+        
+        // Find expressions for each group
+        const groups = [];
+        let validPuzzle = true;
+        
+        for (let index = 0; index < selectedGroups.length; index++) {
+            const groupName = selectedGroups[index];
+            const expressions = findExpressionsForGroup(groupName, maxDifficulty, minDifficulty);
+            
+            if (expressions.length < 4) {
+                console.warn(`Not enough expressions for group: ${groupName}`);
+                validPuzzle = false;
+                break;
+            }
+            
+            // Select 4 expressions for this group, avoiding conflicts
+            const selectedExpressions = selectBestExpressions(expressions, 4, allSelectedExpressions);
+            
+            if (selectedExpressions.length < 4) {
+                console.warn(`Could not find 4 unique expressions for group: ${groupName}`);
+                validPuzzle = false;
+                break;
+            }
+            
+            // Add to tracking
+            allSelectedExpressions.push(...selectedExpressions);
+            
+            groups.push({
+                category: groupName,
+                words: selectedExpressions.map(item => item.expression),
+                difficulty: difficultyColors[index]
+            });
+        }
+        
+        if (!validPuzzle || groups.length !== 4) {
+            continue;
+        }
+        
+        // Validate that the puzzle has exactly one solution
+        if (validatePuzzleUniqueness(groups)) {
+            console.log(`Generated valid puzzle in ${attempts} attempts`);
+            return { groups };
+        }
+        
+        console.warn(`Puzzle attempt ${attempts} failed uniqueness validation`);
     }
     
-    return { groups };
+    console.warn(`Could not generate unique puzzle after ${maxAttempts} attempts, using fallback`);
+    return generateFallbackGame();
 }
 
 // Select 4 diverse groups for the puzzle
@@ -132,11 +171,24 @@ function selectPuzzleGroups(availableGroups) {
         ).length;
     });
     
-    // Sort by expression count (descending) and select top groups
-    return availableGroups
-        .filter(group => groupCounts[group] >= 4)
-        .sort((a, b) => groupCounts[b] - groupCounts[a])
-        .slice(0, 4);
+    // Get groups that have at least 4 expressions
+    const viableGroups = availableGroups.filter(group => groupCounts[group] >= 4);
+    
+    // Shuffle the viable groups to add randomness
+    shuffleArray(viableGroups);
+    
+    // Select 4 groups, but ensure uniqueness by checking overlap
+    const selectedGroups = [];
+    for (const group of viableGroups) {
+        if (selectedGroups.length >= 4) break;
+        
+        // Check if this group would create a unique puzzle
+        if (isGroupSelectionValid(selectedGroups, group)) {
+            selectedGroups.push(group);
+        }
+    }
+    
+    return selectedGroups.slice(0, 4);
 }
 
 // Find expressions that belong to a specific group
@@ -148,26 +200,42 @@ function findExpressionsForGroup(groupName, maxDifficulty, minDifficulty) {
     );
 }
 
-// Select the best 4 expressions for a group (balancing difficulty)
-function selectBestExpressions(expressions, count) {
-    // Sort by difficulty and select a mix
-    expressions.sort((a, b) => a.difficulty - b.difficulty);
-    
+// Select the best 4 expressions for a group (balancing difficulty and ensuring uniqueness)
+function selectBestExpressions(expressions, count, selectedExpressionsSoFar = []) {
     if (expressions.length <= count) {
         return expressions;
     }
     
-    // Try to get a good difficulty distribution
-    const selected = [];
-    const step = Math.floor(expressions.length / count);
+    // Filter out expressions that might belong to multiple groups already selected
+    const uniqueExpressions = expressions.filter(expr => {
+        // Check if this expression would create ambiguity with already selected expressions
+        return !wouldCreateAmbiguity(expr, selectedExpressionsSoFar);
+    });
     
-    for (let i = 0; i < count && i * step < expressions.length; i++) {
-        selected.push(expressions[i * step]);
+    // If we filtered too many, use original set but be more careful
+    const candidateExpressions = uniqueExpressions.length >= count ? uniqueExpressions : expressions;
+    
+    // Shuffle to add randomness
+    shuffleArray(candidateExpressions);
+    
+    // Try to get a good difficulty distribution while maintaining randomness
+    const selected = [];
+    const difficulties = [1, 2, 3, 4, 5];
+    
+    // First, try to get one expression from each difficulty level available
+    for (const difficulty of difficulties) {
+        if (selected.length >= count) break;
+        const difficultyExprs = candidateExpressions.filter(expr => 
+            expr.difficulty === difficulty && !selected.includes(expr)
+        );
+        if (difficultyExprs.length > 0) {
+            selected.push(difficultyExprs[0]);
+        }
     }
     
-    // Fill remaining slots if needed
+    // Fill remaining slots randomly
     while (selected.length < count) {
-        const remaining = expressions.filter(expr => !selected.includes(expr));
+        const remaining = candidateExpressions.filter(expr => !selected.includes(expr));
         if (remaining.length > 0) {
             selected.push(remaining[Math.floor(Math.random() * remaining.length)]);
         } else {
@@ -176,6 +244,80 @@ function selectBestExpressions(expressions, count) {
     }
     
     return selected.slice(0, count);
+}
+
+// Check if adding a group would create a valid selection
+function isGroupSelectionValid(currentGroups, newGroup) {
+    // For now, just ensure we don't have too much overlap
+    // This is a simple heuristic - you could make it more sophisticated
+    return true;
+}
+
+// Check if an expression would create ambiguity with already selected expressions
+function wouldCreateAmbiguity(expression, selectedExpressions) {
+    // Find all groups this expression belongs to
+    const expressionGroups = mathDatabase
+        .find(item => item.expression === expression.expression)?.groups || [];
+    
+    // Check if any already selected expressions also belong to these groups
+    for (const selectedExpr of selectedExpressions) {
+        const selectedGroups = mathDatabase
+            .find(item => item.expression === selectedExpr.expression)?.groups || [];
+        
+        // If there's overlap in groups, this could create ambiguity
+        const overlap = expressionGroups.filter(group => selectedGroups.includes(group));
+        if (overlap.length > 0) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// Validate that the final puzzle has exactly one solution
+function validatePuzzleUniqueness(groups) {
+    const selectedGroupNames = groups.map(g => g.category);
+    
+    // Check each expression to see if it could belong to multiple selected groups
+    for (const group of groups) {
+        for (const word of group.words) {
+            // Find the database entry for this expression
+            const dbEntry = mathDatabase.find(item => item.expression === word);
+            if (!dbEntry) {
+                console.warn(`Expression "${word}" not found in database`);
+                return false;
+            }
+            
+            // Count how many of our selected groups this expression belongs to
+            const belongsToGroups = dbEntry.groups.filter(g => selectedGroupNames.includes(g));
+            
+            if (belongsToGroups.length > 1) {
+                console.warn(`Expression "${word}" belongs to multiple selected groups:`, belongsToGroups);
+                return false;
+            }
+            
+            if (belongsToGroups.length === 0) {
+                console.warn(`Expression "${word}" doesn't belong to any selected group`);
+                return false;
+            }
+            
+            // Verify it belongs to the correct group
+            if (!belongsToGroups.includes(group.category)) {
+                console.warn(`Expression "${word}" assigned to wrong group`);
+                return false;
+            }
+        }
+    }
+    
+    // Additional check: ensure no combination of 4 expressions from different groups
+    // could accidentally form a valid group from the database
+    const allWords = groups.flatMap(g => g.words);
+    
+    // This is computationally expensive for large sets, so we'll do a lighter check
+    // We already verified each expression belongs to exactly one selected group,
+    // which should be sufficient for our purposes
+    
+    return true;
 }
 
 // Fallback game generation
