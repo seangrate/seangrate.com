@@ -92,7 +92,7 @@ function generateGame(options = {}) {
     
     // Try multiple times to generate a valid unique puzzle
     let attempts = 0;
-    const maxAttempts = 10;
+    const maxAttempts = 50;
     
     while (attempts < maxAttempts) {
         attempts++;
@@ -108,8 +108,8 @@ function generateGame(options = {}) {
         const difficultyColors = ['yellow', 'green', 'blue', 'purple'];
         shuffleArray(difficultyColors);
         
-        // Track all selected expressions to avoid conflicts
-        const allSelectedExpressions = [];
+        // Track all selected expressions to ensure uniqueness across all groups
+        const allSelectedExpressions = new Set();
         
         // Find expressions for each group
         const groups = [];
@@ -125,8 +125,19 @@ function generateGame(options = {}) {
                 break;
             }
             
-            // Select 4 expressions for this group, avoiding conflicts
-            const selectedExpressions = selectBestExpressions(expressions, 4, allSelectedExpressions);
+            // Filter out expressions that are already selected
+            const availableExpressions = expressions.filter(expr => 
+                !allSelectedExpressions.has(expr.expression)
+            );
+            
+            if (availableExpressions.length < 4) {
+                console.warn(`Not enough unique expressions for group: ${groupName} (${availableExpressions.length} available)`);
+                validPuzzle = false;
+                break;
+            }
+            
+            // Select 4 unique expressions for this group
+            const selectedExpressions = selectBestExpressions(availableExpressions, 4, Array.from(allSelectedExpressions));
             
             if (selectedExpressions.length < 4) {
                 console.warn(`Could not find 4 unique expressions for group: ${groupName}`);
@@ -134,8 +145,8 @@ function generateGame(options = {}) {
                 break;
             }
             
-            // Add to tracking
-            allSelectedExpressions.push(...selectedExpressions);
+            // Add expressions to the global tracking set
+            selectedExpressions.forEach(expr => allSelectedExpressions.add(expr.expression));
             
             groups.push({
                 category: groupName,
@@ -148,9 +159,18 @@ function generateGame(options = {}) {
             continue;
         }
         
+        // Validate that all expressions are unique
+        const allExpressions = groups.flatMap(g => g.words);
+        const uniqueExpressions = new Set(allExpressions);
+        
+        if (uniqueExpressions.size !== 16) {
+            console.warn(`Duplicate expressions found: ${allExpressions.length} total, ${uniqueExpressions.size} unique`);
+            continue;
+        }
+        
         // Validate that the puzzle has exactly one solution
         if (validatePuzzleUniqueness(groups)) {
-            console.log(`Generated valid puzzle in ${attempts} attempts`);
+            console.log(`Generated valid puzzle with 16 unique expressions in ${attempts} attempts`);
             return { groups };
         }
         
@@ -206,14 +226,21 @@ function selectBestExpressions(expressions, count, selectedExpressionsSoFar = []
         return expressions;
     }
     
-    // Filter out expressions that might belong to multiple groups already selected
-    const uniqueExpressions = expressions.filter(expr => {
-        // Check if this expression would create ambiguity with already selected expressions
-        return !wouldCreateAmbiguity(expr, selectedExpressionsSoFar);
-    });
+    // Convert selectedExpressionsSoFar to expressions for comparison
+    const alreadySelectedExpressions = selectedExpressionsSoFar;
     
-    // If we filtered too many, use original set but be more careful
-    const candidateExpressions = uniqueExpressions.length >= count ? uniqueExpressions : expressions;
+    // Filter out expressions that are already selected (by expression string)
+    const uniqueExpressions = expressions.filter(expr => 
+        !alreadySelectedExpressions.includes(expr.expression)
+    );
+    
+    // Use the filtered expressions
+    const candidateExpressions = uniqueExpressions;
+    
+    if (candidateExpressions.length < count) {
+        console.warn(`Not enough unique candidates: ${candidateExpressions.length} < ${count}`);
+        return candidateExpressions;
+    }
     
     // Shuffle to add randomness
     shuffleArray(candidateExpressions);
@@ -234,7 +261,7 @@ function selectBestExpressions(expressions, count, selectedExpressionsSoFar = []
     }
     
     // Fill remaining slots randomly
-    while (selected.length < count) {
+    while (selected.length < count && candidateExpressions.length > selected.length) {
         const remaining = candidateExpressions.filter(expr => !selected.includes(expr));
         if (remaining.length > 0) {
             selected.push(remaining[Math.floor(Math.random() * remaining.length)]);
