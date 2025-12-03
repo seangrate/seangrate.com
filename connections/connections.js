@@ -74,7 +74,7 @@ function getAvailableGroups() {
 // Generate a game with specified difficulty and group preferences
 function generateGame(options = {}) {
     const {
-        maxDifficulty = 4,
+        maxDifficulty = 5,
         minDifficulty = 1,
         preferredGroups = [],
         avoidGroups = []
@@ -92,7 +92,7 @@ function generateGame(options = {}) {
     
     // Try multiple times to generate a valid unique puzzle
     let attempts = 0;
-    const maxAttempts = 50;
+    const maxAttempts = 250;
     
     while (attempts < maxAttempts) {
         attempts++;
