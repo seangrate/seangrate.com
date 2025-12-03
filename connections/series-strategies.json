@@ -2,292 +2,427 @@
   "expressions": [
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n}$",
-      "groups": ["Divergence test", "Harmonic series"],
+      "groups": [
+        "p-series test",
+        "Integral test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n}{n}$",
-      "groups": ["Alternating series test", "Conditional convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n!}$",
-      "groups": ["Ratio test", "Factorial series"],
+      "groups": [
+        "Ratio test",
+        "Limit comparison test",
+        "Direct comparison test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n^2}{2^n}$",
-      "groups": ["Ratio test", "Exponential dominance"],
+      "groups": [
+        "Ratio test",
+        "Root test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^2}$",
-      "groups": ["p-series test", "Convergent p-series"],
+      "groups": [
+        "p-series test",
+        "Integral test",
+        "Direct comparison test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^{1/2}}$",
-      "groups": ["p-series test", "Divergent p-series"],
+      "groups": [
+        "p-series test",
+        "Integral test",
+        "Direct comparison test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^{3/2}}$",
-      "groups": ["p-series test", "Convergent p-series"],
+      "groups": [
+        "p-series test",
+        "Integral test",
+        "Direct comparison test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=2}^{\\infty} \\frac{1}{n(\\ln n)^2}$",
-      "groups": ["p-series test", "Generalized p-series"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\sin n}{n^2}$",
-      "groups": ["Direct comparison test", "Compare with 1/n²"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n}{n^2 + 1}$",
-      "groups": ["Limit comparison test", "Compare with 1/n"],
+      "groups": [
+        "Limit comparison test",
+        "Integral test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n + 1}{n^3 + 2n}$",
-      "groups": ["Limit comparison test", "Compare with 1/n²"],
+      "groups": [
+        "Limit comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{2^n + 3^n}{4^n}$",
-      "groups": ["Direct comparison test", "Geometric series comparison"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n!}{n^n}$",
-      "groups": ["Ratio test", "Stirling approximation"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(2n)!}{(n!)^2 4^n}$",
-      "groups": ["Ratio test", "Binomial coefficient series"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 5
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n^n}{n! e^n}$",
-      "groups": ["Ratio test", "Stirling's formula"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} n^2 x^n$",
-      "groups": ["Root test", "Power series"],
+      "groups": [
+        "Root test",
+        "Ratio test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^{n+1}}{\\sqrt{n}}$",
-      "groups": ["Alternating series test", "Conditional convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n n}{n^2 + 1}$",
-      "groups": ["Alternating series test", "Test conditions"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=2}^{\\infty} \\frac{1}{n \\ln n}$",
-      "groups": ["Integral test", "Logarithmic divergence"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^2 + n}$",
-      "groups": ["Integral test", "Partial fraction decomposition"],
+      "groups": [
+        "Integral test",
+        "Partial fractions"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{2n^3}{3n^4 + 1}$",
-      "groups": ["Limit comparison test", "Compare with 1/n"],
+      "groups": [
+        "Limit comparison test",
+        "Integral test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{3n + 5}{n^3 - 2}$",
-      "groups": ["Limit comparison test", "Compare with 1/n²"],
+      "groups": [
+        "Limit comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\sqrt{n}}{n^2 + 3}$",
-      "groups": ["Limit comparison test", "Compare with 1/n^{3/2}"],
+      "groups": [
+        "Limit comparison test",
+        "Integral test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{5^n}{3^n + 2^n}$",
-      "groups": ["Direct comparison test", "Geometric series comparison"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n^3 + 1}{2^n}$",
-      "groups": ["Direct comparison test", "Exponential dominance"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\cos(n\\pi)}{n^2}$",
-      "groups": ["Direct comparison test", "Compare with 1/n²"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^{4/3}}$",
-      "groups": ["p-series test", "Convergent p-series"],
+      "groups": [
+        "p-series test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^{2/3}}$",
-      "groups": ["p-series test", "Divergent p-series"],
+      "groups": [
+        "p-series test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=2}^{\\infty} \\frac{1}{n^2(\\ln n)^3}$",
-      "groups": ["p-series test", "Generalized p-series"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{3^n}{n^3}$",
-      "groups": ["Ratio test", "Exponential dominance"],
+      "groups": [
+        "Ratio test",
+        "Root test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(n!)^2}{(2n)!}$",
-      "groups": ["Ratio test", "Factorial series"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{2^n n!}{n^n}$",
-      "groups": ["Ratio test", "Stirling's formula"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n}{2n - 1}$",
-      "groups": ["Alternating series test", "Conditional convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^{n+1}}{n^{3/2}}$",
-      "groups": ["Alternating series test", "Absolute convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n (n+1)}{n^2 + 3}$",
-      "groups": ["Alternating series test", "Test conditions"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=2}^{\\infty} \\frac{1}{n(\\ln n)(\\ln \\ln n)}$",
-      "groups": ["Integral test", "Logarithmic divergence"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\ln n}{n^2}$",
-      "groups": ["Integral test", "Comparison with p-series"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n}{e^n}$",
-      "groups": ["Integral test", "Exponential decay"],
+      "groups": [
+        "Integral test",
+        "Root test",
+        "Ratio test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n \\sqrt{n}}{n+1}$",
-      "groups": ["Alternating series test", "Conditional convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n}{\\sqrt{n}}$",
-      "groups": ["Alternating series test", "Conditional convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n n}{n^2+1}$",
-      "groups": ["Alternating series test", "Divergent alternating"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(-1)^n}{n \\ln n}$",
-      "groups": ["Alternating series test", "Conditional convergence"],
+      "groups": [
+        "Alternating series test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{2^n}{n^2}$",
-      "groups": ["Ratio test", "Geometric dominance"],
+      "groups": [
+        "Ratio test",
+        "Root test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n!}{n^n}$",
-      "groups": ["Ratio test", "Stirling approximation"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 5
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{(2n)!}{(n!)^2 \\cdot 4^n}$",
-      "groups": ["Ratio test", "Central binomial coefficient"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 5
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n^n}{(n+1)^n}$",
-      "groups": ["Ratio test", "Exponential comparison"],
+      "groups": [
+        "Ratio test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^{4/3}}$",
-      "groups": ["p-series test", "Convergent p-series"],
+      "groups": [
+        "p-series test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{1}{n^{0.9}}$",
-      "groups": ["p-series test", "Divergent p-series"],
+      "groups": [
+        "p-series test"
+      ],
       "difficulty": 2
     },
     {
       "expression": "$\\displaystyle \\sum_{n=2}^{\\infty} \\frac{1}{n(\\ln n)^{0.5}}$",
-      "groups": ["p-series test", "Divergent logarithmic"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=3}^{\\infty} \\frac{1}{n(\\ln n)(\\ln \\ln n)^2}$",
-      "groups": ["p-series test", "Iterated logarithm"],
+      "groups": [
+        "Integral test"
+      ],
       "difficulty": 5
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\cos(n\\pi)}{n^{3/2}}$",
-      "groups": ["Direct comparison test", "Alternating p-series"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{|\\sin n|}{n^2}$",
-      "groups": ["Direct comparison test", "Bounded numerator"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n+\\sin n}{n^3}$",
-      "groups": ["Direct comparison test", "Dominant term analysis"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\sqrt{n+1}}{n^2}$",
-      "groups": ["Direct comparison test", "Asymptotic behavior"],
+      "groups": [
+        "Direct comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{2n+3}{5n^2+7n+1}$",
-      "groups": ["Limit comparison test", "Rational functions"],
+      "groups": [
+        "Limit comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\sqrt{n^3+n}}{n^2+5}$",
-      "groups": ["Limit comparison test", "Compare with 1/√n"],
+      "groups": [
+        "Limit comparison test"
+      ],
       "difficulty": 4
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{n^2+1}{n^4+n^2+1}$",
-      "groups": ["Limit comparison test", "Compare with 1/n²"],
+      "groups": [
+        "Limit comparison test"
+      ],
       "difficulty": 3
     },
     {
       "expression": "$\\displaystyle \\sum_{n=1}^{\\infty} \\frac{\\ln(n+1)}{n \\sqrt{n}}$",
-      "groups": ["Limit comparison test", "Logarithmic growth"],
+      "groups": [
+        "Limit comparison test"
+      ],
       "difficulty": 4
     }
   ]
