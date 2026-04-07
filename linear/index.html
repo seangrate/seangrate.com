@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Matrix Transformation Visualization</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Matrix Transformation Visualization</h1>
+        
+        <div class="content">            
+            <div class="control-section">
+                <div class="control-group">
+                    <div class="matrix-display">
+                        <div class="matrix-inline">
+                            <span class="matrix-name">\(A = \begin{bmatrix} a & -b \\ b & a \end{bmatrix} = \)</span>
+                            <div class="matrix-bracketed" aria-label="2 by 2 matrix">
+                                <div class="matrix-bracket matrix-bracket-left" aria-hidden="true"></div>
+                                <div class="matrix-values">
+                                    <div class="matrix-row">
+                                        <span class="matrix-entry" id="matrix-a">0.00</span>
+                                        <span class="matrix-entry" id="matrix-b-neg">-0.00</span>
+                                    </div>
+                                    <div class="matrix-row">
+                                        <span class="matrix-entry" id="matrix-b">0.00</span>
+                                        <span class="matrix-entry" id="matrix-a-2">0.00</span>
+                                    </div>
+                                </div>
+                                <div class="matrix-bracket matrix-bracket-right" aria-hidden="true"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="parameter-control">
+                        <label>
+                            <div class="parameter-label">\(a\):</div>
+                            <div class="parameter-value" id="a-value">1.00</div>
+                        </label>
+                        <input 
+                            type="range" 
+                            id="a-slider" 
+                            min="-2" 
+                            max="2" 
+                            step="0.01" 
+                            value="1">
+                    </div>
+                    
+                    <div class="parameter-control">
+                        <label>
+                            <div class="parameter-label">\(b\):</div>
+                            <div class="parameter-value" id="b-value">0.00</div>
+                        </label>
+                        <input 
+                            type="range" 
+                            id="b-slider" 
+                            min="-2" 
+                            max="2" 
+                            step="0.01" 
+                            value="0">
+                    </div>
+
+                    <div class="parameter-control" style="margin-top: 4px; margin-bottom: 0;">
+                        <label for="unit-circle-lock" style="display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer;">
+                            <input type="checkbox" id="unit-circle-lock" style="width: 16px; height: 16px; cursor: pointer;">
+                            <span>Ensure \(a^2 + b^2 = 1\)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="legend">
+                    <strong>Legend:</strong><br><br>
+                    <div class="legend-item">
+                        <div class="legend-color blue-circle"></div>
+                        <span>Original points (unit circle)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color red-circle"></div>
+                        <span>Transformed points (\(Av\))</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-section">
+                <canvas id="canvas" width="500" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const aSlider = document.getElementById('a-slider');
+        const bSlider = document.getElementById('b-slider');
+        const unitCircleLock = document.getElementById('unit-circle-lock');
+        const aValue = document.getElementById('a-value');
+        const bValue = document.getElementById('b-value');
+        
+        // Matrix display elements
+        const matrixA = document.getElementById('matrix-a');
+        const matrixBNeg = document.getElementById('matrix-b-neg');
+        const matrixB = document.getElementById('matrix-b');
+        const matrixA2 = document.getElementById('matrix-a-2');
+        
+        // Canvas parameters
+        const padding = 50;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const scale = (canvas.width - 2 * padding) / 4; // scale for coordinates
+        
+        // Generate points on unit circle
+        function generateUnitCirclePoints(numPoints = 16) {
+            const points = [];
+            for (let i = 0; i < numPoints; i++) {
+                const angle = (2 * Math.PI * i) / numPoints;
+                points.push({
+                    x: Math.cos(angle),
+                    y: Math.sin(angle),
+                    angle: angle,
+                    label: i
+                });
+            }
+            return points;
+        }
+        
+        // Matrix multiplication: A * v
+        function transformPoint(a, b, x, y) {
+            return {
+                x: a * x - b * y,
+                y: b * x + a * y
+            };
+        }
+        
+        // Convert from world coordinates to canvas coordinates
+        function toCanvasCoords(x, y) {
+            return {
+                x: centerX + x * scale,
+                y: centerY - y * scale
+            };
+        }
+        
+        // Draw grid and axes
+        function drawGrid() {
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            ctx.fillStyle = '#999';
+            ctx.font = '12px "Computer Modern Serif", "CMU Serif", "Latin Modern Roman", serif';
+            ctx.textAlign = 'center';
+            
+            // Draw grid lines
+            for (let i = -4; i <= 4; i++) {
+                if (i === 0) continue;
+                
+                // Vertical lines
+                const x = centerX + i * scale;
+                ctx.beginPath();
+                ctx.moveTo(x, padding);
+                ctx.lineTo(x, canvas.height - padding);
+                ctx.stroke();
+                
+                // Horizontal lines
+                const y = centerY - i * scale;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(canvas.width - padding, y);
+                ctx.stroke();
+                
+                // Labels
+                ctx.fillText(i, x, canvas.height - padding + 20);
+                ctx.textAlign = 'right';
+                ctx.fillText(i, padding - 10, centerY - i * scale + 5);
+                ctx.textAlign = 'center';
+            }
+            
+            // Draw axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            
+            // X-axis
+            ctx.beginPath();
+            ctx.moveTo(padding, centerY);
+            ctx.lineTo(canvas.width - padding, centerY);
+            ctx.stroke();
+            
+            // Y-axis
+            ctx.beginPath();
+            ctx.moveTo(centerX, padding);
+            ctx.lineTo(centerX, canvas.height - padding);
+            ctx.stroke();
+            
+            // Arrow heads
+            const arrowSize = 8;
+            ctx.fillStyle = '#333';
+            
+            // X-axis arrow
+            ctx.beginPath();
+            ctx.moveTo(canvas.width - padding, centerY);
+            ctx.lineTo(canvas.width - padding - arrowSize, centerY - arrowSize / 2);
+            ctx.lineTo(canvas.width - padding - arrowSize, centerY + arrowSize / 2);
+            ctx.fill();
+            
+            // Y-axis arrow
+            ctx.beginPath();
+            ctx.moveTo(centerX, padding);
+            ctx.lineTo(centerX - arrowSize / 2, padding + arrowSize);
+            ctx.lineTo(centerX + arrowSize / 2, padding + arrowSize);
+            ctx.fill();
+        }
+        
+        // Draw a point with label
+        function drawPoint(x, y, color, label) {
+            const canvasCoords = toCanvasCoords(x, y);
+            
+            // Draw point
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(canvasCoords.x, canvasCoords.y, 5, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw label
+            ctx.fillStyle = color;
+            ctx.font = '700 11px "Computer Modern Serif", "CMU Serif", "Latin Modern Roman", serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(label, canvasCoords.x + 8, canvasCoords.y - 6);
+        }
+        
+        // Draw vectors from origin
+        function drawVector(x, y, color) {
+            const canvasCoords = toCanvasCoords(x, y);
+            
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 1.5;
+            ctx.globalAlpha = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(canvasCoords.x, canvasCoords.y);
+            ctx.stroke();
+            ctx.globalAlpha = 1.0;
+        }
+
+        function clampToUnitInterval(value) {
+            return Math.max(-1, Math.min(1, value));
+        }
+
+        function signedSqrt(value, referenceSign) {
+            const root = Math.sqrt(Math.max(0, value));
+            return referenceSign < 0 ? -root : root;
+        }
+
+        function enforceUnitCircleFrom(changedParameter) {
+            if (!unitCircleLock.checked) return;
+
+            let a = parseFloat(aSlider.value);
+            let b = parseFloat(bSlider.value);
+
+            if (changedParameter === 'a') {
+                a = clampToUnitInterval(a);
+                b = signedSqrt(1 - a * a, b);
+            } else {
+                b = clampToUnitInterval(b);
+                a = signedSqrt(1 - b * b, a);
+            }
+
+            aSlider.value = a.toFixed(2);
+            bSlider.value = b.toFixed(2);
+        }
+
+        function normalizeCurrentPairToUnitCircle() {
+            let a = parseFloat(aSlider.value);
+            let b = parseFloat(bSlider.value);
+            const norm = Math.hypot(a, b);
+
+            if (norm === 0) {
+                a = 1;
+                b = 0;
+            } else {
+                a /= norm;
+                b /= norm;
+            }
+
+            aSlider.value = a.toFixed(2);
+            bSlider.value = b.toFixed(2);
+        }
+        
+        // Main render function
+        function render() {
+            const a = parseFloat(aSlider.value);
+            const b = parseFloat(bSlider.value);
+            
+            // Update display values
+            aValue.textContent = a.toFixed(2);
+            bValue.textContent = b.toFixed(2);
+            
+            // Update matrix display
+            matrixA.textContent = a.toFixed(2);
+            matrixBNeg.textContent = (-b).toFixed(2);
+            matrixB.textContent = b.toFixed(2);
+            matrixA2.textContent = a.toFixed(2);
+            
+            // Clear canvas
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw grid and axes
+            drawGrid();
+            
+            // Generate and draw points
+            const points = generateUnitCirclePoints(16);
+            
+            // Draw unit circle reference
+            ctx.strokeStyle = '#c0c0c0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, scale, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Draw original and transformed points
+            points.forEach(point => {
+                // Draw vector and point for original
+                drawVector(point.x, point.y, '#2196F3');
+                drawPoint(point.x, point.y, '#2196F3', point.label);
+                
+                // Transform the point
+                const transformed = transformPoint(a, b, point.x, point.y);
+                
+                // Draw vector and point for transformed
+                drawVector(transformed.x, transformed.y, '#FF6B6B');
+                drawPoint(transformed.x, transformed.y, '#FF6B6B', point.label);
+            });
+        }
+
+        function onASliderInput() {
+            enforceUnitCircleFrom('a');
+            render();
+        }
+
+        function onBSliderInput() {
+            enforceUnitCircleFrom('b');
+            render();
+        }
+
+        function onUnitCircleLockChange() {
+            if (unitCircleLock.checked) {
+                normalizeCurrentPairToUnitCircle();
+            }
+            render();
+        }
+        
+        // Event listeners
+        aSlider.addEventListener('input', onASliderInput);
+        bSlider.addEventListener('input', onBSliderInput);
+        unitCircleLock.addEventListener('change', onUnitCircleLockChange);
+        
+        // Initial render
+        render();
+    </script>
+</body>
+</html>
