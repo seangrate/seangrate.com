@@ -7,69 +7,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="../styles/misc.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-.w3-bar-block .w3-bar-item {padding:20px}
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+  .w3-bar-block .w3-bar-item {padding:20px}
 </style>
 </head>
-<body>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
 
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
   <!-- Featured Cocktails -->
   <div class="w3-container">
-    <h2>Featured Cocktails</h2><br>
-    <div class="w3-row-padding w3-padding-16 w3-center" id="featured">
-      <div class="w3-quarter">
-        <img src="../../images/cocktails/carajillo-old-fashioned.webp" alt="Maple Old Fashioned" style="width:100%">
-        <h3 style="text-align:left">Carajillo Old-Fashioned</h3>
-        <p><i>Cognac, rye whiskey, honey liqueur, coffee liqueur</i></p>
-        <br>
-        <p>Warm and boozy.</p>
+    <h2>Featured Rums</h2><br>
+    <div class="masonry" id="featured" style="column-count: 4">
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/90888750/90888750-1-fr.png" alt="Bacardi" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Bacardi Reserva 8 Year</b></h3>
+          <p><i>Origin: Puerto Rico</i></p>
+          <br>
+          <p>Aged, colum still, Spanish-style</p>
+        </div>
       </div>
-      <div class="w3-quarter">
-        <img src="../../images/cocktails/caipirinha.jpg" alt="caipirinha" style="width:100%">
-        <h3 style="text-align:left">Caipirinha</h3>
-        <p><i>Cachaça, lime</i></p>
-        <br>
-        <p>Resfreshing.</p>
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/8799750/8799750-1-fr.png" alt="Appleton Estate" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Appleton Estate Signature</b></h3>
+          <p><i>Origin: Jamaica</i></p>
+          <br>
+          <p>Lightly aged, pot still</p>
+        </div>
       </div>
-      <div class="w3-quarter">
-        <img src="../../images/cocktails/painkiller.jpg" alt="Coquiller" style="width:100%">
-        <h3 style="text-align:left">Coquiller ("Coh-kil-er")</h3>
-        <p><i>Micky's coquito blend, pineapple, orange</i></p>
-        <br>
-        <p>Creamy and fruity.</p>
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/172133750/172133750-1-fr.png" alt="Rum Fire" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Rum Fire</b></h3>
+          <p><i>Origin: Jamaica</i></p>
+          <br>
+          <p>Unaged, overproof, pot still</p>
+        </div>
       </div>
-      <div class="w3-quarter">
-        <img src="../../images/cocktails/amaretto-sour.jpg" alt="Amaretto Sour" style="width:100%">
-        <h3 style="text-align:left">Brown-Butter Amaretto Sour</h3>
-        <p><i>amaretto, butter-wash bourbon, lemon, egg</i></p>
-        <br>
-        <p>Buttery almond goodness.</p>
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/192579750/192579750-1-fr.png" alt="Lemon Hart" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Lemon Hart 1804</b></h3>
+          <p><i>Origin: Guyana</i></p>
+          <br>
+          <p>Aged, British-style</p>
+        </div>
       </div>
     </div>
     <br>
-    <!-- <p>*optional, but recommended</p> -->
+    <div class="masonry" style="column-count: 4">
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/99813750/99813750-1-fr.png" alt="Cruzan" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Cruzan Black Strap</b></h3>
+          <p><i>Origin: U.S. Virgin Islands</i></p>
+          <br>
+          <p>Blackstrap</p>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/2126252554/2126252554-1-fr.png" alt="Paranubes" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Paranubes</b></h3>
+          <p><i>Origin: Mexico</i></p>
+          <br>
+          <p>Pot still</p>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/2126238619/2126238619-1-fr.png" alt="Clément Rhum Agricole" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Clément Rhum Agricole</b></h3>
+          <p><i>Origin: Martinique</i></p>
+          <br>
+          <p>Unaged, rhum agricole</p>
+        </div>
+      </div>
+      <div class="masonry-item">
+        <div class="w3-container w3-white" style="width:270px">
+          <div class="w3-container" style="height:300px;margin:auto">
+            <img src="https://www.totalwine.com/images/117687750/117687750-1-fr.png" alt="Novo Fogo" style="width:100%;height:100%;object-fit:contain">
+          </div>
+          <h3 style="text-align:left"><b>Novo Fogo</b></h3>
+          <p><i>Origin: Brazil</i></p>
+          <br>
+          <p>Lightly aged, cachaça</p>
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
   <hr width="100%">
 
   <!-- Mocktails -->
   <div class="w3-container">
   <h2>Mocktails</h2><br>
-    <div class="w3-row-padding w3-padding-16 w3-center" id="mocktails">
-      <div class="w3-quarter">
-        <img src="../../images/cocktails/citrus-fizz.jpg" alt="Citrus Fizz" style="width:100%">
-        <h3 style="text-align:left">Citrus Fizz</h3>
-        <p><i>orange, lemon, lime, grenadine, egg</i></p>
-      </div>
-      <div class="w3-quarter">
-        <img src="../../images/cocktails/dirty_coconut_coke.webp" alt="Dirty Coconut Coke" style="width:100%">
-        <h3 style="text-align:left">Dirty Coconut Coke</h3>
-        <p><i>Coca-Cola, cream of coconut, lime, coconut milk</i></p>
+  <div class="masonry" id="mocktails" style="column-count: 4">
+    <div class="masonry-item">
+      <div class="w3-container w3-white" style="width:270px">
+        <div class="w3-container" style="height:300px;margin:auto">
+          <img src="https://www.liquor.com/thmb/60kax5NXq_tMlbL9thPTwOcG7y8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/Daiquiri_3000x3000_primary-206eb2330cb04852ab7d780dcf3d55ef.jpg" alt="Daquiri" style="width:100%;height:100%;object-fit:contain">
+        </div>
+        <h3 style="text-align:left"><b>N/A Daquiri</b></h3>
+        <p><i>N/A rum, lime</i></p>
       </div>
     </div>
+    <div class="masonry-item">
+      <div class="w3-container w3-white" style="width:270px">
+        <div class="w3-container" style="height:300px;margin:auto">
+          <img src="https://www.liquor.com/thmb/k9dShckTW-MLzcOLjpaNMjtw26M=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/Gimlet-1500x1500-hero-7af9450103b9437d8d5b7206a6ddfe43.jpg" alt="Gimlet" style="width:100%;height:100%;object-fit:contain">
+        </div>
+        <h3 style="text-align:left"><b>N/A Gimlet</b></h3>
+        <p><i>N/A gin, lime</i></p>
+    </div>
+  </div>
   </div>
   <hr width="100%">
 
