@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- Here is the source for the template: https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm -->
-  <title>Stable Tamari Lattice</title>
+  <title>Matroids</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,6 +34,8 @@
   </div>
   <div class="w3-bar-block">
     <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
+    <a href="#background" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw w3-margin-right"></i>Background</a>
+    <a href="#results" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-pencil fa-fw w3-margin-right"></i>Results</a> 
   </div>
 </nav>
 
@@ -49,8 +51,126 @@
     </div>
   </header>
 
-  <div class="w3-container w3-padding-large">
-    Under construction.    
+  <div id="background" class="w3-container w3-padding-large">
+    <h2><b>Background</b></h2>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Definitions</b></h4>
+      <p>
+        A matroid is a combinatorial structure that abstracts the notion of linear independence.
+        More formally, a <em>matroid</em> \( M \) on a finite <em>ground set</em> \( E \) with <em>independent sets</em> \( \mathcal{I} \subseteq 2^E \) is a pair \( M = (E,\mathcal{I} \) satisfying the following properties:
+        <ol>
+          <li>\( \emptyset \in \mathcal{I} \).</li>
+          <li>If \( J \subseteq I \) and \( I \in \mathcal{I} \), then \( J \in \mathcal{I} \).</li>
+          <li>If \( I,J \in \mathcal{I} \) and \( \lvert I \rvert > \lvert J \rvert \), then there exists an element \( e \in I \setminus J \) such that \( J \cup \{ e \} \in \mathcal{I} \).</li>
+        </ol>
+        In other words, a matroid is a simplicial complex satisfying an additional <em>exchange property</em>; this is reminiscent of the story in linear algebra where \( E \) is a set of vectors and \( \mathcal{I} \) consists of the linearly independent sets obtained using those vectors.
+        <ul>
+          <li>
+            Elements of \( \mathcal{I} \) are called <em>independent sets</em>; maximal ones are called <em>bases</em>.
+          </li>
+          <li>
+            Sets not in \( \mathcal{I} \) are called <em>dependent sets</em>; minimal ones are called <em>circuits</em>.
+          </li>
+          <li>
+            The <em>rank</em> of a set \( F \subseteq E \) is the cardinality of a maximal indpendent set in \( F \), and is denoted \( \text{rk}(A) \).
+            The <em>closure</em> of \( F \) is the set \[ \overline{F} = \{ e \in E \, \mid \, \text{rk}(F \cup \{ e \}) = \text{rk}(F) \}. \]
+            If \( F \) satisfies \( \overline{F} = F \), then it is called a <em>flat</em> of \( M \).
+          </li>
+          <li>A matroid \( M \) is called <em>simple</em> if it has no \( 1 \)- or \( 2 \)-element circuits.</li>
+        </ul>
+      </p>
+      <p>
+        For a matroid \( M \), a remarkable fact is that the flats of \( M \) form a lattice \( \mathcal{L}(M) \), and if we further assume that \( M \) is simple, this lattice is a <em>geometric</em> lattice.
+        In fact, a lattice is geometric if and only if it is the <em>lattice of flats</em> of a matroid.
+        So, when \( M \) is a simple matroid, its lattice of flats \( \mathcal{L}(M) \) comes equipped with a meaningful and natural rank function.
+      </p>
+      <h4><b>Example</b></h4>
+      <p>
+        Let \( \mathbb{F} = \text{GF}(2) \) and consider the set \( E \) of points in \( \mathbb{F}^3 \) given as the columns of the following matrix:
+        \[ \begin{pmatrix} p_1 & \dots & p_7 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 1 & 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 & 1 & 1 & 0 \\ 1 & 0 & 1 & 0 & 1 & 0 & 1 \end{pmatrix}. \]
+        Here, the independent sets are given by subsets of \( E \) which are linearly independent.
+        Thus, \( M = (E,\mathcal{I}) \) forms a matroid; this matroid is called the <em>Fano plane</em> or also the projective geometry of rank \( 2 \) of over \( \mathbb{F} \), denoted \( \text{PG}(2,2) \).
+      </p>
+      <div class="w3-container w3-padding-large">
+        <img src="../images/matroids/pg22.png" alt="PG(2,2)" style="width:49%; text-align:center" class="w3-round">
+        <img src="../images/matroids/fano.png" alt="fano" style="width:49%; text-align:center" class="w3-round">
+        <p>
+          The Fano plane presented in two ways.
+          Points in red lie on an affine patch whereas points in blue lie on the hyperplane at infinity.
+        </p>
+      </div>
+      <p>
+        In this setting, the closure corresponds to taking the span of a set of vectors.
+        The lattice of flats is then
+      </p>
+      <div class="w3-container w3-padding-large" style="text-align:center">
+        <img src="../images/matroids/lattice.png" alt="lattice of flats" style="width:50%;" class="w3-round">
+      </div>
+      <p>
+        The rank function is given by the vector space dimension of the flat, so we can stratify the lattice by rank:
+        \[
+          \begin{array}{|l||c|c|c|c|}
+            \hline
+            \text{rank} & 0 & 1 & 2 & 3 \\
+            \hline
+            \# \mathcal{L}^i & 1 & 7 & 7 & 1 \\
+            \hline
+          \end{array}
+        \]
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div id="results" class="w3-container w3-padding-large">
+    <h2><b>Results</b></h2>
+    <p>
+      Let \( M = (E,\mathcal{I}) \) be a simple matroid and let \( \mathbb{K} \) be a field of characteristic \( 0 \).
+      The <em>graded Möbius algebra</em> of \( M \) is the standard graded \( \mathbb{K} \)-algebra
+      \[ \textsf{B}_M = \bigoplus_{F \in \mathcal{L}(M)} \mathbb{K} x_F, \] 
+      with multiplication 
+      \[ 
+        x_F x_G = 
+        \begin{cases} 
+          x_{F \vee G} & \text{if } \text{rk}(F \vee G) = \text{rk}(F) + \text{rk}(G) \\
+          0 & \text{otherwise}
+        \end{cases}.
+      \]
+      A result of <a class="weblink" href="https://link.springer.com/article/10.1007/s00029-025-01029-6" target="_blank">LaClair-Mastroeni-McCullough-Peeva</a> shows that it has a presentation
+      \[
+        \textsf{B}_M \cong \frac{\mathbb{K}[y_i \, \colon \, i \in E]}{(y_i^2 \, \colon \, i \in E) + (y_{C \setminus i} - y_{C \setminus j} \, \colon \, C \in \mathcal{C}(M))}.
+      \]
+
+      <b>Proposition</b>: Let \( M \) be a simple matroid with \( \textsf{B}_M \) its graded Möbius algebra.
+      Then
+      <ol>
+        <li>The Hilbert function of \( \textsf{B}_M \) is the rank-generating function of \( \mathcal{L}(M) \).</li>
+        <li>The Castelnuovo-Mumford regularity of \( \textsf{B}_M \) is given by \( \text{reg} \, \textsf{B}_M = \text{rk} \, M = \text{rk} \, \mathcal{L}(M) \).</li>
+        <li>The projective dimension of \( \textsf{B}_M \) is given by \( \text{pdim} \, \textsf{B}_M = \lvert E \rvert \).</li>
+      </ol>
+    </p>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Koszulness</b></h4>
+      <em>Joint with <a class="weblink" href="https://faculty.sites.iastate.edu/jmccullo/" target="_blank">Jason McCullough</a>.</em>
+      <p>
+        In 2016, <a class="weblink" href="https://www.jstor.org/stable/26174784" target="_blank">Maeno and Numata</a> characterized which matroids have Gorenstein graded Möbius algebras.
+        Using techniques from <a class="weblink" href="https://link.springer.com/article/10.1007/s00029-025-01029-6" target="_blank">LaClair-Mastroeni-McCullough-Peeva</a>, we show that these Gorenstein algebras are also Koszul.
+        We also show that the graded Möbius algebras of affine geometries are quadratic.
+      </p>
+    </div>
+    <div class="w3-container w3-padding-large">
+      <h4><b>Betti numbers</b></h4>
+      <em>Joint with <a class="weblink" href="https://sites.google.com/view/louiza-fouli/home" target="_blank">Louiza Fouli</a>,
+        <a class="weblink" href="https://www.selvikara.com/" target="_blank">Selvi Kara</a>,
+        <a class="weblink" href="https://sites.google.com/view/adamlaclair/home" target="_blank">Adam LaClair</a>,
+        <a class="weblink" href="https://faculty.sites.iastate.edu/jmccullo/" target="_blank">Jason McCullough</a>,
+        Vinh Nguyen,
+        <a class="weblink" href="https://soloist.ai/combinatola" target="_blank">Aleksandra Sobieska</a>,
+        and <a class="weblink" href="https://sites.google.com/view/prajwal-udanshive/" target="_blank">Prajwal Udanshive</a>.
+      </em>
+      <p>
+        We compute explicit formulas for the graded Betti numbers of uniform matroids using techinques from liason theory.
+      </p>
+    </div>
   </div>
 
   <!-- Footer -->
