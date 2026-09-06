@@ -99,6 +99,60 @@
 <script>
     // timeline data
     const timelineEvents = [
+    { title: 'TBD', 
+      date: new Date('2027-1-15'), 
+      venue: 'Joint Mathematics Meetings',
+      location: '',
+      city: 'Chicago, IL',
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: ''} }, 
+    { title: 'TBD', 
+      date: new Date('2027-1-12'), 
+      venue: 'Joint Mathematics Meetings',
+      location: '',
+      city: 'Chicago, IL',
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: ''} }, 
+    { title: '\\( 3 \\)-point functions and incidence toric ideals', 
+      date: new Date('2026-10-31'), 
+      venue: 'SIAM TX-LA Sectional Meeting',
+      location: 'Southern Methodist University',
+      city: 'Dallas, TX',
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: ''} },  
+    { title: 'The graded Möbius algebra of a matroid', 
+      date: new Date('2026-8-29'), 
+      venue: 'Upcoming Researchers in Commutative Algebra (URiCA)',
+      location: 'University of Nebraska-Lincoln',
+      city: 'Lincoln, NE',
+      extras: { notes: '', 
+                code: '', 
+                slides: '../misc/slides/urica/gmas.pdf', 
+                video: '',
+                abstract: 'The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. '
+                          + 'In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. '
+                          + 'Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.'} }, 
+    { title: 'SVD is all you need', 
+      date: new Date('2026-5-7'), 
+      venue: 'Undergraduate Math Seminar',
+      location: 'Grinell College',
+      city: 'Grinell, IA',
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
+                video: '',
+                abstract: 'Matrices have many factorizations which are amenable to certain applications, such as QR decomposition for least-squares problems. '
+                          + 'The singular value decomposition (SVD) is yet another factorization of a matrix, but which recovers other matrix factorizations and which has wide applicability to modern problems. '
+                          + 'I will talk about diagonalization of matrices, SVD, and showcase how these decompositions manifest in problems from computer vision and statistics.'} },  
     { title: 'Gorenstein graded Möbius algebras are Koszul', 
       date: new Date('2026-4-18'), 
       venue: 'AMS Spring Central Sectional Meeting',
@@ -107,6 +161,20 @@
       extras: { notes: '', 
                 code: '', 
                 slides: '../misc/slides/ams-central-s26/talk.pdf', 
+                video: '',
+                abstract: 'The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of the lattice of flats. '
+                          + 'In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. '
+                          + 'We extend this result by showing that these algebras are also Koszul by showing that the defining ideals have a quadratic Gröbner basis. '
+                          + 'We also examine the Koszul property for graded Möbius algebras of affine geometries, showing that those of finite affine planes are Koszul using a filtration argument. '
+                          + 'This is joint work with Jason McCullough.'} },
+    { title: 'Gorenstein graded Möbius algebras are Koszul', 
+      date: new Date('2026-4-3'), 
+      venue: 'Algebra and Geometry Seminar',
+      location: 'Iowa State University',
+      city: 'Ames, IA',
+      extras: { notes: '', 
+                code: '', 
+                slides: '', 
                 video: '',
                 abstract: 'The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of the lattice of flats. '
                           + 'In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. '
@@ -140,7 +208,7 @@
                           + 'Stemming from the AMS MRC: Algebraic Combinatorics this past summer, I will describe some work in progress joint with Anna Pun, Herman Chau, Spencer Daugherty, and Juan Carlos Martínez Mori where we describe the combinatorics of this lattice. '
                           + 'Namely, I will present properties of the lower order ideals of this lattice, the cover relations, and some enumeration problems (related to Catalan numbers and parking functions) we are tackling. '
                           + 'I will discuss this data through some examples and Python code.' } },
-    { title: 'Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces', 
+    { title: 'Betti tables forcing failure of the weak Lefschetz property', 
       date: new Date('2025-10-31'), 
       venue: 'Algebra and Geometry Seminar',
       location: 'Iowa State University',
