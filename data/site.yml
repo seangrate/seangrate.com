@@ -1,0 +1,53 @@
+# Site-wide info used across every page (sidebar contact icons, footer, homepage nav).
+name: Sean Grate
+title: Postdoctoral Research Associate
+email: sgrate@iastate.edu
+office: 442 Carver Hall
+mailing_address:
+  - Department of Mathematics
+  - 396 Carver Hall
+  - Ames, IA 50011
+  - USA
+
+social:
+  - icon: fa-envelope
+    href: "mailto:sgrate@iastate.edu"
+  - icon: fa-github
+    href: "https://github.com/seangrate"
+    external: true
+  - icon: fa-linkedin
+    href: "https://www.linkedin.com/in/seangrate/"
+    external: true
+
+# Homepage sidebar navigation (anchors on the homepage itself, then subpages).
+nav:
+  - label: ABOUT
+    href: "#about"
+    icon: fa-user
+  - label: RESEARCH
+    href: "#research"
+    icon: fa-university
+  - label: SOFTWARE
+    href: "#software"
+    icon: fa-terminal
+  - label: PAPERS
+    href: papers/
+    icon: fa-file-text-o
+  - label: TALKS
+    href: talks/
+    icon: fa-microphone
+  - label: TEACHING
+    href: teaching/
+    icon: fa-graduation-cap
+  - label: OUTREACH
+    href: outreach/
+    icon: fa-users
+  - label: SERVICE
+    href: service/
+    icon: fa-tasks
+  - label: TRAVEL
+    href: travel/
+    icon: fa-plane
+  - label: PAST PROJECTS
+    href: past-projects/
+    icon: fa-pencil

@@ -1,0 +1,84 @@
+about:
+  photo: images/me.jpg
+  intro: >-
+    I am a postdoctoral research associate working with
+    <a class="weblink" href="https://faculty.sites.iastate.edu/jmccullo/" target="_blank">Jason McCullough</a>
+    at Iowa State University.
+    I earned a Ph.D. in Mathematics at Auburn University studying under
+    <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>,
+    and a B.S. in Mathematics with minors in History and Classics at the University of Kentucky.
+    While at the University of Kentucky, I conducted research with the
+    <a class="weblink" href="http://www.ms.uky.edu/~geometrylab/" target="_blank">University of Kentucky Math Lab</a>
+    and the <a class="weblink" href="http://mvrl.cs.uky.edu/" target="_blank">Multimodal Vision Research Laboratory</a>.
+  interests: >-
+    My primary research interests lie in commutative algebra, algebraic geometry, algebraic combinatorics, and data analysis.
+    I am particularly interested in problems that can be approached via computation.
+    A copy of my CV can be found <a class="weblink" href="./misc/CV.pdf">here</a> along with my contact information.
+
+research:
+  - title: Graded Möbius Algebras of Matroids
+    blurb: Homological properties of graded Möbius algebras of matroids.
+    image: images/matroids/pg22.png
+    alt: PG(2,2)
+    link: matroids/
+  - title: Castelnuovo-Mumford Regularity
+    blurb: How complicated can the generators and relations of a module be?
+    image: images/regularity/hochster.png
+    alt: hochster
+    link: regularity/
+  - title: Stable Tamari Lattice
+    blurb: The combinatorics of posets in the stable Tamari lattice.
+    image: images/tamari/hasse_123.png
+    alt: tamari hasse 123
+    link: tamari/
+  - title: Lefschetz Properties
+    blurb: When does multiplication by a linear form have full rank in an Artinian algebra?
+    image: images/lefschetz/hypersurface.png
+    alt: hypersurface
+    link: lefschetz/
+  - title: Topological Data Analysis
+    blurb: Use techniques from computational topology to analyze and exploit the shape of data.
+    image: images/tda/kde.gif
+    alt: tda
+    link: tda/
+
+software:
+  - title: MatrixSchubert
+    blurb: A Macaulay2 package with functions for investigating ASM and matrix Schubert varieties.
+    image: images/matrixschubert/pipe_dream.png
+    alt: matrixschubert
+    link: https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MatrixSchubert/html/index.html
+    external: true
+    monospace: true
+  - title: Minimal Out-Neighborhoods
+    blurb: Python scripts for computing minimal out-neighborhoods (and some statistics) in the \( F \)-lattice.
+    image: images/out-neighborhoods/open_r-2.png
+    alt: out-neighborhoods
+    link: https://github.com/seangrate/MinimalOutNeighborhoods
+    external: true
+  - title: Permutations
+    blurb: A Macaulay2 package implementing permutations.
+    image: images/permutations.png
+    alt: permutations
+    link: https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Permutations/html/index.html
+    external: true
+    monospace: true
+  - title: CAAT
+    blurb: A tool to help analyze course alignment.
+    image: images/caat/alignment_7.png
+    alt: caat
+    link: https://github.com/seangrate/CAAT
+    external: true
+  - title: YoungTableaux
+    blurb: A Macaulay2 package implementing Young diagrams and tableaux.
+    image: images/tableaux.png
+    alt: tableaux
+    link: https://github.com/Macaulay2/Workshop-2025-Tulane/tree/YoungTableaux
+    external: true
+    monospace: true
+  - title: Tropical Curves
+    blurb: Python scripts for visualizing tropical curves.
+    image: images/tropical/tropical_curve.png
+    alt: tropical-curve
+    link: https://github.com/seangrate/Tropical-Curves
+    external: true

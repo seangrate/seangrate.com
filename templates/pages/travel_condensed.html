@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}Travel{% endblock %}
+{% block extra_head %}{{ m.abstract_toggle_style() }}{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "images/travel/golden_gate_bridge.jpg", "Travel", "Places I have been for conferences, workshops, and summer schools.", [
+  {"href": "./", "icon": "fa-arrows-v", "label": "TIMELINE VIEW"},
+  {"href": "./condensed.html", "icon": "fa-list", "label": "LIST VIEW"},
+]) }}{% endblock %}
+
+{% set months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %}
+
+{% block content %}
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <p>
+      <ul>
+        {% for trip in travel %}
+        <li>
+          {{ trip.title }}
+          <span style="float:right">{{ months[trip.date.month - 1] }} {{ trip.date.year }}</span>
+        </li>
+        <br>
+        {% endfor %}
+      </ul>
+    </p>
+  </div>
+{% endblock %}

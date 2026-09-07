@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}Outreach{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "", "Outreach", "Outreach programs I have participated in.", []) }}{% endblock %}
+
+{% block content %}
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+    <p>
+      <ul>
+        {% for entry in outreach %}
+        <li>
+          {{ entry.title }}
+          <span style="float:right">{{ entry.dates }}</span>
+          {% if entry.bullets %}
+          <ul>
+            {% for bullet in entry.bullets %}
+            <li>
+              {{ bullet }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+        <br>
+        {% endfor %}
+      </ul>
+    </p>
+    </div>
+{% endblock %}

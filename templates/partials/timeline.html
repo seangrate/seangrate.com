@@ -1,0 +1,110 @@
+{% macro render(events, quote_title) %}
+  <div id="timeline" class="timeline">
+  </div>
+
+<!-- Proportional timeline -->
+<script>
+    // timeline data
+    const timelineEvents = {{ events | tojson }};
+    timelineEvents.forEach(event => {
+      event.date = new Date(event.year, event.month - 1, event.day);
+    });
+
+    // calculate date differences
+    const oldestDate = timelineEvents[timelineEvents.length - 1].date.getTime(); // last event is the oldest
+    const recentDate = timelineEvents[0].date.getTime(); // first event is the most recent
+    const totalSpan = oldestDate - recentDate;
+
+    // determine proportional spacing
+    timelineEvents.forEach(event => {
+      event.position = (event.date.getTime() - oldestDate) / totalSpan * 100;
+    });
+
+    // generate the timeline in HTML
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const timelineContainer = document.getElementById('timeline');
+    timelineEvents.forEach((event, idx) => {
+      const eventContainer = document.createElement('div');
+      eventContainer.className = idx % 2 === 0 ? 'container left' : ' container right';
+      eventContainer.style.top = `${event.position}%`;
+
+      const content = document.createElement('div');
+      content.className = 'content';
+      // string formatting for event
+      const title = document.createElement('h4');
+      title.innerText = {% if quote_title %}`"${event.title}"`{% else %}`${event.title}`{% endif %};
+      const details = document.createElement('p');
+      details.innerText = `{% if quote_title %}${event.venue}
+                            {% endif %}${event.location}, ${event.city}
+                            ${months[event.date.getMonth()]} ${event.date.getFullYear()}`;
+      // extra links
+      const extrasElements = [];
+      const extraIcons = {
+        notes: 'fa-file-pdf-o',
+        code: 'fa-keyboard-o',
+        slides: 'fa-file-pdf-o',
+        video: 'fa-video-camera',
+        abstract: 'fa-plus-square-o'
+      };
+      Object.entries(event.extras).forEach(([extra, value]) => {
+        if (value) {
+          // icon
+          const icon = document.createElement('i');
+          icon.className = `fa ${extraIcons[extra]}`;
+
+          if (extra === 'abstract') {
+            // abstract button
+            const abstractButton = document.createElement('a');
+            abstractButton.className = 'abstract-button';
+            abstractButton.onclick = function() {toggleAbstract(this)};
+            abstractButton.appendChild(icon);
+
+            // abstract content
+            const abstractContent = document.createElement('blockquote');
+            abstractContent.className = 'abstract-content';
+            abstractContent.innerText = value;
+
+            // HTML
+            const extraElement = document.createElement('span');
+            extraElement.appendChild(document.createTextNode('Abstract '));
+            extraElement.appendChild(abstractButton);
+            extraElement.appendChild(abstractContent);
+            extrasElements.push(extraElement);
+          } else {
+            // link
+            const link = document.createElement('a');
+            link.className = 'weblink';
+            link.href = value;
+            if (['video', 'code'].includes(extra)) {link.target = '_blank';}
+            link.innerText = extra.charAt(0).toUpperCase() + extra.slice(1);
+
+            // HTML
+            const extraElement = document.createElement('span')
+            extraElement.appendChild(icon);
+            extraElement.appendChild(document.createTextNode(' '));
+            extraElement.appendChild(link);
+            extrasElements.push(extraElement);
+          }
+        }
+      });
+
+      // add a '|' between links
+      extrasElements.forEach((element, idx) => {
+          if (idx === 0) {
+              details.appendChild(document.createElement('br'));
+              details.appendChild(document.createElement('br'));
+          }
+          else {
+          details.appendChild(document.createTextNode(' | '));
+          }
+          details.appendChild(element);
+      });
+
+      content.appendChild(title);
+      content.appendChild(details);
+
+      eventContainer.appendChild(content);
+      timelineContainer.appendChild(eventContainer);
+    });
+</script>
+{% endmacro %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}Teaching{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "", "Teaching", "Courses I have taught.", [
+  {"href": "#courses", "icon": "fa-book", "label": "COURSES"},
+  {"href": "#testimonials", "icon": "fa-comments", "label": "TESTIMONIALS"},
+]) }}{% endblock %}
+
+{% block content %}
+  <!-- Teaching List -->
+  <div class="w3-container w3-padding-large w3-row-padding">
+    <h2 id="courses"><b>Teaching</b></h2>
+    {% for inst in teaching.institutions %}
+    <h4><b>{{ inst.name }}</b></h4>
+    <div class="w3-container">
+        <p>
+          {{ inst.intro }}
+        </p>
+        <ul>
+        {% for c in inst.courses %}
+        <li>
+          <p>
+            <b>({{ c.term }})</b> {{ c.description }}
+          </p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+    <hr>
+    <h2 id="testimonials"><b>Testimonials</b></h2>
+    <div class="w3-container">
+      {% for group in teaching.testimonial_groups %}
+      <p>
+      <b>{{ group.heading }}</b>
+      <ol>
+      {% for quote in group.quotes %}
+      <li>
+        <blockquote>
+            {{ quote }}
+        </blockquote>
+      </li>
+      {% endfor %}
+      </ol>
+      </p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

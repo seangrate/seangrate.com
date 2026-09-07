@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}Talks{% endblock %}
+{% block extra_head %}{{ m.abstract_toggle_style() }}{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "images/tda/tda_talk.jpg", "Talks", "Talks I have given.", [
+  {"href": "./", "icon": "fa-arrows-v", "label": "TIMELINE VIEW"},
+  {"href": "./condensed.html", "icon": "fa-list", "label": "LIST VIEW"},
+]) }}{% endblock %}
+
+{% block content %}
+  <!-- Conference Talks -->
+  <div id="conference" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Conference Talks</b></h2>
+  <p>
+    <ul>
+      {% for t in talks.conference %}{{ m.talk_entry(t, root) }}{% endfor %}
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Seminar Talks -->
+  <div id="seminars" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Seminar Talks</b></h2>
+  <p>
+    <ul>
+      {% for t in talks.seminar_flat %}{{ m.talk_entry(t, root) }}{% endfor %}
+      {% for group in talks.seminar_groups %}
+      <li>
+        {{ group.institution }}
+        <ul>
+          {% for t in group.talks %}{{ m.talk_entry(t, root) }}{% endfor %}
+        </ul>
+      </li>
+      <br>
+      {% endfor %}
+    </ul>
+  </p>
+  </div>
+  <hr>
+  <!-- Other Talks -->
+  <div id="others" class="w3-container w3-padding-large" style="margin-bottom:32px">
+  <h2><b>Other Talks</b></h2>
+  <p>
+    <ul>
+      {% for t in talks.other %}{{ m.talk_entry(t, root) }}{% endfor %}
+    </ul>
+  </p>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}{{ m.abstract_toggle_scripts() }}{% endblock %}

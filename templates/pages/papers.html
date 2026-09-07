@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}Papers{% endblock %}
+{% block extra_head %}{{ m.abstract_toggle_style() }}{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "", "Papers", "Publications and preprints.", []) }}{% endblock %}
+
+{% block content %}
+  <!-- Publications -->
+  <div class="w3-container w3-padding-large w3-row-padding">
+    <h2 id="papers"><b>Papers</b></h2>
+    <div class="w3-container">
+    <h4><b>Publications</b></h4>
+    <ol reversed>
+      {% for p in papers.publications %}
+      <li>
+        <div>
+          <span style="display:inline-block; width:50%">{% if p.title_link %}<a class="weblink" href="{{ p.title_link }}" target="_blank">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</span>
+          <span style="float:right; width:30%"><em>{{ p.venue }}</em></span>
+        </div>
+        <br>
+        <span style="display:inline-block; width:50%"><em>
+          {{ p.coauthors_html }}
+        </em></span>
+        <br>
+        <br>
+        {% if p.pdf %}<i class="fa fa-file-pdf-o"></i> <a class="weblink" href="{{ root }}{{ p.pdf }}">PDF</a> | {% endif %}
+        {% if p.code %}<i class="fa fa-keyboard-o"></i> <a class="weblink" href="{{ p.code }}">Code</a> | {% endif %}
+        {% if p.video %}<i class="fa fa-video-camera"></i> <a class="weblink" href="{{ p.video }}" target="_blank">Video</a> | {% endif %}
+        {{ m.abstract_button(p.abstract) }}
+        <br>
+        <br>
+      </li>
+      {% endfor %}
+    </ol>
+    <h4><b>Preprints</b></h4>
+    <ol reversed>
+      {% for p in papers.preprints %}
+      <li>
+        <div>
+          <span style="display:inline-block; width:50%">{% if p.title_link %}<a class="weblink" href="{{ p.title_link }}" target="_blank">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</span>
+          <span style="float:right; width:30%"><em>{{ p.venue }}</em></span>
+        </div>
+        <br>
+        <span style="display:inline-block; width:50%"><em>
+          {{ p.coauthors_html }}
+        </em></span>
+        <br>
+        <br>
+        {% if p.pdf %}<i class="fa fa-file-pdf-o"></i> <a class="weblink" href="{{ root }}{{ p.pdf }}">PDF</a> | {% endif %}
+        {{ m.abstract_button(p.abstract) }}
+        <br>
+        <br>
+      </li>
+      {% endfor %}
+    </ol>
+    </div>
+    <hr>
+  </div>
+{% endblock %}
+
+{% block extra_scripts %}{{ m.abstract_toggle_scripts() }}{% endblock %}

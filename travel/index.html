@@ -10,12 +10,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../styles/misc.css">
-  <link rel="stylesheet" href="../styles/timelines.css">
-  <style>
+<link rel="stylesheet" href="../styles/timelines.css">
+<style>
     a.abstract-button:hover {opacity: 0.6; cursor: pointer}
     blockquote.abstract-content {display: none}
-  </style>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </style>  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -26,14 +25,13 @@
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="../images/travel/golden_gate_bridge.jpg" style="width:100%;" class="w3-round"><br><br>
-    <h4><b>Travel</b></h4>
-    <p class="w3-text-grey">Places I have been for conferences, workshops, and seminars.</p>
+<img src="../images/travel/golden_gate_bridge.jpg" style="width:100%;" class="w3-round"><br><br>    <h4><b>Travel</b></h4>
+    <p class="w3-text-grey">Places I have been for conferences, workshops, and summer schools.</p>
   </div>
   <div class="w3-bar-block">
-    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a> 
-    <a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrows-v fa-fw w3-margin-right"></i>TIMELINE VIEW</a> 
-    <a href="./condensed.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list fa-fw w3-margin-right"></i>LIST VIEW</a> 
+    <a href="../" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a>
+<a href="./" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrows-v fa-fw w3-margin-right"></i>TIMELINE VIEW</a>
+<a href="./condensed.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-list fa-fw w3-margin-right"></i>LIST VIEW</a>
   </div>
 </nav>
 
@@ -45,14 +43,119 @@
 
   <!-- Header -->
   <header>
-    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+<span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-    </div>
-  </header>
+    </div>  </header>
 
-  <div id="timeline" class="timeline">
-  </div> 
-  
+    <div id="timeline" class="timeline">
+  </div>
+
+<!-- Proportional timeline -->
+<script>
+    // timeline data
+    const timelineEvents = [{"title": "Macaulay2 Workshop", "year": 2027, "month": 2, "day": 1, "location": "Auburn University", "city": "Auburn, AL", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Joint Mathematics Meetings", "year": 2027, "month": 1, "day": 1, "location": "", "city": "Chicago, IL", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "SIAM TX-LA Sectional Meeting", "year": 2026, "month": 10, "day": 1, "location": "Southern Methodist University", "city": "Dallas, TX", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Weak and Strong Lefschetz Properties Across Mathematics", "year": 2026, "month": 10, "day": 1, "location": "Hotel Terme Tritone Resort & Spa", "city": "Ischia, Italy", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "KUMUNU 2026", "year": 2026, "month": 9, "day": 1, "location": "University of Kansas", "city": "Lawrence, KS", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Upcoming Researchers in Commutative Algebra (URiCA)", "year": 2026, "month": 8, "day": 1, "location": "University of Nebraska-Lincoln", "city": "Lincoln, NE", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "The Future of Macaulay2", "year": 2026, "month": 5, "day": 1, "location": "Georgia Tech University", "city": "Atlanta, GA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Regularity in Algebra, Combinatorics, and Geometry", "year": 2026, "month": 4, "day": 1, "location": "BIRS", "city": "Banff, AB", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "AMS Spring Central Sectional Meeting", "year": 2026, "month": 4, "day": 1, "location": "North Dakota State University", "city": "Fargo, ND", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "CA+", "year": 2026, "month": 3, "day": 1, "location": "Iowa State University", "city": "Ames, IA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Arizona-New Mexico Symposium on Commutative Algebra and its Interaction: Geometric Combinatorics", "year": 2025, "month": 12, "day": 1, "location": "New Mexico State University", "city": "Las Cruces, NM", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "KUMUNU 2025", "year": 2025, "month": 10, "day": 1, "location": "University of Missouri-Columbia", "city": "Columbia, MO", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "AMS Fall Central Sectional Meeting", "year": 2025, "month": 10, "day": 1, "location": "St. Louis University", "city": "St. Louis, MO", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "AMS Fall Southeastern Sectional Meeting", "year": 2025, "month": 10, "day": 1, "location": "Tulane University", "city": "New Orleans, LA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Mathematical Congress of the Americas", "year": 2025, "month": 7, "day": 1, "location": "University of Miami", "city": "Miami, FL", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "SIAM AG25", "year": 2025, "month": 7, "day": 1, "location": "University of Wisconsin-Madison", "city": "Madison, WI", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Macaulay2 Workshop", "year": 2025, "month": 7, "day": 1, "location": "University of Wisconsin-Madison", "city": "Madison, WI", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Collaborate@ICERM", "year": 2025, "month": 6, "day": 1, "location": "ICERM", "city": "Providence, RI", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Workshop on Weak and Strong Lefschetz Properties Across Mathematics", "year": 2025, "month": 6, "day": 1, "location": "Sophus Lie Conference Center", "city": "Nordfjordeid, Norway", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Workshop on the Applications of Commutative Algebra", "year": 2025, "month": 5, "day": 1, "location": "Fields Institute", "city": "Toronto, ON", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "AWM Research Symposium", "year": 2025, "month": 5, "day": 1, "location": "University of Wisconsin-Madison", "city": "Madison, WI", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Meetings in Applied Algebraic Geometry (MAAG)", "year": 2025, "month": 4, "day": 1, "location": "Auburn University", "city": "Auburn, AL", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Macaulay2 Workshop", "year": 2025, "month": 4, "day": 1, "location": "Tulane University", "city": "New Orleans, LA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Commutative Algebra in the South (CATS)", "year": 2025, "month": 4, "day": 1, "location": "Georgia State University", "city": "Atlanta, GA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Mid-Atlantic Algebra, Geometry, and Combinatorics Conference (MAAGC) Workshop", "year": 2025, "month": 3, "day": 1, "location": "CUNY", "city": "New York City, NY", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "CA+", "year": 2025, "month": 3, "day": 1, "location": "Iowa State University", "city": "Ames, IA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Combinatorial Algebra meets Algebraic Combinatorics (CAAC)", "year": 2025, "month": 1, "day": 1, "location": "Fields Institute and University of Toronto", "city": "Toronto, ON", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Apprenticeship in Commutative Algebra", "year": 2025, "month": 1, "day": 1, "location": "Fields Institute", "city": "Toronto, ON", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Joint Mathematics Meetings", "year": 2025, "month": 1, "day": 1, "location": "Seattle Convention Center", "city": "Seattle, WA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "AMS Fall Central Sectional Meeting", "year": 2024, "month": 9, "day": 1, "location": "University of Texas, San Antonio", "city": "San Antonio, TX", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "UweFest", "year": 2024, "month": 8, "day": 1, "location": "Notre Dame University", "city": "South Bend, IN", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "AMS MRC: Algebraic Combinatorics", "year": 2024, "month": 6, "day": 1, "location": "Beaver Hollow Resort", "city": "Beaver Hollow, NY", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Computational Algebraic Geometry and String Theory", "year": 2024, "month": 5, "day": 1, "location": "University of Utah", "city": "Salt Lake City, UT", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "JM Invariant at 60", "year": 2024, "month": 5, "day": 1, "location": "Auburn University", "city": "Auburn, AL", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Combinatorial Algebra meets Algebraic Combinatorics", "year": 2024, "month": 1, "day": 1, "location": "Universit\u00e9 du Qu\u00e9bec \u00e0 Montr\u00e9al", "city": "Montr\u00e9al, QC", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "SIAM Texas-Louisiana Sectional Meeting", "year": 2023, "month": 11, "day": 1, "location": "University of Louisiana at Lafayette", "city": "Lafayette, LA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "BrianFest", "year": 2023, "month": 8, "day": 1, "location": "University of Nebraska-Lincoln", "city": "Lincoln, NE", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Macaulay2 Week", "year": 2023, "month": 6, "day": 1, "location": "University of Minnesota", "city": "Minneapolis, MN", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "SLMath Commutative Algebra Summer School", "year": 2023, "month": 5, "day": 1, "location": "Notre Dame University", "city": "South Bend, IN", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics", "year": 2023, "month": 5, "day": 1, "location": "Fields Institute", "city": "Toronto, ON", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "Commutative Algebra in the South", "year": 2023, "month": 4, "day": 1, "location": "University of Alabama", "city": "Tuscaloosa, AL", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}, {"title": "SLMath Tropical Geometry Summer School", "year": 2022, "month": 8, "day": 1, "location": "St. Mary's College", "city": "Moraga, CA", "extras": {"notes": "", "code": "", "slides": "", "video": "", "abstract": ""}}];
+    timelineEvents.forEach(event => {
+      event.date = new Date(event.year, event.month - 1, event.day);
+    });
+
+    // calculate date differences
+    const oldestDate = timelineEvents[timelineEvents.length - 1].date.getTime(); // last event is the oldest
+    const recentDate = timelineEvents[0].date.getTime(); // first event is the most recent
+    const totalSpan = oldestDate - recentDate;
+
+    // determine proportional spacing
+    timelineEvents.forEach(event => {
+      event.position = (event.date.getTime() - oldestDate) / totalSpan * 100;
+    });
+
+    // generate the timeline in HTML
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const timelineContainer = document.getElementById('timeline');
+    timelineEvents.forEach((event, idx) => {
+      const eventContainer = document.createElement('div');
+      eventContainer.className = idx % 2 === 0 ? 'container left' : ' container right';
+      eventContainer.style.top = `${event.position}%`;
+
+      const content = document.createElement('div');
+      content.className = 'content';
+      // string formatting for event
+      const title = document.createElement('h4');
+      title.innerText = `${event.title}`;
+      const details = document.createElement('p');
+      details.innerText = `${event.location}, ${event.city}
+                            ${months[event.date.getMonth()]} ${event.date.getFullYear()}`;
+      // extra links
+      const extrasElements = [];
+      const extraIcons = {
+        notes: 'fa-file-pdf-o',
+        code: 'fa-keyboard-o',
+        slides: 'fa-file-pdf-o',
+        video: 'fa-video-camera',
+        abstract: 'fa-plus-square-o'
+      };
+      Object.entries(event.extras).forEach(([extra, value]) => {
+        if (value) {
+          // icon
+          const icon = document.createElement('i');
+          icon.className = `fa ${extraIcons[extra]}`;
+
+          if (extra === 'abstract') {
+            // abstract button
+            const abstractButton = document.createElement('a');
+            abstractButton.className = 'abstract-button';
+            abstractButton.onclick = function() {toggleAbstract(this)};
+            abstractButton.appendChild(icon);
+
+            // abstract content
+            const abstractContent = document.createElement('blockquote');
+            abstractContent.className = 'abstract-content';
+            abstractContent.innerText = value;
+
+            // HTML
+            const extraElement = document.createElement('span');
+            extraElement.appendChild(document.createTextNode('Abstract '));
+            extraElement.appendChild(abstractButton);
+            extraElement.appendChild(abstractContent);
+            extrasElements.push(extraElement);
+          } else {
+            // link
+            const link = document.createElement('a');
+            link.className = 'weblink';
+            link.href = value;
+            if (['video', 'code'].includes(extra)) {link.target = '_blank';}
+            link.innerText = extra.charAt(0).toUpperCase() + extra.slice(1);
+
+            // HTML
+            const extraElement = document.createElement('span')
+            extraElement.appendChild(icon);
+            extraElement.appendChild(document.createTextNode(' '));
+            extraElement.appendChild(link);
+            extrasElements.push(extraElement);
+          }
+        }
+      });
+
+      // add a '|' between links
+      extrasElements.forEach((element, idx) => {
+          if (idx === 0) {
+              details.appendChild(document.createElement('br'));
+              details.appendChild(document.createElement('br'));
+          }
+          else {
+          details.appendChild(document.createTextNode(' | '));
+          }
+          details.appendChild(element);
+      });
+
+      content.appendChild(title);
+      content.appendChild(details);
+
+      eventContainer.appendChild(content);
+      timelineContainer.appendChild(eventContainer);
+    });
+</script>
+
+
 <!-- End page content -->
 </div>
 
@@ -63,352 +166,13 @@
       document.getElementById("mySidebar").style.display = "block";
       document.getElementById("myOverlay").style.display = "block";
   }
-   
+
   function w3_close() {
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
   }
 </script>
 
-<!-- Abstract toggle -->
-<script>
-  window.onload = function() {
-    var buttons = document.getElementsByClassName('abstract-button');
-
-    for (var i = 0; i < buttons.length; i++) {
-      var text = buttons[i].nextElementSibling;
-      text.style.display = "none";
-    }
-  }
-
-  function toggleAbstract(button) {
-    var text = button.nextElementSibling;
-    var icon = button.children[0];
-
-    if (text.style.display === "none") {
-      text.style.display = "block";
-      icon.className = "fa fa-minus-square-o";
-    } else {
-      text.style.display = "none";
-      icon.className = "fa fa-plus-square-o";
-    }
-  }
-</script>
-
-<!-- Proportional timeline -->
-<script>
-  // timeline data
-  const timelineEvents = [
-  { title: 'Macaulay2 Workshop', 
-    date: new Date(2027, 2), 
-    location: 'Auburn University',
-    city: 'Auburn, AL',
-    extras: { } },
-  { title: 'Joint Mathematics Meetings', 
-    date: new Date(2027, 1), 
-    location: '',
-    city: 'Chicago, IL',
-    extras: { } },
-  { title: 'SIAM TX-LA Sectional Meeting', 
-    date: new Date(2026, 10), 
-    location: 'Southern Methodist University',
-    city: 'Dallas, TX',
-    extras: { } },
-  { title: 'Weak and Strong Lefschetz Properties Across Mathematics', 
-    date: new Date(2026, 10), 
-    location: 'Hotel Terme Tritone Resort & Spa',
-    city: 'Ischia, Italy',
-    extras: { } },
-  { title: 'KUMUNU 2026', 
-    date: new Date(2026, 9), 
-    location: 'University of Kansas',
-    city: 'Lawrence, KS',
-    extras: { } },
-  { title: 'Upcoming Researchers in Commutative Algebra (URiCA)', 
-    date: new Date(2026, 8), 
-    location: 'University of Nebraska-Lincoln',
-    city: 'Lincoln, NE',
-    extras: { } },
-  { title: 'The Future of Macaulay2', 
-    date: new Date(2026, 5), 
-    location: 'Georgia Tech University',
-    city: 'Atlanta, GA',
-    extras: { } },
-  { title: 'Regularity in Algebra, Combinatorics, and Geometry', 
-    date: new Date(2026, 4), 
-    location: 'BIRS',
-    city: 'Banff, AB',
-    extras: { } },
-  { title: 'AMS Spring Central Sectional Meeting', 
-    date: new Date(2026, 4), 
-    location: 'North Dakota State University',
-    city: 'Fargo, ND',
-    extras: { } },
-  { title: 'CA+', 
-    date: new Date(2026, 3), 
-    location: 'Iowa State University',
-    city: 'Ames, IA',
-    extras: { } },
-  { title: 'Arizona-New Mexico Symposium on Commutative Algebra and its Interaction: Geometric Combinatorics', 
-    date: new Date(2025, 12), 
-    location: 'New Mexico State University',
-    city: 'Las Cruces, NM',
-    extras: { } },
-  { title: 'KUMUNU 2025', 
-    date: new Date(2025, 10), 
-    location: 'University of Missouri-Columbia',
-    city: 'Columbia, MO',
-    extras: { } },
-  { title: 'AMS Fall Central Sectional Meeting', 
-    date: new Date(2025, 10), 
-    location: 'St. Louis University',
-    city: 'St. Louis, MO',
-    extras: { } },
-  { title: 'AMS Fall Southeastern Sectional Meeting', 
-    date: new Date(2025, 10), 
-    location: 'Tulane University',
-    city: 'New Orleans, LA',
-    extras: { } },
-  { title: 'Mathematical Congress of the Americas', 
-    date: new Date(2025, 7), 
-    location: 'University of Miami',
-    city: 'Miami, FL',
-    extras: { } },
-  { title: 'SIAM AG25', 
-    date: new Date(2025, 7), 
-    location: 'University of Wisconsin-Madison',
-    city: 'Madison, WI',
-    extras: { } },
-  { title: 'Macaulay2 Workshop', 
-    date: new Date(2025, 7), 
-    location: 'University of Wisconsin-Madison',
-    city: 'Madison, WI',
-    extras: { } },
-  { title: 'Collaborate@ICERM', 
-    date: new Date(2025, 6), 
-    location: 'ICERM',
-    city: 'Providence, RI',
-    extras: { } },
-  { title: 'Workshop on Weak and Strong Lefschetz Properties Across Mathematics', 
-    date: new Date(2025, 6), 
-    location: 'Sophus Lie Conference Center',
-    city: 'Nordfjordeid, Norway',
-    extras: { } },
-  { title: 'Workshop on the Applications of Commutative Algebra', 
-    date: new Date(2025, 5), 
-    location: 'Fields Institute',
-    city: 'Toronto, ON',
-    extras: { } },
-  { title: 'AWM Research Symposium', 
-    date: new Date(2025, 5), 
-    location: 'University of Wisconsin-Madison',
-    city: 'Madison, WI',
-    extras: { } },
-  { title: 'Meetings in Applied Algebraic Geometry (MAAG)', 
-    date: new Date(2025, 4), 
-    location: 'Auburn University',
-    city: 'Auburn, AL',
-    extras: { } },
-  { title: 'Macaulay2 Workshop', 
-    date: new Date(2025, 4), 
-    location: 'Tulane University',
-    city: 'New Orleans, LA',
-    extras: { } },
-  { title: 'Commutative Algebra in the South (CATS)', 
-    date: new Date(2025, 4), 
-    location: 'Georgia State University',
-    city: 'Atlanta, GA',
-    extras: { } },
-  { title: 'Mid-Atlantic Algebra, Geometry, and Combinatorics Conference (MAAGC) Workshop', 
-    date: new Date(2025, 3), 
-    location: 'CUNY',
-    city: 'New York City, NY',
-    extras: { } },
-  { title: 'CA+', 
-    date: new Date(2025, 3), 
-    location: 'Iowa State University',
-    city: 'Ames, IA',
-    extras: { } },
-  { title: 'Combinatorial Algebra meets Algebraic Combinatorics (CAAC)', 
-    date: new Date(2025, 1), 
-    location: 'Fields Institute and University of Toronto',
-    city: 'Toronto, ON',
-    extras: { } },
-  { title: 'Apprenticeship in Commutative Algebra', 
-    date: new Date(2025, 1), 
-    location: 'Fields Institute',
-    city: 'Toronto, ON',
-    extras: { } },
-  { title: 'Joint Mathematics Meetings', 
-    date: new Date(2025, 1), 
-    location: 'Seattle Convention Center',
-    city: 'Seattle, WA',
-    extras: { } },
-  { title: 'AMS Fall Central Sectional Meeting', 
-    date: new Date(2024, 9), 
-    location: 'University of Texas, San Antonio',
-    city: 'San Antonio, TX',
-    extras: { } },
-  { title: 'UweFest', 
-    date: new Date(2024, 8), 
-    location: 'Notre Dame University',
-    city: 'South Bend, IN',
-    extras: { } },
-  { title: 'AMS MRC: Algebraic Combinatorics', 
-    date: new Date(2024, 6), 
-    location: 'Beaver Hollow Resort',
-    city: 'Beaver Hollow, NY',
-    extras: { } },
-  { title: 'Computational Algebraic Geometry and String Theory', 
-    date: new Date(2024, 5), 
-    location: 'University of Utah',
-    city: 'Salt Lake City, UT',
-    extras: { } },
-  { title: 'JM Invariant at 60', 
-    date: new Date(2024, 5), 
-    location: 'Auburn University',
-    city: 'Auburn, AL',
-    extras: { } },
-  { title: 'Combinatorial Algebra meets Algebraic Combinatorics', 
-    date: new Date(2024, 1), 
-    location: 'Université du Québec à Montréal',
-    city: 'Montréal, QC',
-    extras: { } },
-  { title: 'SIAM Texas-Louisiana Sectional Meeting', 
-    date: new Date(2023, 11), 
-    location: 'University of Louisiana at Lafayette',
-    city: 'Lafayette, LA',
-    extras: { } },
-  { title: 'BrianFest', 
-    date: new Date(2023, 8), 
-    location: 'University of Nebraska-Lincoln',
-    city: 'Lincoln, NE',
-    extras: { } },
-  { title: 'Macaulay2 Week', 
-    date: new Date(2023, 6), 
-    location: 'University of Minnesota',
-    city: 'Minneapolis, MN',
-    extras: { } },
-  { title: 'SLMath Commutative Algebra Summer School', 
-    date: new Date(2023, 5), 
-    location: 'Notre Dame University',
-    city: 'South Bend, IN',
-    extras: { } },
-  { title: 'Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics',
-    date: new Date(2023, 5), 
-    location: 'Fields Institute',
-    city: 'Toronto, ON',
-    extras: { } },
-  { title: 'Commutative Algebra in the South', 
-    date: new Date(2023, 4), 
-    location: 'University of Alabama',
-    city: 'Tuscaloosa, AL',
-    extras: { } },
-  { title: 'SLMath Tropical Geometry Summer School', 
-    date: new Date(2022, 8), 
-    location: 'St. Mary\'s College',
-    city: 'Moraga, CA',
-    extras: { } }
-  ];
-
-  // calculate date differences
-  const oldestDate = timelineEvents[timelineEvents.length - 1].date.getTime(); // last event is the oldest
-  const recentDate = timelineEvents[0].date.getTime(); // first event is the most recent
-  const totalSpan = oldestDate - recentDate;
-
-  // determine proportional spacing
-  timelineEvents.forEach(event => {
-    event.position = (event.date.getTime() - oldestDate) / totalSpan * 100;
-  });
-
-  // generate the timeline in HTML
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const timelineContainer = document.getElementById('timeline');
-  timelineEvents.forEach((event, idx) => {
-    const eventContainer = document.createElement('div');
-    eventContainer.className = idx % 2 === 0 ? 'container left' : ' container right';
-    eventContainer.style.top = `${event.position}%`;
-    
-    const content = document.createElement('div');
-    content.className = 'content'; 
-    // string formatting for event
-    const title = document.createElement('h4');
-    title.innerText = `${event.title}`;
-    const details = document.createElement('p');
-    details.innerText = `${event.location}
-                         ${event.city}
-                         
-                         ${months[event.date.getMonth()-1]} ${event.date.getFullYear()}`;
-    // extra links
-    const extrasElements = [];
-    const extraIcons = {
-      notes: 'fa-file-pdf-o',
-      code: 'fa-keyboard-o',
-      slides: 'fa-file-pdf-o',
-      video: 'fa-video-camera',
-      abstract: 'fa-plus-square-o'
-    };
-    Object.entries(event.extras).forEach(([extra, value]) => {
-      if (value) {
-        // icon
-        const icon = document.createElement('i');
-        icon.className = `fa ${extraIcons[extra]}`;
-          
-        if (extra === 'abstract') {
-          // abstract button
-          const abstractButton = document.createElement('a');
-          abstractButton.className = 'abstract-button';
-          abstractButton.onclick = function() {toggleAbstract(this)};
-          abstractButton.appendChild(icon);
-
-          // abstract content
-          const abstractContent = document.createElement('blockquote');
-          abstractContent.className = 'abstract-content';
-          abstractContent.innerText = value;
-
-          // HTML
-          const extraElement = document.createElement('span');
-          extraElement.appendChild(document.createTextNode('Abstract '));
-          extraElement.appendChild(abstractButton);
-          extraElement.appendChild(abstractContent);
-          extrasElements.push(extraElement);
-        } else {
-          // link
-          const link = document.createElement('a');
-          link.className = 'weblink';
-          link.href = value;
-          if (['video', 'code'].includes(extra)) {link.target = '_blank';}
-          link.innerText = extra.charAt(0).toUpperCase() + extra.slice(1);
-            
-          // HTML
-          const extraElement = document.createElement('span')
-          extraElement.appendChild(icon);
-          extraElement.appendChild(document.createTextNode(' '));
-          extraElement.appendChild(link);
-          extrasElements.push(extraElement);
-        }
-      }
-    });
-
-    // add a '|' between links
-    extrasElements.forEach((element, idx) => {
-        if (idx === 0) {
-            details.appendChild(document.createElement('br'));
-            details.appendChild(document.createElement('br'));
-        }
-        else {
-        details.appendChild(document.createTextNode(' | '));
-        }
-        details.appendChild(element);
-    });
-
-    content.appendChild(title);
-    content.appendChild(details);
-
-    eventContainer.appendChild(content);
-    timelineContainer.appendChild(eventContainer);
-  });
-</script>
 
 </body>
 

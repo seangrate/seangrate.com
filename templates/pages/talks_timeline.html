@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+{% import "partials/timeline.html" as tl %}
+
+{% block title %}Talks{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{{ root }}styles/timelines.css">
+{{ m.abstract_toggle_style() }}{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "images/tda/tda_talk.jpg", "Talks", "Talks I have given.", [
+  {"href": "./", "icon": "fa-arrows-v", "label": "TIMELINE VIEW"},
+  {"href": "./condensed.html", "icon": "fa-list", "label": "LIST VIEW"},
+]) }}{% endblock %}
+
+{% block content %}
+  {{ tl.render(events, true) }}
+{% endblock %}
+
+{% block extra_scripts %}{{ m.abstract_toggle_scripts() }}{% endblock %}

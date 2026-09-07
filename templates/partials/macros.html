@@ -1,0 +1,106 @@
+{% macro social_icon(item) -%}
+  <a class="weblink" href="{{ item.href }}"{% if item.external %} target="_blank"{% endif %}><i class="fa {{ item.icon }} w3-hover-opacity"></i></a>
+{%- endmacro %}
+
+{% macro home_sidebar(site) %}
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="images/me.jpg" style="width:100%;" class="w3-round"><br><br>
+    <h4><b>{{ site.name }}</b></h4>
+    <p class="w3-text-grey">{{ site.title }}</p>
+  </div>
+  <div class="w3-panel w3-large">
+    {% for item in site.social %}{{ social_icon(item) }}
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  <div class="w3-bar-block">
+    {% for item in site.nav %}<a href="{{ item.href }}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fw {{ item.icon }} w3-margin-right"></i>{{ item.label }}</a>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro subpage_sidebar(root, image, title, description, nav_items) %}
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    {% if image %}<img src="{{ root }}{{ image }}" style="width:100%;" class="w3-round"><br><br>{% endif %}
+    <h4><b>{{ title }}</b></h4>
+    <p class="w3-text-grey">{{ description }}</p>
+  </div>
+  <div class="w3-bar-block">
+    <a href="{{ root }}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-arrow-left fa-fw w3-margin-right"></i>GO HOME</a>
+    {% for item in nav_items %}<a href="{{ item.href }}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa {{ item.icon }} fa-fw w3-margin-right"></i>{{ item.label }}</a>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{% macro abstract_toggle_style() -%}
+  <style>
+    a.abstract-button:hover {opacity: 0.6; cursor: pointer}
+    blockquote.abstract-content {display: none}
+  </style>
+{%- endmacro %}
+
+{% macro abstract_toggle_scripts() %}
+<!-- Abstract toggle -->
+<script>
+  window.onload = function() {
+    var buttons = document.getElementsByClassName('abstract-button');
+
+    for (var i = 0; i < buttons.length; i++) {
+      var text = buttons[i].nextElementSibling;
+      text.style.display = "none";
+    }
+  }
+
+  function toggleAbstract(button) {
+    var text = button.nextElementSibling;
+    var icon = button.children[0];
+
+    if (text.style.display === "none") {
+      text.style.display = "block";
+      icon.className = "fa fa-minus-square-o";
+    } else {
+      text.style.display = "none";
+      icon.className = "fa fa-plus-square-o";
+    }
+  }
+</script>
+{% endmacro %}
+
+{% macro abstract_button(text) -%}
+  Abstract
+  <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>
+  <blockquote class="abstract-content">{{ text }}</blockquote>
+{%- endmacro %}
+
+{% set months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %}
+
+{% macro talk_entry(t, root) %}
+  <li>
+    {% if t.title == 'TBD' %}TBD{% else %}<q>{{ t.title }}</q>{% endif %}, {{ t.venue }}
+    <span style="float:right">{{ months[t.date.month - 1] }} {{ t.date.year }}</span>
+    {% if t.notes or t.code or t.slides or t.video or t.abstract %}
+    <br>
+    {{ extra_links(t, root) }}
+    {% endif %}
+  </li>
+  <br>
+{% endmacro %}
+
+{% macro extra_links(entry, root) %}
+  {%- set links = [] -%}
+  {%- if entry.notes %}{% set _ = links.append('<i class="fa fa-file-pdf-o"></i> <a class="weblink" href="' ~ root ~ entry.notes ~ '">Notes</a>') %}{% endif -%}
+  {%- if entry.code %}{% set _ = links.append('<i class="fa fa-keyboard-o"></i> <a class="weblink" href="' ~ entry.code ~ '" target="_blank">Code</a>') %}{% endif -%}
+  {%- if entry.slides %}{% set _ = links.append('<i class="fa fa-file-pdf-o"></i> <a class="weblink" href="' ~ root ~ entry.slides ~ '" target="_blank">Slides</a>') %}{% endif -%}
+  {%- if entry.video %}{% set _ = links.append('<i class="fa fa-video-camera"></i> <a class="weblink" href="' ~ entry.video ~ '" target="_blank">Video</a>') %}{% endif -%}
+  {%- if entry.abstract %}{% set _ = links.append('Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a>') %}{% endif -%}
+  {{ links | join(' | ') | safe }}
+  {%- if entry.abstract %}<blockquote class="abstract-content">{{ entry.abstract }}</blockquote>{% endif -%}
+{% endmacro %}

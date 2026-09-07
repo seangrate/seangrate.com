@@ -1,0 +1,171 @@
+# Single source of truth for travel/conference trips.
+# Regenerates both travel/index.html (timeline view) and travel/condensed.html (list view) -- see build.py.
+
+- title: Macaulay2 Workshop
+  date: 2027-02-01
+  location: Auburn University
+  city: Auburn, AL
+- title: Joint Mathematics Meetings
+  date: 2027-01-01
+  location: ''
+  city: Chicago, IL
+- title: SIAM TX-LA Sectional Meeting
+  date: 2026-10-01
+  location: Southern Methodist University
+  city: Dallas, TX
+- title: Weak and Strong Lefschetz Properties Across Mathematics
+  date: 2026-10-01
+  location: Hotel Terme Tritone Resort & Spa
+  city: Ischia, Italy
+- title: KUMUNU 2026
+  date: 2026-09-01
+  location: University of Kansas
+  city: Lawrence, KS
+- title: Upcoming Researchers in Commutative Algebra (URiCA)
+  date: 2026-08-01
+  location: University of Nebraska-Lincoln
+  city: Lincoln, NE
+- title: The Future of Macaulay2
+  date: 2026-05-01
+  location: Georgia Tech University
+  city: Atlanta, GA
+- title: Regularity in Algebra, Combinatorics, and Geometry
+  date: 2026-04-01
+  location: BIRS
+  city: Banff, AB
+- title: AMS Spring Central Sectional Meeting
+  date: 2026-04-01
+  location: North Dakota State University
+  city: Fargo, ND
+- title: CA+
+  date: 2026-03-01
+  location: Iowa State University
+  city: Ames, IA
+- title: 'Arizona-New Mexico Symposium on Commutative Algebra and its Interaction: Geometric Combinatorics'
+  date: 2025-12-01
+  location: New Mexico State University
+  city: Las Cruces, NM
+- title: KUMUNU 2025
+  date: 2025-10-01
+  location: University of Missouri-Columbia
+  city: Columbia, MO
+- title: AMS Fall Central Sectional Meeting
+  date: 2025-10-01
+  location: St. Louis University
+  city: St. Louis, MO
+- title: AMS Fall Southeastern Sectional Meeting
+  date: 2025-10-01
+  location: Tulane University
+  city: New Orleans, LA
+- title: Mathematical Congress of the Americas
+  date: 2025-07-01
+  location: University of Miami
+  city: Miami, FL
+- title: SIAM AG25
+  date: 2025-07-01
+  location: University of Wisconsin-Madison
+  city: Madison, WI
+- title: Macaulay2 Workshop
+  date: 2025-07-01
+  location: University of Wisconsin-Madison
+  city: Madison, WI
+- title: Collaborate@ICERM
+  date: 2025-06-01
+  location: ICERM
+  city: Providence, RI
+- title: Workshop on Weak and Strong Lefschetz Properties Across Mathematics
+  date: 2025-06-01
+  location: Sophus Lie Conference Center
+  city: Nordfjordeid, Norway
+- title: Workshop on the Applications of Commutative Algebra
+  date: 2025-05-01
+  location: Fields Institute
+  city: Toronto, ON
+- title: AWM Research Symposium
+  date: 2025-05-01
+  location: University of Wisconsin-Madison
+  city: Madison, WI
+- title: Meetings in Applied Algebraic Geometry (MAAG)
+  date: 2025-04-01
+  location: Auburn University
+  city: Auburn, AL
+- title: Macaulay2 Workshop
+  date: 2025-04-01
+  location: Tulane University
+  city: New Orleans, LA
+- title: Commutative Algebra in the South (CATS)
+  date: 2025-04-01
+  location: Georgia State University
+  city: Atlanta, GA
+- title: Mid-Atlantic Algebra, Geometry, and Combinatorics Conference (MAAGC) Workshop
+  date: 2025-03-01
+  location: CUNY
+  city: New York City, NY
+- title: CA+
+  date: 2025-03-01
+  location: Iowa State University
+  city: Ames, IA
+- title: Combinatorial Algebra meets Algebraic Combinatorics (CAAC)
+  date: 2025-01-01
+  location: Fields Institute and University of Toronto
+  city: Toronto, ON
+- title: Apprenticeship in Commutative Algebra
+  date: 2025-01-01
+  location: Fields Institute
+  city: Toronto, ON
+- title: Joint Mathematics Meetings
+  date: 2025-01-01
+  location: Seattle Convention Center
+  city: Seattle, WA
+- title: AMS Fall Central Sectional Meeting
+  date: 2024-09-01
+  location: University of Texas, San Antonio
+  city: San Antonio, TX
+- title: UweFest
+  date: 2024-08-01
+  location: Notre Dame University
+  city: South Bend, IN
+- title: 'AMS MRC: Algebraic Combinatorics'
+  date: 2024-06-01
+  location: Beaver Hollow Resort
+  city: Beaver Hollow, NY
+- title: Computational Algebraic Geometry and String Theory
+  date: 2024-05-01
+  location: University of Utah
+  city: Salt Lake City, UT
+- title: JM Invariant at 60
+  date: 2024-05-01
+  location: Auburn University
+  city: Auburn, AL
+- title: Combinatorial Algebra meets Algebraic Combinatorics
+  date: 2024-01-01
+  location: Université du Québec à Montréal
+  city: Montréal, QC
+- title: SIAM Texas-Louisiana Sectional Meeting
+  date: 2023-11-01
+  location: University of Louisiana at Lafayette
+  city: Lafayette, LA
+- title: BrianFest
+  date: 2023-08-01
+  location: University of Nebraska-Lincoln
+  city: Lincoln, NE
+- title: Macaulay2 Week
+  date: 2023-06-01
+  location: University of Minnesota
+  city: Minneapolis, MN
+- title: SLMath Commutative Algebra Summer School
+  date: 2023-05-01
+  location: Notre Dame University
+  city: South Bend, IN
+- title: Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics
+  date: 2023-05-01
+  location: Fields Institute
+  city: Toronto, ON
+- title: Commutative Algebra in the South
+  date: 2023-04-01
+  location: University of Alabama
+  city: Tuscaloosa, AL
+- title: SLMath Tropical Geometry Summer School
+  date: 2022-08-01
+  location: St. Mary's College
+  city: Moraga, CA

@@ -1,0 +1,28 @@
+undergraduate_research:
+  - title: Discrete Heisenberg Group
+    blurb: How well does Ehrhart theory translate to the noncommutative world?
+    image: images/heisenberg/tetra_growth.gif
+    alt: heisenberg
+    link: heisenberg/
+  - title: Flight Route Estimation
+    blurb: How well can you estimate the path of a LiDAR sensor given a scan of the terrain?
+    image: images/flightroute/franklin_torch_flight.gif
+    alt: flight route
+    link: flight-route/
+
+personal_projects:
+  - title: Visualizing Algebraic Surfaces
+    blurb: Cool 3D prints of objects popping up in math.
+    image: images/visualizations/twisted_cubic_surface_render.png
+    alt: twisted cubic
+    link: visualizations/
+  - title: TA Assignments
+    blurb: Is there a nice algorithm to assign TAs to teaching assignments given a set of constraints and a list of preferences?
+    image: images/assignments/assignments.PNG
+    alt: assignments
+    link: assignments/
+  - title: Generating Minecraft Worlds
+    blurb: Use techniques from deep learning combined with real world data to generate realistic worlds in Minecraft.
+    image: "images/minecraft/mountain overlook (small).png"
+    alt: minecraft
+    link: minecraft/

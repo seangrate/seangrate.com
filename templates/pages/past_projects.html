@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
+
+{% block title %}Past Projects{% endblock %}
+
+{% block sidebar %}{{ m.subpage_sidebar(root, "images/visualizations/clebsh_render.png", "Past Projects", "Prior research and personal projects.", [
+  {"href": "#undergrad", "icon": "fa-book", "label": "UNDERGRADUATE RESEARCH"},
+  {"href": "#personal", "icon": "fa-pencil", "label": "PERSONAL PROJECTS"},
+]) }}{% endblock %}
+
+{% block content %}
+  <!-- Undergraduate Research -->
+  <div id="undergrad" class="w3-container w3-row-padding">
+    <h4><b>Undergraduate Research</b></h4>
+    <div class="masonry">
+      {% for item in projects.undergraduate_research %}
+      <div class="masonry-item">
+        <a class="weblink" href="./{{ item.link }}"><img src="{{ root }}{{ item.image }}" alt="{{ item.alt }}" style="width:100%" class="w3-hover-opacity"></a>
+        <div class="w3-container w3-white">
+          <p><b>{{ item.title }}</b></p>
+          <p>{{ item.blurb }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <hr>
+  </div>
+
+  <!-- Projects -->
+  <div id="personal" class="w3-container w3-row-padding">
+    <h4 id="personal projects"><b>Personal Projects</b></h4>
+    <div class="masonry">
+      {% for item in projects.personal_projects %}
+      <div class="masonry-item">
+        <a class="weblink" href="./{{ item.link }}"><img src="{{ root }}{{ item.image }}" alt="{{ item.alt }}" style="width:100%" class="w3-hover-opacity"></a>
+        <div class="w3-container w3-white">
+          <p><b>{{ item.title }}</b></p>
+          <p>{{ item.blurb }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

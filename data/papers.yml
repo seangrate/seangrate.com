@@ -1,0 +1,109 @@
+publications:
+  - title: Graph Theoretic Reflection to Foster Alignment in Coordinated Courses
+    venue: International Journal of Mathematical Education in Science and Technology, 2025
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://www.hailegilroy.com/" target="_blank">Haile Gilroy</a>
+      and <a class="weblink" href="https://www.auburn.edu/cosam/faculty/math_stats/lanius/index.htm" target="_blank">Melinda Lanius</a>
+    pdf: misc/papers/CAAT.pdf
+    abstract: >-
+      Despite online homework’s growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets.
+      In this mixed-methods study, we examined how 10 university mathematics educators working in a coordinated setting judged the quality of a sampling of online Calculus I homework assignments.
+      Following an initial review of the homework sets, we introduced the educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritised and the learning outcomes most emphasised by an assignment or assessment.
+      We analyzed the impact of engaging with the CAAT on participants’ consideration of uniform homework. We found that interacting with the CAAT affected coordinated instructors’ definitions of homework quality and that the CAAT is a promising professional development tool for novice instructors in particular.
+
+  - title: The MatrixSchubert package for Macaulay2
+    title_link: https://arxiv.org/abs/2312.07393
+    venue: Journal of Software for Algebra and Geometry, 2025
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://sites.google.com/view/ayah-almousa/" target="_blank">Ayah Almousa</a>,
+      <a class="weblink" href="https://www.daojihuang.me/" target="_blank">Daoji Huang</a>,
+      <a class="weblink" href="https://patriciajklein.github.io/" target="_blank">Patricia Klein</a>,
+      <a class="weblink" href="https://sites.google.com/view/adamlaclair/home" target="_blank">Adam LaClair</a>,
+      <a class="weblink" href="https://www.mit.edu/~lyuyuan/" target="_blank">Yuyuan Luo</a>,
+      and <a class="weblink" href="https://jmcdonough98.github.io/" target="_blank">Joseph McDonough</a>
+    pdf: misc/papers/matrix_schubert.pdf
+    code: https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MatrixSchubert/html/index.html
+    abstract: >-
+      We introduce the MatrixSchubert package for the computer algebra system Macaulay2.
+      This package has tools to construct and study matrix Schubert varieties and alternating sign matrix (ASM) varieties.
+      The package also introduces tools for quickly computing homological invariants of such varieties, finding the components of an ASM variety, and checking if a union of matrix Schubert varieties is an ASM variety.
+
+  - title: Betti numbers for connected sums of graded Gorenstein artinian algebras
+    title_link: https://arxiv.org/abs/2401.10492
+    venue: Transactions of the AMS, 2025
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://sites.google.com/view/nasrinaltafi" target="_blank">Nasrin Altafi</a>,
+      <a class="weblink" href="https://www.docenti.unina.it/roberta.digennaro" target="_blank">Roberta Di Gennaro</a>,
+      <a class="weblink" href="https://math.galetto.org/" target="_blank">Federico Galetto</a>,
+      <a class="weblink" href="https://webgrec.ub.edu/webpages/000006/ang/miro.ub.edu.html" target="_blank">Rosa M. Miró-Roig</a>,
+      <a class="weblink" href="https://www.ms.uky.edu/~uwenagel/" target="_blank">Uwe Nagel</a>,
+      <a class="weblink" href="https://aseceleanu.github.io/" target="_blank">Alexandra Seceleanu</a>,
+      and Junzo Watanabe
+    pdf: misc/papers/connected_sums.pdf
+    abstract: >-
+      The connected sum construction, which takes as input Gorenstein rings and produces new Gorenstein rings, can be considered as an algebraic analogue for the topological construction having the same name.
+      We determine the graded Betti numbers for connected sums of graded Artinian Gorenstein algebras.
+      Along the way, we find the graded Betti numbers for fiber products of graded rings; an analogous result was obtained in the local case by Geller.
+      We relate the connected sum construction to the doubling construction, which also produces Gorenstein rings.
+      Specifically, we show that a connected sum of doublings is the doubling of a fiber product ring.
+
+  - title: Betti tables forcing failure of the Weak Lefschetz Property
+    title_link: https://arxiv.org/abs/2307.13126
+    venue: Lefschetz Properties, Current and New Directions, Springer INdAM series. 2024
+    coauthors_html: >-
+      Joint with <a class="weblink" href="http://webhome.auburn.edu/~hks0015/" target="_blank">Hal Schenck</a>
+    pdf: misc/papers/betti_wlp.pdf
+    video: https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl
+    abstract: >-
+      We study the Artinian reduction \( A \) of a configuration of points \( X \subset \mathbb{P}^n \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \).
+      Migliore initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further results appear in work of Migliore–Miró-Roig–Nagel.
+      Our specific focus is on Betti tables rather than Hilbert functions, and we prove that a certain type of Betti table forces the failure of the Weak Lefschetz Property (WLP).
+      The corresponding Artinian algebras are typically not level, and the failure of WLP in these cases is not detected in terms of the Hilbert function.
+
+  - title: Surface modeling for airborne lidar
+    title_link: https://ieeexplore.ieee.org/document/9323522
+    venue: IEEE International Geoscience and Remote Sensing Symposium, 2020
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://hblanton.github.io/" target="_blank">Hunter Blanton</a>
+      and <a class="weblink" href="https://jacobsn.github.io/" target="_blank">Nathan Jacobs</a>
+    pdf: misc/papers/surface_modeling.pdf
+    abstract: >-
+      Repeat-visit airborne lidar is a powerful tool for change detection in urban and rural environments.
+      In this work, we present a learning-based approach that addresses one of the key challenges in comparing point cloud scans of the same region: handling geometric differences caused by varying sensor position. Our approach is to perform shape modeling through ray casting with a point cloud neural network.
+      Recent work on learning-based shape modeling has been based on the assumption that an explicit surface representation is available, which is not the case for airborne lidar datasets.
+      Our key insight is that by using a ray casting approach we can perform shape modeling directly with lidar measurements.
+      We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
+
+preprints:
+  - title: Graded Betti numbers of graded Möbius algebras of uniform matroids
+    title_link: https://arxiv.org/abs/2609.03827
+    venue: September 2026
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://sites.google.com/view/louiza-fouli/home" target="_blank">Louiza Fouli</a>,
+      <a class="weblink" href="https://www.selvikara.com/" target="_blank">Selvi Kara</a>,
+      <a class="weblink" href="https://sites.google.com/view/adamlaclair/home" target="_blank">Adam LaClair</a>,
+      <a class="weblink" href="https://faculty.sites.iastate.edu/jmccullo/" target="_blank">Jason McCullough</a>,
+      Vinh Nguyen,
+      <a class="weblink" href="https://soloist.ai/combinatola" target="_blank">Aleksandra Sobieska</a>,
+      and <a class="weblink" href="https://sites.google.com/view/prajwal-udanshive/" target="_blank">Prajwal Udanshive</a>
+    pdf: misc/papers/uniform_gmas.pdf
+    abstract: >-
+      Graded Möbius algebras were a key tool in the proof of the Dowling-Wilson Top Heavy Conjecture.
+      They are commutative algebras whose Hilbert functions recover the Whitney numbers of the second kind, i.e. the number of flats of a given rank.
+      The graded Betti numbers of the defining ideal of a graded Möbius algebra refine the Hilbert function and describe its minimal free resolution.
+      In this paper we derive precise formulas for the graded Betti numbers of the defining ideals of graded Möbius algebra for any uniform matroid.
+      We also study when the graded Möbius algebra of an arbitrary matroid is linearly presented.
+
+  - title: Incidence toric ideals and three-point functions
+    title_link: https://arxiv.org/abs/2605.23849
+    venue: May 2026
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://sites.google.com/view/barbarabetti/home/" target="_blank">Barbara Betti</a>,
+      <a class="weblink" href="https://hollebenthiago.github.io/" target="_blank">Thiago Holleben</a>,
+      and <a class="weblink" href="https://flaviosalizzoni.com/" target="_blank">Flavio Salizzoni</a>
+    pdf: misc/papers/three_point.pdf
+    abstract: >-
+      We study the ideal of the algebraic relations among \( 3 \)-point functions from a combinatorial and topological perspective.
+      We place this problem in the broader setting of incidence toric ideals associated with incidence matrices of \( t \)-subsets contained in \( k \)-subsets of n elements.
+      Generators of these ideals admit combinatorial interpretations as null \( t \)-designs and topological interpretations as balanced orientable normal \( d \)-pseudomanifolds without boundary.
+      Generators arising from octahedra play a fundamental role in the structure of these ideals.
