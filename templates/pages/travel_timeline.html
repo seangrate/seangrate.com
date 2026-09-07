@@ -4,7 +4,7 @@
 
 {% block title %}Travel{% endblock %}
 {% block extra_head %}<link rel="stylesheet" href="{{ root }}styles/timelines.css">
-{{ m.abstract_toggle_style() }}{% endblock %}
+{% endblock %}
 
 {% block sidebar %}{{ m.subpage_sidebar(root, "images/travel/golden_gate_bridge.jpg", "Travel", "Places I have been for conferences, workshops, and summer schools.", [
   {"href": "./", "icon": "fa-arrows-v", "label": "TIMELINE VIEW"},
@@ -12,5 +12,5 @@
 ]) }}{% endblock %}
 
 {% block content %}
-  {{ tl.render(events, false) }}
+  {{ tl.render(timeline) }}
 {% endblock %}

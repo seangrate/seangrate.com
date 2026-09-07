@@ -4,7 +4,7 @@
 
 {% block title %}Talks{% endblock %}
 {% block extra_head %}<link rel="stylesheet" href="{{ root }}styles/timelines.css">
-{{ m.abstract_toggle_style() }}{% endblock %}
+{% endblock %}
 
 {% block sidebar %}{{ m.subpage_sidebar(root, "images/tda/tda_talk.jpg", "Talks", "Talks I have given.", [
   {"href": "./", "icon": "fa-arrows-v", "label": "TIMELINE VIEW"},
@@ -12,7 +12,5 @@
 ]) }}{% endblock %}
 
 {% block content %}
-  {{ tl.render(events, true) }}
+  {{ tl.render(timeline) }}
 {% endblock %}
-
-{% block extra_scripts %}{{ m.abstract_toggle_scripts() }}{% endblock %}

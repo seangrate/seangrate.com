@@ -153,7 +153,7 @@
   slides: misc/slides/awm-research-symposium/regularity.pdf
   abstract: |-
     In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.
-- title: Cobminatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces
+- title: Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces
   date: 2025-02-20
   venue: Syzygies and Mirror Symmetry Seminar
   location: Zoom

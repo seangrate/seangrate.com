@@ -1,135 +1,239 @@
-/* https://www.w3schools.com/howto/howto_css_timeline.asp */
-* {
-    box-sizing: border-box;
+/* Single-axis timeline: each node's vertical position is real elapsed time
+   (see build.py) -- not a layout trick. Events too close together in time to
+   place at their true distance are merged into one expandable cluster node
+   instead. Each node renders as a single truncated line by default (ellipsis,
+   not wrap). Rows sit in normal document flow (margin-top per row, not an
+   absolute pixel position), so expanding a card pushes later rows down
+   instead of risking an overlap with whatever's after it.
+   Collapsing is native <details>/<summary> -- no JS. */
+
+/* Coordinate note: .tl-line is position:absolute, so its `left` is measured
+   from .tl's border edge, ignoring .tl's own padding-left (12px). .tl-node
+   and .tl-yearmark are normal-flow, so THEIR left edge already starts 12px
+   in from that same border edge. Anything absolutely positioned *inside*
+   one of those (.tl-dot, .tl-yearmark-tick/-label) needs its `left` picked
+   to land on .tl-line's real position, not .tl-line's `left` value verbatim
+   -- the two are in different coordinate frames. */
+.tl {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4px 12px 10px;
+}
+
+.tl-line {
+  position: absolute;
+  top: 4px;
+  bottom: 14px;
+  left: 44px;
+  width: 2px;
+  background-color: #ddd;
+}
+
+.tl-node {
+  position: relative;
+  margin-left: 68px;
+}
+
+/* A fixed tick + label for every January 1st the data spans -- a real
+   calendar ruler, not just "whichever event happened to be first that
+   year." Needs a real height (not 0) so its own margin-top doesn't collapse
+   into the next row's -- see build.py's layout_timeline for why that'd
+   throw off the computed spacing. */
+.tl-yearmark {
+  position: relative;
+  height: 16px;
+}
+
+.tl-yearmark-tick {
+  position: absolute;
+  left: 26px;
+  top: 7px;
+  width: 12px;
+  height: 2px;
+  background-color: #bbb;
+}
+
+.tl-yearmark-label {
+  position: absolute;
+  left: -12px;
+  width: 34px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: #999;
+}
+
+.tl-dot {
+  position: absolute;
+  left: -41px;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid #FF9F55;
+  z-index: 2;
+}
+
+/* A minor, unlabeled tick for every other month boundary (January gets the
+   labeled .tl-yearmark instead) -- fills in the ruler between events so a
+   quiet stretch reads as steadily passing time instead of empty space.
+   Same non-zero-height note as .tl-yearmark applies. */
+.tl-monthmark {
+  position: relative;
+  height: 6px;
+}
+
+.tl-monthmark-tick {
+  position: absolute;
+  left: 28px;
+  top: 2px;
+  width: 8px;
+  height: 1px;
+  background-color: #e3e3e3;
+}
+
+.tl-card, .tl-member {
+  position: relative;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  padding: 5px 10px;
+}
+
+.tl-static {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+}
+
+.tl-cluster {
+  background-color: #fff6ec;
+}
+
+.tl-member {
+  background-color: #f8f8f8;
+  box-shadow: none;
+}
+
+.tl-card:hover, .tl-member:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.tl-card summary, .tl-member summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.tl-card summary::-webkit-details-marker, .tl-member summary::-webkit-details-marker {
+  display: none;
+}
+
+.tl-date {
+  flex: 0 0 auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FF9F55;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.tl-line-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.88rem;
+}
+
+.tl-cluster > summary .tl-line-text {
+  color: #888;
+  font-style: italic;
+}
+
+.tl-expand-indicator {
+  flex: 0 0 auto;
+  color: #ccc;
+  font-size: 0.7rem;
+  transition: transform 0.15s ease;
+}
+
+details[open] > summary .tl-expand-indicator {
+  transform: rotate(180deg);
+}
+
+.tl-details {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.tl-details .tl-meta {
+  color: #999;
+  font-size: 0.82rem;
+  margin: 0 0 4px 0;
+}
+
+.tl-links {
+  margin: 0 0 4px 0;
+}
+
+.tl-links a {
+  white-space: nowrap;
+}
+
+.tl-links .tl-sep {
+  color: #ccc;
+  margin: 0 8px;
+}
+
+.tl-details blockquote {
+  margin: 6px 0 0 0;
+  padding-left: 10px;
+  border-left: 3px solid #eee;
+  color: #444;
+}
+
+.tl-cluster > .tl-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Responsive: tighten the left gutter on narrow screens (still normal flow,
+   just a smaller indent -- there's no layout mode switch needed) */
+@media screen and (max-width: 500px) {
+  .tl-line {
+    left: 18px;
   }
-  
-  /* Set a background color
-  body {
-    background-color: lightgray;
-    font-family: Roboto;
-  } */
-  
-  /* The actual timeline (the vertical ruler) */
-  .timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
+
+  .tl-yearmark-label {
+    display: none;
   }
-  
-  /* The actual timeline (the vertical ruler) */
-  .timeline::after {
-    content: '';
-    position: absolute;
+
+  .tl-yearmark-tick {
+    left: 2px;
+    width: 8px;
+  }
+
+  .tl-monthmark-tick {
+    left: 3px;
     width: 6px;
-    background-color: white;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
   }
-  
-  /* Container around content */
-  .container {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
+
+  .tl-node {
+    margin-left: 40px;
   }
-  
-  /* The circles on the timeline */
-  .container::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    right: -17px;
-    background-color: white;
-    border: 4px solid #FF9F55;
-    top: 15px;
-    border-radius: 50%;
-    z-index: 1;
+
+  .tl-dot {
+    left: -39px;
   }
-  
-  /* Place the container to the left */
-  .left {
-    left: 0;
-  }
-  
-  /* Place the container to the right */
-  .right {
-    left: 50%;
-  }
-  
-  /* Add arrows to the left container (pointing right) */
-  .left::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    right: 30px;
-    border: medium solid white;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent white;
-  }
-  
-  /* Add arrows to the right container (pointing left) */
-  .right::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    left: 30px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-  }
-  
-  /* Fix the circle for containers on the right side */
-  .right::after {
-    left: -16px;
-  }
-  
-  /* The actual content */
-  .content {
-    padding: 20px 30px;
-    background-color: white;
-    position: relative;
-    border-radius: 6px;
-  }
-  
-  /* Media queries - Responsive timeline on screens less than 600px wide */
-  @media screen and (max-width: 600px) {
-  /* Place the timelime to the left */
-    .timeline::after {
-      left: 31px;
-    }
-  
-  /* Full-width containers */
-    .container {
-      width: 100%;
-      padding-left: 70px;
-      padding-right: 25px;
-    }
-  
-  /* Make sure that all arrows are pointing leftwards */
-    .container::before {
-      left: 60px;
-      border: medium solid white;
-      border-width: 10px 10px 10px 0;
-      border-color: transparent white transparent transparent;
-    }
-  
-  /* Make sure all circles are at the same spot */
-    .left::after, .right::after {
-      left: 15px;
-    }
-  
-  /* Make all right containers behave like the left ones */
-    .right {
-      left: 0%;
-    }
-  }
+}
