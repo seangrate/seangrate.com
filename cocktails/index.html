@@ -1,161 +1,352 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<!-- taken from https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_food_blog&stacked=h -->
 <title>Cocktail Menu</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
-<link rel="stylesheet" href="../styles/misc.css">
+<link rel="icon" type="image/png" href="../images/favicon-96x96.png" sizes="96x96">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap">
 <style>
-  body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
-  .w3-bar-block .w3-bar-item {padding:20px}
+  :root {
+    --paper: #f6f0e3;
+    --paper-deep: #efe6d2;
+    --ink: #2a2420;
+    --ink-soft: #6e6255;
+    --gold: #96793f;
+    --gold-deep: #7a6132;
+    --rule: rgba(42,36,32,0.16);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--paper-deep); }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "EB Garamond", Georgia, serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  h1, h2, h3 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .frame {
+    position: relative;
+    z-index: 1;
+    margin: 22px;
+    box-shadow:
+      0 0 0 1px var(--gold),
+      0 0 0 9px var(--paper),
+      0 0 0 10px var(--gold);
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 68px 56px 76px;
+  }
+
+  /* Ornamental rule with centered glyph */
+  .rule-orn {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 26px 0;
+  }
+
+  .rule-orn span {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule) 50%, transparent);
+  }
+
+  .rule-orn i {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: normal;
+    color: var(--gold);
+    font-size: 1.1rem;
+  }
+
+  .rule-orn.tight { margin: 18px 0 34px; }
+
+  /* Masthead */
+  .masthead {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .masthead .mark {
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .masthead .kicker {
+    display: block;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--gold-deep);
+    margin-bottom: 18px;
+  }
+
+  .masthead h1 {
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .masthead .subtitle {
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 12px;
+    font-size: 1.05rem;
+  }
+
+  section { margin-bottom: 12px; }
+
+  .section-head {
+    text-align: center;
+  }
+
+  .section-head .kicker {
+    display: block;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: var(--gold-deep);
+    margin-bottom: 8px;
+  }
+
+  .section-head h2 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* Menu list -- typographic, no cards */
+  .menu-list {
+    columns: 2;
+    column-gap: 64px;
+  }
+
+  .menu-list .item {
+    break-inside: avoid;
+    margin-bottom: 30px;
+  }
+
+  .item h3 {
+    font-size: 1.28rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .item h3::before {
+    content: "\2756";
+    color: var(--gold);
+    font-size: 0.6rem;
+    margin-right: 10px;
+    position: relative;
+    top: -3px;
+  }
+
+  .item .meta {
+    margin: 5px 0 0;
+    padding-left: 20px;
+    color: var(--gold-deep);
+    font-style: italic;
+    font-size: 0.96rem;
+  }
+
+  .item .desc {
+    margin: 4px 0 0;
+    padding-left: 20px;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+  }
+
+  /* Subject lists (wines/vermouths) */
+  .subject-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 60px;
+  }
+
+  .subject h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--gold-deep);
+    margin-bottom: 12px;
+  }
+
+  .subject ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .subject li {
+    padding: 7px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.98rem;
+  }
+
+  .subject li:first-child { border-top: none; }
+
+  /* Links */
+  .links-line {
+    text-align: center;
+    font-size: 0.96rem;
+  }
+
+  .links-line a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .links-line a:hover {
+    color: var(--gold-deep);
+  }
+
+  .links-line .dot {
+    color: var(--gold);
+    margin: 0 16px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 44px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 640px) {
+    .frame { margin: 10px; box-shadow: 0 0 0 1px var(--gold), 0 0 0 6px var(--paper), 0 0 0 7px var(--gold); }
+    .page { padding: 48px 24px 56px; }
+    .menu-list { columns: 1; }
+    .subject-grid { grid-template-columns: 1fr; gap: 28px; }
+    .masthead h1 { font-size: 2.1rem; }
+    .section-head h2 { font-size: 1.5rem; }
+  }
 </style>
 </head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+<body>
 
+<div class="frame">
+<div class="page">
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-  <!-- Featured Cocktails -->
-  <div class="w3-container">
-    <h2>Featured Rums</h2><br>
-    <div class="masonry" id="featured" style="column-count: 4">
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/90888750/90888750-1-fr.png" alt="Bacardi" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Bacardi Reserva 8 Year</b></h3>
-          <p><i>Origin: Puerto Rico</i></p>
-          <br>
-          <p>Aged, colum still, Spanish-style</p>
-        </div>
+  <header class="masthead">
+    <div class="mark">&#10070;</div>
+    <span class="kicker">Est. 2023</span>
+    <h1>Cocktail Menu</h1>
+    <p class="subtitle">A Grate Selection of Cocktails</p>
+  </header>
+
+  <div class="rule-orn"><span></span><i>&#10070;</i><span></span></div>
+
+  <!-- Featured Rums -->
+  <section>
+    <div class="section-head">
+      <span class="kicker">Spirits</span>
+      <h2>Featured Cocktails</h2>
+    </div>
+    <div class="rule-orn tight"><span></span><i>&#10070;</i><span></span></div>
+    <div class="menu-list">
+      <div class="item">
+        <h3>Sidecar</h3>
+        <p class="meta">Bright, citrusy</p>
+        <p class="desc">Cognac, Cointreau, lemon</p>
       </div>
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/8799750/8799750-1-fr.png" alt="Appleton Estate" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Appleton Estate Signature</b></h3>
-          <p><i>Origin: Jamaica</i></p>
-          <br>
-          <p>Lightly aged, pot still</p>
-        </div>
+      <div class="item">
+        <h3>Flor de Jerez</h3>
+        <p class="meta">Fruity, juicy</p>
+        <p class="desc">Jamaican rum, amontillado sherry, apricot liqueur, lemon</p>
       </div>
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/172133750/172133750-1-fr.png" alt="Rum Fire" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Rum Fire</b></h3>
-          <p><i>Origin: Jamaica</i></p>
-          <br>
-          <p>Unaged, overproof, pot still</p>
-        </div>
+      <div class="item">
+        <h3>Spaghetti Western</h3>
+        <p class="meta">Smoky, agave</p>
+        <p class="desc">Reposado tequila, mezcal, Amaro Nonino</p>
       </div>
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/192579750/192579750-1-fr.png" alt="Lemon Hart" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Lemon Hart 1804</b></h3>
-          <p><i>Origin: Guyana</i></p>
-          <br>
-          <p>Aged, British-style</p>
-        </div>
+      <div class="item">
+        <h3>Swearengen Sling</h3>
+        <p class="meta">Cherry, oaky</p>
+        <p class="desc">Bourbon, Amaro Nonino, cherry Heering, lemon</p>
       </div>
     </div>
-    <br>
-    <div class="masonry" style="column-count: 4">
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/99813750/99813750-1-fr.png" alt="Cruzan" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Cruzan Black Strap</b></h3>
-          <p><i>Origin: U.S. Virgin Islands</i></p>
-          <br>
-          <p>Blackstrap</p>
-        </div>
-      </div>
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/2126252554/2126252554-1-fr.png" alt="Paranubes" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Paranubes</b></h3>
-          <p><i>Origin: Mexico</i></p>
-          <br>
-          <p>Pot still</p>
-        </div>
-      </div>
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/2126238619/2126238619-1-fr.png" alt="Clément Rhum Agricole" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Clément Rhum Agricole</b></h3>
-          <p><i>Origin: Martinique</i></p>
-          <br>
-          <p>Unaged, rhum agricole</p>
-        </div>
-      </div>
-      <div class="masonry-item">
-        <div class="w3-container w3-white" style="width:270px">
-          <div class="w3-container" style="height:300px;margin:auto">
-            <img src="https://www.totalwine.com/images/117687750/117687750-1-fr.png" alt="Novo Fogo" style="width:100%;height:100%;object-fit:contain">
-          </div>
-          <h3 style="text-align:left"><b>Novo Fogo</b></h3>
-          <p><i>Origin: Brazil</i></p>
-          <br>
-          <p>Lightly aged, cachaça</p>
-        </div>
-      </div>
-    </div>
-    <br>
-  </div>
-  <hr width="100%">
+  </section>
+
+  <div class="rule-orn"><span></span><i>&#10070;</i><span></span></div>
 
   <!-- Mocktails -->
-  <div class="w3-container">
-  <h2>Mocktails</h2><br>
-  <div class="masonry" id="mocktails" style="column-count: 4">
-    <div class="masonry-item">
-      <div class="w3-container w3-white" style="width:270px">
-        <div class="w3-container" style="height:300px;margin:auto">
-          <img src="https://www.liquor.com/thmb/60kax5NXq_tMlbL9thPTwOcG7y8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/Daiquiri_3000x3000_primary-206eb2330cb04852ab7d780dcf3d55ef.jpg" alt="Daquiri" style="width:100%;height:100%;object-fit:contain">
-        </div>
-        <h3 style="text-align:left"><b>N/A Daquiri</b></h3>
-        <p><i>N/A rum, lime</i></p>
+  <section>
+    <div class="section-head">
+      <span class="kicker">Zero Proof</span>
+      <h2>Mocktails</h2>
+    </div>
+    <div class="rule-orn tight"><span></span><i>&#10070;</i><span></span></div>
+    <div class="menu-list">
+      <div class="item">
+        <h3>CocoN/A Daquiri</h3>
+        <p class="meta">N/A silver rum, N/A coconut liqueur, lime</p>
+      </div>
+      <div class="item">
+        <h3>N/A Whiskey Sour</h3>
+        <p class="meta">N/A whiskey, lemon, egg white</p>
+      </div>
+      <div class="item">
+        <h3>PaloN/A</h3>
+        <p class="meta">N/A tequila, lime, grapefruit soda</p>
+      </div>
+      <div class="item">
+        <h3>N/Agroni</h3>
+        <p class="meta">N/A gin, N/A aperitif</p>
       </div>
     </div>
-    <div class="masonry-item">
-      <div class="w3-container w3-white" style="width:270px">
-        <div class="w3-container" style="height:300px;margin:auto">
-          <img src="https://www.liquor.com/thmb/k9dShckTW-MLzcOLjpaNMjtw26M=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/Gimlet-1500x1500-hero-7af9450103b9437d8d5b7206a6ddfe43.jpg" alt="Gimlet" style="width:100%;height:100%;object-fit:contain">
-        </div>
-        <h3 style="text-align:left"><b>N/A Gimlet</b></h3>
-        <p><i>N/A gin, lime</i></p>
-    </div>
-  </div>
-  </div>
-  <hr width="100%">
+  </section>
 
-  <!-- Miscellaneous -->
-  <div class=""w3-container">
-    <h2>Wines and Others</h2>
-    <div class="w3-row-padding w3-padding-16">
-      <div class="w3-quarter" id="sherrys">
+  <div class="rule-orn"><span></span><i>&#10070;</i><span></span></div>
+
+  <!-- Wines and Others -->
+  <section>
+    <div class="section-head">
+      <span class="kicker">Cellar</span>
+      <h2>Wines and Others</h2>
+    </div>
+    <div class="rule-orn tight"><span></span><i>&#10070;</i><span></span></div>
+    <div class="subject-grid">
+      <div class="subject" id="sherrys">
         <h3>Sherrys</h3>
         <ul>
-          <li>Hartley & Gibson's Amontillado</li>
-          <li>Hartley & Gibson's Manzanilla</li>
+          <li>Hartley &amp; Gibson's Amontillado</li>
+          <li>Hartley &amp; Gibson's Manzanilla</li>
           <li>Lustau Oloroso</li>
         </ul>
       </div>
-      <div class="w3-quarter" id="vermouths">
+      <div class="subject" id="vermouths">
         <h3>Fortified Wines</h3>
         <ul>
           <li>Dolin Dry</li>
@@ -167,15 +358,28 @@
         </ul>
       </div>
     </div>
-  </div>
-  <hr width="100%">
+  </section>
 
-  <div class="w3-container">
-    <h2>Other Links</h2>
-    <ul>
-      <li><a class="weblink" href="https://winter-guppy-136.notion.site/6aa1d7f2565141acbc9184c14f69be21?v=647a7206fdc042a89b896d5786834c2d">Cocktails Sean has rated</a></li>
-      <li><a class="weblink" href="https://winter-guppy-136.notion.site/a7e7113f27fa48299262fd048574d18e?v=46a925d46a494bd09b5fb5393dd7f2f8">All ingredients</a></li>
-    </ul>
+  <div class="rule-orn"><span></span><i>&#10070;</i><span></span></div>
+
+  <!-- Other Links -->
+  <section>
+    <div class="section-head">
+      <span class="kicker">More</span>
+      <h2>Other Links</h2>
     </div>
-  </div>
+    <div class="rule-orn tight"><span></span><i>&#10070;</i><span></span></div>
+    <p class="links-line">
+      <a href="https://winter-guppy-136.notion.site/6aa1d7f2565141acbc9184c14f69be21?v=647a7206fdc042a89b896d5786834c2d">Cocktails Sean has rated</a>
+      <span class="dot">&middot;</span>
+      <a href="https://winter-guppy-136.notion.site/a7e7113f27fa48299262fd048574d18e?v=46a925d46a494bd09b5fb5393dd7f2f8">All ingredients</a>
+    </p>
+  </section>
+
+  <footer>Cheers</footer>
+
 </div>
+</div>
+
+</body>
+</html>
