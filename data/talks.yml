@@ -42,19 +42,19 @@
   category: conference
   abstract: |-
     The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul graded Möbius algebras by showing that their defining ideals have a quadratic Gröbner basis, and we show that the graded Möbius algebras of nearly all affine geometries are quadratic.
-- title: TBD
+- title: Gorenstein graded Möbius algebras are Koszul
   date: 2026-11-01
   venue: Commutative Algebra Seminar
   location: University of Nebraska-Lincoln
   city: Lincoln, NE
   category: seminar
-- title: TBD
+- title: Algebraic tools for matroids
   date: 2026-11-01
   venue: Commutative Algebra Reading Seminar
   location: University of Nebraska-Lincoln
   city: Lincoln, NE
   category: seminar
-- title: TBD
+- title: The stable Tamari lattice
   date: 2026-11-01
   venue: Discrete Math Seminar
   location: University of Nebraska-Lincoln
