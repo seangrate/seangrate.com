@@ -15,7 +15,21 @@
 <style>
     a.abstract-button:hover {opacity: 0.6; cursor: pointer}
     blockquote.abstract-content {display: none}
-  </style>  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </style>
+<style>
+    .entry-year-group {display:flex; gap:18px; align-items:flex-start; margin-bottom:18px;}
+    .entry-year-label {flex:0 0 52px; padding-top:2px; font-weight:700; font-size:1.05rem; color:#999; text-align:right;}
+    .entry-year-list {flex:1 1 auto; min-width:0; margin:0; padding-left:1.3em;}
+    .entry-year-list .entry-row {margin-bottom:14px;}
+    .entry-month {float:right; color:#999; font-size:0.82rem; font-style:italic;}
+    .entry-subline {color:#666; font-size:0.9rem; margin-top:2px;}
+    .entry-city {color:#999; font-size:0.85rem; margin-top:1px;}
+    .entry-extras {margin-top:4px;}
+  </style>
+<style>
+  .domestic-institution {margin-top:8px;}
+</style>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -51,359 +65,429 @@
   <!-- Invited Conference Talks -->
   <div id="conference" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Invited Conference Talks</b></h2>
-  <p>
-    <ol reversed>
-  <li>
-TBD, AMS Spring Central Sectional Meeting
-    <span style="float:right">April 2027</span>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2027</div>
+    <ol reversed start="15" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+TBD      <span class="entry-month">April</span>
+    </div>
+    <div class="entry-subline">AMS Spring Central Sectional Meeting, University of Iowa</div>
+<div class="entry-city">Iowa City, IA</div>  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+TBD      <span class="entry-month">April</span>
+    </div>
+    <div class="entry-subline">CA+, Iowa State University</div>
+<div class="entry-city">Ames, IA</div>  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Incidence toric ideals and three-point functions</q>      <span class="entry-month">January</span>
+    </div>
+    <div class="entry-subline">Joint Mathematics Meetings</div>
+<div class="entry-city">Chicago, IL</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Motivated by three-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.</blockquote></div>
   </li>
-  <br>
-  <li>
-TBD, CA+
-    <span style="float:right">April 2027</span>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Gorenstein graded Möbius algebras are Koszul</q>      <span class="entry-month">January</span>
+    </div>
+    <div class="entry-subline">Joint Mathematics Meetings</div>
+<div class="entry-city">Chicago, IL</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul graded Möbius algebras by showing that their defining ideals have a quadratic Gröbner basis, and we show that the graded Möbius algebras of nearly all affine geometries are quadratic.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Incidence toric ideals and three-point functions</q>, Joint Mathematics Meetings
-    <span style="float:right">January 2027</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Motivated by three-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Gorenstein graded Möbius algebras are Koszul</q>, Joint Mathematics Meetings
-    <span style="float:right">January 2027</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul graded Möbius algebras by showing that their defining ideals have a quadratic Gröbner basis, and we show that the graded Möbius algebras of nearly all affine geometries are quadratic.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>\( 3 \)-point functions and incidence toric ideals</q>, SIAM TX-LA Sectional Meeting
-    <span style="float:right">October 2026</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Motivated by \( 3 \)-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>The graded Möbius algebra of a matroid</q>, Upcoming Researchers in Commutative Algebra (URiCA)
-    <span style="float:right">August 2026</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/urica/gmas.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Gorenstein graded Möbius algebras are Koszul</q>, AMS Spring Central Sectional Meeting
-    <span style="float:right">April 2026</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/ams-central-s26/talk.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of the lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. We extend this result by showing that these algebras are also Koszul by showing that the defining ideals have a quadratic Gröbner basis. We also examine the Koszul property for graded Möbius algebras of affine geometries, showing that those of finite affine planes are Koszul using a filtration argument. This is joint work with Jason McCullough.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>, AMS Fall Central Sectional Meeting
-    <span style="float:right">October 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/ams-central-f25/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>, Mathematical Congress of the Americas
-    <span style="float:right">July 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/mca-2025/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Castelnuovo-Mumford regularity of toric surfaces</q>, SIAM AG25
-    <span style="float:right">July 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/siam-ag25/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>, AWM Research Symposium
-    <span style="float:right">May 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/awm-research-symposium/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Castelnuovo-Mumford regularity of toric surfaces</q>, Joint Mathematics Meetings
-    <span style="float:right">January 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/jmm/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Castelnuovo-Mumford regularity of toric surfaces</q>, AMS Fall Central Sectional
-    <span style="float:right">September 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/ams-central-f24/presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables forcing failure of the Weak Lefschetz Property</q>, Combinatorial Algebra Meets Algebraic Combinatorics (CAAC)
-    <span style="float:right">January 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/caac_wlp.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables forcing failure of the Weak Lefschetz Property</q>, Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics
-    <span style="float:right">May 2023</span>
-    <br>
-    <i class="fa fa-video-camera"></i> <a class="weblink" href="https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl" target="_blank">Video</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">We study the Artinian reduction \( A \) of a configuration of a pointset \( X \subseteq \mathbb{P}^{n} \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \). Migliore-Zanello initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further work appears in Migliore-Miró-Roig–Nagel. Our specific focus is on betti tables rather than Hilbert functions, and we prove that certain betti tables force the failure of the Weak Lefschetz Property (WLP); the corresponding Artinian algebras are typically not level, and the failure of WLP is not detected in terms of the Hilbert function.</blockquote>
-  </li>
-  <br>
     </ol>
-  </p>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2026</div>
+    <ol reversed start="11" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>\( 3 \)-point functions and incidence toric ideals</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">SIAM TX-LA Sectional Meeting, Southern Methodist University</div>
+<div class="entry-city">Dallas, TX</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Motivated by \( 3 \)-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>The graded Möbius algebra of a matroid</q>      <span class="entry-month">August</span>
+    </div>
+    <div class="entry-subline">Upcoming Researchers in Commutative Algebra (URiCA), University of Nebraska-Lincoln</div>
+<div class="entry-city">Lincoln, NE</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/urica/gmas.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Gorenstein graded Möbius algebras are Koszul</q>      <span class="entry-month">April</span>
+    </div>
+    <div class="entry-subline">AMS Spring Central Sectional Meeting, North Dakota State University</div>
+<div class="entry-city">Fargo, ND</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/ams-central-s26/talk.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of the lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. We extend this result by showing that these algebras are also Koszul by showing that the defining ideals have a quadratic Gröbner basis. We also examine the Koszul property for graded Möbius algebras of affine geometries, showing that those of finite affine planes are Koszul using a filtration argument. This is joint work with Jason McCullough.</blockquote></div>
+  </li>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2025</div>
+    <ol reversed start="8" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">AMS Fall Central Sectional Meeting, St. Louis University</div>
+<div class="entry-city">St. Louis, MO</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/ams-central-f25/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">July</span>
+    </div>
+    <div class="entry-subline">Mathematical Congress of the Americas, University of Miami</div>
+<div class="entry-city">Miami, FL</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/mca-2025/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">July</span>
+    </div>
+    <div class="entry-subline">SIAM AG25, University of Wisconsin-Madison</div>
+<div class="entry-city">Madison, WI</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/siam-ag25/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">May</span>
+    </div>
+    <div class="entry-subline">AWM Research Symposium, University of Wisconsin-Madison</div>
+<div class="entry-city">Madison, WI</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/awm-research-symposium/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">January</span>
+    </div>
+    <div class="entry-subline">Joint Mathematics Meetings, Seattle Convention Center</div>
+<div class="entry-city">Seattle, WA</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/jmm/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.</blockquote></div>
+  </li>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2024</div>
+    <ol reversed start="3" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">September</span>
+    </div>
+    <div class="entry-subline">AMS Fall Central Sectional, University of Texas, San Antonio</div>
+<div class="entry-city">San Antonio, TX</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/ams-central-f24/presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup, and is bounded by the area of the associated polygon.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables forcing failure of the Weak Lefschetz Property</q>      <span class="entry-month">January</span>
+    </div>
+    <div class="entry-subline">Combinatorial Algebra Meets Algebraic Combinatorics (CAAC), Université du Québec à Montréal</div>
+<div class="entry-city">Montréal, QC</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/caac_wlp.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
+  </li>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2023</div>
+    <ol reversed start="1" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables forcing failure of the Weak Lefschetz Property</q>      <span class="entry-month">May</span>
+    </div>
+    <div class="entry-subline">Workshop on Lefschetz Properties in Algebra, Geometry, Topology and Combinatorics, Fields Institute</div>
+<div class="entry-city">Toronto, ON</div>    <div class="entry-extras"><i class="fa fa-video-camera"></i> <a class="weblink" href="https://youtu.be/wRT48OpfviU?si=s9P3anVzmZ4bqPKl" target="_blank">Video</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">We study the Artinian reduction \( A \) of a configuration of a pointset \( X \subseteq \mathbb{P}^{n} \), and the relation of the geometry of \( X \) to Lefschetz properties of \( A \). Migliore-Zanello initiated the study of this connection, with a particular focus on the Hilbert function of \( A \), and further work appears in Migliore-Miró-Roig–Nagel. Our specific focus is on betti tables rather than Hilbert functions, and we prove that certain betti tables force the failure of the Weak Lefschetz Property (WLP); the corresponding Artinian algebras are typically not level, and the failure of WLP is not detected in terms of the Hilbert function.</blockquote></div>
+  </li>
+    </ol>
+  </div>
   </div>
   <hr>
   <!-- Invited Seminar Talks -->
   <div id="seminars" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Invited Seminar Talks</b></h2>
-  <p>
-    <ol reversed>
-  <li>
-<q>Gorenstein graded Möbius algebras are Koszul</q>, Commutative Algebra Seminar
-    <span style="float:right">November 2026</span>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2026</div>
+    <ol reversed start="13" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Gorenstein graded Möbius algebras are Koszul</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Commutative Algebra Seminar, University of Nebraska-Lincoln</div>
+<div class="entry-city">Lincoln, NE</div>  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Algebraic tools for matroids</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Commutative Algebra Reading Seminar, University of Nebraska-Lincoln</div>
+<div class="entry-city">Lincoln, NE</div>  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>The stable Tamari lattice</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Discrete Math Seminar, University of Nebraska-Lincoln</div>
+<div class="entry-city">Lincoln, NE</div>  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>The graded Möbius algebra of a matroid</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">Algebra Seminar, New Mexico State University</div>
+<div class="entry-city">Las Cruces, NM</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Algebraic tools for matroids</q>, Commutative Algebra Reading Seminar
-    <span style="float:right">November 2026</span>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>SVD is all you need</q>      <span class="entry-month">May</span>
+    </div>
+    <div class="entry-subline">Undergraduate Math Seminar, Grinell College</div>
+<div class="entry-city">Grinell, IA</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Matrices have many factorizations which are amenable to certain applications, such as QR decomposition for least-squares problems. The singular value decomposition (SVD) is yet another factorization of a matrix, but which recovers other matrix factorizations and which has wide applicability to modern problems. I will talk about diagonalization of matrices, SVD, and showcase how these decompositions manifest in problems from computer vision and statistics.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>The stable Tamari lattice</q>, Discrete Math Seminar
-    <span style="float:right">November 2026</span>
-  </li>
-  <br>
-  <li>
-<q>The graded Möbius algebra of a matroid</q>, Algebra Seminar
-    <span style="float:right">October 2026</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>SVD is all you need</q>, Undergraduate Math Seminar
-    <span style="float:right">May 2026</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Matrices have many factorizations which are amenable to certain applications, such as QR decomposition for least-squares problems. The singular value decomposition (SVD) is yet another factorization of a matrix, but which recovers other matrix factorizations and which has wide applicability to modern problems. I will talk about diagonalization of matrices, SVD, and showcase how these decompositions manifest in problems from computer vision and statistics.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables forcing failure of the weak Lefschetz property</q>, Stockholm Commutative Algebra Seminar
-    <span style="float:right">November 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/stockholm/talk.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti table which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>, Syzygies and Mirror Symmetry Seminar
-    <span style="float:right">February 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/mirror/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables forcing failure of the weak Lefschetz property</q>, Commutative Algebra Seminar
-    <span style="float:right">October 2024</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution, in turn summarized by a Betti table. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables and Lefschetz properties</q>, Commutative Algebra Reading Seminar
-    <span style="float:right">October 2024</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti table which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. I will go through the background material necessary to be able to understand the follow-up talk in the Commutative Algebra Seminar.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti numbers of connected sums of graded Artinian Gorenstein algebras</q>, Commutative Algebra Seminar
-    <span style="float:right">October 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/connected-sums/purdue_presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Considered as an algebraic analog for the connected sum construction from topology, the connected sum construction introduced by Ananthnarayan, Avramov, and Moore is a method to produce Gorenstein rings. Joint with Nasrin Altafi, Roberta Di Gennaro, Federico Galetto, Rosa M. Miró-Roig, Uwe Nagel, Alexandra Seceleanu, and Junzo Watanabe, we determine the graded Betti numbers for connected sums and fiber products of Artinian Gorenstein algebras, where the fiber product in the local setting was obtained by Geller. We also show that the connected sum of doublings is the doubling of a fiber product ring. I will discuss these results through some examples and Macaulay2 code.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables and Lefschetz properties</q>, Student Commutative Algebra Seminar
-    <span style="float:right">October 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/lefschetz/purdue_presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Betti tables and Lefschetz properties</q>, Algebra Seminar
-    <span style="float:right">November 2023</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
-  </li>
-  <br>
-  <li>
-<q>Lefschetz properties and Artinian rings</q>, Math Seminar
-    <span style="float:right">November 2023</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space. One much studied class of rings are Artinian quotients of polynomial rings over a field \( k \); Artinian means the ring itself is a finite dimensional vector space over \( k \). I'll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing "linear algebra with matrices of polynomials".</blockquote>
-  </li>
-  <br>
     </ol>
-  </p>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2025</div>
+    <ol reversed start="8" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables forcing failure of the weak Lefschetz property</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Stockholm Commutative Algebra Seminar, Zoom</div>
+<div class="entry-city">Virtual</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/stockholm/talk.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti table which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Combinatorial bounds on the Castelnuovo-Mumford regularity of toric surfaces</q>      <span class="entry-month">February</span>
+    </div>
+    <div class="entry-subline">Syzygies and Mirror Symmetry Seminar, Zoom</div>
+<div class="entry-city">Virtual</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/mirror/regularity.pdf" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">In 1996, L'vovsky showed the Castelnuovo-Mumford regularity of the coordinate ring of a monomial curve is bounded by the sum of its semigroup's two largest gaps. We explore analogous results for toric surfaces embedded by incomplete linear systems, and show that for certain classes the regularity is controlled by the combinatorics of the associated semigroup.</blockquote></div>
+  </li>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2024</div>
+    <ol reversed start="6" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables forcing failure of the weak Lefschetz property</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">Commutative Algebra Seminar, University of Nebraska-Lincoln</div>
+<div class="entry-city">Lincoln, NE</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution, in turn summarized by a Betti table. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables and Lefschetz properties</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">Commutative Algebra Reading Seminar, University of Nebraska-Lincoln</div>
+<div class="entry-city">Lincoln, NE</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti table which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. I will go through the background material necessary to be able to understand the follow-up talk in the Commutative Algebra Seminar.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti numbers of connected sums of graded Artinian Gorenstein algebras</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">Commutative Algebra Seminar, Purdue University</div>
+<div class="entry-city">West Lafayette, IN</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/connected-sums/purdue_presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Considered as an algebraic analog for the connected sum construction from topology, the connected sum construction introduced by Ananthnarayan, Avramov, and Moore is a method to produce Gorenstein rings. Joint with Nasrin Altafi, Roberta Di Gennaro, Federico Galetto, Rosa M. Miró-Roig, Uwe Nagel, Alexandra Seceleanu, and Junzo Watanabe, we determine the graded Betti numbers for connected sums and fiber products of Artinian Gorenstein algebras, where the fiber product in the local setting was obtained by Geller. We also show that the connected sum of doublings is the doubling of a fiber product ring. I will discuss these results through some examples and Macaulay2 code.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables and Lefschetz properties</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">Student Commutative Algebra Seminar, Purdue University</div>
+<div class="entry-city">West Lafayette, IN</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/lefschetz/purdue_presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
+  </li>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2023</div>
+    <ol reversed start="2" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables and Lefschetz properties</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Algebra Seminar, University of Kentucky</div>
+<div class="entry-city">Lexington, KY</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Lefschetz properties and Artinian rings</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Math Seminar, McNeese State University</div>
+<div class="entry-city">Lake Charles, LA</div>    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space. One much studied class of rings are Artinian quotients of polynomial rings over a field \( k \); Artinian means the ring itself is a finite dimensional vector space over \( k \). I'll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing "linear algebra with matrices of polynomials".</blockquote></div>
+  </li>
+    </ol>
+  </div>
   </div>
   <hr>
   <!-- Domestic Talks -->
   <div id="domestic" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Domestic Talks</b></h2>
-  <p>
-    <ul>
-      <li>
-        Iowa State University
-        <ol reversed>
-  <li>
-<q>Gorenstein graded Möbius algebras are Koszul</q>, Algebra and Geometry Seminar
-    <span style="float:right">April 2026</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of the lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. We extend this result by showing that these algebras are also Koszul by showing that the defining ideals have a quadratic Gröbner basis. We also examine the Koszul property for graded Möbius algebras of affine geometries, showing that those of finite affine planes are Koszul using a filtration argument. This is joint work with Jason McCullough.</blockquote>
+  <h4 class="domestic-institution"><b>Iowa State University</b></h4>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2026</div>
+    <ol reversed start="3" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Gorenstein graded Möbius algebras are Koszul</q>      <span class="entry-month">April</span>
+    </div>
+    <div class="entry-subline">Algebra and Geometry Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of the lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. We extend this result by showing that these algebras are also Koszul by showing that the defining ideals have a quadratic Gröbner basis. We also examine the Koszul property for graded Möbius algebras of affine geometries, showing that those of finite affine planes are Koszul using a filtration argument. This is joint work with Jason McCullough.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>The stable Tamari lattice</q>, Discrete Math Seminar
-    <span style="float:right">November 2025</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The stable Tamari lattice was introduced by Haiman through the lens of invariant polynomials, extended by Bergeron-Preville-Ratelle, and is a variation of the Tamari lattice. Stemming from the AMS MRC: Algebraic Combinatorics this past summer, I will describe some work in progress joint with Anna Pun, Herman Chau, Spencer Daugherty, and Juan Carlos Martínez Mori where we describe the combinatorics of this lattice. Namely, I will present properties of the lower order ideals of this lattice, the cover relations, and some enumeration problems (related to Catalan numbers and parking functions) we are tackling. I will discuss this data through some examples and Python code.</blockquote>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2025</div>
+    <ol reversed start="2" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>The stable Tamari lattice</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Discrete Math Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The stable Tamari lattice was introduced by Haiman through the lens of invariant polynomials, extended by Bergeron-Preville-Ratelle, and is a variation of the Tamari lattice. Stemming from the AMS MRC: Algebraic Combinatorics this past summer, I will describe some work in progress joint with Anna Pun, Herman Chau, Spencer Daugherty, and Juan Carlos Martínez Mori where we describe the combinatorics of this lattice. Namely, I will present properties of the lower order ideals of this lattice, the cover relations, and some enumeration problems (related to Catalan numbers and parking functions) we are tackling. I will discuss this data through some examples and Python code.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Betti tables forcing failure of the weak Lefschetz property</q>, Algebra and Geometry Seminar
-    <span style="float:right">October 2025</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti table which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables forcing failure of the weak Lefschetz property</q>      <span class="entry-month">October</span>
+    </div>
+    <div class="entry-subline">Algebra and Geometry Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti table which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
   </li>
-  <br>
-        </ol>
-      </li>
-      <br>
-      <li>
-        Auburn University
-        <ol reversed>
-  <li>
-<q>The stable Tamari lattice</q>, Discrete Math Seminar
-    <span style="float:right">November 2024</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The stable Tamari lattice was introduced by Haiman through the lens of invariant polynomials, extended by Bergeron-Preville-Ratelle, and is a variation of the Tamari lattice. Stemming from the AMS MRC: Algebraic Combinatorics this past summer, I will describe some work in progress joint with Anna Pun, Herman Chau, Spencer Daugherty, and Juan Carlos Martínez Mori where we describe the combinatorics of this lattice. Namely, I will present properties of the lower order ideals of this lattice, the cover relations, and some enumeration problems we are tackling. I will discuss this data through some examples and Python code.</blockquote>
+    </ol>
+  </div>
+  <h4 class="domestic-institution"><b>Auburn University</b></h4>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2024</div>
+    <ol reversed start="12" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>The stable Tamari lattice</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Discrete Math Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The stable Tamari lattice was introduced by Haiman through the lens of invariant polynomials, extended by Bergeron-Preville-Ratelle, and is a variation of the Tamari lattice. Stemming from the AMS MRC: Algebraic Combinatorics this past summer, I will describe some work in progress joint with Anna Pun, Herman Chau, Spencer Daugherty, and Juan Carlos Martínez Mori where we describe the combinatorics of this lattice. Namely, I will present properties of the lower order ideals of this lattice, the cover relations, and some enumeration problems we are tackling. I will discuss this data through some examples and Python code.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Betti numbers of connected sums of graded Artinian Gorenstein algebras</q>, Algebra Seminar
-    <span style="float:right">September 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/connected-sums/auburn_presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Considered as an algebraic analog for the connected sum construction from topology, the connected sum construction introduced by Ananthnarayan, Avramov, and Moore is a method to produce Gorenstein rings. Joint with Nasrin Altafi, Roberta Di Gennaro, Federico Galetto, Rosa M. Miró-Roig, Uwe Nagel, Alexandra Seceleanu, and Junzo Watanabe, we determine the graded Betti numbers for connected sums and fiber products of Artinian Gorenstein algebras, where the fiber product in the local setting was obtained by Geller. We also show that the connected sum of doublings is the doubling of a fiber product ring. I will discuss these results through some examples and Macaulay2 code.</blockquote>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti numbers of connected sums of graded Artinian Gorenstein algebras</q>      <span class="entry-month">September</span>
+    </div>
+    <div class="entry-subline">Algebra Seminar</div>
+    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/connected-sums/auburn_presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Considered as an algebraic analog for the connected sum construction from topology, the connected sum construction introduced by Ananthnarayan, Avramov, and Moore is a method to produce Gorenstein rings. Joint with Nasrin Altafi, Roberta Di Gennaro, Federico Galetto, Rosa M. Miró-Roig, Uwe Nagel, Alexandra Seceleanu, and Junzo Watanabe, we determine the graded Betti numbers for connected sums and fiber products of Artinian Gorenstein algebras, where the fiber product in the local setting was obtained by Geller. We also show that the connected sum of doublings is the doubling of a fiber product ring. I will discuss these results through some examples and Macaulay2 code.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Betti tables and Lefschetz properties</q>, Algebra Seminar
-    <span style="float:right">February 2024</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Betti tables and Lefschetz properties</q>      <span class="entry-month">February</span>
+    </div>
+    <div class="entry-subline">Algebra Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Suturing the severed didactic tetrahedron: Graph-Theoretic reflection to foster alignment in coordinated courses</q>, DBER (Discipline-Based Education Research) Seminar
-    <span style="float:right">February 2024</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Despite online homework's growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets. In this presentation we will share the results of a mixed-methods study examining how 10 university mathematics educators assessed the quality of a sampling of online Calculus I homework assignments. In the course of this project, we introduced our educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritized and the learning outcomes most emphasized by an assignment or assessment. In this highly interactive presentation, we will share both our results and walk you through using CAAT. For this reason, you have homework: Please bring a set of homework problems from an undergraduate course in your discipline! (If you're in the math department or happen to really enjoy calculus, we will have the Calculus I homework sets available for you to use).</blockquote>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Suturing the severed didactic tetrahedron: Graph-Theoretic reflection to foster alignment in coordinated courses</q>      <span class="entry-month">February</span>
+    </div>
+    <div class="entry-subline">DBER (Discipline-Based Education Research) Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Despite online homework's growing prevalence as a uniform component in coordinated mathematics courses, few studies have considered the connection, or lack thereof, between instructors of record and fixed online homework sets. In this presentation we will share the results of a mixed-methods study examining how 10 university mathematics educators assessed the quality of a sampling of online Calculus I homework assignments. In the course of this project, we introduced our educators to a novel instrument called the Course Alignment Analysis Tool (CAAT), which leverages graph theory to assess the alignment between the learning outcomes that an instructor feels should be prioritized and the learning outcomes most emphasized by an assignment or assessment. In this highly interactive presentation, we will share both our results and walk you through using CAAT. For this reason, you have homework: Please bring a set of homework problems from an undergraduate course in your discipline! (If you're in the math department or happen to really enjoy calculus, we will have the Calculus I homework sets available for you to use).</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Leveraging Software for mathematics and graduate school</q>, Graduate Student Seminar
-    <span style="float:right">September 2023</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">I plan on going through some software I have found useful for grad school; this includes Python, GitHub, Zotero, Overleaf, and Box. I plan on going through each and showcasing some features that I have found especially nice.</blockquote>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2023</div>
+    <ol reversed start="8" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Leveraging Software for mathematics and graduate school</q>      <span class="entry-month">September</span>
+    </div>
+    <div class="entry-subline">Graduate Student Seminar</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">I plan on going through some software I have found useful for grad school; this includes Python, GitHub, Zotero, Overleaf, and Box. I plan on going through each and showcasing some features that I have found especially nice.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>A brief introduction to tropical geometry</q>, Graduate Student Seminar
-    <span style="float:right">August 2022</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/intro_tropical.pdf">Notes</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. In this setting, there is a nice interplay between algebra and polyhedral geometry. In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout's Theorem. These will mainly be explored through examples.</blockquote>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2022</div>
+    <ol reversed start="7" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>A brief introduction to tropical geometry</q>      <span class="entry-month">August</span>
+    </div>
+    <div class="entry-subline">Graduate Student Seminar</div>
+    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/intro_tropical.pdf">Notes</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. In this setting, there is a nice interplay between algebra and polyhedral geometry. In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout's Theorem. These will mainly be explored through examples.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>An overview of topological data analysis</q>, Math Club
-    <span style="float:right">February 2022</span>
-    <br>
-    Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Tools from algebra and topology can be used to extract topological and geometric features of the data. The essence of topological data analysis (TDA) is to use a filtration on a finite point cloud to construct an algebraic complex modeling the data. The homology of this complex gives topological information about the data. Summaries of the topological information are shown through barcodes and persistence diagrams. This talk will give an overview of where TDA comes from, how it can be used, some examples, and potential research directions.</blockquote>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>An overview of topological data analysis</q>      <span class="entry-month">February</span>
+    </div>
+    <div class="entry-subline">Math Club</div>
+    <div class="entry-extras">Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Tools from algebra and topology can be used to extract topological and geometric features of the data. The essence of topological data analysis (TDA) is to use a filtration on a finite point cloud to construct an algebraic complex modeling the data. The homology of this complex gives topological information about the data. Summaries of the topological information are shown through barcodes and persistence diagrams. This talk will give an overview of where TDA comes from, how it can be used, some examples, and potential research directions.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>A brief introduction to tropical geometry</q>, Algebra Seminar
-    <span style="float:right">November 2021</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/tropical.pdf">Notes</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. In this setting, there is a nice interplay between algebra and polyhedral geometry. In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout's Theorem. These will mainly be explored through examples.</blockquote>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2021</div>
+    <ol reversed start="5" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>A brief introduction to tropical geometry</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">Algebra Seminar</div>
+    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/tropical.pdf">Notes</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">The tropical semiring can be defined as the semiring over the extended real numbers where addition is defined by taking the maximum and multiplication is defined by classical addition. In this setting, there is a nice interplay between algebra and polyhedral geometry. In this talk, I plan on giving a brief introduction to some of the tropical analogs for results and ideas from classical algebraic geometry such as zeros of polynomials and Bezout's Theorem. These will mainly be explored through examples.</blockquote></div>
   </li>
-  <br>
-  <li>
-<q>Computations in topological data analysis</q>, Graduate Algebra Seminar
-    <span style="float:right">August 2021</span>
-    <br>
-    <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/seangrate/ab72aeeca5a7d98aa9d90655a90e6dfd" target="_blank">Code</a>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Computations in topological data analysis</q>      <span class="entry-month">August</span>
+    </div>
+    <div class="entry-subline">Graduate Algebra Seminar</div>
+    <div class="entry-extras"><i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/seangrate/ab72aeeca5a7d98aa9d90655a90e6dfd" target="_blank">Code</a></div>
   </li>
-  <br>
-  <li>
-<q>Tropical algebra</q>, Graduate Algebra Seminar
-    <span style="float:right">July 2021</span>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Tropical algebra</q>      <span class="entry-month">July</span>
+    </div>
+    <div class="entry-subline">Graduate Algebra Seminar</div>
   </li>
-  <br>
-  <li>
-<q>Geometry in noncommutative algebra</q>, First-Year Graduate Student Seminar
-    <span style="float:right">January 2021</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/heisenberg.pdf">Notes</a>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Geometry in noncommutative algebra</q>      <span class="entry-month">January</span>
+    </div>
+    <div class="entry-subline">First-Year Graduate Student Seminar</div>
+    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/heisenberg.pdf">Notes</a></div>
   </li>
-  <br>
-  <li>
-<q>What/Why/How of neural networks</q>, First-Year Graduate Student Seminar
-    <span style="float:right">November 2020</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/neural_networks.pdf">Notes</a> | <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/seangrate/080ab4da33be27924825a2b530754faa" target="_blank">Code</a>
+    </ol>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2020</div>
+    <ol reversed start="1" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>What/Why/How of neural networks</q>      <span class="entry-month">November</span>
+    </div>
+    <div class="entry-subline">First-Year Graduate Student Seminar</div>
+    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/notes/neural_networks.pdf">Notes</a> | <i class="fa fa-keyboard-o"></i> <a class="weblink" href="https://gist.github.com/seangrate/080ab4da33be27924825a2b530754faa" target="_blank">Code</a></div>
   </li>
-  <br>
-        </ol>
-      </li>
-      <br>
-    </ul>
-  </p>
+    </ol>
+  </div>
   </div>
   <hr>
   <!-- Other Talks -->
   <div id="others" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Other Talks</b></h2>
-  <p>
-    <ol reversed>
-  <li>
-<q>Problems in computational algebraic geometry: Lefschetz properties and toric varieties</q>, Thesis Defense
-    <span style="float:right">July 2025</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/thesis/presentation.html" target="_blank">Slides</a>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2025</div>
+    <ol reversed start="3" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Problems in computational algebraic geometry: Lefschetz properties and toric varieties</q>      <span class="entry-month">July</span>
+    </div>
+    <div class="entry-subline">Thesis Defense, Zoom</div>
+<div class="entry-city">Virtual</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/thesis/presentation.html" target="_blank">Slides</a></div>
   </li>
-  <br>
-  <li>
-<q>Bootstrapping Computations in Topological Data Analysis</q>, COSAM 3-Minute Thesis Competition
-    <span style="float:right">April 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/3M_thesis.pdf" target="_blank">Slides</a>
-  </li>
-  <br>
-  <li>
-<q>Problems in computational algebraic geometry: Lefschetz properties and toric varieties</q>, General Oral Exam
-    <span style="float:right">March 2024</span>
-    <br>
-    <i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/oral/presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Starting with Lefschetz properties, moving on to toric varieties and Castelnuovo-Mumford regularity, and finishing with other miscellaneous projects, I will give an overview of the research I have conducted while at Auburn University. A common theme among all these projects is the strong presence (and necessity) of computation. As such, there will be many examples written in Macaulay2 and Python to help understand where these projects came from and how they were completed.</blockquote>
-  </li>
-  <br>
     </ol>
-  </p>
+  </div>
+  <div class="entry-year-group">
+    <div class="entry-year-label">2024</div>
+    <ol reversed start="2" class="entry-year-list">
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Bootstrapping Computations in Topological Data Analysis</q>      <span class="entry-month">April</span>
+    </div>
+    <div class="entry-subline">COSAM 3-Minute Thesis Competition, Auburn University</div>
+<div class="entry-city">Auburn, AL</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/slides/3M_thesis.pdf" target="_blank">Slides</a></div>
+  </li>
+  <li class="entry-row">
+    <div class="entry-primary">
+<q>Problems in computational algebraic geometry: Lefschetz properties and toric varieties</q>      <span class="entry-month">March</span>
+    </div>
+    <div class="entry-subline">General Oral Exam, Auburn University</div>
+<div class="entry-city">Auburn, AL</div>    <div class="entry-extras"><i class="fa fa-file-pdf-o"></i> <a class="weblink" href="../misc/oral/presentation.html" target="_blank">Slides</a> | Abstract <a class="abstract-button" onclick="toggleAbstract(this)"><i class="fa fa-plus-square-o"></i></a><blockquote class="abstract-content">Starting with Lefschetz properties, moving on to toric varieties and Castelnuovo-Mumford regularity, and finishing with other miscellaneous projects, I will give an overview of the research I have conducted while at Auburn University. A common theme among all these projects is the strong presence (and necessity) of computation. As such, there will be many examples written in Macaulay2 and Python to help understand where these projects came from and how they were completed.</blockquote></div>
+  </li>
+    </ol>
+  </div>
   </div>
 
 <!-- End page content -->

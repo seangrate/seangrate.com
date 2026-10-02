@@ -82,16 +82,42 @@
 
 {% set months = ["January","February","March","April","May","June","July","August","September","October","November","December"] %}
 
-{% macro talk_entry(t, root) %}
-  <li>
-    {% if t.title == 'TBD' %}TBD{% else %}<q>{{ t.title }}</q>{% endif %}, {{ t.venue }}
-    <span style="float:right">{{ months[t.date.month - 1] }} {{ t.date.year }}</span>
+{% macro year_group_style() -%}
+  <style>
+    .entry-year-group {display:flex; gap:18px; align-items:flex-start; margin-bottom:18px;}
+    .entry-year-label {flex:0 0 52px; padding-top:2px; font-weight:700; font-size:1.05rem; color:#999; text-align:right;}
+    .entry-year-list {flex:1 1 auto; min-width:0; margin:0; padding-left:1.3em;}
+    .entry-year-list .entry-row {margin-bottom:14px;}
+    .entry-month {float:right; color:#999; font-size:0.82rem; font-style:italic;}
+    .entry-subline {color:#666; font-size:0.9rem; margin-top:2px;}
+    .entry-city {color:#999; font-size:0.85rem; margin-top:1px;}
+    .entry-extras {margin-top:4px;}
+  </style>
+{%- endmacro %}
+
+{% macro talk_entry(t, root, show_location=True) %}
+  <li class="entry-row">
+    <div class="entry-primary">
+      {% if t.title == 'TBD' %}TBD{% else %}<q>{{ t.title }}</q>{% endif %}
+      <span class="entry-month">{{ months[t.date.month - 1] }}</span>
+    </div>
+    <div class="entry-subline">{{ t.venue }}{% if show_location and t.location %}, {{ t.location }}{% endif %}</div>
+    {% if show_location and t.city %}<div class="entry-city">{{ t.city }}</div>{% endif %}
     {% if t.notes or t.code or t.slides or t.video or t.abstract %}
-    <br>
-    {{ extra_links(t, root) }}
+    <div class="entry-extras">{{ extra_links(t, root) }}</div>
     {% endif %}
   </li>
-  <br>
+{% endmacro %}
+
+{% macro trip_entry(trip) %}
+  <li class="entry-row">
+    <div class="entry-primary">
+      {{ trip.title }}
+      <span class="entry-month">{{ months[trip.date.month - 1] }}</span>
+    </div>
+    {% if trip.location %}<div class="entry-subline">{{ trip.location }}</div>{% endif %}
+    {% if trip.city %}<div class="entry-city">{{ trip.city }}</div>{% endif %}
+  </li>
 {% endmacro %}
 
 {% macro extra_links(entry, root) %}

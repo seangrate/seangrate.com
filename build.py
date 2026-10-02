@@ -162,10 +162,30 @@ def layout_timeline(entries, root, include_venue):
     return {"rows": rows}
 
 
+def year_groups(items):
+    """Buckets an already newest-first list into consecutive by-year groups,
+    e.g. [{"year": 2026, "entries": [...], "start": 15}, ...], each carrying the
+    `start` an `<ol reversed start=...>` needs so the numbering stays
+    continuous across year groups instead of each one resetting to 1.
+    """
+    groups = []
+    n = len(items)
+    i = 0
+    while i < n:
+        year = items[i]["date"].year
+        j = i
+        while j < n and items[j]["date"].year == year:
+            j += 1
+        groups.append({"year": year, "entries": items[i:j], "start": n - i})
+        i = j
+    return groups
+
+
 def group_talks_for_list(talks):
     """Splits talks into the four sections the list view renders, matching
     misc/CV.pdf's categorization: invited conference talks, invited seminar
     talks (elsewhere), domestic talks (grouped by institution), and other.
+    Each section is further broken into by-year groups for display.
 
     `talks` is assumed newest-first already (build() sorts it once on load),
     so each filtered-out section stays in that same order.
@@ -179,16 +199,16 @@ def group_talks_for_list(talks):
     for t in domestic:
         groups_by_name.setdefault(t.get("institution"), []).append(t)
     domestic_groups = [
-        {"institution": name, "talks": sorted(items, key=lambda t: t["date"], reverse=True)}
+        {"institution": name, "year_groups": year_groups(sorted(items, key=lambda t: t["date"], reverse=True))}
         for name, items in groups_by_name.items()
     ]
-    domestic_groups.sort(key=lambda g: g["talks"][0]["date"], reverse=True)
+    domestic_groups.sort(key=lambda g: g["year_groups"][0]["entries"][0]["date"], reverse=True)
 
     return {
-        "conference": conference,
-        "seminar": seminar,
+        "conference": year_groups(conference),
+        "seminar": year_groups(seminar),
         "domestic_groups": domestic_groups,
-        "other": other,
+        "other": year_groups(other),
     }
 
 
@@ -221,7 +241,7 @@ def build():
         ("pages/papers.html", "papers/index.html", {"site": site, "papers": papers, "root": "../"}),
         ("pages/talks_list.html", "talks/index.html", {"site": site, "talks": group_talks_for_list(talks), "root": "../"}),
         ("pages/talks_timeline.html", "talks/timeline.html", {"site": site, "timeline": talks_timeline, "root": "../"}),
-        ("pages/travel_list.html", "travel/index.html", {"site": site, "travel": travel, "root": "../"}),
+        ("pages/travel_list.html", "travel/index.html", {"site": site, "travel": year_groups(travel), "root": "../"}),
         ("pages/travel_timeline.html", "travel/timeline.html", {"site": site, "timeline": travel_timeline, "root": "../"}),
         ("pages/teaching.html", "teaching/index.html", {"site": site, "teaching": teaching, "root": "../"}),
         ("pages/service.html", "service/index.html", {"site": site, "service": service, "root": "../"}),

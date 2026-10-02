@@ -2,7 +2,12 @@
 {% import "partials/macros.html" as m %}
 
 {% block title %}Talks{% endblock %}
-{% block extra_head %}{{ m.abstract_toggle_style() }}{% endblock %}
+{% block extra_head %}{{ m.abstract_toggle_style() }}
+{{ m.year_group_style() }}
+<style>
+  .domestic-institution {margin-top:8px;}
+</style>
+{% endblock %}
 
 {% block sidebar %}{{ m.subpage_sidebar(root, "images/tda/tda_talk.jpg", "Talks", "Talks I have given.", [
   {"href": "./", "icon": "fa-list", "label": "LIST VIEW"},
@@ -13,49 +18,56 @@
   <!-- Invited Conference Talks -->
   <div id="conference" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Invited Conference Talks</b></h2>
-  <p>
-    <ol reversed>
-      {% for t in talks.conference %}{{ m.talk_entry(t, root) }}{% endfor %}
+  {% for yg in talks.conference %}
+  <div class="entry-year-group">
+    <div class="entry-year-label">{{ yg.year }}</div>
+    <ol reversed start="{{ yg.start }}" class="entry-year-list">
+      {% for t in yg.entries %}{{ m.talk_entry(t, root) }}{% endfor %}
     </ol>
-  </p>
+  </div>
+  {% endfor %}
   </div>
   <hr>
   <!-- Invited Seminar Talks -->
   <div id="seminars" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Invited Seminar Talks</b></h2>
-  <p>
-    <ol reversed>
-      {% for t in talks.seminar %}{{ m.talk_entry(t, root) }}{% endfor %}
+  {% for yg in talks.seminar %}
+  <div class="entry-year-group">
+    <div class="entry-year-label">{{ yg.year }}</div>
+    <ol reversed start="{{ yg.start }}" class="entry-year-list">
+      {% for t in yg.entries %}{{ m.talk_entry(t, root) }}{% endfor %}
     </ol>
-  </p>
+  </div>
+  {% endfor %}
   </div>
   <hr>
   <!-- Domestic Talks -->
   <div id="domestic" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Domestic Talks</b></h2>
-  <p>
-    <ul>
-      {% for group in talks.domestic_groups %}
-      <li>
-        {{ group.institution }}
-        <ol reversed>
-          {% for t in group.talks %}{{ m.talk_entry(t, root) }}{% endfor %}
-        </ol>
-      </li>
-      <br>
-      {% endfor %}
-    </ul>
-  </p>
+  {% for group in talks.domestic_groups %}
+  <h4 class="domestic-institution"><b>{{ group.institution }}</b></h4>
+  {% for yg in group.year_groups %}
+  <div class="entry-year-group">
+    <div class="entry-year-label">{{ yg.year }}</div>
+    <ol reversed start="{{ yg.start }}" class="entry-year-list">
+      {% for t in yg.entries %}{{ m.talk_entry(t, root, show_location=False) }}{% endfor %}
+    </ol>
+  </div>
+  {% endfor %}
+  {% endfor %}
   </div>
   <hr>
   <!-- Other Talks -->
   <div id="others" class="w3-container w3-padding-large" style="margin-bottom:32px">
   <h2><b>Other Talks</b></h2>
-  <p>
-    <ol reversed>
-      {% for t in talks.other %}{{ m.talk_entry(t, root) }}{% endfor %}
+  {% for yg in talks.other %}
+  <div class="entry-year-group">
+    <div class="entry-year-label">{{ yg.year }}</div>
+    <ol reversed start="{{ yg.start }}" class="entry-year-list">
+      {% for t in yg.entries %}{{ m.talk_entry(t, root) }}{% endfor %}
     </ol>
-  </p>
+  </div>
+  {% endfor %}
   </div>
 {% endblock %}
 
