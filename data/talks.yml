@@ -11,11 +11,13 @@
   venue: AMS Spring Central Sectional Meeting
   location: University of Iowa
   city: Iowa City, IA
+  category: conference
 - title: TBD
   date: 2027-04-01
   venue: CA+
   location: Iowa State University
   city: Ames, IA
+  category: conference
 - title: Incidence toric ideals and three-point functions
   date: 2027-01-15
   venue: Joint Mathematics Meetings
@@ -302,6 +304,14 @@
   category: seminar
   abstract: |-
     For most rings, a lot of the data of the ring can be captured via its (minimal) free resolution. This can then be summarized with a Betti diagram which, in some sense, describes the complexity of the ring. If such a ring is also Artinian, the ring is said to have the weak Lefschetz property (WLP) if multiplication by some linear form is always full rank. Although Lefschetz properties are of interest to algebraists, many combinatorialists like to leverage constructions of Artinian algebras with the WLP to prove results about, for instance, log-concavity of sequences. Joint with Hal Schenck, we show that if the Betti table of an Artinian algebra has a certain substructure resembling a Koszul complex, then the Artinian algebra cannot have the WLP.
+- title: Lefschetz properties and Artinian rings
+  date: 2023-11-01
+  venue: Math Seminar
+  location: McNeese State University
+  city: Lake Charles, LA
+  category: seminar
+  abstract: |-
+    Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space. One much studied class of rings are Artinian quotients of polynomial rings over a field \( k \); Artinian means the ring itself is a finite dimensional vector space over \( k \). I'll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing "linear algebra with matrices of polynomials".
 - title: Leveraging Software for mathematics and graduate school
   date: 2023-09-13
   venue: Graduate Student Seminar
@@ -381,11 +391,3 @@
   institution: Auburn University
   notes: misc/notes/neural_networks.pdf
   code: https://gist.github.com/seangrate/080ab4da33be27924825a2b530754faa
-- title: Lefschetz properties and Artinian rings
-  date: 2020-06-01
-  venue: Math Seminar
-  location: McNeese State University
-  city: Lake Charles, LA
-  category: seminar
-  abstract: |-
-    Modules and rings are central topics of study in advanced algebra; in the special case where the ring is a field, a module is just a vector space. One much studied class of rings are Artinian quotients of polynomial rings over a field \( k \); Artinian means the ring itself is a finite dimensional vector space over \( k \). I'll discuss two interesting properties of Artinian rings—the Lefschetz property (which is about the behavior of multiplication in the ring), and free resolutions, which come about from doing "linear algebra with matrices of polynomials".
