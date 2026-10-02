@@ -7,17 +7,31 @@
 #              leave unset for a flat listing entry.
 
 - title: TBD
+  date: 2027-04-15
+  venue: AMS Spring Central Sectional Meeting
+  location: University of Iowa
+  city: Iowa City, IA
+- title: TBD
+  date: 2027-04-01
+  venue: CA+
+  location: Iowa State University
+  city: Ames, IA
+- title: Incidence toric ideals and three-point functions
   date: 2027-01-15
   venue: Joint Mathematics Meetings
   location: ''
   city: Chicago, IL
   category: conference
-- title: TBD
+  abstract: |-
+    Motivated by three-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.
+- title: Gorenstein graded Möbius algebras are Koszul
   date: 2027-01-12
   venue: Joint Mathematics Meetings
   location: ''
   city: Chicago, IL
   category: conference
+  abstract: |-
+    The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul graded Möbius algebras by showing that their defining ideals have a quadratic Gröbner basis, and we show that the graded Möbius algebras of nearly all affine geometries are quadratic.
 - title: TBD
   date: 2026-11-01
   venue: Commutative Algebra Seminar
@@ -42,12 +56,16 @@
   location: Southern Methodist University
   city: Dallas, TX
   category: conference
-- title: TBD
+  abstract: |-
+    Motivated by \( 3 \)-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.
+- title: The graded Möbius algebra of a matroid
   date: 2026-10-01
   venue: Algebra Seminar
   location: New Mexico State University
   city: Las Cruces, NM
   category: seminar
+  abstract: |-
+    The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.
 - title: The graded Möbius algebra of a matroid
   date: 2026-08-29
   venue: Upcoming Researchers in Commutative Algebra (URiCA)
