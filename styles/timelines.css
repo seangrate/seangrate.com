@@ -18,12 +18,12 @@
   position: relative;
   max-width: 760px;
   margin: 0 auto;
-  padding: 4px 12px 10px;
+  padding: 40px 12px 10px;
 }
 
 .tl-line {
   position: absolute;
-  top: 4px;
+  top: 40px;
   bottom: 14px;
   left: 44px;
   width: 2px;
