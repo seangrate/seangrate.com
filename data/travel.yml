@@ -1,6 +1,10 @@
 # Single source of truth for travel/conference trips.
 # Regenerates both travel/index.html (timeline view) and travel/condensed.html (list view) -- see build.py.
 
+- title: AMS Spring Central Sectional Meeting
+  date: 2027-04-01
+  location: University of Iowa
+  city: Iowa City, IA
 - title: Macaulay2 Workshop
   date: 2027-02-01
   location: Auburn University
