@@ -162,32 +162,32 @@ def layout_timeline(entries, root, include_venue):
     return {"rows": rows}
 
 
-def group_talks_for_condensed(talks):
-    """Splits talks into the sections/groups the condensed (list) view renders:
-    conference talks, flat seminar talks, seminar talks grouped by a recurring
-    institution (e.g. "Iowa State University"), and everything else.
+def group_talks_for_list(talks):
+    """Splits talks into the four sections the list view renders, matching
+    misc/CV.pdf's categorization: invited conference talks, invited seminar
+    talks (elsewhere), domestic talks (grouped by institution), and other.
+
+    `talks` is assumed newest-first already (build() sorts it once on load),
+    so each filtered-out section stays in that same order.
     """
     conference = [t for t in talks if t["category"] == "conference"]
-    other = [t for t in talks if t["category"] == "other"]
     seminar = [t for t in talks if t["category"] == "seminar"]
-
-    seminar_flat = [t for t in seminar if not t.get("institution")]
+    other = [t for t in talks if t["category"] == "other"]
+    domestic = [t for t in talks if t["category"] == "domestic"]
 
     groups_by_name = {}
-    for t in seminar:
-        inst = t.get("institution")
-        if inst:
-            groups_by_name.setdefault(inst, []).append(t)
-    seminar_groups = [
+    for t in domestic:
+        groups_by_name.setdefault(t.get("institution"), []).append(t)
+    domestic_groups = [
         {"institution": name, "talks": sorted(items, key=lambda t: t["date"], reverse=True)}
         for name, items in groups_by_name.items()
     ]
-    seminar_groups.sort(key=lambda g: g["talks"][0]["date"], reverse=True)
+    domestic_groups.sort(key=lambda g: g["talks"][0]["date"], reverse=True)
 
     return {
         "conference": conference,
-        "seminar_flat": seminar_flat,
-        "seminar_groups": seminar_groups,
+        "seminar": seminar,
+        "domestic_groups": domestic_groups,
         "other": other,
     }
 
@@ -206,8 +206,11 @@ def build():
     service = load_yaml("service.yml")
     outreach = load_yaml("outreach.yml")
     past_projects = load_yaml("past_projects.yml")
-    talks = load_yaml("talks.yml")
-    travel = load_yaml("travel.yml")
+    # Sorted once here (newest first) rather than wherever each is consumed --
+    # data/*.yml entries don't have to be typed in date order by hand, and
+    # layout_timeline relies on this order (entries[0]/[-1] = newest/oldest).
+    talks = sorted(load_yaml("talks.yml"), key=lambda t: t["date"], reverse=True)
+    travel = sorted(load_yaml("travel.yml"), key=lambda t: t["date"], reverse=True)
     research_slugs = sorted(p.stem for p in (TEMPLATES_DIR / "pages" / "research").glob("*.html"))
 
     talks_timeline = layout_timeline(talks, "../", include_venue=True)
@@ -216,7 +219,7 @@ def build():
     pages = [
         ("pages/index.html", "index.html", {"site": site, "home": home, "root": ""}),
         ("pages/papers.html", "papers/index.html", {"site": site, "papers": papers, "root": "../"}),
-        ("pages/talks_list.html", "talks/index.html", {"site": site, "talks": group_talks_for_condensed(talks), "root": "../"}),
+        ("pages/talks_list.html", "talks/index.html", {"site": site, "talks": group_talks_for_list(talks), "root": "../"}),
         ("pages/talks_timeline.html", "talks/timeline.html", {"site": site, "timeline": talks_timeline, "root": "../"}),
         ("pages/travel_list.html", "travel/index.html", {"site": site, "travel": travel, "root": "../"}),
         ("pages/travel_timeline.html", "travel/timeline.html", {"site": site, "timeline": travel_timeline, "root": "../"}),
