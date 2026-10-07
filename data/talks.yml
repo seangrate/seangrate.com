@@ -74,6 +74,7 @@
   location: New Mexico State University
   city: Las Cruces, NM
   category: seminar
+  slides: misc/slides/new-mexico/gmas.pdf
   abstract: |-
     The graded Möbius algebra (GMA) of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the GMA of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul GMAs by showing that their defining ideals have a quadratic Gröbner basis, and we show that the GMAs of nearly all affine geometries are quadratic.
 - title: The graded Möbius algebra of a matroid
