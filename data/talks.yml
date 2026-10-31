@@ -66,6 +66,7 @@
   location: Southern Methodist University
   city: Dallas, TX
   category: conference
+  slides: misc/slides/siam-txla-2026/incidence-toric-ideals.pdf
   abstract: |-
     Motivated by \( 3 \)-point functions from conformal field theory, we study these from a combinatorial and topological perspective via incidence toric ideals. These ideals arise naturally in the context of incidence matrices of simplicial complexes. In this setting, the generators of these toric ideals admit combinatorial interpretations as null \( t \)-designs and topologically as balanced orientable normal pseudomanifolds without boundary. This is joint work with Barbara Betti, Thiago Holleben, and Flavio Salizzoni.
 - title: The graded Möbius algebra of a matroid
