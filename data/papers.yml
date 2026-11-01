@@ -75,6 +75,28 @@ publications:
       We evaluate our method both quantitatively and qualitatively on learned surface accuracy and show that our method correctly predicts surface intersection even in sparse regions of the input cloud.
 
 preprints:
+  - title: The Stable Tamari Lattice
+    title_link: https://arxiv.org/abs/2610.39257
+    venue: October 2026
+    coauthors_html: >-
+      Joint with <a class="weblink" href="https://sites.math.washington.edu/~hchau/" target="_blank">Herman Chau</a>,
+      <a class="weblink" href="https://spdaugherty.github.io/" target="_blank">Spencer Daugherty</a>,
+      <a class="weblink" href="https://math.berkeley.edu/~mhaiman/" target="_blank">Mark Haiman</a>,
+      <a class="weblink" href="https://jcmartinezmori.github.io/" target="_blank">Juan Carlos Martínez Mori</a>,
+      and <a class="weblink" href="https://annapunying.wixsite.com/punying-math" target="_blank">Anna Pun</a>
+    pdf: misc/papers/stable-tamari-lattice.pdf
+    abstract: >-
+      We introduce the stable Tamari lattice \(\mathcal{ST}_n\), an infinite lattice on \(\mathbb{N}^n\). 
+      The \(r\)-Tamari lattices on \(r\)-Dyck paths of height \(n+1\) occur as a nested family of principal lower order ideals whose union is \(\mathcal{ST}_n\). 
+      Partition-indexed principal lower order ideals recover the \(\nu\)-Tamari lattices associated with partition boundaries. 
+      We give an explicit coordinate description of the stable Tamari order in terms of interval vectors determined by the lower endpoint. 
+      These coordinates characterize comparability and covering relations, and their sum gives the maximum length of a chain between two comparable elements. 
+      Analogous coordinates determined by the upper endpoint give an explicit formula for the Möbius function. 
+      We also construct an EL-labeling of every interval and show that every interval in \(\mathcal{ST}_n\) is isomorphic to an interval in a classical Tamari lattice.
+      
+      We classify the possible \(h\)-vectors by Dyck paths and show that each \(h\)-vector fiber is parametrized by a unimodular basis of interval vectors. 
+      Combining this parametrization with the lower-endpoint coordinates, we obtain a finite rational formula for the multivariate generating function of the height generating functions of all principal lower order ideals. 
+      Under the \(r\)-Tamari realization, these height generating functions recover the interval generating functions of Bergeron and Préville-Ratelle.
   - title: Graded Betti numbers of graded Möbius algebras of uniform matroids
     title_link: https://arxiv.org/abs/2609.03827
     venue: September 2026
