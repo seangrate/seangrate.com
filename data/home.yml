@@ -18,7 +18,7 @@ about:
 research:
   - title: Graded Möbius Algebras of Matroids
     blurb: Homological properties of graded Möbius algebras of matroids.
-    image: images/matroids/pg22.png
+    image: images/matroids/pg22-bg.png
     alt: PG(2,2)
     link: matroids/
   - title: Castelnuovo-Mumford Regularity
