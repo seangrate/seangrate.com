@@ -42,24 +42,23 @@
   category: conference
   abstract: |-
     The graded Möbius algebra of a matroid is an algebra encoding the combinatorics of its lattice of flats. In 2016, Maeno and Numata showed that the graded Möbius algebra of a matroid is Gorenstein if and only if the matroid is modular. Joint with Jason McCullough, we show that modular matroids have Koszul graded Möbius algebras by showing that their defining ideals have a quadratic Gröbner basis, and we show that the graded Möbius algebras of nearly all affine geometries are quadratic.
-- title: Gorenstein graded Möbius algebras are Koszul
+- title: Homological properties of the graded Möbius algebra of a matroid
   date: 2026-11-01
   venue: Commutative Algebra Seminar
   location: University of Nebraska-Lincoln
   city: Lincoln, NE
   category: seminar
-- title: Algebraic tools for matroids
-  date: 2026-11-01
-  venue: Commutative Algebra Reading Seminar
-  location: University of Nebraska-Lincoln
-  city: Lincoln, NE
-  category: seminar
+  abstract: |- 
+    The graded Möbius algebra of a matroid is a standard graded Artinian algebra whose Hilbert function counts the flats of the matroid by rank. Using the theory of inverse systems, Maeno and Numata showed that it is Gorenstein exactly when the lattice of flats is modular, e.g. when the matroid is a projective geometry. We show that Gorenstein graded Möbius algebras are Koszul by exhibiting a quadratic Gröbner basis. We also show that while the affine plane of order 3 does not have a quadratic Gröbner basis in the natural presentation, it is Koszul via a Koszul filtration. Time permitting, I will also describe the Betti tables for uniform matroids. This is joint work with Jason McCullough and others.
 - title: The stable Tamari lattice
   date: 2026-11-01
   venue: Discrete Math Seminar
   location: University of Nebraska-Lincoln
   city: Lincoln, NE
   category: seminar
+  slides: misc/slides/nebraska/stable-tamari.pdf
+  abstract: |- 
+    The Tamari lattice, which orders the ways of parenthesizing a product by the associative law, is a cornerstone of Catalan combinatorics. Its intervals have striking connections to the ring of diagonal coinvariants in two sets of variables whose bigraded structure has led to connections with Macdonald polynomials, parking functions, and \((q,t)\)-Catalan combinatorics. We introduce the stable Tamari lattice, an infinite lattice on \(n\)-tuples of nonnegative integers that contains every \(r\)-Tamari lattice as a downset. We study the structural and enumerative properties of the stable Tamari lattice: the cover relation, shellability, the Möbius function, and some height statistics of the downsets. This is based on joint work with Herman Chau, Spencer Daugherty, Mark Haiman, Juan Carlos Martínez Mori, and Anna Pun.
 - title: \( 3 \)-point functions and incidence toric ideals
   date: 2026-10-31
   venue: SIAM TX-LA Sectional Meeting
