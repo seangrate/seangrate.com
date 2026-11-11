@@ -48,6 +48,7 @@
   location: University of Nebraska-Lincoln
   city: Lincoln, NE
   category: seminar
+  slides: misc/slides/nebraska/GMAs.pdf
   abstract: |- 
     The graded Möbius algebra of a matroid is a standard graded Artinian algebra whose Hilbert function counts the flats of the matroid by rank. Using the theory of inverse systems, Maeno and Numata showed that it is Gorenstein exactly when the lattice of flats is modular, e.g. when the matroid is a projective geometry. We show that Gorenstein graded Möbius algebras are Koszul by exhibiting a quadratic Gröbner basis. We also show that while the affine plane of order 3 does not have a quadratic Gröbner basis in the natural presentation, it is Koszul via a Koszul filtration. Time permitting, I will also describe the Betti tables for uniform matroids. This is joint work with Jason McCullough and others.
 - title: The stable Tamari lattice
