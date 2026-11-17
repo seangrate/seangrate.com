@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KL Grading Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a guided notebook. Five numbered steps in the order of the talk, each with one sentence
+   that says what it shows, the slides it reproduces, and the charts in the same F-to-A order as the deck. */
+:root {
+  color-scheme: light;
+  --bg: #f3f5f8;
+  --surface: #fcfcfb;
+  --ink: #141a24;
+  --ink-2: #4b5363;
+  --muted: #838a96;
+  --line: #e0e3e8;
+  --axis: #c3c2b7;
+  --grid: #e8e8e3;
+  --accent: #1d3a66;
+  --accent-ink: #ffffff;
+  --accent-soft: #e6ecf6;
+  /* colour-blind safe: history a dark neutral, this term orange, the KL dial blue (as in the slides) */
+  --s-kl: #2f80e0;       /* KL dial */
+  --s-none: #e8792b;     /* no curve */
+  --s-hist: #434d5d;     /* history (prior q) */
+  --past: #8f9aab;       /* past terms */
+  --band: #dfe4ec;       /* chance band */
+  --hist-bar: rgba(20, 26, 36, 0.22);
+  --err-lo: #3b4352;     /* graded too low */
+  --err-hi: #b9c1cd;     /* graded too high */
+  --warn: #fab219;
+  --warn-ink: #7a5300;
+  --good-ink: #006300;
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0f1114; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --line: #2f302e; --axis: #4a4a46; --grid: #2c2c2a; --accent: #9db8e8; --accent-ink: #0f1114; --accent-soft: #1f2836;
+    --s-kl: #3987e5; --s-none: #e8792b; --s-hist: #c3c9d4; --past: #7d8696; --band: #2c323c;
+    --hist-bar: rgba(240, 239, 236, 0.24); --err-lo: #d9dde4; --err-hi: #5d6573;
+    --warn-ink: #fab219; --good-ink: #0ca30c;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 14px; line-height: 1.5; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; margin: 0; }
+h1 { font-size: 28px; letter-spacing: -0.01em; }
+h2 { font-size: 21px; }
+h3 { font-size: 14.5px; font-family: var(--font-body); font-weight: 600; }
+p { margin: 0; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 20px 56px; }
+header.top { padding: 24px 0 14px; display: grid; gap: 8px; }
+header.top .sub { color: var(--ink-2); max-width: 82ch; font-size: 15px; }
+nav.steps { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line); margin: 0 -20px 18px; padding: 8px 20px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+nav.steps a { text-decoration: none; color: var(--ink-2); font-size: 13px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); white-space: nowrap; }
+nav.steps a b { color: var(--ink); margin-right: 4px; }
+nav.steps a:hover { border-color: var(--accent); color: var(--accent); }
+nav.steps .badge { margin-left: auto; font-size: 12px; color: var(--muted); }
+section.step { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 16px; margin-bottom: 18px; min-width: 0; }
+.step-head { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.step-num { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--accent-ink); background: var(--accent); width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; flex: none; transform: translateY(4px); }
+.slides { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-left: auto; }
+.lead { color: var(--ink-2); max-width: 86ch; font-size: 14.5px; }
+.callout { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 14.5px; color: var(--ink); max-width: 100ch; }
+.callout b { font-variant-numeric: tabular-nums; }
+.try { font-size: 13px; color: var(--ink-2); border: 1px dashed var(--axis); border-radius: 8px; padding: 8px 12px; }
+.try b { color: var(--ink); }
+.panel { border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.panel .cap { font-size: 12.5px; color: var(--muted); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.two.wide-left { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+@media (max-width: 1000px) { .two, .two.wide-left { grid-template-columns: minmax(0, 1fr); } }
+.note { color: var(--ink-2); font-size: 13px; }
+.tiny { color: var(--muted); font-size: 12px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+label { color: var(--ink-2); font-size: 13px; }
+select, input[type="text"], input[type="number"], textarea { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; min-width: 0; }
+input[type="number"] { width: 70px; }
+button, .btn { font: inherit; font-weight: 500; cursor: pointer; border-radius: 6px; padding: 6px 12px; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); display: inline-block; }
+button.ghost, .btn.ghost { background: transparent; color: var(--accent); }
+button.small, .btn.small { padding: 3px 9px; font-size: 12.5px; }
+button:disabled { opacity: 0.5; cursor: default; }
+:focus-visible { outline: 2px solid var(--s-kl); outline-offset: 2px; }
+input[type="file"] { display: none; }
+input[type="range"] { width: 100%; accent-color: var(--s-kl); }
+.slider-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+.big-val { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+.check { display: flex; gap: 8px; align-items: flex-start; }
+.check input { margin-top: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+details summary { cursor: pointer; color: var(--accent); font-weight: 500; }
+.err { color: var(--warn-ink); font-size: 13px; }
+.err[hidden] { display: none; }
+.formats { display: grid; gap: 4px; font-size: 12.5px; color: var(--ink-2); padding-left: 18px; margin: 0; }
+.scale { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.scale label { display: inline-flex; gap: 6px; align-items: center; }
+.scale input { width: 62px; }
+
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font-weight: 600; color: var(--ink-2); font-size: 12.5px; white-space: nowrap; }
+td.num, th.num { text-align: right; }
+td.c, th.c { text-align: center; }
+.scroll-x { overflow-x: auto; }
+tr.current td { background: var(--accent-soft); }
+tr.off td { color: var(--muted); }
+tr.kl td { background: var(--accent-soft); }
+table.compact th, table.compact td { padding: 5px 4px; font-size: 12px; }
+.x { background: transparent; color: var(--muted); border: 0; padding: 2px 6px; font-size: 16px; line-height: 1; }
+.pill { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--line); white-space: nowrap; color: var(--ink-2); }
+.pill.warn { border-color: var(--warn); color: var(--warn-ink); }
+.pill.up { color: var(--good-ink); }
+.pill.down { color: var(--warn-ink); }
+.key { display: inline-block; width: 12px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: baseline; flex: none; }
+.key-line { display: inline-block; width: 16px; height: 0; border-top: 2px solid; margin-right: 6px; vertical-align: middle; }
+.key-dash { display: inline-block; width: 16px; height: 0; border-top: 2px dashed; margin-right: 6px; vertical-align: middle; }
+.key-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; }
+.chart { width: 100%; position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text, svg.inline text { fill: var(--muted); font-size: 11px; font-family: var(--font-body); }
+.chart .lab { fill: var(--ink-2); font-size: 11.5px; }
+.chart .lab-strong { fill: var(--ink); font-size: 12px; font-weight: 600; }
+.chart .lab-ink { fill: var(--ink); font-size: 11.5px; }
+svg.inline { display: block; }
+.multiples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 1000px) { .multiples { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .multiples { grid-template-columns: minmax(0, 1fr); } }
+.mult { border: 1px solid var(--line); border-radius: 8px; padding: 10px 10px 4px; display: grid; gap: 2px; min-width: 0; }
+.mult.kl { border-color: var(--s-kl); }
+.mult h3 { font-size: 13.5px; }
+.mult .stat { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+.seg button { border: 0; border-radius: 0; background: transparent; color: var(--ink-2); padding: 5px 10px; font-size: 13px; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.ctrl { display: grid; gap: 4px; }
+.ctrlgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+@media (max-width: 700px) { .ctrlgrid { grid-template-columns: minmax(0, 1fr); } }
+.ledger { max-height: 420px; overflow: auto; }
+.ledger th { position: sticky; top: 0; background: var(--surface); }
+.tip { position: fixed; pointer-events: none; z-index: 10; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 12.5px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12); display: none; min-width: 140px; font-variant-numeric: tabular-nums; }
+.tip .t-h { color: var(--ink-2); margin-bottom: 4px; }
+.tip .t-r { display: flex; align-items: center; gap: 6px; }
+.tip .t-r b { margin-left: auto; padding-left: 12px; }
+.howto { display: grid; gap: 8px; max-width: 86ch; }
+.howto p { color: var(--ink-2); }
+.formula { padding: 8px 12px; background: var(--bg); border-radius: 6px; font-family: var(--font-display); font-size: 15px; overflow-x: auto; }
+.math { font-family: var(--font-display); font-size: 15px; color: var(--ink); }
+.empty { color: var(--muted); font-size: 13.5px; padding: 12px; border: 1px dashed var(--line); border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>KL Grading Lab</h1>
+    <p class="sub">Load several past terms of a course and this term’s scores, then follow the talk: is this term unusual, what each curving rule would do to it, and how the KL dial weighs history against this term. The last step simulates terms where we know whether the exam or the cohort changed. Everything runs in your browser; no data leaves this page.</p>
+  </header>
+  <nav class="steps" aria-label="Steps">
+    <a href="#s1"><b>1</b>Your terms</a>
+    <a href="#s2"><b>2</b>Is this term unusual?</a>
+    <a href="#s3"><b>3</b>What each rule does</a>
+    <a href="#s4"><b>4</b>The KL dial</a>
+    <a href="#s5"><b>5</b>When the truth is known</a>
+    <span class="badge" id="dataBadge"></span>
+  </nav>
+
+  <!-- STEP 1 -->
+  <section class="step" id="s1" aria-labelledby="h1s">
+    <div class="step-head"><span class="step-num">1</span><h2 id="h1s">Your terms</h2><span class="slides">Slides 3 and 8 · the class and the prior</span></div>
+    <p class="lead">History is built from past terms: their grades are pooled into the prior <span class="math">q</span>. One term with student scores is <b>this term</b>, the one you are deciding how to grade. The example is a synthetic Calculus I department; on the A–F scale its eight past terms pool to the history used on the slides.</p>
+    <div class="two">
+      <div class="panel">
+        <h3>Load data</h3>
+        <div class="row">
+          <label for="exSel">Example department, with this term:</label>
+          <select id="exSel">
+            <option value="hard">hard final (N = 124)</option>
+            <option value="strong">strong cohort (N = 96)</option>
+            <option value="typical">typical term (N = 110)</option>
+            <option value="sections">five sections (N = 175)</option>
+          </select>
+        </div>
+        <div class="row">
+          <label class="btn" for="fileIn" tabindex="0" id="fileBtn">Upload term files</label>
+          <input type="file" id="fileIn" accept=".csv,.tsv,.txt,text/csv" multiple>
+          <button class="ghost" id="clearBtn">Clear all terms</button>
+        </div>
+        <ul class="formats">
+          <li><b>One CSV per term</b>, a column of course percentages (optional ID and section columns). The file name becomes the term name.</li>
+          <li><b>One CSV with a term column</b> and a score column: split into one term each.</li>
+          <li><b>Grade counts</b>, e.g. from the registrar: one row per term with a column per grade (A, A−, B+, … or just A–F), or a column of letter grades. Counts with plus and minus work on either scale; plain A–F counts only on the A–F scale.</li>
+        </ul>
+        <details>
+          <summary>Add a term by grade counts</summary>
+          <div style="display:grid; gap:8px; margin-top:8px;">
+            <div class="row"><label for="cName">Term</label><input type="text" id="cName" placeholder="e.g. Fall 2021" style="width:150px"></div>
+            <div class="row" id="cInputs"></div>
+            <div class="row"><button class="small" id="cAdd">Add term</button></div>
+          </div>
+        </details>
+        <p class="err" id="dataErr" hidden></p>
+        <p class="tiny" id="loadMsg" aria-live="polite"></p>
+      </div>
+      <div class="panel">
+        <div class="row" style="justify-content: space-between;">
+          <h3>Grade scale (no curve)</h3>
+          <div class="seg" role="group" aria-label="Grade scale">
+            <button data-mode="af" aria-pressed="true">A–F</button>
+            <button data-mode="pm" aria-pressed="false">With plus/minus</button>
+          </div>
+        </div>
+        <p class="note" id="scaleNote"></p>
+        <div class="scale" id="scaleInputs"></div>
+        <p class="tiny">The lowest raw score for each grade when there is no curve; below the lowest cutoff is F. Terms entered as scores are graded on this scale; terms entered as counts keep their counts.</p>
+        <h3 style="margin-top:6px">History (prior q)</h3>
+        <div class="chart" id="qChart"></div>
+        <p class="note" id="qLine"></p>
+      </div>
+    </div>
+    <div class="scroll-x"><table id="termTable"></table></div>
+    <p class="tiny">Grades with no curve, F to A. Tick <b>In history</b> for every term that should count toward the prior; pick one term with scores as <b>this term</b>.</p>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="s2" aria-labelledby="h2s">
+    <div class="step-head"><span class="step-num">2</span><h2 id="h2s">Is this term unusual?</h2><span class="slides">Slides 8–11 · KL divergence and the chance band</span></div>
+    <p class="lead">KL divergence <span class="math">D(p‖q)</span> measures, in bits, how far a term’s grades are from history. The grey band is how far a class of that size drifts by chance alone, 95% of the time. The past terms show how much this course really varies from term to term.</p>
+    <p class="callout" id="c2"></p>
+    <div id="s2body" class="two">
+      <div class="panel">
+        <h3>This term with no curve, against history</h3>
+        <div class="legend" id="leg2a"></div>
+        <div class="chart" id="cmpChart"></div>
+        <h3 style="margin-top:4px">Where the bits come from</h3>
+        <div class="chart" id="contribChart"></div>
+        <p class="cap" id="contribCap"></p>
+      </div>
+      <div class="panel">
+        <h3>Distance from history, term by term</h3>
+        <div class="legend" id="leg2b"></div>
+        <div class="chart" id="distRows"></div>
+        <p class="cap">Each past term is compared with the pooled history of the other past terms; this term with all of them. A past term outside its band means real differences between terms (exams, cohorts), not only chance.</p>
+      </div>
+    </div>
+    <div class="panel" id="secPanel" hidden>
+      <h3>The same check across sections of this term</h3>
+      <div class="chart" id="secRows"></div>
+      <p class="cap">No-curve grades in each section against history. A flag is a reason to look at common items first, not a verdict on an instructor.</p>
+    </div>
+    <p class="try"><b>Try:</b> in step 1, switch this term to the typical term. Its distance falls inside the band; the hard final is far outside anything in the past terms.</p>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="s3" aria-labelledby="h3s">
+    <div class="step-head"><span class="step-num">3</span><h2 id="h3s">What each curving rule does</h2><span class="slides">Slides 12–13 · every rule is a bet</span></div>
+    <p class="lead">Six rules applied to the same scores. The table shows this term. The panels below replay every rule on every term that has scores, so you can see how each one behaves across terms: no curve passes every swing in exam difficulty straight into grades, curve to history makes every term look like history, and the KL dial sits in between.</p>
+    <p class="callout" id="c3"></p>
+    <div class="row"><label for="medTarget">Median rule: if the median is below</label><input type="number" id="medTarget" value="70" step="0.5"><label for="medTarget">add points to everyone until it reaches it.</label></div>
+    <div class="scroll-x"><table id="ruleTable"></table></div>
+    <p class="tiny" id="ruleNotes"></p>
+    <div class="panel">
+      <div class="row" style="justify-content: space-between;">
+        <h3>Every rule on every term</h3>
+        <div class="row"><span class="tiny">Show</span>
+          <div class="seg" role="group" aria-label="Measure">
+            <button data-metric="below" aria-pressed="true">Share below C</button>
+            <button data-metric="a" aria-pressed="false">Share of A’s</button>
+            <button data-metric="gpa" aria-pressed="false">Average grade points</button>
+          </div>
+        </div>
+      </div>
+      <div class="legend" id="leg3"></div>
+      <div class="multiples" id="mults"></div>
+      <p class="cap" id="multCap"></p>
+    </div>
+    <p class="try"><b>Try:</b> switch to “Share of A’s.” Which rule gives every term almost the same answer, whatever the cohort? Which one lets the hard final’s exam set the grades?</p>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="s4" aria-labelledby="h4s">
+    <div class="step-head"><span class="step-num">4</span><h2 id="h4s">The KL dial</h2><span class="slides">Slides 14–16 · weighing history against this term</span></div>
+    <p class="lead">The target <span class="math">p<sub>α</sub> ∝ q<sup>1−α</sup> · s<sup>α</sup></span>, with <span class="math">s</span> this term’s no-curve grades, is the distribution that minimizes <span class="math">(1−α)·D(p‖q) + α·D(p‖s)</span>. α is the bet from slide 12: the weight on “the cohort really differs.” Cutoffs then come from ranks, and tied scores get the higher grade.</p>
+    <p class="callout" id="c4"></p>
+    <div class="ctrlgrid">
+      <div class="ctrl">
+        <label for="alpha">α, the weight on this term’s no-curve result: <span class="big-val" id="alphaVal"></span></label>
+        <input type="range" id="alpha" min="0" max="1" step="0.05" value="0.5">
+        <div class="slider-ends"><span>0 = curve to history</span><span>1 = no curve</span></div>
+      </div>
+      <div class="ctrl">
+        <div class="check"><input type="checkbox" id="guard" checked><label for="guard"><b>Guard:</b> never give a student a lower grade than with no curve. The KL cutoffs can only move down.</label></div>
+      </div>
+    </div>
+    <div class="two">
+      <div class="panel">
+        <h3>Grades: history, no curve and the KL dial</h3>
+        <div class="legend" id="leg4a"></div>
+        <div class="chart" id="dialBars"></div>
+      </div>
+      <div class="panel">
+        <h3>Scores and cutoffs</h3>
+        <div class="legend" id="leg4b"></div>
+        <div class="chart" id="histChart"></div>
+        <div class="scroll-x"><table id="cutTable"></table></div>
+      </div>
+    </div>
+    <div class="two wide-left">
+      <div class="panel">
+        <h3>The trade-off you are choosing</h3>
+        <div class="legend" id="leg4c"></div>
+        <div class="chart" id="pathChart"></div>
+        <p class="cap" id="pathCap"></p>
+      </div>
+      <div class="panel">
+        <h3>Student by student</h3>
+        <p class="note" id="ledgerNote"></p>
+        <div class="row">
+          <div class="check"><input type="checkbox" id="changedOnly" checked><label for="changedOnly">Only students whose grade changes</label></div>
+          <button class="small ghost" id="copyCsv">Copy CSV (all rules)</button>
+          <button class="small" id="dlCsv" hidden>Download CSV</button>
+        </div>
+        <p class="tiny" id="exportMsg" aria-live="polite"></p>
+        <div class="ledger scroll-x"><table id="ledger"></table></div>
+      </div>
+    </div>
+    <p class="try"><b>Try:</b> with the hard final and the guard on, lower α from 1 until fewer than 40% are below C. Would you publish that α in a syllabus before the term? Then load the strong cohort and turn the guard off.</p>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="step" id="s5" aria-labelledby="h5s">
+    <div class="step-head"><span class="step-num">5</span><h2 id="h5s">When the truth is known: a simulation</h2><span class="slides">Slides 12 and 14 · which bet pays off</span></div>
+    <p class="lead">Real scores cannot say whether a low term means a hard exam or a weaker cohort. A simulation can. Each simulated term draws a <b>cohort shift</b> (the students really are stronger or weaker) and an <b>exam shift</b> (the exam was harder or easier than usual). A student’s <b>earned grade</b> is the no-curve grade they would have received on a typical exam. Each rule is scored by how many students it misgrades.</p>
+    <p class="callout" id="c5"></p>
+    <div class="ctrlgrid">
+      <div class="ctrl">
+        <label for="sc">How much cohorts vary from term to term (SD, points): <span class="big-val" id="scVal"></span></label>
+        <input type="range" id="sc" min="0" max="8" step="0.5" value="4">
+      </div>
+      <div class="ctrl">
+        <label for="se">How much exam difficulty varies (SD, points): <span class="big-val" id="seVal"></span></label>
+        <input type="range" id="se" min="0" max="8" step="0.5" value="4">
+      </div>
+    </div>
+    <div class="row">
+      <span class="tiny">Scenarios:</span>
+      <button class="small ghost" data-sc="0" data-se="5">Only the exam varies</button>
+      <button class="small ghost" data-sc="5" data-se="0">Only the cohort varies</button>
+      <button class="small ghost" data-sc="4" data-se="4">Both, equally</button>
+      <button class="small ghost" data-sc="2" data-se="5">Mostly the exam</button>
+    </div>
+    <p class="tiny" id="simMeta"></p>
+    <div class="two">
+      <div class="panel">
+        <h3>Students misgraded by the KL dial, at each α</h3>
+        <div class="legend" id="leg5a"></div>
+        <div class="chart" id="simLine"></div>
+        <p class="cap" id="simLineCap"></p>
+      </div>
+      <div class="panel">
+        <h3>Students misgraded by each rule</h3>
+        <div class="legend" id="leg5b"></div>
+        <div class="chart" id="simBars"></div>
+        <p class="cap">Graded too low: the student earned a better grade than they got. Too high: the reverse.</p>
+      </div>
+    </div>
+    <p class="try"><b>Try:</b> “Only the exam varies,” then “Only the cohort varies.” Which rule wins each time, and where does the best α land? Then set both to your best guess for your own course.</p>
+  </section>
+
+  <section class="step" aria-labelledby="hhow">
+    <details>
+      <summary id="hhow">How the numbers are computed</summary>
+      <div class="howto" style="margin-top:10px;">
+        <div class="formula">H(p) = −Σ<sub>g</sub> p<sub>g</sub> log₂ p<sub>g</sub> &nbsp;&nbsp;&nbsp; D(p‖q) = Σ<sub>g</sub> p<sub>g</sub> log₂(p<sub>g</sub> / q<sub>g</sub>)</div>
+        <p><b>History.</b> The grades of every past term ticked “In history,” pooled by student. Terms entered as scores are graded on the no-curve scale; terms entered as counts are used as given. If some grade never occurs, half a student is added to each grade so that no share is exactly 0.</p>
+        <p><b>Chance band.</b> If a class of N were a random draw from history, G = 2N·ln 2·D is about χ² with k − 1 degrees of freedom (Sanov’s theorem gives the exponent). The band is the 95th percentile: about 6.8/N bits for five grades and 14.2/N for twelve. Students in one class are not independent draws, so treat the band as a floor. With twelve grades some expected counts are small, so the band is rougher.</p>
+        <p><b>Plus/minus.</b> Standard cutoffs: A 93, A− 90, B+ 87, B 83, B− 80, C+ 77, C 73, C− 70, D+ 67, D 63, D− 60; grade points 4.0, 3.7, 3.3, 3.0, 2.7, 2.3, 2.0, 1.7, 1.3, 1.0, 0.7, 0. “Below C” counts C− and lower; “share of A’s” counts A and A−. Merging grades can only lower D(p‖q), so a shift inside a letter (B+ to B−) is visible only on the plus/minus scale. A+ is counted as A. The bell curve splits each letter’s one-standard-deviation band into thirds.</p>
+        <p><b>Rules.</b> No curve: the cutoffs from step 1. Top score raised to 100: everyone gets the gap between the best score and 100. Median at least T: if the median is below T, everyone gets the difference. Bell curve: grades by z-score bands one standard deviation wide around the mean. Curve to history: cutoffs by rank so the class matches history. KL dial: the target above, then cutoffs by rank; with the guard, each cutoff is the lower of the KL cutoff and the no-curve cutoff.</p>
+        <p><b>Replaying rules on past terms.</b> Each past term is curved against the pooled history of the other past terms, so no term is compared with itself.</p>
+        <p><b>Simulation.</b> 400 simulated terms of this term’s size. Students are drawn from your past terms with scores, each term re-centered on the overall mean; with no past scores, from this term. Each term adds a cohort shift c ~ N(0, σ<sub>c</sub>) to every student and subtracts an exam shift e ~ N(0, σ<sub>e</sub>) from every score. Earned grade: no-curve grade of the score plus c. Each rule sees only the observed scores. The same random draws are reused as you move the sliders, so the curves change smoothly. When both shifts vary, the best α is usually near σ<sub>c</sub>² / (σ<sub>c</sub>² + σ<sub>e</sub>²), the share of term-to-term variation that comes from the cohort.</p>
+        <p class="tiny">The example department is synthetic. Fall 2022 and Spring 2023 are entered as grade counts only, the way a registrar report would give them.</p>
+      </div>
+    </details>
+  </section>
+</div>
+<div class="tip" id="tip" role="status"></div>
+<script>
+"use strict";
+const EX_PAST = [{"name":"Fall 2022","counts":[30,21,22,7,16],"counts12":[21,9,6,10,5,6,7,9,1,3,3,16]},{"name":"Spring 2023","counts":[18,33,26,14,13],"counts12":[15,3,10,12,11,10,8,8,6,3,5,13]},{"name":"Fall 2023","scores":[88.8,96.0,74.4,98.7,90.2,87.8,58.1,71.8,72.9,91.0,94.8,96.1,82.4,94.3,89.4,59.8,79.2,52.6,90.4,37.8,92.2,82.0,94.0,99.2,97.8,94.7,96.0,80.0,75.3,74.4,86.6,64.6,75.8,89.8,69.7,70.1,44.0,76.3,75.9,34.4,85.1,23.7,94.1,49.7,75.2,85.0,95.7,80.6,56.6,32.7,93.2,95.9,47.6,76.5,72.2,59.2,86.7,92.2,50.9,94.3,87.0,98.7,86.5,72.9,74.9,89.0,91.6,76.9,71.8,97.7,81.5,83.5,78.1,97.3,58.8,72.4,83.4,73.5,98.6,89.5,81.0,80.4,90.6,81.4,97.8,73.5,69.9,91.8,79.3,97.4,94.2,68.5,77.2,84.9,81.7,87.8,51.7,83.3,23.2,97.0,75.1,81.6]},{"name":"Spring 2024","scores":[76.7,58.1,64.6,74.6,98.3,63.1,80.7,68.9,30.4,90.8,82.9,84.3,85.0,86.0,54.1,83.8,30.6,70.2,89.0,84.1,87.3,65.6,84.5,45.4,78.3,94.1,73.6,71.5,64.0,75.8,91.8,59.8,38.0,49.8,71.2,84.4,73.0,65.3,75.0,51.3,95.5,95.7,87.2,43.4,90.8,65.8,68.0,94.0,89.3,89.5,81.9,50.1,66.7,90.2,91.9,92.7,70.7,78.1,89.5,75.3,69.4,90.8,45.8,92.1,71.6,92.2,32.1,75.9,84.5,81.2,90.1,59.3,79.5,82.8,83.2,86.0,65.7,95.2,84.6,85.8,72.6,12.0,94.4,79.1,81.6,83.0,60.2,77.3,26.5,73.6,78.8,78.9,60.9,88.7,90.6]},{"name":"Fall 2024","scores":[92.8,80.0,72.9,68.3,93.9,69.7,35.4,93.3,88.1,85.2,85.3,70.8,73.5,76.4,48.6,77.0,80.7,72.7,80.4,52.3,85.0,97.3,83.6,91.7,75.0,85.7,85.3,79.3,62.1,66.3,56.8,81.4,51.3,66.5,83.0,88.6,98.1,81.9,80.0,85.3,94.9,99.0,88.7,65.5,82.5,69.0,71.0,98.0,38.7,74.0,96.3,83.2,69.2,83.1,66.1,72.4,84.6,52.8,90.8,85.4,92.2,77.9,77.7,71.0,71.8,83.7,82.8,82.4,26.0,79.4,87.8,86.6,84.4,87.4,62.4,76.1,94.8,79.2,90.7,88.1,47.1,67.3,74.8,74.6,77.3,77.5,73.1,91.6,39.3,51.6,51.8,37.1,46.2,51.6,99.2,71.5,43.0,86.1,51.8,44.1,77.6,75.2,66.0,87.4,71.8,93.1,80.4,38.3]},{"name":"Spring 2025","scores":[83.1,62.8,58.5,71.9,86.1,77.9,92.2,46.0,80.5,67.7,61.3,64.2,69.0,97.5,63.3,68.0,94.0,70.5,85.1,51.7,67.0,84.2,58.5,80.4,78.7,71.7,75.1,66.9,77.6,89.7,87.3,33.7,73.3,80.2,66.0,85.5,70.0,85.4,75.0,76.2,80.9,69.6,70.4,59.0,23.5,85.4,73.7,71.5,87.7,86.2,76.3,98.7,65.9,95.6,19.3,89.8,74.6,91.7,66.6,87.4,81.1,88.6,72.5,53.3,69.0,73.9,75.2,32.5,72.4,63.9,33.2,94.5,99.3,31.1,69.3,82.0,84.0,63.1,58.7,81.2,93.5,33.1,78.1,94.1,57.6,61.9,76.6,90.2,48.2,26.9,78.8,82.1,79.8,81.7,82.6,90.6,79.7]},{"name":"Fall 2025","scores":[86.3,95.7,78.9,96.7,85.6,77.7,89.2,87.9,87.1,75.1,82.7,81.6,92.4,96.6,93.4,92.6,95.6,96.4,79.4,70.3,85.8,97.6,69.3,72.8,84.7,77.5,94.9,84.9,93.6,60.6,88.7,70.2,76.4,61.1,75.0,49.6,88.0,70.6,98.4,96.3,72.1,62.5,66.1,87.6,69.6,80.6,90.6,88.6,92.6,69.0,91.7,92.1,94.6,93.5,69.2,55.6,88.3,97.9,75.1,75.0,86.1,95.6,92.6,70.3,42.5,77.5,90.8,52.1,73.8,74.7,87.5,81.6,75.2,78.9,91.2,80.1,82.8,75.1,60.3,78.1,67.4,86.2,79.7,74.4,83.3,80.6,95.2,74.3,93.0,96.4,91.9,92.9,81.3,89.6,89.7,65.6,80.6,70.3,62.7,84.2,89.6,76.8,90.6,91.2]},{"name":"Spring 2026","scores":[85.8,83.6,46.9,91.6,90.5,71.8,80.2,87.6,66.0,77.3,81.9,87.7,79.2,99.5,98.2,56.1,83.2,88.3,85.8,96.2,48.4,69.3,97.0,38.0,99.0,97.4,66.8,93.7,78.5,84.2,82.4,76.3,75.9,28.7,75.4,76.1,87.4,49.5,35.6,94.6,62.0,73.9,66.2,84.3,99.4,24.6,95.2,96.4,56.9,66.1,81.5,70.3,85.0,96.1,90.0,79.5,88.4,85.9,67.0,74.8,87.2,81.0,85.6,92.2,53.6,96.7,59.5,81.9,26.0,80.1,84.0,40.7,47.4,80.6,83.8,73.7,85.5,71.7,74.9,38.8,86.9,78.1,86.2,97.2,76.1,49.1,62.4,44.5,79.4,52.3,58.2,71.9,93.7,86.4]}];
+const EX_NOW = {"hard":{"name":"Fall 2026 (hard final)","csv":"student,score\nS001,50.7\nS002,85.7\nS003,66.8\nS004,72.4\nS005,81.9\nS006,78.5\nS007,71.9\nS008,61.2\nS009,72.5\nS010,84.3\nS011,69.6\nS012,61.6\nS013,88.8\nS014,43.7\nS015,66.8\nS016,81.0\nS017,71.2\nS018,70.7\nS019,84.7\nS020,93.0\nS021,81.8\nS022,85.5\nS023,75.4\nS024,66.1\nS025,63.6\nS026,59.4\nS027,77.7\nS028,78.0\nS029,74.5\nS030,47.0\nS031,70.0\nS032,49.7\nS033,71.3\nS034,91.2\nS035,73.6\nS036,58.1\nS037,79.7\nS038,71.6\nS039,71.9\nS040,58.2\nS041,73.8\nS042,67.5\nS043,88.3\nS044,55.6\nS045,87.7\nS046,68.4\nS047,75.8\nS048,77.8\nS049,73.9\nS050,68.7\nS051,67.1\nS052,64.8\nS053,33.4\nS054,62.8\nS055,70.5\nS056,82.3\nS057,86.0\nS058,91.2\nS059,79.5\nS060,89.7\nS061,82.1\nS062,81.3\nS063,79.6\nS064,71.2\nS065,52.3\nS066,79.5\nS067,65.4\nS068,55.9\nS069,87.7\nS070,93.0\nS071,57.7\nS072,53.1\nS073,62.7\nS074,69.0\nS075,64.0\nS076,77.1\nS077,81.5\nS078,69.7\nS079,63.4\nS080,87.3\nS081,67.4\nS082,68.4\nS083,83.7\nS084,60.8\nS085,70.9\nS086,76.7\nS087,83.0\nS088,48.8\nS089,68.2\nS090,69.6\nS091,44.3\nS092,74.6\nS093,71.0\nS094,46.3\nS095,69.4\nS096,81.0\nS097,70.1\nS098,47.9\nS099,58.4\nS100,82.5\nS101,46.6\nS102,81.0\nS103,54.0\nS104,56.4\nS105,68.2\nS106,54.1\nS107,48.4\nS108,84.3\nS109,67.9\nS110,68.4\nS111,50.6\nS112,84.7\nS113,63.3\nS114,73.0\nS115,85.3\nS116,66.7\nS117,67.0\nS118,71.8\nS119,79.1\nS120,78.6\nS121,42.7\nS122,67.2\nS123,45.4\nS124,73.7"},"strong":{"name":"Fall 2026 (strong cohort)","csv":"student,score\nS001,82.6\nS002,75.7\nS003,90.5\nS004,85.0\nS005,93.8\nS006,79.1\nS007,64.4\nS008,85.7\nS009,92.1\nS010,96.3\nS011,70.1\nS012,78.2\nS013,94.1\nS014,91.0\nS015,84.8\nS016,84.8\nS017,88.9\nS018,85.6\nS019,96.5\nS020,87.1\nS021,78.0\nS022,92.1\nS023,92.8\nS024,64.5\nS025,83.9\nS026,88.2\nS027,82.7\nS028,91.1\nS029,62.5\nS030,87.9\nS031,91.0\nS032,75.7\nS033,88.5\nS034,81.7\nS035,97.0\nS036,98.1\nS037,74.2\nS038,71.4\nS039,83.3\nS040,94.9\nS041,61.4\nS042,74.3\nS043,92.0\nS044,87.6\nS045,92.8\nS046,92.4\nS047,69.1\nS048,78.7\nS049,89.3\nS050,72.2\nS051,80.2\nS052,96.5\nS053,91.9\nS054,87.7\nS055,85.7\nS056,88.4\nS057,90.1\nS058,95.1\nS059,71.7\nS060,92.3\nS061,85.1\nS062,91.0\nS063,87.2\nS064,80.7\nS065,81.4\nS066,67.4\nS067,78.5\nS068,92.3\nS069,91.8\nS070,91.9\nS071,86.2\nS072,93.9\nS073,91.5\nS074,90.2\nS075,80.1\nS076,87.7\nS077,59.0\nS078,92.2\nS079,91.9\nS080,85.4\nS081,94.4\nS082,58.5\nS083,80.1\nS084,77.7\nS085,84.1\nS086,92.8\nS087,86.2\nS088,95.7\nS089,86.4\nS090,72.7\nS091,69.6\nS092,68.6\nS093,48.6\nS094,85.2\nS095,93.7\nS096,73.7"},"typical":{"name":"Fall 2026 (typical)","csv":"student,score\nS001,93.4\nS002,92.0\nS003,83.5\nS004,88.5\nS005,97.7\nS006,63.7\nS007,75.6\nS008,88.3\nS009,81.7\nS010,80.7\nS011,86.2\nS012,85.5\nS013,68.9\nS014,71.2\nS015,72.4\nS016,58.4\nS017,82.5\nS018,92.3\nS019,76.6\nS020,83.4\nS021,91.7\nS022,75.6\nS023,83.2\nS024,87.6\nS025,47.2\nS026,76.7\nS027,72.3\nS028,73.0\nS029,94.0\nS030,75.9\nS031,74.8\nS032,93.2\nS033,73.1\nS034,48.7\nS035,93.2\nS036,95.2\nS037,76.3\nS038,74.1\nS039,69.8\nS040,85.0\nS041,63.2\nS042,84.0\nS043,78.1\nS044,61.3\nS045,78.8\nS046,59.4\nS047,42.7\nS048,88.9\nS049,59.1\nS050,72.5\nS051,74.7\nS052,87.3\nS053,75.7\nS054,84.0\nS055,53.9\nS056,76.9\nS057,83.7\nS058,82.5\nS059,89.9\nS060,81.6\nS061,94.9\nS062,74.6\nS063,59.3\nS064,83.9\nS065,68.8\nS066,95.7\nS067,59.6\nS068,98.2\nS069,55.2\nS070,77.0\nS071,83.6\nS072,52.5\nS073,79.6\nS074,68.2\nS075,100.0\nS076,77.8\nS077,89.3\nS078,91.8\nS079,94.3\nS080,52.1\nS081,92.7\nS082,77.9\nS083,89.3\nS084,51.4\nS085,68.5\nS086,73.5\nS087,86.7\nS088,73.0\nS089,69.7\nS090,91.7\nS091,85.2\nS092,79.2\nS093,82.4\nS094,89.4\nS095,79.9\nS096,79.4\nS097,76.1\nS098,83.8\nS099,83.3\nS100,83.1\nS101,82.6\nS102,77.9\nS103,69.3\nS104,77.5\nS105,87.3\nS106,80.5\nS107,88.5\nS108,76.7\nS109,78.3\nS110,77.1"},"sections":{"name":"Fall 2026 (five sections)","csv":"student,section,score\nS001,Sec 01,64.2\nS002,Sec 01,72.3\nS003,Sec 01,75.9\nS004,Sec 01,88.0\nS005,Sec 01,41.0\nS006,Sec 01,80.6\nS007,Sec 01,51.6\nS008,Sec 01,57.2\nS009,Sec 01,93.7\nS010,Sec 01,92.0\nS011,Sec 01,59.1\nS012,Sec 01,85.5\nS013,Sec 01,86.7\nS014,Sec 01,90.7\nS015,Sec 01,74.3\nS016,Sec 01,90.6\nS017,Sec 01,56.7\nS018,Sec 01,69.9\nS019,Sec 01,48.7\nS020,Sec 01,85.8\nS021,Sec 01,65.6\nS022,Sec 01,70.8\nS023,Sec 01,71.5\nS024,Sec 01,75.6\nS025,Sec 01,46.0\nS026,Sec 01,38.2\nS027,Sec 01,77.9\nS028,Sec 01,89.1\nS029,Sec 01,85.8\nS030,Sec 01,87.5\nS031,Sec 01,86.2\nS032,Sec 01,88.4\nS033,Sec 01,80.2\nS034,Sec 01,83.8\nS035,Sec 01,89.2\nS036,Sec 02,73.1\nS037,Sec 02,81.7\nS038,Sec 02,63.6\nS039,Sec 02,85.3\nS040,Sec 02,82.4\nS041,Sec 02,45.9\nS042,Sec 02,84.5\nS043,Sec 02,90.2\nS044,Sec 02,75.2\nS045,Sec 02,89.6\nS046,Sec 02,41.5\nS047,Sec 02,69.5\nS048,Sec 02,72.6\nS049,Sec 02,97.0\nS050,Sec 02,69.0\nS051,Sec 02,90.2\nS052,Sec 02,95.0\nS053,Sec 02,83.6\nS054,Sec 02,82.5\nS055,Sec 02,77.5\nS056,Sec 02,77.6\nS057,Sec 02,71.9\nS058,Sec 02,95.3\nS059,Sec 02,82.2\nS060,Sec 02,55.9\nS061,Sec 02,51.9\nS062,Sec 02,83.2\nS063,Sec 02,89.1\nS064,Sec 02,60.8\nS065,Sec 02,62.8\nS066,Sec 02,90.5\nS067,Sec 02,78.3\nS068,Sec 02,56.8\nS069,Sec 02,57.1\nS070,Sec 02,75.8\nS071,Sec 03,87.2\nS072,Sec 03,79.2\nS073,Sec 03,60.1\nS074,Sec 03,77.4\nS075,Sec 03,58.2\nS076,Sec 03,79.3\nS077,Sec 03,62.2\nS078,Sec 03,71.9\nS079,Sec 03,61.8\nS080,Sec 03,93.9\nS081,Sec 03,80.1\nS082,Sec 03,83.7\nS083,Sec 03,51.8\nS084,Sec 03,68.6\nS085,Sec 03,58.3\nS086,Sec 03,48.4\nS087,Sec 03,51.6\nS088,Sec 03,85.0\nS089,Sec 03,71.7\nS090,Sec 03,67.8\nS091,Sec 03,50.2\nS092,Sec 03,84.6\nS093,Sec 03,66.8\nS094,Sec 03,94.7\nS095,Sec 03,76.8\nS096,Sec 03,79.8\nS097,Sec 03,97.9\nS098,Sec 03,92.9\nS099,Sec 03,76.9\nS100,Sec 03,68.8\nS101,Sec 03,82.5\nS102,Sec 03,61.6\nS103,Sec 03,67.4\nS104,Sec 03,75.9\nS105,Sec 03,88.2\nS106,Sec 04,64.9\nS107,Sec 04,83.1\nS108,Sec 04,81.3\nS109,Sec 04,53.2\nS110,Sec 04,56.8\nS111,Sec 04,82.1\nS112,Sec 04,77.8\nS113,Sec 04,62.1\nS114,Sec 04,70.1\nS115,Sec 04,71.4\nS116,Sec 04,57.1\nS117,Sec 04,74.4\nS118,Sec 04,75.0\nS119,Sec 04,67.2\nS120,Sec 04,69.7\nS121,Sec 04,85.7\nS122,Sec 04,74.6\nS123,Sec 04,75.6\nS124,Sec 04,53.0\nS125,Sec 04,59.9\nS126,Sec 04,84.3\nS127,Sec 04,86.3\nS128,Sec 04,52.8\nS129,Sec 04,55.6\nS130,Sec 04,89.6\nS131,Sec 04,72.1\nS132,Sec 04,87.5\nS133,Sec 04,79.9\nS134,Sec 04,81.3\nS135,Sec 04,92.0\nS136,Sec 04,68.6\nS137,Sec 04,67.0\nS138,Sec 04,67.4\nS139,Sec 04,77.0\nS140,Sec 04,59.0\nS141,Sec 05,56.0\nS142,Sec 05,86.7\nS143,Sec 05,100.0\nS144,Sec 05,87.2\nS145,Sec 05,85.2\nS146,Sec 05,61.5\nS147,Sec 05,78.7\nS148,Sec 05,85.3\nS149,Sec 05,81.3\nS150,Sec 05,46.7\nS151,Sec 05,92.4\nS152,Sec 05,82.0\nS153,Sec 05,54.7\nS154,Sec 05,48.7\nS155,Sec 05,100.0\nS156,Sec 05,92.3\nS157,Sec 05,91.2\nS158,Sec 05,82.9\nS159,Sec 05,41.4\nS160,Sec 05,80.1\nS161,Sec 05,85.8\nS162,Sec 05,78.9\nS163,Sec 05,77.9\nS164,Sec 05,96.6\nS165,Sec 05,83.5\nS166,Sec 05,84.3\nS167,Sec 05,95.7\nS168,Sec 05,77.2\nS169,Sec 05,93.1\nS170,Sec 05,66.1\nS171,Sec 05,62.5\nS172,Sec 05,60.0\nS173,Sec 05,78.7\nS174,Sec 05,84.6\nS175,Sec 05,97.5"}};
+
+/* ---------- constants ---------- */
+// Two grade scales. Internal order is best grade first; DISP lists indices low to high for display (F on the left).
+const SCALES = {
+  af: { labels: ["A", "B", "C", "D", "F"], pts: [4, 3, 2, 1, 0], cuts: [90, 80, 70, 60],
+        bellZ: [1.5, 0.5, -0.5, -1.5], base: [0, 1, 2, 3, 4] },
+  pm: { labels: ["A", "A−", "B+", "B", "B−", "C+", "C", "C−", "D+", "D", "D−", "F"], pts: [4, 3.7, 3.3, 3, 2.7, 2.3, 2, 1.7, 1.3, 1, 0.7, 0],
+        cuts: [93, 90, 87, 83, 80, 77, 73, 70, 67, 63, 60],
+        bellZ: [11 / 6, 1.5, 7 / 6, 5 / 6, 0.5, 1 / 6, -1 / 6, -0.5, -5 / 6, -7 / 6, -1.5], base: [0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4] }
+};
+let K, LAB, PTS, DISP, BELLZ;
+function setScaleVars(mode) { const S = SCALES[mode]; LAB = S.labels; PTS = S.pts; K = LAB.length; DISP = [...Array(K).keys()].reverse(); BELLZ = S.bellZ; }
+setScaleVars("af");
+const RULES = [
+  { key: "none", name: "No curve" },
+  { key: "top", name: "Top score raised to 100" },
+  { key: "median", name: "Median at least" },
+  { key: "bell", name: "Bell curve" },
+  { key: "curve", name: "Curve to history" },
+  { key: "kl", name: "KL dial" }
+];
+const COL = { hist: "var(--s-hist)", none: "var(--s-none)", kl: "var(--s-kl)", past: "var(--past)", ink: "var(--ink)", band: "var(--band)" };
+
+const state = {
+  terms: [], currentId: null, nextId: 1, example: "hard", isExample: true, mode: "af",
+  cutsBy: { af: SCALES.af.cuts.slice(), pm: SCALES.pm.cuts.slice() }, get cuts() { return this.cutsBy[this.mode]; }, set cuts(v) { this.cutsBy[this.mode] = v; }, alpha: 0.5, guard: true, medTarget: 70, metric: "below", changedOnly: true,
+  sc: 4, se: 4
+};
+let downloadsApi = null, last = null;
+
+/* ---------- math ---------- */
+const LN2 = Math.LN2;
+const sum = v => v.reduce((a, b) => a + b, 0);
+function normalize(v) { const s = sum(v); return s > 0 ? v.map(x => x / s) : v.map(() => 1 / v.length); }
+function kl(p, q) { let d = 0; for (let i = 0; i < p.length; i++) { if (p[i] <= 0) continue; if (q[i] <= 0) return Infinity; d += p[i] * Math.log2(p[i] / q[i]); } return Math.max(0, d); }
+function gammaLn(x) {
+  const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+  let y = x, tmp = x + 5.5; tmp -= (x + 0.5) * Math.log(tmp); let ser = 1.000000000190015;
+  for (let j = 0; j < 6; j++) ser += c[j] / ++y;
+  return -tmp + Math.log(2.5066282746310005 * ser / x);
+}
+function gammaQ(a, x) {
+  if (x <= 0) return 1;
+  if (x < a + 1) { let s = 1 / a, d = s, ap = a; for (let n = 0; n < 500; n++) { ap++; d *= x / ap; s += d; if (Math.abs(d) < Math.abs(s) * 1e-14) break; } return Math.max(0, 1 - s * Math.exp(-x + a * Math.log(x) - gammaLn(a))); }
+  let b = x + 1 - a, c = 1e300, d = 1 / b, h = d;
+  for (let i = 1; i < 500; i++) { const an = -i * (i - a); b += 2; d = an * d + b; if (Math.abs(d) < 1e-300) d = 1e-300; c = b + an / c; if (Math.abs(c) < 1e-300) c = 1e-300; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 1e-14) break; }
+  return Math.min(1, Math.exp(-x + a * Math.log(x) - gammaLn(a)) * h);
+}
+const chi2sf = (x, df) => gammaQ(df / 2, x / 2);
+function chi2crit(df, a) { let lo = 0, hi = 200; for (let i = 0; i < 100; i++) { const m = (lo + hi) / 2; if (chi2sf(m, df) > a) lo = m; else hi = m; } return (lo + hi) / 2; }
+const CRIT = {}; const crit = () => CRIT[K] ?? (CRIT[K] = chi2crit(K - 1, 0.05));
+const bandFor = N => crit() / (2 * N * LN2);
+function pValue(counts, q) { const n = sum(counts), d = kl(normalize(counts), q), G = 2 * n * LN2 * d; return isFinite(G) ? chi2sf(G, K - 1) : 0; }
+function assign(s, cuts) { const g = new Array(s.length); for (let i = 0; i < s.length; i++) { let j = 0; while (j < cuts.length && !(s[i] >= cuts[j])) j++; g[i] = j; } return g; }
+function countsOf(g) { const c = new Array(K).fill(0); for (const x of g) c[x]++; return c; }
+function qcSorted(desc, target) {
+  const n = desc.length, t = normalize(target), cuts = []; let cum = 0;
+  for (let j = 0; j < K - 1; j++) { cum += t[j]; const m = Math.round(n * cum + 1e-9); cuts.push(m <= 0 ? Infinity : m >= n ? desc[n - 1] : desc[m - 1]); }
+  for (let j = 1; j < cuts.length; j++) cuts[j] = Math.min(cuts[j], cuts[j - 1]);
+  return cuts;
+}
+const quantileCutoffs = (s, target) => qcSorted(s.slice().sort((a, b) => b - a), target);
+function pool(p0, q, a) {
+  const lw = p0.map((x, i) => ((x <= 0 && a > 0) || (q[i] <= 0 && a < 1)) ? -Infinity : a * Math.log(Math.max(x, 1e-300)) + (1 - a) * Math.log(Math.max(q[i], 1e-300)));
+  const m = Math.max(...lw); if (!isFinite(m)) return q.slice();
+  return normalize(lw.map(v => isFinite(v) ? Math.exp(v - m) : 0));
+}
+const meanOf = (p, x) => p.reduce((s, pi, i) => s + pi * x[i], 0);
+function qFromCounts(c) { const n = sum(c); if (n <= 0) return null; return c.some(x => x <= 0) ? c.map(x => (x + 0.5) / (n + 0.5 * K)) : c.map(x => x / n); }
+const belowC = p => p.reduce((a, pi, i) => a + (PTS[i] < 2 ? pi : 0), 0);   // C− and lower with plus/minus
+const aShare = p => p.reduce((a, pi, i) => a + (PTS[i] >= 3.7 ? pi : 0), 0);  // A and A−
+
+/* the six rules on one set of scores */
+function runRules(s, q, o) {
+  const cuts = state.cuts, n = s.length, asc = s.slice().sort((a, b) => a - b), desc = asc.slice().reverse();
+  const g0 = assign(s, cuts), p0 = normalize(countsOf(g0));
+  const median = n % 2 ? asc[(n - 1) / 2] : (asc[n / 2 - 1] + asc[n / 2]) / 2;
+  const topShift = Math.max(0, 100 - asc[n - 1]);
+  const medShift = Math.max(0, o.medTarget - median);
+  const mu = sum(s) / n, sd = Math.sqrt(s.reduce((a, b) => a + (b - mu) ** 2, 0) / n);
+  const target = pool(p0, q, o.alpha);
+  let ck = qcSorted(desc, target); if (o.guard) ck = ck.map((c, j) => Math.min(c, cuts[j]));
+  const defs = { none: cuts, top: cuts.map(c => c - topShift), median: cuts.map(c => c - medShift), bell: BELLZ.map(z => mu + z * sd), curve: qcSorted(desc, q), kl: ck };
+  const R = {};
+  for (const { key } of RULES) {
+    const g = key === "none" ? g0 : assign(s, defs[key]), c = countsOf(g), p = normalize(c);
+    let up = 0, down = 0; for (let i = 0; i < n; i++) { if (g[i] < g0[i]) up++; else if (g[i] > g0[i]) down++; }
+    R[key] = { key, cuts: defs[key], g, c, p, up, down, below: belowC(p), a: aShare(p), gpa: meanOf(p, PTS), D: kl(p, q) };
+  }
+  return { R, g0, p0, median, topShift, medShift, mu, sd, target };
+}
+
+/* ---------- CSV parsing ---------- */
+function parseCSV(text) {
+  text = text.replace(/^﻿/, "");
+  const first = text.split(/\r?\n/).find(l => l.trim()) || "";
+  const delim = [",", "\t", ";"].map(d => [d, first.split(d).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const rows = []; let row = [], cell = "", inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQ) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else inQ = false; } else cell += ch; }
+    else if (ch === '"') inQ = true;
+    else if (ch === delim) { row.push(cell); cell = ""; }
+    else if (ch === "\n" || ch === "\r") { if (ch === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+    else cell += ch;
+  }
+  if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+  return rows.map(r => r.map(c => c.trim())).filter(r => r.some(c => c !== ""));
+}
+const isNum = v => v != null && v !== "" && /^-?\d*\.?\d+(e-?\d+)?%?$/i.test(String(v).replace(/,/g, ""));
+const toNum = v => parseFloat(String(v).replace(/,/g, "").replace("%", ""));
+// a grade label → { b: index on the A–F scale, p: index on the plus/minus scale, mod: had a + or − }
+function gradeInfo(m) {
+  if (!m) return null;
+  const L = m[1].toUpperCase(), mod = (m[2] || "").replace(/[−–]/, "-");
+  const b = "ABCDF".indexOf(L);
+  let lab = L + (mod === "+" ? "+" : mod === "-" ? "−" : "");
+  let p = SCALES.pm.labels.indexOf(lab), merged = null;
+  if (p < 0) { merged = lab; p = SCALES.pm.labels.indexOf(L); }   // A+ counts as A; F+ / F− as F
+  return { b, p, mod: !!mod, merged };
+}
+const letterOf = v => gradeInfo(/^\s*([ABCDF])\s*([+\-−–]?)\s*$/i.exec(v || ""));
+const gradeHeader = h => gradeInfo(/^\s*#?\s*([ABCDF])\s*([+\-−–]?)\s*(count|counts|'s|s|%)?\s*$/i.exec(h || ""));
+
+function termsFromText(text, fname) {
+  const t = text.trim(); if (!t) throw new Error(`${fname}: the file is empty.`);
+  const tokens = t.split(/[\s,;]+/).filter(Boolean);
+  if (tokens.length >= 5 && tokens.every(isNum) && !/[a-z]/i.test(t)) return [scoreTerm(fname, tokens.map(toNum))];
+  const rows = parseCSV(t);
+  if (rows.length < 2) throw new Error(`${fname}: found fewer than two rows.`);
+  let header = rows[0], body = rows.slice(1);
+  if (header.every(isNum)) { header = header.map((_, i) => "column " + (i + 1)); body = rows; }
+  const w = Math.max(...rows.map(r => r.length));
+  header = Array.from({ length: w }, (_, i) => header[i] || "column " + (i + 1));
+  body = body.map(r => Array.from({ length: w }, (_, i) => r[i] ?? ""));
+  const distinct = j => new Set(body.map(r => r[j])).size;
+  const numFrac = j => body.filter(r => isNum(r[j])).length / body.length;
+  const termCol = [...Array(w).keys()].find(j => /\b(term|semester|session|quarter|year|cohort)\b/i.test(header[j]) && distinct(j) <= 60);
+  // 1) wide grade-count table
+  const gcols = [...Array(w).keys()].filter(j => gradeHeader(header[j]) && numFrac(j) >= 0.8);
+  if (gcols.length >= 3) {
+    const nameCol = termCol ?? [...Array(w).keys()].find(j => !gcols.includes(j) && numFrac(j) < 0.8);
+    const hasPM = gcols.some(j => gradeHeader(header[j]).mod), merged = [...new Set(gcols.map(j => gradeHeader(header[j]).merged).filter(Boolean))];
+    return body.map((r, i) => {
+      const c5 = new Array(5).fill(0), c12 = new Array(12).fill(0);
+      gcols.forEach(j => { if (isNum(r[j])) { const g = gradeHeader(header[j]); c5[g.b] += toNum(r[j]); c12[g.p] += toNum(r[j]); } });
+      const t = countTerm(nameCol != null && r[nameCol] ? r[nameCol] : `${fname} row ${i + 1}`, c5, hasPM ? c12 : null);
+      if (merged.length) t.note = `${merged.join(", ")} counted with the base letter`;
+      return t;
+    }).filter(x => sum(x.counts5) > 0);
+  }
+  // 2) numeric scores (preferred), optionally split by term
+  const numericCols = [...Array(w).keys()].filter(j => j !== termCol && numFrac(j) >= 0.8);
+  let score = numericCols.find(j => /total|course|overall|percent|pct|%/i.test(header[j]));
+  if (score === undefined) score = numericCols.find(j => /score|final|points|grade/i.test(header[j]));
+  if (score === undefined) score = numericCols.slice().sort((a, b) => distinct(b) - distinct(a))[0];
+  const secCol = [...Array(w).keys()].find(j => j !== score && j !== termCol && /\b(section|sec|lecture|instructor|recitation|group)\b/i.test(header[j]) && distinct(j) <= 40);
+  const idCol = [...Array(w).keys()].find(j => j !== score && j !== termCol && j !== secCol && /^(id|sid|netid|name|email)$|student|\bid\b/i.test(header[j]));
+  if (score !== undefined) {
+    const groups = new Map();
+    body.forEach((r, i) => {
+      if (!isNum(r[score])) return;
+      const key = termCol != null ? (r[termCol] || "(blank term)") : fname;
+      if (!groups.has(key)) groups.set(key, { s: [], ids: [], sec: [] });
+      const G = groups.get(key); G.s.push(toNum(r[score])); G.ids.push(idCol != null && r[idCol] ? r[idCol] : "S" + String(G.s.length).padStart(3, "0")); G.sec.push(secCol != null ? (r[secCol] || "(blank)") : null);
+    });
+    const out = [];
+    for (const [name, G] of groups) { if (G.s.length < 5) continue; const t = scoreTerm(name, G.s, G.ids, secCol != null ? G.sec : null); t.single = termCol == null; out.push(t); }
+    if (out.length) return out;
+  }
+  // 3) a column of letter grades
+  const lcol = [...Array(w).keys()].map(j => [j, body.filter(r => letterOf(r[j])).length / body.length]).sort((a, b) => b[1] - a[1])[0];
+  if (lcol && lcol[1] >= 0.6) {
+    const groups = new Map(); let ignored = 0, hasPM = false; const merged = new Set();
+    body.forEach(r => {
+      const g = letterOf(r[lcol[0]]); if (!g) { ignored++; return; }
+      if (g.mod) hasPM = true; if (g.merged) merged.add(g.merged);
+      const key = termCol != null ? (r[termCol] || "(blank term)") : fname;
+      if (!groups.has(key)) groups.set(key, [new Array(5).fill(0), new Array(12).fill(0)]);
+      groups.get(key)[0][g.b]++; groups.get(key)[1][g.p]++;
+    });
+    const out = [...groups].map(([name, [c5, c12]]) => countTerm(name, c5, hasPM ? c12 : null));
+    const notes = [ignored ? `${ignored} rows without a letter grade ignored (e.g. W)` : "", merged.size ? `${[...merged].join(", ")} counted with the base letter` : ""].filter(Boolean).join("; ");
+    if (notes) out.forEach(x => x.note = notes);
+    return out;
+  }
+  throw new Error(`${fname}: could not find course percentages, grade counts or letter grades.`);
+}
+function scoreTerm(name, scores, ids, sections) {
+  let s = scores.slice(), scaled = false;
+  if (Math.max(...s) <= 1.0) { s = s.map(x => Math.round(x * 1000) / 10); scaled = true; }
+  return { id: state.nextId++, name: String(name), kind: "scores", scores: s, ids: ids || s.map((_, i) => "S" + String(i + 1).padStart(3, "0")), sections: sections && sections.some(x => x != null) ? sections : null, inHistory: true, scaled };
+}
+function countTerm(name, counts5, counts12) { return { id: state.nextId++, name: String(name), kind: "counts", counts5: counts5.slice(), counts12: counts12 ? counts12.slice() : null, inHistory: true }; }
+// can this term be used on the current scale? (A–F-only counts cannot be split into plus/minus)
+const usable = t => t.kind === "scores" || (state.mode === "pm" ? !!t.counts12 : true);
+const termCountsOf = t => t.kind === "scores" ? countsOf(assign(t.scores, state.cuts)) : (state.mode === "pm" ? t.counts12.slice() : t.counts5.slice());
+
+/* ---------- loading ---------- */
+function loadExample(key) {
+  state.terms = []; state.nextId = 1; state.isExample = true; state.example = key;
+  for (const t of EX_PAST) state.terms.push(t.counts ? countTerm(t.name, t.counts, t.counts12) : scoreTerm(t.name, t.scores));
+  const now = termsFromText(EX_NOW[key].csv, EX_NOW[key].name)[0];
+  now.inHistory = false; state.terms.push(now); state.currentId = now.id;
+  $("exSel").value = key; msg("");
+  update();
+}
+async function loadFiles(files) {
+  const added = []; const errs = [];
+  for (const f of [...files].sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))) {
+    try { added.push(...termsFromText(await f.text(), f.name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " "))); } catch (e) { errs.push(e.message); }
+  }
+  showErr(errs.join(" "));
+  if (!added.length) return;
+  let replaced = false;
+  if (state.isExample) { state.terms = []; state.currentId = null; state.isExample = false; replaced = true; }
+  state.terms.push(...added);
+  if (!state.terms.some(t => t.id === state.currentId)) {
+    // guess "this term": a file holding a single term of scores (not split by a term column), else the last term with scores
+    const pick = list => [...list].reverse().find(t => t.kind === "scores" && t.single) || [...list].reverse().find(t => t.kind === "scores");
+    const cand = pick(added) || pick(state.terms);
+    if (cand) { state.currentId = cand.id; cand.inHistory = false; state.terms = state.terms.filter(t => t !== cand).concat([cand]); }
+  }
+  const cur = state.terms.find(t => t.id === state.currentId);
+  const notes = [...new Set(added.filter(t => t.note).map(t => `${t.name}: ${t.note}`))];
+  if (state.mode === "af" && added.some(t => t.counts12)) notes.push("these files include plus and minus grades: switch the scale in step 1 to use them");
+  msg(`${replaced ? "Replaced the example with your files. " : ""}Added ${added.length} term${added.length > 1 ? "s" : ""}: ${added.map(t => t.name).join(", ")}.` + (cur ? ` Using ${cur.name} as this term; change it in the table if that is wrong.` : " Add one term with student scores to use as this term.") + (notes.length ? " " + notes.join("; ") + "." : ""));
+  update();
+}
+
+/* ---------- formatting ---------- */
+const $ = id => document.getElementById(id);
+const f1 = x => (Math.round(x * 10) / 10).toFixed(1);
+const fPct = x => (100 * x).toFixed(1);
+const fBits = x => isFinite(x) ? x.toFixed(3) : "∞";
+const fP = p => p < 0.001 ? "< 0.001" : p.toFixed(3);
+const fCut = c => !isFinite(c) ? "none" : f1(c);
+const signed = x => (x >= 0 ? "+" : "−") + f1(Math.abs(x));
+function el(tag, attrs = {}, ...kids) { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === "class") e.className = v; else if (k === "text") e.textContent = v; else if (k === "html") e.innerHTML = v; else e.setAttribute(k, v); } for (const kid of kids) if (kid != null) e.append(kid); return e; }
+const SVGNS = "http://www.w3.org/2000/svg";
+function sv(tag, attrs = {}, text) { const e = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (text != null) e.textContent = text; return e; }
+function showErr(m) { const e = $("dataErr"); e.textContent = m; e.hidden = !m; }
+function msg(m) { $("loadMsg").textContent = m; }
+function ruleName(key) { return key === "median" ? `Median at least ${f1(state.medTarget).replace(/\.0$/, "")}` : RULES.find(r => r.key === key).name; }
+function barPath(x, y0, y1, w) { const h = y0 - y1; if (h <= 0) return ""; const r = Math.min(3.5, h, w / 2); return `M${x},${y0} V${y1 + r} Q${x},${y1} ${x + r},${y1} H${x + w - r} Q${x + w},${y1} ${x + w},${y1 + r} V${y0} Z`; }
+function hbarPath(x0, y, x1, h) { const w = x1 - x0; if (w <= 0) return ""; const r = Math.min(3, w, h / 2); return `M${x0},${y} H${x1 - r} Q${x1},${y} ${x1},${y + r} V${y + h - r} Q${x1},${y + h} ${x1 - r},${y + h} H${x0} Z`; }
+
+/* ---------- tooltip & legends ---------- */
+const tip = $("tip");
+function showTip(evt, title, rows) {
+  tip.innerHTML = ""; tip.append(el("div", { class: "t-h", text: title }));
+  for (const [color, label, val] of rows) { const r = el("div", { class: "t-r" }); if (color) { const k = el("span", { class: "key" }); k.style.background = color; r.append(k); } r.append(el("span", { text: label }), el("b", { text: val })); tip.append(r); }
+  tip.style.display = "block";
+  const x = evt.clientX, y = evt.clientY, w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.min(window.innerWidth - w - 8, x + 14) + "px"; tip.style.top = Math.max(8, y - h - 10) + "px";
+}
+function hideTip() { tip.style.display = "none"; }
+function hover(node, title, rows, focusable = true) {
+  const show = e => showTip(e.clientX != null ? e : (() => { const r = node.getBoundingClientRect(); return { clientX: r.left + r.width / 2, clientY: r.top + 20 }; })(), title, typeof rows === "function" ? rows() : rows);
+  node.addEventListener("pointermove", show); node.addEventListener("pointerleave", hideTip); node.addEventListener("focus", show); node.addEventListener("blur", hideTip);
+  if (focusable) node.setAttribute("tabindex", "0");
+}
+function legend(id, items) {
+  const L = $(id); L.innerHTML = "";
+  for (const [color, label, kind] of items) { const k = el("span", { class: kind === "line" ? "key-line" : kind === "dash" ? "key-dash" : kind === "dot" ? "key-dot" : "key" }); if (kind === "line" || kind === "dash") k.style.borderColor = color; else k.style.background = color; L.append(el("span", {}, k, label)); }
+}
+const W_of = box => Math.max(300, box.clientWidth || 600);
+
+/* ---------- small charts ---------- */
+function miniBars(p, color = "var(--ink-2)") {
+  const w = 66, h = 20, gap = K > 6 ? 1.5 : 3, bw = (w - gap * (K - 1)) / K, max = Math.max(...p, 0.01);
+  const s = sv("svg", { width: w, height: h, class: "inline", "aria-hidden": "true" });
+  DISP.forEach((gi, i) => { const bh = Math.max(p[gi] > 0 ? 1 : 0, (h - 2) * p[gi] / max); s.append(sv("rect", { x: i * (bw + gap), y: h - bh, width: bw, height: bh, rx: 1.5, fill: color })); });
+  return s;
+}
+function groupedBars(boxId, series, opts = {}) {
+  const box = $(boxId); box.innerHTML = "";
+  const W = W_of(box), H = opts.H || 230, m = { l: 38, r: 8, t: 22, b: 28 };
+  const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": opts.label || "Grade distribution" });
+  const top = Math.max(0.1, Math.ceil(Math.max(...series.flatMap(s => s.p)) * 10 + 1e-6) / 10);
+  const y = v => m.t + (H - m.t - m.b) * (1 - v / top), step = top <= 0.3 ? 0.1 : 0.1;
+  for (let v = 0; v <= top + 1e-9; v += step) { svg.append(sv("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? "var(--axis)" : "var(--grid)" })); svg.append(sv("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, Math.round(v * 100) + "%")); }
+  const band = (W - m.l - m.r) / K, ns = series.length, bw = Math.max(3, Math.min(26, (band - (K > 6 ? 8 : 18)) / ns - (K > 6 ? 1 : 2)));
+  DISP.forEach((gi, i) => {
+    const cx = m.l + band * (i + 0.5);
+    svg.append(sv("text", { x: cx, y: H - 8, "text-anchor": "middle", class: "lab-strong" }, LAB[gi]));
+    series.forEach((s, si) => {
+      const x = cx + (si - (ns - 1) / 2) * (bw + 2) - bw / 2, v = s.p[gi];
+      const d = barPath(x, y(0), y(v), bw); if (d) svg.append(sv("path", { d, fill: s.color }));
+      if (s.labels && K <= 6) svg.append(sv("text", { x: x, y: y(v) - 5, "text-anchor": "start", class: "lab" }, fPct(v)));
+    });
+    const hit = sv("rect", { x: cx - band / 2, y: m.t, width: band, height: H - m.t - m.b, fill: "transparent" });
+    hover(hit, `Grade ${LAB[gi]}`, series.map(s => [s.color, s.name, fPct(s.p[gi]) + "%"]));
+    svg.append(hit);
+  });
+  box.append(svg);
+}
+function contribChart(boxId, p, q) {
+  const box = $(boxId); box.innerHTML = "";
+  const W = W_of(box), H = 150, m = { l: 38, r: 8, t: 18, b: 24 };
+  const c = p.map((pi, i) => pi > 0 ? pi * Math.log2(pi / q[i]) : 0);
+  const hi = Math.max(0.02, ...c), lo = Math.min(0, ...c), pad = (hi - lo) * 0.18;
+  const y = v => m.t + (H - m.t - m.b) * (hi + pad - v) / (hi - lo + 2 * pad);
+  const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Contribution of each grade to D" });
+  const band = (W - m.l - m.r) / K, bw = Math.min(34, band * 0.45);
+  svg.append(sv("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: "var(--axis)" }));
+  DISP.forEach((gi, i) => {
+    const cx = m.l + band * (i + 0.5), v = c[gi], x = cx - bw / 2;
+    if (v >= 0) { const d = barPath(x, y(0), y(v), bw); if (d) svg.append(sv("path", { d, fill: COL.none })); }
+    else svg.append(sv("rect", { x, y: y(0), width: bw, height: y(v) - y(0), fill: COL.none, rx: 2 }));
+    if (K <= 6 || Math.abs(v) >= 0.02) svg.append(sv("text", { x: cx, y: v >= 0 ? y(v) - 4 : y(v) + 12, "text-anchor": "middle", class: "lab-ink", style: K > 6 ? "font-size:10px" : "" }, (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(K > 6 ? 2 : 3)));
+    const hit = sv("rect", { x: cx - band / 2, y: m.t, width: band, height: H - m.t - m.b, fill: "transparent" });
+    hover(hit, `Grade ${LAB[gi]}`, [[null, "This term", fPct(p[gi]) + "%"], [null, "History", fPct(q[gi]) + "%"], [null, "Contribution", (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(3) + " bits"]], false);
+    svg.append(hit);
+    svg.append(sv("text", { x: cx, y: H - 4, "text-anchor": "middle", class: "lab-strong" }, LAB[gi]));
+  });
+  box.append(svg);
+  return c;
+}
+function distanceRows(boxId, rows) {
+  const box = $(boxId); box.innerHTML = "";
+  const W = W_of(box), rowH = 26, m = { l: 168, r: 150, t: 6, b: 26 }, H = m.t + m.b + rowH * rows.length;
+  const finite = rows.flatMap(r => [r.d, r.band]).filter(isFinite);
+  const max = Math.max(0.05, ...finite) * 1.08;
+  const x = v => m.l + (W - m.l - m.r) * Math.min(v, max) / max;
+  const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Distance from history by term" });
+  const step = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1].find(s => max / s <= 6) || 1;
+  for (let v = 0; v <= max + 1e-9; v += step) { svg.append(sv("line", { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b + 2, stroke: v === 0 ? "var(--axis)" : "var(--grid)" })); svg.append(sv("text", { x: x(v), y: H - 8, "text-anchor": "middle" }, v.toFixed(step < 0.1 ? 2 : 1))); }
+  svg.append(sv("text", { x: W - m.r + 6, y: H - 8 }, "bits"));
+  rows.forEach((r, i) => {
+    const yc = m.t + rowH * i + rowH / 2;
+    svg.append(sv("text", { x: m.l - 8, y: yc + 4, "text-anchor": "end", class: r.strong ? "lab-strong" : "lab" }, r.name.length > 27 ? r.name.slice(0, 26) + "…" : r.name));
+    svg.append(sv("rect", { x: m.l, y: yc - 8, width: Math.max(0, x(r.band) - m.l), height: 16, fill: COL.band, rx: 2 }));
+    if (isFinite(r.d)) { const d = hbarPath(m.l, yc - 4, x(r.d), 8); if (d) svg.append(sv("path", { d, fill: r.color })); }
+    svg.append(sv("text", { x: (isFinite(r.d) ? x(Math.max(r.d, r.band)) : W - m.r) + 6, y: yc + 4, class: r.strong ? "lab-strong" : "lab" }, `${fBits(r.d)}${r.flag ? " · outside band" : ""}`));
+    const hit = sv("rect", { x: 0, y: yc - rowH / 2, width: W, height: rowH, fill: "transparent" });
+    hover(hit, r.name, [[null, "Students", String(r.N)], [null, "Distance from history", fBits(r.d) + " bits"], [null, "Chance band (95%)", r.band.toFixed(3) + " bits"], [null, "p-value", fP(r.p)]]);
+    svg.append(hit);
+  });
+  box.append(svg);
+}
+
+/* ---------- compute everything ---------- */
+function compute() {
+  const terms = state.terms, cur = terms.find(t => t.id === state.currentId && t.kind === "scores");
+  const countsById = new Map(terms.filter(usable).map(t => [t.id, termCountsOf(t)]));
+  const hist = terms.filter(t => t.inHistory && t.id !== state.currentId && usable(t));
+  const poolOf = list => list.reduce((acc, t) => acc.map((a, i) => a + countsById.get(t.id)[i]), new Array(K).fill(0));
+  const hc = poolOf(hist), q = qFromCounts(hc);
+  const out = { cur, hist, hc, q, countsById };
+  if (!cur || !q) return out;
+  const opts = { alpha: state.alpha, guard: state.guard, medTarget: state.medTarget };
+  out.now = runRules(cur.scores, q, opts);
+  out.N = cur.scores.length;
+  // step 2: distances
+  out.rows = hist.map(t => {
+    const others = hist.filter(u => u !== t), qq = others.length ? qFromCounts(poolOf(others)) : null, c = countsById.get(t.id), N = sum(c);
+    return { t, N, d: qq ? kl(normalize(c), qq) : NaN, band: bandFor(N), p: qq ? pValue(c, qq) : NaN };
+  }).filter(r => !isNaN(r.d));
+  out.dNow = kl(out.now.p0, q); out.bandNow = bandFor(out.N); out.pNow = pValue(countsOf(out.now.g0), q);
+  // sections
+  if (cur.sections) {
+    const by = new Map(); cur.sections.forEach((s, i) => { if (!by.has(s)) by.set(s, []); by.get(s).push(i); });
+    out.secs = [...by].sort((a, b) => String(a[0]).localeCompare(String(b[0]), undefined, { numeric: true })).map(([sec, idx]) => {
+      const c = countsOf(idx.map(i => out.now.g0[i])); return { name: String(sec), N: idx.length, d: kl(normalize(c), q), band: bandFor(idx.length), p: pValue(c, q) };
+    });
+  }
+  // step 3: replay every rule on every term with scores
+  const scoreTerms = terms.filter(t => t.kind === "scores" && (t.inHistory || t.id === state.currentId));
+  out.replay = scoreTerms.map(t => {
+    if (t.id === state.currentId) return { t, isCur: true, res: out.now, q };
+    const others = hist.filter(u => u !== t), qq = others.length ? qFromCounts(poolOf(others)) : null;
+    return qq ? { t, isCur: false, res: runRules(t.scores, qq, opts), q: qq } : null;
+  }).filter(Boolean);
+  // step 4: trade-off path
+  out.path = []; for (let i = 0; i <= 40; i++) { const a = i / 40, t = pool(out.now.p0, q, a); out.path.push({ a, dq: kl(t, q), d0: kl(t, out.now.p0) }); }
+  return out;
+}
+
+/* ---------- step 1 ---------- */
+function renderStep1(S) {
+  const T = $("termTable"); T.innerHTML = "";
+  const showPct = K <= 6;
+  T.append(el("thead", {}, el("tr", {}, el("th", { text: "Term" }), el("th", { text: "Data" }), el("th", { class: "num", text: "N" }), el("th", { text: `Grades, ${LAB[K - 1]} → ${LAB[0]}` }),
+    showPct ? el("th", { text: DISP.map(i => LAB[i]).join(" · ") + " (%)" }) : null, el("th", { class: "c", text: "In history" }), el("th", { class: "c", text: "This term" }), el("th", { html: '<span class="sr">Remove</span>' }))));
+  const tb = el("tbody");
+  for (const t of state.terms) {
+    const ok = usable(t), c = ok ? S.countsById.get(t.id) : t.counts5, p = normalize(c), isCur = t.id === state.currentId;
+    const hist = el("input", { type: "checkbox", "aria-label": `Include ${t.name} in history` }); hist.checked = t.inHistory && !isCur && ok; hist.disabled = isCur || !ok;
+    hist.addEventListener("change", () => { t.inHistory = hist.checked; update(); });
+    const rad = el("input", { type: "radio", name: "cur", "aria-label": `Use ${t.name} as this term` }); rad.checked = isCur; rad.disabled = t.kind !== "scores";
+    rad.addEventListener("change", () => { const prev = state.terms.find(u => u.id === state.currentId); if (prev) prev.inHistory = true; state.currentId = t.id; t.inHistory = false; update(); });
+    const del = el("button", { class: "x", title: "Remove term", "aria-label": `Remove ${t.name}` }); del.textContent = "×";
+    del.addEventListener("click", () => { state.terms = state.terms.filter(u => u !== t); if (isCur) state.currentId = null; state.isExample = false; update(); });
+    const dataTxt = t.kind === "scores" ? (t.sections ? "scores, sections" : "scores") : (t.counts12 ? "grade counts (with ±)" : "grade counts (A–F)");
+    tb.append(el("tr", { class: isCur ? "current" : (t.inHistory && ok ? "" : "off") },
+      el("td", {}, el("b", { text: t.name })),
+      el("td", {}, el("span", { text: dataTxt }), ok ? null : el("div", { class: "tiny", text: "no plus/minus detail: not used on this scale" })),
+      el("td", { class: "num", text: String(Math.round(sum(c))) }),
+      el("td", {}, ok ? miniBars(p, isCur ? COL.none : t.inHistory ? COL.past : "var(--line)") : el("span", { class: "tiny", text: "—" })),
+      showPct ? el("td", { class: "tiny", text: DISP.map(i => Math.round(100 * p[i])).join(" · ") }) : null,
+      el("td", { class: "c" }, hist), el("td", { class: "c" }, rad), el("td", {}, del)));
+  }
+  if (!state.terms.length) tb.append(el("tr", {}, el("td", { colspan: 8, class: "tiny", text: "No terms yet. Load the example or upload files." })));
+  $("scaleNote").textContent = state.mode === "pm" ? `Twelve grades. “Below C” counts C− and lower. With more grades, chance moves a class further from history: the 95% band is about ${(crit() / (2 * LN2)).toFixed(1)}/N bits instead of 6.8/N, so distances on the two scales are not comparable.` : "Five grades, as on the slides. Plus and minus grades in uploaded counts are merged into the letter.";
+  T.append(tb);
+  // history summary
+  if (S.q) {
+    groupedBars("qChart", [{ name: "History", color: COL.hist, p: S.q, labels: true }], { H: 150, label: "History grade distribution" });
+    const scoreN = S.hist.filter(t => t.kind === "scores").length, countN = S.hist.length - scoreN, skipped = state.terms.filter(t => t.inHistory && !usable(t)).length;
+    $("qLine").textContent = `Pooled from ${S.hist.length} past term${S.hist.length === 1 ? "" : "s"} (${Math.round(sum(S.hc))} students${countN ? `; ${countN} entered as counts` : ""}). Below C: ${fPct(belowC(S.q))}%.` + (skipped ? ` ${skipped} term${skipped > 1 ? "s" : ""} with A–F counts only left out on this scale.` : "");
+  } else { $("qChart").innerHTML = ""; $("qLine").textContent = "Tick at least one past term as “In history.”"; }
+  const cur = S.cur;
+  $("dataBadge").textContent = cur ? `This term: ${cur.name} · N = ${cur.scores.length}` + (cur.scaled ? " · scores ×100" : "") : "No term chosen as this term";
+}
+
+/* ---------- step 2 ---------- */
+function renderStep2(S) {
+  const n = S.now, q = S.q;
+  legend("leg2a", [[COL.hist, "History"], [COL.none, "This term, no curve (%)"]]);
+  groupedBars("cmpChart", [{ name: "History", color: COL.hist, p: q }, { name: "This term, no curve", color: COL.none, p: n.p0, labels: true }], { label: "History and this term" });
+  const c = contribChart("contribChart", n.p0, q);
+  const big = DISP.map(i => [i, c[i]]).sort((a, b) => b[1] - a[1])[0];
+  $("contribCap").textContent = `Each bar is p(g)·log₂[p(g)/q(g)]: above zero where a grade is more common than in history. They add to ${fBits(S.dNow)} bits; the ${LAB[big[0]]}’s give ${big[1].toFixed(3)}.`;
+  legend("leg2b", [[COL.band, "Chance band (95%)"], [COL.past, "Past term"], [COL.ink, "This term"]]);
+  const rows = S.rows.map(r => ({ name: r.t.name, N: r.N, d: r.d, band: r.band, p: r.p, color: COL.past, flag: r.d > r.band }));
+  rows.push({ name: S.cur.name, N: S.N, d: S.dNow, band: S.bandNow, p: S.pNow, color: COL.ink, strong: true, flag: S.dNow > S.bandNow });
+  distanceRows("distRows", rows);
+  const pastD = S.rows.map(r => r.d).filter(isFinite), maxPast = pastD.length ? Math.max(...pastD) : NaN, out = S.rows.filter(r => r.d > r.band).length;
+  const ratio = S.dNow / S.bandNow;
+  let txt = `This term is <b>${fBits(S.dNow)} bits</b> from history. Chance alone moves a class of ${S.N} up to <b>${S.bandNow.toFixed(3)}</b> bits (p ${S.pNow < 0.001 ? "< 0.001" : "= " + S.pNow.toFixed(3)}), so it is ${S.dNow > S.bandNow ? `<b>outside the band</b>, about ${ratio.toFixed(1)}× its width` : "<b>within noise</b>"}.`;
+  if (pastD.length) txt += ` The ${pastD.length} past terms range from ${Math.min(...pastD).toFixed(3)} to ${maxPast.toFixed(3)} bits${out ? `; ${out} of them sit${out === 1 ? "s" : ""} outside their own band, so this course varies more than chance alone` : ""}.` + (S.dNow > maxPast ? ` This term is further out than any of them.` : "");
+  $("c2").innerHTML = txt;
+  // sections
+  const sp = $("secPanel");
+  if (S.secs && S.secs.length > 1) {
+    sp.hidden = false;
+    distanceRows("secRows", S.secs.map(r => ({ ...r, color: r.d > r.band ? COL.ink : COL.past, strong: r.d > r.band, flag: r.d > r.band })));
+  } else sp.hidden = true;
+}
+
+/* ---------- step 3 ---------- */
+function renderStep3(S) {
+  const n = S.now, R = n.R;
+  const T = $("ruleTable"); T.innerHTML = "";
+  const showPct = K <= 6;
+  T.append(el("thead", {}, el("tr", {}, el("th", { text: "Rule" }), el("th", { text: "How it works here" }), el("th", { text: `${LAB[K - 1]} → ${LAB[0]}` }), showPct ? el("th", { text: DISP.map(i => LAB[i]).join(" · ") + " (%)" }) : null,
+    el("th", { class: "num", text: "Below C" }), el("th", { class: "num", text: "Avg grade pts" }), el("th", { class: "num", text: "D(p‖history)" }), el("th", { class: "num", text: "Moves vs no curve" }))));
+  const how = {
+    none: K <= 6 ? "cutoffs " + DISP.slice(1).map(i => `${LAB[i]} ${f1(state.cuts[i])}`).join(", ").replace(/\.0\b/g, "") : "the cutoffs in step 1",
+    top: `top score ${f1(100 - n.topShift)}: everyone ${signed(n.topShift)}`,
+    median: `median ${f1(n.median)}: ` + (n.medShift > 0 ? `everyone ${signed(n.medShift)}` : "does not fire"),
+    bell: `z-score bands around mean ${f1(n.mu)}, SD ${f1(n.sd)}`,
+    curve: "cutoffs by rank to match history",
+    kl: `α = ${state.alpha.toFixed(2)}${state.guard ? ", guarded" : ", no guard"} (step 4)`
+  };
+  const tb = el("tbody");
+  tb.append(el("tr", {}, el("td", {}, el("span", { class: "key", style: `background:${COL.hist}` }), el("span", { text: "History" })), el("td", { class: "tiny", text: "the prior q" }),
+    el("td", {}, miniBars(S.q, COL.hist)), showPct ? el("td", { class: "tiny", text: DISP.map(i => fPct(S.q[i])).join(" · ") }) : null, el("td", { class: "num", text: fPct(belowC(S.q)) + "%" }),
+    el("td", { class: "num", text: meanOf(S.q, PTS).toFixed(2) }), el("td", { class: "num", text: "0" }), el("td", { class: "num tiny", text: "reference" })));
+  for (const { key } of RULES) {
+    const r = R[key], color = key === "none" ? COL.none : key === "kl" ? COL.kl : "var(--ink-2)";
+    tb.append(el("tr", { class: key === "kl" ? "kl" : "" },
+      el("td", {}, el("span", { class: "key", style: `background:${color}` }), el("span", { text: ruleName(key) })),
+      el("td", { class: "tiny", text: how[key] }),
+      el("td", {}, miniBars(r.p, color)),
+      showPct ? el("td", { class: "tiny", text: DISP.map(i => fPct(r.p[i])).join(" · ") }) : null,
+      el("td", { class: "num", text: fPct(r.below) + "%" }),
+      el("td", { class: "num", text: r.gpa.toFixed(2) }),
+      el("td", { class: "num", text: fBits(r.D) }),
+      el("td", { class: "num" }, key === "none" ? el("span", { class: "tiny", text: "—" }) : el("span", {}, el("span", { class: "pill up", text: "↑ " + r.up }), " ", el("span", { class: "pill down", text: "↓ " + r.down })))));
+  }
+  T.append(tb);
+  $("ruleNotes").textContent = "Moves count students whose grade differs from no curve. D(p‖history) is how far the curved grades are from history, in bits.";
+  const curveMoves = R.curve.up + R.curve.down, klMoves = R.kl.up + R.kl.down;
+  $("c3").innerHTML = `With no curve, <b>${fPct(R.none.below)}%</b> of this term is below C; history has <b>${fPct(belowC(S.q))}%</b>. Curving to history moves <b>${curveMoves}</b> students; the KL dial at α = ${state.alpha.toFixed(2)} moves <b>${klMoves}</b>.` +
+    (n.medShift === 0 && R.none.below > belowC(S.q) + 0.05 ? ` The median rule does not fire (median ${f1(n.median)}), even though ${fPct(R.none.below)}% are below C.` : "");
+  renderMultiples(S);
+}
+function renderMultiples(S) {
+  const box = $("mults"); box.innerHTML = "";
+  const metric = state.metric, get = r => metric === "below" ? 100 * r.below : metric === "a" ? 100 * r.a : r.gpa;
+  const fmt = v => metric === "gpa" ? v.toFixed(2) : f1(v) + "%";
+  const reps = S.replay;
+  legend("leg3", [[COL.past, "Past term", "dot"], [COL.ink, "This term", "dot"], [COL.hist, "History", "dash"]]);
+  if (reps.length < 2) { box.append(el("p", { class: "empty", text: "Needs at least one past term with student scores in the history. Terms entered as grade counts cannot be replayed, because the rules need scores." })); $("multCap").textContent = ""; return; }
+  const all = RULES.flatMap(({ key }) => reps.map(x => get(x.res.R[key]))).concat([get({ below: belowC(S.q), a: aShare(S.q), gpa: meanOf(S.q, PTS) })]);
+  let lo = Math.min(...all), hi = Math.max(...all); const pad = (hi - lo) * 0.12 || 1; lo = Math.max(0, lo - pad); hi = hi + pad;
+  const href = get({ below: belowC(S.q), a: aShare(S.q), gpa: meanOf(S.q, PTS) });
+  const sds = {};
+  for (const { key } of RULES) {
+    const vals = reps.map(x => get(x.res.R[key])), mu = sum(vals) / vals.length, sd = Math.sqrt(vals.reduce((a, v) => a + (v - mu) ** 2, 0) / vals.length);
+    sds[key] = sd;
+    const card = el("div", { class: "mult" + (key === "kl" ? " kl" : "") });
+    card.append(el("h3", { text: ruleName(key) + (key === "kl" ? ` (α = ${state.alpha.toFixed(2)})` : "") }));
+    card.append(el("div", { class: "stat", text: `Spread across terms (SD): ${metric === "gpa" ? sd.toFixed(2) : f1(sd) + " pts"} · this term ${fmt(vals[reps.findIndex(x => x.isCur)] ?? 0)}` }));
+    const chart = el("div", { class: "chart" }); card.append(chart); box.append(card);
+    const W = Math.max(220, chart.clientWidth || 300), H = 120, m = { l: 34, r: 10, t: 8, b: 8 };
+    const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `${ruleName(key)} across terms` });
+    const y = v => m.t + (H - m.t - m.b) * (hi - v) / (hi - lo), x = i => m.l + (W - m.l - m.r) * (reps.length === 1 ? 0.5 : i / (reps.length - 1));
+    const ticks = niceTicks(lo, hi, 3);
+    ticks.forEach(v => { svg.append(sv("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: "var(--grid)" })); svg.append(sv("text", { x: m.l - 5, y: y(v) + 4, "text-anchor": "end" }, metric === "gpa" ? v.toFixed(1) : Math.round(v) + "%")); });
+    svg.append(sv("line", { x1: m.l, x2: W - m.r, y1: y(href), y2: y(href), stroke: COL.hist, "stroke-width": 1.5, "stroke-dasharray": "4 3" }));
+    svg.append(sv("path", { d: vals.map((v, i) => `${i ? "L" : "M"}${x(i)},${y(v)}`).join(""), fill: "none", stroke: "var(--axis)", "stroke-width": 1.2 }));
+    vals.forEach((v, i) => {
+      const rep = reps[i], isCur = rep.isCur;
+      svg.append(sv("circle", { cx: x(i), cy: y(v), r: isCur ? 5.5 : 4, fill: isCur ? COL.ink : COL.past, stroke: "var(--surface)", "stroke-width": 1.5 }));
+      const hit = sv("circle", { cx: x(i), cy: y(v), r: 11, fill: "transparent" });
+      hover(hit, rep.t.name + (isCur ? " (this term)" : ""), [[null, metric === "below" ? "Below C" : metric === "a" ? "A’s" : "Avg grade points", fmt(v)], [null, "Moves vs no curve", `↑ ${rep.res.R[key].up} · ↓ ${rep.res.R[key].down}`]], false);
+      svg.append(hit);
+    });
+    chart.append(svg);
+  }
+  const what = metric === "below" ? "share below C" : metric === "a" ? "share of A’s" : "average grade points";
+  $("multCap").textContent = `Each dot is a term with scores, in the order of the table in step 1, curved against the history of the other past terms. Same vertical scale in every panel. Spread of the ${what} across terms: no curve ${metric === "gpa" ? sds.none.toFixed(2) : f1(sds.none)}, curve to history ${metric === "gpa" ? sds.curve.toFixed(2) : f1(sds.curve)}, KL dial ${metric === "gpa" ? sds.kl.toFixed(2) : f1(sds.kl)}. A small spread is not automatically good: it can mean real differences between cohorts were erased.`;
+}
+function niceTicks(lo, hi, n) { const span = hi - lo, raw = span / n, mag = 10 ** Math.floor(Math.log10(raw)), st = [1, 2, 2.5, 5, 10].map(s => s * mag).find(s => span / s <= n + 0.5) || raw; const out = []; for (let v = Math.ceil(lo / st) * st; v <= hi + 1e-9; v += st) out.push(Math.round(v * 1e6) / 1e6); return out; }
+
+/* ---------- step 4 ---------- */
+function renderStep4(S) {
+  const n = S.now, R = n.R, s = S.cur.scores;
+  $("alphaVal").textContent = state.alpha.toFixed(2);
+  legend("leg4a", [[COL.hist, "History"], [COL.none, "No curve"], [COL.kl, "KL dial (%)"]]);
+  groupedBars("dialBars", [{ name: "History", color: COL.hist, p: S.q }, { name: "No curve", color: COL.none, p: n.p0 }, { name: "KL dial", color: COL.kl, p: R.kl.p, labels: true }], { label: "Grades under history, no curve and the KL dial" });
+  // histogram
+  const box = $("histChart"); box.innerHTML = "";
+  const W = W_of(box), H = 230, m = { l: 30, r: 10, t: 34, b: 26 }, bin = 2.5;
+  const lo = Math.max(0, Math.floor(Math.min(...s) / 10) * 10), hi = 100;
+  const nb = Math.ceil((hi - lo) / bin), cnt = new Array(nb).fill(0); for (const v of s) cnt[Math.max(0, Math.min(nb - 1, Math.floor((v - lo) / bin)))]++;
+  const topC = Math.max(4, Math.ceil(Math.max(...cnt) / 4) * 4);
+  const x = v => m.l + (W - m.l - m.r) * (v - lo) / (hi - lo), y = c => m.t + (H - m.t - m.b) * (1 - c / topC);
+  const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Histogram of this term's scores with cutoffs" });
+  for (let c = 0; c <= topC; c += topC / 4) { svg.append(sv("line", { x1: m.l, x2: W - m.r, y1: y(c), y2: y(c), stroke: c === 0 ? "var(--axis)" : "var(--grid)" })); svg.append(sv("text", { x: m.l - 5, y: y(c) + 4, "text-anchor": "end" }, c)); }
+  for (let v = lo; v <= hi; v += 10) svg.append(sv("text", { x: x(v), y: H - 8, "text-anchor": "middle" }, v));
+  const bw = x(lo + bin) - x(lo);
+  cnt.forEach((c, i) => { if (!c) return; const d = barPath(x(lo + i * bin) + 1, y(0), y(c), Math.max(1, bw - 2)); svg.append(sv("path", { d, fill: "var(--hist-bar)" })); const hit = sv("rect", { x: x(lo + i * bin), y: m.t, width: bw, height: H - m.t - m.b, fill: "transparent" }); hover(hit, `Scores ${f1(lo + i * bin)}–${f1(lo + (i + 1) * bin)}`, [[null, "Students", String(c)]], false); svg.append(hit); });
+  // with plus/minus, letter boundaries (the lowest cutoff of each letter) are drawn full weight and labelled with the letter
+  const isLetterEdge = j => K <= 6 || j === K - 2 || SCALES.pm.base[j] !== SCALES.pm.base[j + 1];
+  [[COL.none, n.R.none.cuts, m.t - 4], [COL.kl, R.kl.cuts, m.t - 20]].forEach(([color, cuts, ly]) => cuts.forEach((c, j) => {
+    if (!isFinite(c) || c < lo || c > hi) return;
+    const edge = isLetterEdge(j);
+    svg.append(sv("line", { x1: x(c), x2: x(c), y1: edge ? ly + 4 : m.t + 4, y2: y(0), stroke: color, "stroke-width": edge ? 2 : 1, "stroke-opacity": edge ? 1 : 0.55 }));
+    if (edge) svg.append(sv("text", { x: x(c) + 2, y: ly + 10, class: "lab-strong" }, K <= 6 ? LAB[j] : LAB[j].replace("−", "")));
+  }));
+  box.append(svg);
+  legend("leg4b", [["var(--hist-bar)", "Students per 2.5 points"], [COL.none, "No-curve cutoffs", "line"], [COL.kl, "KL dial cutoffs", "line"]].concat(K > 6 ? [["var(--muted)", "thin lines: plus/minus inside a letter", "line"]] : []));
+  const ct = $("cutTable"); ct.innerHTML = ""; ct.className = K > 6 ? "compact" : "";
+  const cj = DISP.slice(1);
+  ct.append(el("thead", {}, el("tr", {}, el("th", { text: "Lowest score for" }), ...cj.map(j => el("th", { class: "num", text: LAB[j] })))));
+  ct.append(el("tbody", {}, ...[["No curve", n.R.none.cuts], ["KL dial", R.kl.cuts]].map(([nm, cs]) => el("tr", {}, el("td", { text: nm }), ...cj.map(j => el("td", { class: "num", text: fCut(cs[j]) }))))));
+  // path
+  const pb = $("pathChart"); pb.innerHTML = "";
+  const P = S.path.filter(p => isFinite(p.dq) && isFinite(p.d0));
+  if (P.length) {
+    const W2 = W_of(pb), H2 = 228, mm = { l: 40, r: 12, t: 26, b: 34 };
+    const ymax = Math.max(0.05, ...P.map(p => Math.max(p.dq, p.d0))), st = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1].find(v => ymax / v <= 5) || 1, top = Math.ceil(ymax / st - 1e-9) * st;
+    const X = v => mm.l + (W2 - mm.l - mm.r) * v, Y = v => mm.t + (H2 - mm.t - mm.b) * (1 - v / top);
+    const g = sv("svg", { viewBox: `0 0 ${W2} ${H2}`, role: "img", "aria-label": "Distance of the KL target from history and from no curve, by alpha" });
+    for (let v = 0; v <= top + 1e-9; v += st) { g.append(sv("line", { x1: mm.l, x2: W2 - mm.r, y1: Y(v), y2: Y(v), stroke: v === 0 ? "var(--axis)" : "var(--grid)" })); g.append(sv("text", { x: mm.l - 5, y: Y(v) + 4, "text-anchor": "end" }, v.toFixed(st < 0.1 ? 2 : 1))); }
+    [0, 0.25, 0.5, 0.75, 1].forEach(v => g.append(sv("text", { x: X(v), y: H2 - 16, "text-anchor": "middle" }, v.toFixed(2))));
+    g.append(sv("text", { x: (mm.l + W2 - mm.r) / 2, y: H2 - 1, "text-anchor": "middle" }, "α, the weight on this term’s no-curve result"));
+    g.append(sv("text", { x: mm.l - 5, y: mm.t - 14, "text-anchor": "end" }, "bits"));
+    for (const [k, c] of [["dq", COL.hist], ["d0", COL.none]]) g.append(sv("path", { d: P.map((p, i) => `${i ? "L" : "M"}${X(p.a)},${Y(p[k])}`).join(""), fill: "none", stroke: c, "stroke-width": 2, "stroke-linejoin": "round" }));
+    const tq = kl(n.target, S.q), t0 = kl(n.target, n.p0);
+    g.append(sv("line", { x1: X(state.alpha), x2: X(state.alpha), y1: mm.t, y2: Y(0), stroke: "var(--muted)" }));
+    for (const [v, c] of [[tq, COL.hist], [t0, COL.none]]) if (isFinite(v)) g.append(sv("circle", { cx: X(state.alpha), cy: Y(v), r: 5, fill: c, stroke: "var(--surface)", "stroke-width": 2 }));
+    const hit = sv("rect", { x: mm.l, y: mm.t, width: W2 - mm.l - mm.r, height: H2 - mm.t - mm.b, fill: "transparent" });
+    hit.addEventListener("pointermove", e => { const r = hit.getBoundingClientRect(), v = (e.clientX - r.left) / r.width; let b = P[0]; for (const p of P) if (Math.abs(p.a - v) < Math.abs(b.a - v)) b = p; showTip(e, `α = ${b.a.toFixed(2)}`, [[COL.hist, "from history", fBits(b.dq) + " bits"], [COL.none, "from no curve", fBits(b.d0) + " bits"]]); });
+    hit.addEventListener("pointerleave", hideTip); g.append(hit);
+    pb.append(g);
+    $("pathCap").textContent = `No target is close to both history and this term. At α = ${state.alpha.toFixed(2)} the target sits ${fBits(tq)} bits from history and ${fBits(t0)} bits from no curve.`;
+  } else $("pathCap").textContent = "Some grade has 0% in history or this term, so the distances are infinite.";
+  legend("leg4c", [[COL.hist, "Distance from history", "line"], [COL.none, "Distance from no curve", "line"]]);
+  const below0 = R.none.below, below1 = R.kl.below;
+  $("c4").innerHTML = `At α = <b>${state.alpha.toFixed(2)}</b>${state.guard ? " with the guard" : ", no guard"}: ${K <= 6 ? "cutoffs " + DISP.slice(1).map(j => `${LAB[j]} ${fCut(R.kl.cuts[j])}`).join(", ") : "the cutoffs are in the table below"}. Below C goes from <b>${fPct(below0)}%</b> to <b>${fPct(below1)}%</b>; <b>${R.kl.up}</b> students move up a grade and <b>${R.kl.down}</b> move down.`;
+  renderLedger(S);
+}
+function renderLedger(S) {
+  const cur = S.cur, R = S.now.R, t = $("ledger"); t.innerHTML = "";
+  let rows = cur.scores.map((s, i) => ({ id: cur.ids[i], sec: cur.sections ? cur.sections[i] : null, s, g0: R.none.g[i], gk: R.kl.g[i] }));
+  const changed = rows.filter(r => r.g0 !== r.gk).length;
+  if (state.changedOnly) rows = rows.filter(r => r.g0 !== r.gk);
+  rows.sort((a, b) => b.s - a.s);
+  $("ledgerNote").textContent = `${changed} of ${cur.scores.length} students get a different grade from the KL dial than with no curve. The CSV has every rule.`;
+  t.append(el("thead", {}, el("tr", {}, el("th", { text: "Student" }), ...(cur.sections ? [el("th", { text: "Section" })] : []), el("th", { class: "num", text: "Score" }), el("th", { class: "num", text: "No curve" }), el("th", { class: "num", text: "KL dial" }), el("th", { text: "Change" }))));
+  const tb = el("tbody");
+  for (const r of rows.slice(0, 400)) {
+    const d = r.g0 - r.gk;
+    tb.append(el("tr", {}, el("td", { text: r.id }), ...(cur.sections ? [el("td", { text: r.sec })] : []), el("td", { class: "num", text: f1(r.s) }), el("td", { class: "num", text: LAB[r.g0] }), el("td", { class: "num", text: LAB[r.gk] }),
+      el("td", {}, d > 0 ? el("span", { class: "pill up", text: `↑ ${LAB[r.g0]} → ${LAB[r.gk]}` }) : d < 0 ? el("span", { class: "pill down", text: `↓ ${LAB[r.g0]} → ${LAB[r.gk]}` }) : el("span", { class: "tiny", text: "same" }))));
+  }
+  if (!rows.length) tb.append(el("tr", {}, el("td", { colspan: 6, class: "tiny", text: "No student changes grade at this setting." })));
+  t.append(tb);
+}
+function csvText() {
+  const S = last, cur = S.cur, R = S.now.R, esc = v => /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+  const keys = ["none", "top", "median", "bell", "curve", "kl"], names = ["no_curve", "top_score_100", "median_rule", "bell_curve", "curve_to_history", "kl_dial"];
+  const lines = [["student", ...(cur.sections ? ["section"] : []), "score", ...names].join(",")];
+  cur.scores.forEach((s, i) => lines.push([cur.ids[i], ...(cur.sections ? [cur.sections[i]] : []), s, ...keys.map(k => LAB[R[k].g[i]])].map(esc).join(",")));
+  return lines.join("\n") + "\n";
+}
+
+/* ---------- step 5: simulation ---------- */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+let simCache = null;
+function simDraws(S) {
+  // population: every student from the past terms with scores (as recorded), else this term
+  const src = S.hist.filter(t => t.kind === "scores");
+  const pop = src.length ? src.flatMap(t => t.scores) : S.cur.scores.slice();
+  const key = `${S.N}|${pop.length}|${pop[0]}|${pop[pop.length - 1]}`;
+  if (simCache && simCache.key === key) return simCache;
+  const rnd = mulberry32(20261116), T = 400, N = S.N;
+  const gauss = () => { let u = 0, v = 0; while (u === 0) u = rnd(); v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  const terms = [];
+  for (let t = 0; t < T; t++) { const zc = gauss(), ze = gauss(), base = new Float64Array(N); for (let i = 0; i < N; i++) base[i] = pop[Math.floor(rnd() * pop.length)]; terms.push({ zc, ze, base }); }
+  simCache = { key, terms, popSize: pop.length, fromPast: src.length > 0 };
+  return simCache;
+}
+// scores stay in [0, 100] with a soft ceiling above 92, so a shift does not pile students up at exactly 100
+const soft = x => Math.max(0, x > 92 ? 92 + 8 * (1 - Math.exp(-(x - 92) / 8)) : x);
+const ALPHAS = Array.from({ length: 21 }, (_, i) => i / 20);
+function simulate(S) {
+  const D = simDraws(S), cuts = state.cuts, q = S.q, N = S.N, sc = state.sc, se = state.se;
+  const err = {}; for (const k of ["none", "top", "median", "bell", "curve"]) err[k] = { lo: 0, hi: 0 };
+  const free = ALPHAS.map(() => ({ lo: 0, hi: 0 })), guarded = ALPHAS.map(() => ({ lo: 0, hi: 0 }));
+  const obs = new Array(N), raw = new Array(N); let earned = null;
+  const tally = (g, e) => { for (let i = 0; i < N; i++) { if (g[i] > earned[i]) e.lo++; else if (g[i] < earned[i]) e.hi++; } };
+  for (const t of D.terms) {
+    const c = t.zc * sc, ex = t.ze * se;
+    for (let i = 0; i < N; i++) { raw[i] = soft(t.base[i] + c); obs[i] = soft(t.base[i] + c - ex); }
+    earned = assign(raw, cuts);
+    const res = runRules(obs, q, { alpha: 1, guard: false, medTarget: state.medTarget });
+    for (const k of ["none", "top", "median", "bell", "curve"]) tally(res.R[k].g, err[k]);
+    const desc = obs.slice().sort((a, b) => b - a), p0 = res.p0;
+    ALPHAS.forEach((a, j) => {
+      const ck = qcSorted(desc, pool(p0, q, a));
+      tally(assign(obs, ck), free[j]);
+      tally(assign(obs, ck.map((v, jj) => Math.min(v, cuts[jj]))), guarded[j]);
+    });
+  }
+  const tot = D.terms.length * N, pct = e => ({ lo: 100 * e.lo / tot, hi: 100 * e.hi / tot, all: 100 * (e.lo + e.hi) / tot });
+  const argmin = arr => arr.reduce((bi, d, i) => d.all < arr[bi].all - 1e-9 ? i : bi, 0);
+  const out = { rules: {}, free: free.map(pct), guarded: guarded.map(pct), share: sc ** 2 + se ** 2 > 0 ? sc ** 2 / (sc ** 2 + se ** 2) : NaN, D };
+  for (const k in err) out.rules[k] = pct(err[k]);
+  out.bestFree = argmin(out.free); out.bestGuard = argmin(out.guarded);
+  out.cur = (state.guard ? out.guarded : out.free)[Math.round(state.alpha * 20)];
+  return out;
+}
+function renderStep5(S) {
+  $("scVal").textContent = state.sc.toFixed(1); $("seVal").textContent = state.se.toFixed(1);
+  const Rz = simulate(S), bF = Rz.bestFree, bG = Rz.bestGuard;
+  $("simMeta").textContent = `400 simulated terms of ${S.N} students (this term’s size), drawn from ${Rz.D.fromPast ? `the ${Rz.D.popSize} students in your past terms with scores` : "this term’s scores"}. History is the prior from step 1; the median rule uses ${f1(state.medTarget)}.`;
+  // line chart: misgraded share by alpha, with and without the guard
+  const box = $("simLine"); box.innerHTML = "";
+  const W = W_of(box), H = 240, m = { l: 40, r: 14, t: 18, b: 36 };
+  const vF = Rz.free.map(d => d.all), vG = Rz.guarded.map(d => d.all);
+  const ymax = Math.max(5, ...vF, ...vG) * 1.1, st = [1, 2, 5, 10, 20].find(v => ymax / v <= 6) || 20, top = Math.ceil(ymax / st) * st;
+  const X = a => m.l + (W - m.l - m.r) * a, Y = v => m.t + (H - m.t - m.b) * (1 - v / top);
+  const svg = sv("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Share of students misgraded by the KL dial at each alpha, with and without the guard" });
+  for (let v = 0; v <= top + 1e-9; v += st) { svg.append(sv("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: v === 0 ? "var(--axis)" : "var(--grid)" })); svg.append(sv("text", { x: m.l - 5, y: Y(v) + 4, "text-anchor": "end" }, v + "%")); }
+  [0, 0.25, 0.5, 0.75, 1].forEach(v => svg.append(sv("text", { x: X(v), y: H - 18, "text-anchor": "middle" }, v.toFixed(2))));
+  svg.append(sv("text", { x: (m.l + W - m.r) / 2, y: H - 2, "text-anchor": "middle" }, "α, the weight on this term’s no-curve result"));
+  if (isFinite(Rz.share)) { svg.append(sv("line", { x1: X(Rz.share), x2: X(Rz.share), y1: m.t, y2: Y(0), stroke: "var(--muted)", "stroke-dasharray": "2 3" })); svg.append(sv("text", { x: X(Rz.share) + (Rz.share > 0.7 ? -4 : 4), y: m.t + 8, "text-anchor": Rz.share > 0.7 ? "end" : "start" }, `cohort share ${Math.round(100 * Rz.share)}%`)); }
+  svg.append(sv("line", { x1: X(state.alpha), x2: X(state.alpha), y1: m.t + 14, y2: Y(0), stroke: COL.kl, "stroke-opacity": 0.35, "stroke-width": 6 }));
+  svg.append(sv("path", { d: vG.map((v, i) => `${i ? "L" : "M"}${X(ALPHAS[i])},${Y(v)}`).join(""), fill: "none", stroke: COL.kl, "stroke-width": 2, "stroke-dasharray": "5 4", "stroke-linejoin": "round" }));
+  svg.append(sv("path", { d: vF.map((v, i) => `${i ? "L" : "M"}${X(ALPHAS[i])},${Y(v)}`).join(""), fill: "none", stroke: COL.kl, "stroke-width": 2.4, "stroke-linejoin": "round" }));
+  svg.append(sv("circle", { cx: X(ALPHAS[bG]), cy: Y(vG[bG]), r: 4.5, fill: "var(--surface)", stroke: COL.kl, "stroke-width": 2 }));
+  svg.append(sv("circle", { cx: X(ALPHAS[bF]), cy: Y(vF[bF]), r: 5.5, fill: COL.kl, stroke: "var(--surface)", "stroke-width": 2 }));
+  svg.append(sv("text", { x: X(ALPHAS[bF]), y: Y(vF[bF]) + 18, "text-anchor": ALPHAS[bF] < 0.1 ? "start" : ALPHAS[bF] > 0.9 ? "end" : "middle", class: "lab-strong" }, `best α ${ALPHAS[bF].toFixed(2)}: ${f1(vF[bF])}%`));
+  const hit = sv("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" });
+  hit.addEventListener("pointermove", e => { const r = hit.getBoundingClientRect(), i = Math.max(0, Math.min(20, Math.round(20 * (e.clientX - r.left) / r.width))); showTip(e, `α = ${ALPHAS[i].toFixed(2)}: misgraded`, [[COL.kl, "No guard", f1(vF[i]) + "%"], [COL.kl, "Guarded", f1(vG[i]) + "%"]]); });
+  hit.addEventListener("pointerleave", hideTip); svg.append(hit);
+  box.append(svg);
+  legend("leg5a", [[COL.kl, "KL dial, no guard", "line"], [COL.kl, "KL dial, guarded", "dash"], ["var(--muted)", "cohort share of the variation", "dash"], [COL.kl, "your α (step 4)", "rect"]]);
+  $("simLineCap").textContent = `α = 0 is curve to history and α = 1 is no curve. Filled dot: best α without the guard. Open dot: best α with the guard (${ALPHAS[bG].toFixed(2)}: ${f1(vG[bG])}%). The pale bar marks your α from step 4.`;
+  // bars
+  const items = [["No curve", Rz.rules.none, COL.none], ["Top score raised to 100", Rz.rules.top], [ruleName("median"), Rz.rules.median], ["Bell curve", Rz.rules.bell], ["Curve to history", Rz.rules.curve],
+    [`KL dial, best α ${ALPHAS[bF].toFixed(2)}, no guard`, Rz.free[bF], COL.kl], [`KL dial, best α ${ALPHAS[bG].toFixed(2)}, guarded`, Rz.guarded[bG], COL.kl], [`KL dial, your α ${state.alpha.toFixed(2)}${state.guard ? ", guarded" : ""}`, Rz.cur, COL.kl]];
+  const bb = $("simBars"); bb.innerHTML = "";
+  const W2 = W_of(bb), rowH = 27, mm = { l: 214, r: 172, t: 4, b: 22 }, H2 = mm.t + mm.b + rowH * items.length;
+  const mx = Math.max(5, ...items.map(i => i[1].all)) * 1.05, XX = v => mm.l + (W2 - mm.l - mm.r) * v / mx;
+  const g = sv("svg", { viewBox: `0 0 ${W2} ${H2}`, role: "img", "aria-label": "Share of students misgraded by each rule" });
+  const st2 = [1, 2, 5, 10, 20].find(v => mx / v <= 6) || 20;
+  for (let v = 0; v <= mx; v += st2) { g.append(sv("line", { x1: XX(v), x2: XX(v), y1: mm.t, y2: H2 - mm.b, stroke: v === 0 ? "var(--axis)" : "var(--grid)" })); g.append(sv("text", { x: XX(v), y: H2 - 6, "text-anchor": "middle" }, v + "%")); }
+  const minAll = Math.min(...items.map(i => i[1].all));
+  items.forEach(([name, e, color], i) => {
+    const yc = mm.t + rowH * i + rowH / 2;
+    if (color) g.append(sv("rect", { x: 2, y: yc - 5, width: 10, height: 10, rx: 2, fill: color }));
+    g.append(sv("text", { x: 18, y: yc + 4, class: e.all <= minAll + 1e-9 ? "lab-strong" : "lab" }, name));
+    g.append(sv("rect", { x: XX(0), y: yc - 7, width: Math.max(0, XX(e.lo) - XX(0)), height: 14, fill: "var(--err-lo)" }));
+    g.append(sv("rect", { x: XX(e.lo) + (e.lo > 0 ? 1 : 0), y: yc - 7, width: Math.max(0, XX(e.lo + e.hi) - XX(e.lo) - 1), height: 14, fill: "var(--err-hi)" }));
+    g.append(sv("text", { x: XX(e.all) + 6, y: yc + 4, class: "lab-ink" }, `${f1(e.all)}%  (${f1(e.lo)} low · ${f1(e.hi)} high)`));
+    const hit = sv("rect", { x: 0, y: yc - rowH / 2, width: W2, height: rowH, fill: "transparent" });
+    hover(hit, name, [["var(--err-lo)", "Graded too low", f1(e.lo) + "%"], ["var(--err-hi)", "Graded too high", f1(e.hi) + "%"], [null, "Misgraded", f1(e.all) + "%"]]); g.append(hit);
+  });
+  bb.append(g);
+  legend("leg5b", [["var(--err-lo)", "Graded too low"], ["var(--err-hi)", "Graded too high"]]);
+  // callout
+  const nc = Rz.rules.none.all, cv = Rz.rules.curve.all, bestV = vF[bF], guardCost = vG[bG] - bestV;
+  const rivals = items.slice(0, 5), winner = rivals.reduce((a, x) => x[1].all < a[1].all ? x : a);
+  let txt;
+  if (state.sc === 0 && state.se === 0) txt = `With no change in exams or cohorts, no curve is exactly right. Any rule that pulls toward history misgrades students, because chance differences in who enrolls are real differences.`;
+  else {
+    txt = `The KL dial does best at <b>α = ${ALPHAS[bF].toFixed(2)}</b>, misgrading <b>${f1(bestV)}%</b> of students, against <b>${f1(nc)}%</b> for no curve and <b>${f1(cv)}%</b> for curving to history.`;
+    if (winner[1].all < bestV - 0.05) txt += ` Here ${winner[0].toLowerCase()} does slightly better still (${f1(winner[1].all)}%).`;
+    if (isFinite(Rz.share) && state.sc > 0 && state.se > 0) txt += ` The cohort is ${Math.round(100 * Rz.share)}% of the variation you set; the best α sits ${ALPHAS[bF] >= Rz.share - 0.05 ? "at or a little above that share, because chance differences in who enrolls act like extra cohort variation" : "below that share in this run"}.`;
+    if (guardCost > 0.5) txt += ` The guard costs accuracy: guarded, the best is ${f1(vG[bG])}%, because it never corrects an exam that was too easy. It does keep “graded too low” at or below no curve.`;
+  }
+  $("c5").innerHTML = txt;
+}
+
+/* ---------- update ---------- */
+function update() {
+  const S = compute(); last = S;
+  renderStep1(S);
+  const ready = S.cur && S.q;
+  for (const id of ["s2", "s3", "s4", "s5"]) {
+    const sec = $(id); let ph = sec.querySelector(".empty.need");
+    if (!ready) { [...sec.children].forEach(c => { if (!c.classList.contains("step-head") && !c.classList.contains("need")) c.hidden = true; }); if (!ph) { ph = el("p", { class: "empty need" }); sec.append(ph); } ph.textContent = !S.cur ? "Choose a term with student scores as this term in step 1." : "Tick at least one past term as “In history” in step 1."; }
+    else { [...sec.children].forEach(c => { if (c.id !== "secPanel") c.hidden = false; }); if (ph) ph.remove(); }
+  }
+  if (!ready) return;
+  renderStep2(S); renderStep3(S); renderStep4(S); scheduleSim();
+}
+let simTimer = null;
+function scheduleSim() { clearTimeout(simTimer); simTimer = setTimeout(() => { if (last && last.cur && last.q) renderStep5(last); }, 30); }
+
+/* ---------- wiring ---------- */
+function buildScaleUI() {
+  const box = $("scaleInputs"); box.innerHTML = "";
+  DISP.slice(1).forEach(j => {
+    const inp = el("input", { type: "number", id: "cut" + j, step: "0.5", "aria-label": `Lowest score for ${LAB[j]}` }); inp.value = state.cuts[j];
+    inp.addEventListener("change", () => {
+      const v = parseFloat(inp.value), next = state.cuts.slice(); next[j] = isFinite(v) ? v : next[j];
+      if (!next.every((c, i) => i === 0 || c < next[i - 1])) { showErr(`Cutoffs must increase from ${LAB[K - 2]} to ${LAB[0]}.`); inp.value = state.cuts[j]; return; }
+      showErr(""); state.cuts = next; simCache = null; update();
+    });
+    box.append(el("label", { for: "cut" + j }, LAB[j] + " from", inp));
+  });
+  const reset = el("button", { class: "small ghost", type: "button" }); reset.textContent = "Standard cutoffs";
+  reset.addEventListener("click", () => { state.cuts = SCALES[state.mode].cuts.slice(); buildScaleUI(); simCache = null; update(); });
+  box.append(reset);
+  const ci = $("cInputs"); ci.innerHTML = "";
+  DISP.forEach(i => { const inp = el("input", { type: "number", id: "cnt" + i, min: "0", step: "1", "aria-label": `Number of ${LAB[i]}`, style: "width:56px" }); ci.append(el("label", { for: "cnt" + i }, LAB[i], inp)); });
+  document.querySelectorAll("[data-mode]").forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === state.mode));
+  document.querySelector('[data-metric="a"]').textContent = state.mode === "pm" ? "Share of A’s (A, A−)" : "Share of A’s";
+  document.querySelector('[data-metric="below"]').textContent = state.mode === "pm" ? "Share below C (C− and lower)" : "Share below C";
+}
+function setMode(mode) {
+  if (mode === state.mode) return;
+  state.mode = mode; setScaleVars(mode); simCache = null; buildScaleUI();
+  const cur = state.terms.find(t => t.id === state.currentId);
+  const off = state.terms.filter(t => !usable(t)).length;
+  msg(mode === "pm" ? `Switched to plus/minus grades.${off ? ` ${off} term${off > 1 ? "s" : ""} with A–F counts only cannot be split and are left out of the history.` : ""}` : "Switched to A–F grades.");
+  update();
+}
+document.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+buildScaleUI();
+$("cAdd").addEventListener("click", () => {
+  const c = LAB.map((_, i) => Math.max(0, parseFloat($("cnt" + i).value) || 0));
+  if (sum(c) <= 0) { showErr("Enter at least one grade count."); return; }
+  if (state.isExample) { state.isExample = false; }
+  let c5 = c, c12 = null;
+  if (state.mode === "pm") { c12 = c; c5 = new Array(5).fill(0); c.forEach((v, i) => c5[SCALES.pm.base[i]] += v); }
+  const t = countTerm($("cName").value.trim() || `Counts ${state.terms.length + 1}`, c5, c12); state.terms.push(t);
+  showErr(""); msg(`Added ${t.name} (${sum(c)} students) to the history.`); LAB.forEach((_, i) => $("cnt" + i).value = ""); $("cName").value = ""; update();
+});
+$("exSel").addEventListener("change", e => { simCache = null; loadExample(e.target.value); });
+$("fileBtn").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("fileIn").click(); } });
+$("fileIn").addEventListener("change", async e => { if (e.target.files.length) { simCache = null; await loadFiles(e.target.files); } e.target.value = ""; });
+$("clearBtn").addEventListener("click", () => { state.terms = []; state.currentId = null; state.isExample = false; msg("All terms cleared."); update(); });
+$("medTarget").addEventListener("change", e => { const v = parseFloat(e.target.value); state.medTarget = isFinite(v) ? v : 70; update(); });
+document.querySelectorAll("[data-metric]").forEach(b => b.addEventListener("click", () => { state.metric = b.dataset.metric; document.querySelectorAll("[data-metric]").forEach(x => x.setAttribute("aria-pressed", x === b)); renderMultiples(last); }));
+$("alpha").addEventListener("input", e => { state.alpha = Number(e.target.value); update(); });
+$("guard").addEventListener("change", e => { state.guard = e.target.checked; update(); });
+$("changedOnly").addEventListener("change", e => { state.changedOnly = e.target.checked; renderLedger(last); });
+$("sc").addEventListener("input", e => { state.sc = Number(e.target.value); scheduleSim(); $("scVal").textContent = state.sc.toFixed(1); });
+$("se").addEventListener("input", e => { state.se = Number(e.target.value); scheduleSim(); $("seVal").textContent = state.se.toFixed(1); });
+document.querySelectorAll("[data-sc]").forEach(b => b.addEventListener("click", () => { state.sc = Number(b.dataset.sc); state.se = Number(b.dataset.se); $("sc").value = state.sc; $("se").value = state.se; scheduleSim(); }));
+$("copyCsv").addEventListener("click", async () => { try { await navigator.clipboard.writeText(csvText()); $("exportMsg").textContent = "CSV copied. Paste it into a spreadsheet."; } catch { $("exportMsg").textContent = "Copy was blocked by the browser."; } });
+$("dlCsv").addEventListener("click", async () => {
+  if (!downloadsApi) {
+    // outside Claude (e.g. GitHub Pages): an ordinary browser download
+    const url = URL.createObjectURL(new Blob([csvText()], { type: "text/csv" }));
+    const a = document.createElement("a"); a.href = url; a.download = "kl-grades.csv";
+    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
+    $("exportMsg").textContent = "Downloaded kl-grades.csv."; return;
+  }
+  try { await downloadsApi.save({ filename: "kl-grades.csv", data: csvText() }); $("exportMsg").textContent = "Saved kl-grades.csv."; }
+  catch (err) { $("exportMsg").textContent = err && err.code === "declined" ? "Download cancelled." : "Download isn't available here. Use Copy CSV instead."; }
+});
+let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(update, 150); });
+
+loadExample("hard");
+if (window.claude && typeof window.claude.use === "function") {
+  window.claude.use("downloads").then(api => { downloadsApi = api; $("dlCsv").hidden = !api; }).catch(() => {});
+} else {
+  $("dlCsv").hidden = false;   // a standalone page can download directly
+}
+
+</script>
+</body>
+</html>
